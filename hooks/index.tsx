@@ -1,5 +1,4 @@
 export * from './useApiCall'
-export * from './useCatchDarkmode'
 export * from './useEventSource'
 export * from './useGetBreadCrumb'
 export * from './useResponsive'
