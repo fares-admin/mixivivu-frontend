@@ -1,4 +1,5 @@
 import React from 'react'
+import styles from './Button.module.css'
 
 interface ButtonProps {
   size?: 'small' | 'normal'
@@ -30,11 +31,13 @@ export const Button = ({
   return (
     <button
       type="button"
-      className={[`button-${size}`, mode].join(' ')}
+      className={[styles[`button-${size}`], styles[mode]].join(' ')}
       disabled={disable}
       {...props}
     >
-      <label className={labelSize}>{label}</label>
+      <label style={{ cursor: 'pointer' }} className={labelSize}>
+        {label}
+      </label>
       {/* <style jsx>{`
         button {
           background-color: ${backgroundColor};

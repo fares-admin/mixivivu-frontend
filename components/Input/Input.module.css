@@ -1,0 +1,88 @@
+.input-group {
+  position: relative;
+  padding: 16px 20px;
+  border-radius: 28px;
+  border: 1px solid var(--gray-200);
+  box-shadow: var(--shadow-xs);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.input-group > label {
+  position: absolute;
+  top: 0px;
+  transform: translateY(-50%);
+  left: 16px;
+  background-color: white;
+  padding: 0px 4px;
+}
+
+.hint-text {
+  color: var(--gray-400);
+}
+
+/* focus */
+.input-group:focus-within {
+  border: 1px solid var(--primary-base);
+  box-shadow: 0px 0px 0px 4px var(--primary-light);
+}
+
+/* disable */
+.input-group.disble {
+  background: linear-gradient(0deg, var(--gray-200), var(--gray-200)),
+    linear-gradient(0deg, var(--gray-50), var(--gray-50));
+  border: 1px solid var(--gray-200);
+}
+
+/* destructive */
+.destructive > .input-group {
+  border: 1px solid var(--error-base);
+}
+
+.destructive > .hint-text {
+  color: var(--error-base);
+}
+
+.destructive > .input-group:focus-within {
+  box-shadow: 0px 0px 0px 4px var(--error-light);
+}
+
+.input-group > input:disabled {
+  color: var(--gray-400);
+}
+
+.input-group > svg > path {
+  stroke: var(--gray-400);
+}
+
+.destructive > .input-group > svg > path {
+  stroke: var(--error-base) !important;
+}
+
+/* ignore css input */
+.input-group > input {
+  border: none;
+  flex-grow: 1;
+  color: var(--gray-800);
+}
+
+.input-group > input:focus {
+  border: none;
+  outline: none;
+}
+
+/* placeholder */
+/* Edge */
+.input-group > input::-webkit-input-placeholder {
+  color: var(--gray-400);
+}
+
+/* Internet Explorer 10-11 */
+.input-group > input:-ms-input-placeholder {
+  color: var(--gray-400);
+}
+
+.input-group > input::placeholder {
+  color: var(--gray-400);
+}
