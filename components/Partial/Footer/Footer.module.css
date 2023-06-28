@@ -1,0 +1,48 @@
+.footer {
+  padding: 64px 0 48px;
+  display: flex;
+  gap: 64px;
+  width: min(1216px, 100%);
+  align-items: center;
+}
+
+.footer1 > .footer span {
+  color: var(--gray-500);
+  cursor: default;
+}
+
+.footer1 > .footer > div:first-child {
+  width: max(25%, 320px);
+}
+
+.footer1 > .footer > div:last-child {
+  flex-grow: 1;
+}
+
+.footer1 {
+  background-color: var(--gray-900);
+  color: var(--gray-400);
+}
+
+.footer2 {
+  background-color: var(--gray-800);
+}
+
+.footer2 p {
+  flex-grow: 1;
+}
+
+.footer2 > .footer {
+  padding: 48px 0;
+  color: var(--gray-500);
+}
+
+.footer2 svg {
+  fill: var(--gray-400);
+  width: 24px;
+  height: 24px;
+}
+
+.anchor:hover {
+  color: var(--primary-dark);
+}

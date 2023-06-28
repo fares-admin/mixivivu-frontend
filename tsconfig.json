@@ -19,6 +19,12 @@
       "@/*": ["./*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "types/permission/index"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "types/permission/index",
+    "components/Partial/Footer/Footer.inventory.tsx"
+  ],
   "exclude": ["node_modules", ".storybook"]
 }

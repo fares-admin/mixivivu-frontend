@@ -34,7 +34,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
             {...props}
           />
           {supportIcon && supportIcon}
-          <label htmlFor={id} style={{ cursor: 'pointer' }} className="small">
+          <label htmlFor={id} className="small">
             {label}
           </label>
         </label>

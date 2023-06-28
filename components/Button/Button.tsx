@@ -1,12 +1,12 @@
 import React from 'react'
 import styles from './Button.module.css'
 
-interface ButtonProps {
+interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   size?: 'small' | 'normal'
-  type?: 'color' | 'outline' | 'outline-dark' | 'link-color'
+  typeStyle?: 'color' | 'outline' | 'outline-dark' | 'link-color'
   destructive?: boolean
-  iconLeading?: string
-  iconTrailing?: string
+  iconLeading?: React.ReactNode
+  iconTrailing?: React.ReactNode
   disable?: boolean
   label: string
   onClick?: () => void
@@ -17,7 +17,7 @@ interface ButtonProps {
  */
 export const Button = ({
   size = 'normal',
-  type = 'color',
+  typeStyle = 'color',
   destructive,
   iconLeading,
   iconTrailing,
@@ -26,7 +26,7 @@ export const Button = ({
   ...props
 }: ButtonProps) => {
   const labelSize = size === 'normal' ? 'regular' : 'small'
-  const mode = destructive ? `button-${type}-destructive` : `button-${type}`
+  const mode = destructive ? `button-${typeStyle}-destructive` : `button-${typeStyle}`
 
   return (
     <button
@@ -35,14 +35,9 @@ export const Button = ({
       disabled={disable}
       {...props}
     >
-      <label style={{ cursor: 'pointer' }} className={labelSize}>
-        {label}
-      </label>
-      {/* <style jsx>{`
-        button {
-          background-color: ${backgroundColor};
-        }
-      `}</style> */}
+      {iconLeading && iconLeading}
+      <label className={labelSize}>{label}</label>
+      {iconTrailing && iconTrailing}
     </button>
   )
 }
