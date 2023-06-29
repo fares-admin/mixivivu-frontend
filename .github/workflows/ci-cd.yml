@@ -19,7 +19,7 @@ jobs:
       - name: build next
         run: npm run build
   publish-storybook:
-    if: ${{ always() }}
+    if: ${{ success() }}
     needs: [build-develop]
     runs-on: ubuntu-latest
 
@@ -34,6 +34,7 @@ jobs:
         with:
           #👇 Chromatic projectToken,
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
+        continue-on-error: true
       - name: remove cache
         run: rm -rf
       - run: yarn
@@ -43,3 +44,4 @@ jobs:
         with:
           #👇 Chromatic projectToken,
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
+          zip: true
