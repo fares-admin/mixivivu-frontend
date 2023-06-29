@@ -3,12 +3,12 @@ name: publish storybook CI/CD work-flow
 on:
   pull_request:
     branches: [develop]
-  types: [closed]
+    types: [closed]
 
 jobs:
   publish-storybook:
-    if: ${{ success() }}
-    needs: [build-develop]
+    # if: ${{ success() }}
+    # needs: [build-develop]
     runs-on: ubuntu-latest
 
     steps:
