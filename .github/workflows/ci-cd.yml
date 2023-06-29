@@ -34,3 +34,4 @@ jobs:
         with:
           #👇 Chromatic projectToken,
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
+          exitOnceUploaded: true
