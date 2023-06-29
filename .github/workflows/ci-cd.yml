@@ -34,14 +34,3 @@ jobs:
         with:
           #👇 Chromatic projectToken,
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
-        continue-on-error: true
-      - name: remove cache
-        run: rm -rf node_modules
-      - run: yarn
-        #👇 Adds Chromatic as a step in the workflow
-      - uses: chromaui/action@v1
-        # Options required for Chromatic's GitHub Action
-        with:
-          #👇 Chromatic projectToken,
-          projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
-          zip: true
