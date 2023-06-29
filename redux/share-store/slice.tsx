@@ -5,7 +5,6 @@ const initialState: ShareStoreTypes = {
   loading: 0,
   breakPoint: 1,
   language: {},
-  darkTheme: 'light',
 }
 
 const ShareStoreSlice = createSlice({

@@ -1,0 +1,105 @@
+.container {
+  border-radius: 16px;
+  width: fit-content;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.sm {
+  padding: 2px 8px;
+}
+
+.md {
+  padding: 2px 10px;
+}
+
+.lg {
+  padding: 4px 12px;
+}
+
+.sm.only {
+  padding: 4px;
+}
+
+.md.only {
+  padding: 6px;
+}
+
+.lg.only {
+  padding: 8px;
+}
+
+.default {
+  background-color: var(--gray-100);
+  color: var(--gray-500);
+}
+
+.primary {
+  background-color: var(--primary-light);
+  color: var(--primary-base);
+}
+
+.error {
+  background-color: var(--error-light);
+  color: var(--error-base);
+}
+
+.success {
+  background-color: var(--success-light);
+  color: var(--success-base);
+}
+
+.infomation {
+  background-color: var(--info2mation-light);
+  color: var(--infomation-base);
+}
+
+.warning {
+  background-color: var(--warning-light);
+  color: var(--warning-base);
+}
+
+.default svg {
+  stroke: var(--gray-500);
+}
+
+.primary svg {
+  stroke: var(--primary-base);
+}
+
+.error svg {
+  stroke: var(--error-base);
+}
+
+.success svg {
+  stroke: var(--success-base);
+}
+
+.infomation svg {
+  stroke: var(--infomation-base);
+}
+
+.warning svg {
+  stroke: var(--warning-base);
+}
+
+.container.false svg {
+  display: none;
+}
+
+.container.leading svg:not(:first-child) {
+  display: none;
+}
+
+.container.trailing svg:not(:nth-child(3)) {
+  display: none;
+}
+
+.container.only svg:not(:last-child) {
+  display: none;
+}
+
+.container.only label {
+  display: none;
+}
