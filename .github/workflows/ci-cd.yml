@@ -1,9 +1,5 @@
 name: development CI/CD work-flow
 
-env:
-  NEXT_PUBLIC_SECRET_JWT_KEY: ${{ secrets.NEXT_PUBLIC_SECRET_JWT_KEY }}
-  NEXT_PUBLIC_API_BASE_URL: ${{ secrets.NEXT_PUBLIC_API_BASE_URL }}
-
 on:
   pull_request:
     branches: [develop]
@@ -22,3 +18,21 @@ jobs:
         run: npm install
       - name: build next
         run: npm run build
+      - name: build storybook
+        run: npm run build-storybook
+
+  publish-storybook:
+    if: ${{ always() }}
+    needs: [build-develop]
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - run: yarn
+        #👇 Adds Chromatic as a step in the workflow
+      - uses: chromaui/action@v1
+        # Options required for Chromatic's GitHub Action
+        with:
+          #👇 Chromatic projectToken,
+          projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }}

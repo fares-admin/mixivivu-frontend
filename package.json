@@ -14,7 +14,8 @@
     "check-types": "tsc --pretty --noEmit",
     "prepare": "husky install",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "chromatic": "npx chromatic --project-token=chpt_0ea299b277c6015"
   },
   "dependencies": {
     "@fontsource/roboto": "^4.5.8",
@@ -47,6 +48,7 @@
     "@types/react-dom": "18.0.6",
     "@typescript-eslint/eslint-plugin": "^5.32.0",
     "@typescript-eslint/parser": "^5.32.0",
+    "chromatic": "^6.19.9",
     "eslint": "8.26.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-airbnb-typescript": "^17.0.0",
@@ -63,5 +65,7 @@
     "prettier": "^2.7.1",
     "storybook": "7.0.23",
     "typescript": "4.8.4"
-  }
+  },
+  "readme": "ERROR: No README data found!",
+  "_id": "e-com-frontend@0.1.0"
 }
