@@ -1,0 +1,24 @@
+name: publish storybook CI/CD work-flow
+
+on:
+  pull_request:
+    branches: [develop]
+    types: [closed]
+
+jobs:
+  publish-storybook:
+    # if: ${{ success() }}
+    # needs: [build-develop]
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - run: yarn
+        #👇 Adds Chromatic as a step in the workflow
+      - uses: chromaui/action@v1
+        # Options required for Chromatic's GitHub Action
+        with:
+          #👇 Chromatic projectToken,
+          projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
