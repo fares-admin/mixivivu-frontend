@@ -40,5 +40,16 @@ yarn build ||
 )
 
 # If everything passes... Now we can commit
+echo 'Try to build storybook'
+
+yarn build-storybook ||
+(
+    echo '❌👷🔨❌ Send Help Build StoryBook has failed ❌👷🔨❌
+            Next build failed: View the errors above to see why. 
+    '
+    false;
+)
+
+# If everything passes... Now we can commit
 echo '✅✅✅✅ Yo you got this... I am committing this now. ✅✅✅✅'
 
