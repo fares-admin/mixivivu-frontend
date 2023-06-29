@@ -60,7 +60,7 @@ export const Header = () => {
           {navigationItems.map((navItem) => (
             <div key={navItem.name} className={styles.menu}>
               <a className="h-full flex align-center" href={navItem.url}>
-                <label htmlFor="" className="regular">
+                <label htmlFor="" className="md">
                   {navItem.name}
                 </label>
                 {navItem?.childrens?.length ? <ChevronDownIcon /> : null}
@@ -73,7 +73,7 @@ export const Header = () => {
                       className="h-full flex align-center"
                       href={childItem.url}
                     >
-                      <label htmlFor="" className="regular">
+                      <label htmlFor="" className="md">
                         {childItem.name}
                       </label>
                     </a>
@@ -88,7 +88,7 @@ export const Header = () => {
         <div className={styles.menu}>
           <Button
             label="Tiếng việt"
-            size="small"
+            size="sm"
             typeStyle="outline"
             iconLeading={<VietnameseFlagIcon />}
           />
@@ -103,7 +103,7 @@ export const Header = () => {
             </div>
           </div>
         </div>
-        <Button label="Đặt khách đoàn" size="small" typeStyle="color" />
+        <Button label="Đặt khách đoàn" size="sm" typeStyle="color" />
       </div>
     </div>
   )

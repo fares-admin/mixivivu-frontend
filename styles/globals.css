@@ -73,132 +73,138 @@ h6 {
 }
 
 /* Sub Heading */
-.subheading.large {
+.subheading.lg {
   font-size: 20px;
   line-height: 30px;
   font-weight: 700;
 }
 
-.subheading.regular {
+.subheading.md {
   font-size: 18px;
   line-height: 28px;
   font-weight: 700;
 }
 
-.subheading.small {
+.subheading.sm {
   font-size: 16px;
   line-height: 24px;
   font-weight: 700;
 }
 
 /* Label */
-label.xlarge {
+label.xl {
   font-size: 20px;
   line-height: 30px;
   font-weight: 500;
 }
 
-label.large {
+label.lg {
   font-size: 18px;
   line-height: 28px;
   font-weight: 500;
 }
 
-label.regular {
+label.md {
   font-size: 16px;
   line-height: 24px;
   font-weight: 500;
 }
 
-label.small {
+label.sm {
   font-size: 14px;
   line-height: 20px;
   font-weight: 500;
 }
 
+label.xs {
+  font-size: 12px;
+  line-height: 18px;
+  font-weight: 500;
+}
+
 /* paragraph tag */
-p.xlarge {
+p.xl {
   font-size: 20px;
   line-height: 30px;
   font-weight: 400;
 }
 
-p.large {
+p.lg {
   font-size: 18px;
   line-height: 28px;
   font-weight: 400;
 }
 
-p.regular {
+p.md {
   font-size: 16px;
   line-height: 24px;
   font-weight: 400;
 }
 
-p.small {
+p.sm {
   font-size: 14px;
   line-height: 20px;
   font-weight: 400;
 }
 
 /* paragraph */
-.p-xlarge {
+.p-xl {
   font-size: 20px;
   line-height: 30px;
   font-weight: 400;
 }
 
-.p-large {
+.p-lg {
   font-size: 18px;
   line-height: 28px;
   font-weight: 400;
 }
 
-.p-regular {
+.p-md {
   font-size: 16px;
   line-height: 24px;
   font-weight: 400;
 }
 
-.p-small {
+.p-sm {
   font-size: 14px;
   line-height: 20px;
   font-weight: 400;
 }
 
 /* details  tag*/
-details.large {
+details.lg {
   font-size: 18px;
   line-height: 28px;
   font-weight: 600;
 }
 
-details.regular {
+details.md {
   font-size: 16px;
   line-height: 24px;
   font-weight: 600;
 }
 
-details.small {
+details.sm {
   font-size: 14px;
   line-height: 20px;
   font-weight: 600;
 }
 
 /* detail */
-.detail-large {
+.detail-lg {
   font-size: 18px;
   line-height: 28px;
   font-weight: 600;
 }
 
-.detail-regular {
+.detail-md {
   font-size: 16px;
   line-height: 24px;
   font-weight: 600;
 }
 
-.detail-small {
+.detail-sm {
   font-size: 14px;
   line-height: 20px;
   font-weight: 600;

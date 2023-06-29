@@ -2,7 +2,7 @@ import React from 'react'
 import styles from './Button.module.css'
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  size?: 'small' | 'normal'
+  size?: 'sm' | 'normal'
   typeStyle?: 'color' | 'outline' | 'outline-dark' | 'link-color'
   destructive?: boolean
   iconLeading?: React.ReactNode
@@ -25,7 +25,7 @@ export const Button = ({
   disable,
   ...props
 }: ButtonProps) => {
-  const labelSize = size === 'normal' ? 'regular' : 'small'
+  const labelSize = size === 'normal' ? 'md' : 'sm'
   const mode = destructive ? `button-${typeStyle}-destructive` : `button-${typeStyle}`
 
   return (

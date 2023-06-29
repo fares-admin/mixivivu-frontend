@@ -28,17 +28,17 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
           <input
             id={id}
             ref={ref}
-            className="p-regular"
+            className="p-md"
             placeholder={placeHolder}
             disabled={disable}
             {...props}
           />
           {supportIcon && supportIcon}
-          <label htmlFor={id} className="small">
+          <label htmlFor={id} className="sm">
             {label}
           </label>
         </label>
-        {hintText && <p className={['small', styles['hint-text']].join(' ')}>{hintText}</p>}
+        {hintText && <p className={['sm', styles['hint-text']].join(' ')}>{hintText}</p>}
       </div>
     )
   }
