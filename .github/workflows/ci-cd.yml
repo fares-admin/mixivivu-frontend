@@ -18,6 +18,8 @@ jobs:
         run: npm install
       - name: build next
         run: npm run build
+      - name: remove cache
+        run: rm -rf
       - name: build storybook
         run: npm run build-storybook
 
