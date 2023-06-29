@@ -64,7 +64,8 @@
     "localtunnel": "^2.0.2",
     "prettier": "^2.7.1",
     "storybook": "7.0.23",
-    "typescript": "4.8.4"
+    "typescript": "4.8.4",
+    "webpack": "^5.88.1"
   },
   "readme": "ERROR: No README data found!",
   "_id": "e-com-frontend@0.1.0"
