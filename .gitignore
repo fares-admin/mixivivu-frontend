@@ -37,3 +37,4 @@ next-env.d.ts
 
 build-storybook.log
 /storybook-static
+yarn.lock
