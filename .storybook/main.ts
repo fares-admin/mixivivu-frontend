@@ -19,7 +19,7 @@ const config: StorybookConfig = {
     check: false,
   },
   refs: {
-    'chromatic-published-Storybook': {
+    'design-system': {
       // The title of your Storybook
       title: 'Mixivivu Design System',
       // The url provided by Chromatic when it was published
