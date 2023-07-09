@@ -6,6 +6,26 @@ const meta: Meta<typeof Badge> = {
   title: 'Components/Badge',
   component: Badge,
   tags: ['autodocs'],
+  argTypes: {
+    size: {
+      options: ['sm', 'md', 'lg'],
+      control: {
+        type: 'radio',
+      },
+    },
+    color: {
+      options: ['default', 'primary', 'error', 'success', 'infomation', 'warning'],
+      control: {
+        type: 'select',
+      },
+    },
+    icon: {
+      options: ['false', 'leading', 'trailing', 'only'],
+      control: {
+        type: 'radio',
+      },
+    },
+  },
 }
 
 export default meta
@@ -14,7 +34,7 @@ type Story = StoryObj<typeof Badge>
 // More on writing stories with args: https://storybook.js.org/docs/react/writing-stories/args
 export const Examp: Story = {
   args: {
-    label: 'label',
+    label: 'Label',
     icon: 'trailing',
     color: 'default',
     size: 'sm',

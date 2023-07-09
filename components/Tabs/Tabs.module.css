@@ -1,0 +1,74 @@
+.tabItem {
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  color: var(--gray-500);
+  border-radius: 6px;
+  padding: 8px 12px;
+  width: fit-content;
+  border: none;
+  background: transparent;
+  box-shadow: none;
+}
+
+.tabItem:hover {
+  color: var(--gray-700);
+  box-shadow: 0px 1px 2px 0px rgba(16, 24, 40, 0.06), 0px 1px 3px 0px rgba(16, 24, 40, 0.1);
+  cursor: pointer;
+  background: var(--base-white);
+}
+
+.tabItem:focus {
+  color: var(--gray-700);
+  background: var(--base-white);
+}
+
+.sm {
+  padding: 8px 12px;
+}
+
+.md {
+  padding: 10px 14px;
+}
+
+.full-w {
+  width: 100%;
+}
+
+.tabItem__badge {
+  display: flex;
+  padding: 2px 8px;
+  align-items: center;
+  border-radius: 16px;
+  background: var(--gray-100, #f2f4f7);
+  color: var(--gray-700);
+}
+
+.tabs__header {
+  display: flex;
+  padding: 4px;
+  align-items: center;
+  gap: 8px;
+  border-radius: 8px;
+  border: 1px solid var(--gray-100, #f2f4f7);
+  background: var(--gray-50, #f9fafb);
+}
+
+.tabMobile__header {
+  display: flex;
+  padding: 10px 14px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  align-self: stretch;
+  border-radius: 8px;
+  border: 1px solid var(--gray-300, #d0d5dd);
+  background: var(--base-white, #fff);
+  box-shadow: 0px 1px 2px 0px rgba(16, 24, 40, 0.05);
+  stroke: var(--black);
+}
+
+.tabMobile__header > svg {
+  width: 20px;
+  height: 20px;
+}

@@ -8,7 +8,7 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   iconLeading?: React.ReactNode
   iconTrailing?: React.ReactNode
   disable?: boolean
-  label: string
+  label?: string
   onClick?: () => void
 }
 

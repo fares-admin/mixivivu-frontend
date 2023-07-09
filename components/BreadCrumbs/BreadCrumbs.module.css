@@ -1,0 +1,38 @@
+.breadcrumb {
+  color: var(--gray-600);
+  fill: white;
+  stroke: var(--gray-600);
+  cursor: pointer;
+}
+
+.breadcrumb:hover {
+  color: var(--gray-800);
+  stroke: var(--gray-800);
+}
+
+.disabled {
+  pointer-events: none;
+}
+
+.selected {
+  color: var(--primary-dark, #0e4f4f);
+  stroke: var(--primary-dark);
+}
+
+.selected:hover {
+  color: var(--primary-base);
+  stroke: var(--primary-base);
+}
+
+.breadCrumbs > svg {
+  width: 16px;
+  height: 16px;
+  stroke: var(--gray-300);
+}
+
+.breadCrumbs,
+.breadCrumbsContainer {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}

@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import { CirCleQuyestionIcon, Input, MailIcon } from '@/components'
+import { CirCleQuestionIcon, Input, MailIcon } from '@/components'
 
 // More on how to set up stories at: https://storybook.js.org/docs/react/writing-stories/introduction
 const meta: Meta<typeof Input> = {
@@ -27,7 +27,7 @@ export const Icon: Story = {
       placeHolder="linh.nguyen@zestif.com"
       hintText="This is a hint text to help user."
       iconSwap={<MailIcon fillColor="" />}
-      supportIcon={<CirCleQuyestionIcon fillColor="red" />}
+      supportIcon={<CirCleQuestionIcon />}
     />
   ),
 }
@@ -39,7 +39,7 @@ export const IconDestructive: Story = {
       placeHolder="linh.nguyen@zestif.com"
       hintText="This is a hint text to help user."
       iconSwap={<MailIcon fillColor="" />}
-      supportIcon={<CirCleQuyestionIcon fillColor="red" />}
+      supportIcon={<CirCleQuestionIcon />}
       destructive={true}
     />
   ),

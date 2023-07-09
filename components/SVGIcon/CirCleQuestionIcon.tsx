@@ -1,9 +1,9 @@
-interface CirCleQuyestionIconProps {
+interface CirCleQuestionIconProps {
   fillColor?: string
   strokeColor?: string
 }
 
-export const CirCleQuyestionIcon = ({ fillColor, strokeColor }: CirCleQuyestionIconProps) => {
+export const CirCleQuestionIcon = ({ fillColor, strokeColor }: CirCleQuestionIconProps) => {
   return (
     <svg
       width="16"

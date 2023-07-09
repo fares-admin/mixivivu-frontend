@@ -23,8 +23,10 @@
 }
 
 .container > input:focus ~ .checkmark {
-  border: 1px solid var(--primary-dark);
-  box-shadow: 0px 0px 0px 4px var(--primary-light);
+  border-radius: 4px;
+  border: 1px solid var(--primary-base, #77dada);
+  background: var(--base-white, #fff);
+  box-shadow: 0px 0px 0px 4px #caf8f8;
 }
 
 .container > input:disabled ~ .checkmark {

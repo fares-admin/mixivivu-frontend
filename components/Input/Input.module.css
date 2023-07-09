@@ -7,6 +7,7 @@
   display: flex;
   align-items: center;
   gap: 6px;
+  fill: var(--base-white);
 }
 
 .input-group > label {
@@ -54,10 +55,6 @@
 
 .input-group > svg > path {
   stroke: var(--gray-400);
-}
-
-.destructive > .input-group > svg > path {
-  stroke: var(--error-base) !important;
 }
 
 /* ignore css input */
