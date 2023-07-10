@@ -1,4 +1,4 @@
-import { Button, GithubIcon, FacebookIcon, SocialIcon1, SocialIcon2 } from '@/components'
+import { Button, GithubIcon, FacebookIcon, SocialIcon1, SocialIcon2, StarIcon } from '@/components'
 import type { Meta, StoryObj } from '@storybook/react'
 
 const iconOptions = {
@@ -7,6 +7,7 @@ const iconOptions = {
   FacebookIcon: <FacebookIcon />,
   SocialIcon1: <SocialIcon1 />,
   SocialIcon2: <SocialIcon2 />,
+  StarIcon: <StarIcon />,
   // ... Add more options as needed
 }
 // More on how to set up stories at: https://storybook.js.org/docs/react/writing-stories/introduction

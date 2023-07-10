@@ -1,0 +1,23 @@
+.questionCard {
+  position: relative;
+  display: flex;
+  padding: 24px;
+  flex-direction: column;
+  gap: 20px;
+  border-radius: 32px;
+  cursor: pointer;
+}
+
+.answer {
+  color: var(--gray-600, #475467);
+}
+
+.icon {
+  position: absolute;
+  right: 24px;
+  top: 24px;
+}
+
+.icon path {
+  stroke: var(--primary-base);
+}

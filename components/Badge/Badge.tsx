@@ -1,20 +1,38 @@
-import { ArrowRightIcon, ArrowUpIcon, XMarkIcon } from '../SVGIcon'
 import styles from './Badge.module.css'
 
 interface BadgeProps {
   size: 'sm' | 'md' | 'lg'
-  icon: 'false' | 'leading' | 'trailing' | 'only'
+  iconLeading?: React.ReactNode
+  iconTrailing?: React.ReactNode
+  iconOnly?: React.ReactNode
   color: 'default' | 'primary' | 'error' | 'success' | 'infomation' | 'warning'
   label: string
+  customClass?: string
 }
 
-export const Badge = ({ color, icon, size, label }: BadgeProps) => {
+export const Badge = ({
+  color,
+  iconLeading,
+  iconTrailing,
+  iconOnly,
+  size,
+  label,
+  customClass,
+}: BadgeProps) => {
   return (
-    <div className={[styles[color], styles[icon], styles[size], styles.container].join(' ')}>
-      <ArrowUpIcon />
+    <div
+      className={[
+        styles[color],
+        iconOnly ? styles.only : '',
+        styles[size],
+        styles.container,
+        customClass,
+      ].join(' ')}
+    >
+      {iconLeading && iconLeading}
       <label className={size === 'sm' ? 'xs' : 'sm'}>{label}</label>
-      <ArrowRightIcon />
-      <XMarkIcon />
+      {iconTrailing && iconTrailing}
+      {iconOnly && iconOnly}
     </div>
   )
 }

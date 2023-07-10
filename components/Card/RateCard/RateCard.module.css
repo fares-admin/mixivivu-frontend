@@ -1,0 +1,27 @@
+.rateCard {
+  display: flex;
+  padding: 24px;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.rateCard p {
+  color: var(--gray-600, #475467);
+}
+
+.action {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.dot {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--gray-200, #eaecf0);
+}
+
+.date {
+  color: var(--gray-600, #475467);
+}

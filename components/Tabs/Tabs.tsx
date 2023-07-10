@@ -4,7 +4,7 @@ import { ChevronDownIcon } from '../SVGIcon'
 
 interface TabItemProps {
   size: 'sm' | 'md'
-  label: String
+  label: string
   badge?: number
   fullWidth?: boolean
 }
@@ -25,7 +25,7 @@ export const TabItem = ({ size, label, badge, fullWidth }: TabItemProps) => {
 }
 
 interface TabProps {
-  label: String
+  label: string
   badge?: number
 }
 
@@ -45,7 +45,7 @@ export const Tabs = ({ tabs = [], size, isMobile = false }: TabsProps) => {
   return (
     <div className={styles.tabs}>
       {isMobile ? (
-        <div>
+        <div className={styles.tabMobile}>
           <div onClick={() => setShowDropdown(!showDropdown)} className={styles.tabMobile__header}>
             <p>{selected.label}</p>
             <ChevronDownIcon />

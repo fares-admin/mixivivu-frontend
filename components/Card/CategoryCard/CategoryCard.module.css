@@ -1,0 +1,25 @@
+.categoryCard {
+  width: fit-content;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding-bottom: 24px;
+}
+
+.imageWrapper {
+  padding: 16px 16px 0 16px;
+}
+
+.body,
+.footer {
+  display: flex;
+  padding: 0px 24px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+
+.body h6 {
+  margin: 0;
+}

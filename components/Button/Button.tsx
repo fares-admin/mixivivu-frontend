@@ -9,6 +9,7 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   iconTrailing?: React.ReactNode
   disable?: boolean
   label?: string
+  customClass?: string
   onClick?: () => void
 }
 
@@ -23,6 +24,7 @@ export const Button = ({
   iconTrailing,
   label,
   disable,
+  customClass,
   ...props
 }: ButtonProps) => {
   const labelSize = size === 'normal' ? 'md' : 'sm'
@@ -31,7 +33,7 @@ export const Button = ({
   return (
     <button
       type="button"
-      className={[styles[`button-${size}`], styles[mode]].join(' ')}
+      className={[customClass, styles[`button-${size}`], styles[mode]].join(' ')}
       disabled={disable}
       {...props}
     >

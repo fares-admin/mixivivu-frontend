@@ -10,8 +10,8 @@ import styles from './Alert.module.css'
 interface AlertProps {
   color: 'success' | 'gray' | 'error' | 'warning' | 'primary'
   isMobile: boolean
-  title: String
-  content: String
+  title: string
+  content: string
   onClick: () => void
 }
 

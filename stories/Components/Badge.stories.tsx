@@ -1,5 +1,13 @@
-import { Badge } from '@/components'
+import { Badge, ArrowRightIcon, ArrowUpIcon, XMarkIcon } from '@/components'
 import type { Meta, StoryObj } from '@storybook/react'
+
+const iconOptions = {
+  None: null, // No icon
+  ArrowRightIcon: <ArrowRightIcon />,
+  ArrowUpIcon: <ArrowUpIcon />,
+  XMarkIcon: <XMarkIcon />,
+  // ... Add more options as needed
+}
 
 // More on how to set up stories at: https://storybook.js.org/docs/react/writing-stories/introduction
 const meta: Meta<typeof Badge> = {
@@ -19,11 +27,20 @@ const meta: Meta<typeof Badge> = {
         type: 'select',
       },
     },
-    icon: {
-      options: ['false', 'leading', 'trailing', 'only'],
-      control: {
-        type: 'radio',
-      },
+    iconLeading: {
+      options: iconOptions,
+      control: { type: 'select' },
+      defaultValue: iconOptions.None,
+    },
+    iconTrailing: {
+      options: iconOptions,
+      control: { type: 'select' },
+      defaultValue: iconOptions.None,
+    },
+    iconOnly: {
+      options: iconOptions,
+      control: { type: 'select' },
+      defaultValue: iconOptions.None,
     },
   },
 }
@@ -35,7 +52,7 @@ type Story = StoryObj<typeof Badge>
 export const Examp: Story = {
   args: {
     label: 'Label',
-    icon: 'trailing',
+    iconTrailing: iconOptions.ArrowRightIcon,
     color: 'default',
     size: 'sm',
   },

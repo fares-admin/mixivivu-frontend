@@ -14,11 +14,19 @@
   fill: var(--primary-dark);
 }
 
+.button-color > svg > path {
+  stroke: var(--primary-dark);
+}
+
 .button-color:hover {
   background-color: var(--primary-dark);
   color: white;
   cursor: pointer;
   fill: white;
+}
+
+.button-color:hover > svg > path {
+  stroke: var(--base-white);
 }
 
 .button-color:focus {
@@ -36,6 +44,10 @@
   border: 1px solid var(--error-base);
   color: white;
   fill: white;
+}
+
+.button-color-destructive > svg > path {
+  stroke: var(--base-white);
 }
 
 .button-color-destructive:hover {
@@ -62,11 +74,19 @@
   fill: var(--gray-800);
 }
 
+.button-outline > svg > path {
+  stroke: var(--gray-800);
+}
+
 .button-outline:hover {
   background: var(--gray-50);
   color: var(--gray-700);
   fill: var(--gray-700);
   cursor: pointer;
+}
+
+.button-outline:hover > svg > path {
+  stroke: var(--gray-700);
 }
 
 .button-outline:focus {
@@ -82,6 +102,10 @@
   pointer-events: none;
 }
 
+.button-outline:disabled > svg > path {
+  stroke: var(--gray-200);
+}
+
 /* button outline destructive */
 .button-outline-destructive {
   background: linear-gradient(0deg, #ffffff, #ffffff),
@@ -89,6 +113,10 @@
   border: 1px solid var(--error-base);
   color: var(--error-base);
   fill: var(--error-base);
+}
+
+.button-outline-destructive > svg > path {
+  stroke: var(--error-base);
 }
 
 .button-outline-destructive:hover {
@@ -110,6 +138,10 @@
   pointer-events: none;
 }
 
+.button-outline-destructive:disabled > svg > path {
+  stroke: var(--error-light);
+}
+
 /* button outline dark */
 .button-outline-dark {
   border: 1px solid rgba(255, 255, 255, 0.2);
@@ -117,6 +149,10 @@
   box-shadow: 0px 1px 2px 0px rgba(16, 24, 40, 0.05);
   color: var(--base-white, #fff);
   fill: var(--base-white, #fff);
+}
+
+.button-outline-dark > svg > path {
+  stroke: var(--base-white);
 }
 
 .button-outline-dark:hover {
@@ -143,10 +179,18 @@
   box-shadow: none;
 }
 
+.button-link-color > svg > path {
+  stroke: var(--primary-dark);
+}
+
 .button-link-color:hover {
   color: var(--primary-base);
   fill: var(--primary-base);
   cursor: pointer;
+}
+
+.button-link-color:hover > svg > path {
+  stroke: var(--primary-base);
 }
 
 .button-link-color:focus {
@@ -158,6 +202,10 @@
   box-shadow: none;
 }
 
+.button-link-color:focus > svg > path {
+  stroke: var(--primary-dark);
+}
+
 .button-link-color:disabled {
   color: var(--gray-200);
   fill: var(--gray-200);
@@ -166,4 +214,8 @@
   background-color: transparent;
   padding: 0;
   box-shadow: none;
+}
+
+.button-link-color:disabled > svg > path {
+  stroke: var(--gray-200);
 }
