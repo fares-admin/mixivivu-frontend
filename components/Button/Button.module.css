@@ -6,6 +6,12 @@
   padding: 10px 16px;
 }
 
+.button-normal > svg,
+.button-sm > svg {
+  width: 20px;
+  height: 20px;
+}
+
 /* button color */
 .button-color {
   background-color: var(--primary-base);

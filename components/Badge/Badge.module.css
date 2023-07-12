@@ -6,6 +6,11 @@
   gap: 4px;
 }
 
+.container svg {
+  width: 12px;
+  height: 12px;
+}
+
 .container:hover {
   cursor: pointer;
 }
@@ -36,32 +41,32 @@
 
 .default {
   background-color: var(--gray-100);
-  color: var(--gray-500);
+  color: var(--gray-700, #344054);
 }
 
 .primary {
   background-color: var(--primary-light);
-  color: var(--primary-base);
+  color: var(--primary-dark, #0e4f4f);
 }
 
 .error {
   background-color: var(--error-light);
-  color: var(--error-base);
+  color: var(--error-dark, #7a271a);
 }
 
 .success {
   background-color: var(--success-light);
-  color: var(--success-base);
+  color: var(--success-dark, #054f31);
 }
 
 .infomation {
   background-color: var(--infomation-light);
-  color: var(--infomation-base);
+  color: var(--infomation-dark, #003074);
 }
 
 .warning {
   background-color: var(--warning-light);
-  color: var(--warning-base);
+  color: var(--warning-dark, #7a2e0e);
 }
 
 .default svg {
