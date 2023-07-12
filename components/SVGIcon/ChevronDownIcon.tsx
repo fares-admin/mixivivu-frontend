@@ -1,20 +1,14 @@
 interface ChevronDownIconProps {
-  fillColor?: string
   strokeColor?: string
 }
 
-export const ChevronDownIcon = ({ fillColor, strokeColor }: ChevronDownIconProps) => {
+export const ChevronDownIcon = ({ strokeColor }: ChevronDownIconProps) => {
   return (
-    <svg
-      width="13"
-      height="12"
-      viewBox="0 0 13 12"
-      fill={fillColor}
-      xmlns="http://www.w3.org/2000/svg"
-    >
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
       <path
-        d="M3.2002 4.5L6.2002 7.5L9.2002 4.5"
+        d="M6 9L12 15L18 9"
         stroke={strokeColor}
+        strokeWidth="2"
         strokeLinecap="round"
         strokeLinejoin="round"
       />

@@ -6,6 +6,10 @@
   gap: 4px;
 }
 
+.container:hover {
+  cursor: pointer;
+}
+
 .sm {
   padding: 2px 8px;
 }
@@ -51,7 +55,7 @@
 }
 
 .infomation {
-  background-color: var(--info2mation-light);
+  background-color: var(--infomation-light);
   color: var(--infomation-base);
 }
 
@@ -82,18 +86,6 @@
 
 .warning svg {
   stroke: var(--warning-base);
-}
-
-.container.false svg {
-  display: none;
-}
-
-.container.leading svg:not(:first-child) {
-  display: none;
-}
-
-.container.trailing svg:not(:nth-child(3)) {
-  display: none;
 }
 
 .container.only svg:not(:last-child) {

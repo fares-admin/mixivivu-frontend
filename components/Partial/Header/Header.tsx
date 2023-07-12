@@ -1,5 +1,4 @@
-import Image from 'next/image'
-import { Button, ChevronDownIcon, VietnameseFlagIcon } from '@/components'
+import { Button, ChevronDownIcon, Logo, VietnameseFlagIcon } from '@/components'
 import styles from './Header.module.css'
 
 export const Header = () => {
@@ -54,7 +53,7 @@ export const Header = () => {
     <div className={['container flex justify-between align-center', styles.container].join(' ')}>
       <div className="flex align-center gap-40 h-full">
         <div className={styles.logo}>
-          <Image src="/logo.png" layout="fill" alt="logo" />
+          <Logo />
         </div>
         <div className={['flex gap-24 h-full', styles['nav-container']].join(' ')}>
           {navigationItems.map((navItem) => (

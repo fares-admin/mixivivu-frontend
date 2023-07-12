@@ -6,6 +6,28 @@ const meta: Meta<typeof Checkbox> = {
   title: 'Components/Checkbox',
   component: Checkbox,
   tags: ['autodocs'],
+  argTypes: {
+    type: {
+      options: ['checkbox', 'radio'],
+      control: {
+        type: 'radio',
+      },
+    },
+    sizeInput: {
+      options: ['sm', 'md'],
+      control: {
+        type: 'radio',
+      },
+    },
+    disabled: {
+      type: 'boolean',
+      defaultValue: false,
+    },
+    checked: {
+      type: 'boolean',
+      defaultValue: false,
+    },
+  },
 }
 
 export default meta

@@ -1,0 +1,60 @@
+.roomCard {
+  display: flex;
+  align-items: center;
+  border-radius: 32px;
+  gap: 20px;
+  padding: 20px;
+}
+
+.roomDetail {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  flex: 1 0 0;
+}
+
+.title {
+  color: var(--gray-900, #101828);
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 24px;
+  text-decoration-line: underline;
+}
+
+.roomInfo {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.roomInfo__item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--gray-600, #475467);
+}
+
+.price {
+  color: var(--primary-dark, #0e4f4f);
+}
+
+.user {
+  color: var(--gray-400, #98a2b3);
+  text-transform: uppercase;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 16px;
+}
+
+.roomBtn {
+  width: 140px;
+}
+
+.roomBtn label {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 1 0 0;
+  cursor: default;
+}

@@ -9,18 +9,33 @@
 /* button color */
 .button-color {
   background-color: var(--primary-base);
-  border: 1px solid #77dada;
+  border: 1px solid var(--primary-base);
   color: var(--primary-dark);
+  fill: var(--primary-dark);
+}
+
+.button-color > svg > path {
+  stroke: var(--primary-dark);
 }
 
 .button-color:hover {
   background-color: var(--primary-dark);
   color: white;
   cursor: pointer;
+  fill: white;
+}
+
+.button-color:hover > svg > path {
+  stroke: var(--base-white);
+}
+
+.button-color:focus {
+  box-shadow: 0px 0px 0px 4px #caf8f8, 0px 1px 2px 0px rgba(24, 24, 27, 0.05);
 }
 
 .button-color:disabled {
   background-color: var(--primary-light);
+  pointer-events: none;
 }
 
 /* button color destructive */
@@ -28,6 +43,11 @@
   background-color: var(--error-base);
   border: 1px solid var(--error-base);
   color: white;
+  fill: white;
+}
+
+.button-color-destructive > svg > path {
+  stroke: var(--base-white);
 }
 
 .button-color-destructive:hover {
@@ -36,9 +56,14 @@
   cursor: pointer;
 }
 
+.button-color-destructive:focus {
+  box-shadow: 0px 0px 0px 4px #fecdca, 0px 1px 2px 0px rgba(24, 24, 27, 0.05);
+}
+
 .button-color-destructive:disabled {
   background-color: var(--error-light);
   border: 1px solid var(--error-light);
+  pointer-events: none;
 }
 
 /* button outline */
@@ -46,18 +71,39 @@
   background: linear-gradient(0deg, #ffffff, #ffffff), linear-gradient(0deg, #eaecf0, #eaecf0);
   border: 1px solid #eaecf0;
   color: var(--gray-800);
+  fill: var(--gray-800);
+}
+
+.button-outline > svg > path {
+  stroke: var(--gray-800);
 }
 
 .button-outline:hover {
-  background: linear-gradient(0deg, #eaecf0, #eaecf0), linear-gradient(0deg, #f9fafb, #f9fafb);
+  background: var(--gray-50);
   color: var(--gray-700);
+  fill: var(--gray-700);
   cursor: pointer;
 }
 
+.button-outline:hover > svg > path {
+  stroke: var(--gray-700);
+}
+
+.button-outline:focus {
+  box-shadow: 0px 0px 0px 4px #f2f4f7, 0px 1px 2px 0px rgba(24, 24, 27, 0.05);
+}
+
 .button-outline:disabled {
-  background: linear-gradient(0deg, #ffffff, #ffffff), linear-gradient(0deg, #f2f4f7, #f2f4f7);
+  background: var(--base-white, #fff);
+  box-shadow: 0px 1px 2px 0px rgba(16, 24, 40, 0.05);
   border: 1px solid #f2f4f7;
   color: var(--gray-200);
+  fill: var(--gray-200);
+  pointer-events: none;
+}
+
+.button-outline:disabled > svg > path {
+  stroke: var(--gray-200);
 }
 
 /* button outline destructive */
@@ -65,44 +111,111 @@
   background: linear-gradient(0deg, #ffffff, #ffffff),
     linear-gradient(0deg, var(--error-base), var(--error-base));
   border: 1px solid var(--error-base);
-  color: var(--gray-800);
+  color: var(--error-base);
+  fill: var(--error-base);
+}
+
+.button-outline-destructive > svg > path {
+  stroke: var(--error-base);
 }
 
 .button-outline-destructive:hover {
-  background: linear-gradient(0deg, var(--error-base), var(--error-base)),
-    linear-gradient(0deg, var(--error-light), var(--error-light));
+  border: 1px solid var(--error-base);
+  background: var(--error-light);
   cursor: pointer;
+}
+
+.button-outline-destructive:focus {
+  box-shadow: 0px 0px 0px 4px #fecdca, 0px 1px 2px 0px rgba(24, 24, 27, 0.05);
 }
 
 .button-outline-destructive:disabled {
   background: linear-gradient(0deg, #ffffff, #ffffff),
     linear-gradient(0deg, var(--error-light), var(--error-light));
   border: 1px solid var(--error-light);
+  color: var(--error-light);
+  fill: var(--error-light);
+  pointer-events: none;
+}
+
+.button-outline-destructive:disabled > svg > path {
+  stroke: var(--error-light);
 }
 
 /* button outline dark */
 .button-outline-dark {
-  background: linear-gradient(0deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.2)),
-    linear-gradient(0deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.1));
-  border: 1px solid #ffffff33;
-  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow: 0px 1px 2px 0px rgba(16, 24, 40, 0.05);
+  color: var(--base-white, #fff);
+  fill: var(--base-white, #fff);
+}
+
+.button-outline-dark > svg > path {
+  stroke: var(--base-white);
 }
 
 .button-outline-dark:hover {
-  background: #ffffff33;
+  background: rgba(255, 255, 255, 0.2);
   cursor: pointer;
+}
+
+.button-outline-dark:focus {
+  box-shadow: 0px 0px 0px 4px #f2f4f7, 0px 1px 2px 0px rgba(24, 24, 27, 0.05);
+}
+
+.button-outline-dark:disabled {
+  opacity: 0.5;
+  pointer-events: none;
 }
 
 /* button link color */
 .button-link-color {
   color: var(--primary-dark);
+  fill: var(--primary-dark);
+  border: none;
+  background-color: transparent;
+  padding: 0;
+  box-shadow: none;
+}
+
+.button-link-color > svg > path {
+  stroke: var(--primary-dark);
 }
 
 .button-link-color:hover {
   color: var(--primary-base);
+  fill: var(--primary-base);
   cursor: pointer;
 }
 
+.button-link-color:hover > svg > path {
+  stroke: var(--primary-base);
+}
+
+.button-link-color:focus {
+  color: var(--primary-dark);
+  fill: var(--primary-dark);
+  border: none;
+  background-color: transparent;
+  padding: 0;
+  box-shadow: none;
+}
+
+.button-link-color:focus > svg > path {
+  stroke: var(--primary-dark);
+}
+
 .button-link-color:disabled {
-  background: var(--gray-200);
+  color: var(--gray-200);
+  fill: var(--gray-200);
+  pointer-events: none;
+  border: none;
+  background-color: transparent;
+  padding: 0;
+  box-shadow: none;
+}
+
+.button-link-color:disabled > svg > path {
+  stroke: var(--gray-200);
 }
