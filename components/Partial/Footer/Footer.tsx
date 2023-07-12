@@ -1,14 +1,14 @@
-import { ImageFill } from '@/components'
+import { Logo } from '@/components'
 import styles from './Footer.module.css'
 import { ListItem, SocialIcons } from './Footer.inventory'
 
 export const Footer = () => {
   return (
     <>
-      <div className={['container flex justify-center', styles.footer1].join(' ')}>
-        <div className={styles.footer}>
+      <div className={['flex justify-center', styles.footer1].join(' ')}>
+        <div className={`${styles.footer} container`}>
           <div className="flex flex-col gap-20">
-            <ImageFill src="/logo.png" width="220px" height="60px" />
+            <Logo type="white" />
             <p className="md">
               Mixivivu - đối tác tin cậy của các hãng du thuyền lớn, mang đến cho bạn chương trình
               ưu đãi độc quyền cho tour du thuyền Hạ Long. Khám phá Hạ Long với Mixivivu - trải
@@ -35,8 +35,8 @@ export const Footer = () => {
           </div>
         </div>
       </div>
-      <div className={['container flex justify-center', styles.footer2].join(' ')}>
-        <div className={styles.footer}>
+      <div className={['flex justify-center', styles.footer2].join(' ')}>
+        <div className={[styles.footer, 'container'].join(' ')}>
           <p className="md">© 2023 Mixivivu. All rights reserved.</p>
           <div className="flex gap-24">
             {SocialIcons.map((icon) => (
