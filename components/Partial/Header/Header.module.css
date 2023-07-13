@@ -1,6 +1,8 @@
 .container {
+  position: relative;
   height: 96px;
   background-color: white;
+  z-index: 2;
 }
 
 .logo {
@@ -29,6 +31,7 @@
   display: none;
   position: absolute;
   box-shadow: 0px 2px 2px 4px var(--gray-50);
+  background: var(--base-white);
   border-radius: 10px;
   padding: 8px;
 }

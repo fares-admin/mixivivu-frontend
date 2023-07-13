@@ -66,3 +66,60 @@ export const productList = [
     tags: ['Du thuyền nổi bật', 'Ưu đãi hè 2022', 'Bể bơi ngoài trời', 'Xe đưa đón'],
   },
 ]
+
+export const categoryList = [
+  {
+    url: '/card-image.png',
+    shipCount: 22,
+    title: 'Vịnh Hạ Long',
+  },
+  {
+    url: '/card-image.png',
+    shipCount: 22,
+    title: 'Vịnh Hạ Long',
+  },
+  {
+    url: '/card-image.png',
+    shipCount: 22,
+    title: 'Vịnh Hạ Long',
+  },
+]
+
+export const reviewers = [
+  {
+    url: '/avatar.png',
+    name: 'Nguyễn Anh Tuấn',
+  },
+  {
+    url: '/avatar.png',
+    name: 'Nguyễn Anh Tuấn',
+  },
+  {
+    url: '/avatar.png',
+    name: 'Nguyễn Anh Tuấn',
+  },
+]
+
+export const blogList = [
+  {
+    url: '/card-image.png',
+    title: 'Mách Bạn 3 Bãi Biển Đẹp Nhất Hạ Long Không Thể Bỏ Qua',
+    description:
+      'Hạ Long - nơi đây được ví như thiên đường nghỉ dưỡng với những hòn đảo kỳ vĩ, hoang...',
+    date: '13/01/2023',
+  },
+  {
+    url: '/card-image.png',
+    title: 'Mách Bạn 3 Bãi Biển Đẹp Nhất Hạ Long Không Thể Bỏ Qua',
+    description:
+      'Hạ Long - nơi đây được ví như thiên đường nghỉ dưỡng với những hòn đảo kỳ vĩ, hoang...',
+    date: '13/01/2023',
+  },
+  {
+    url: '/card-image.png',
+    title: 'Mách Bạn 3 Bãi Biển Đẹp Nhất Hạ Long Không Thể Bỏ Qua',
+    description:
+      'Hạ Long - nơi đây được ví như thiên đường nghỉ dưỡng với những hòn đảo kỳ vĩ, hoang...',
+    date: '13/01/2023',
+  },
+]

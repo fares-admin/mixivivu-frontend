@@ -20,9 +20,9 @@ export const Footer = () => {
               <div key={item.label} className="flex flex-col gap-16">
                 <span className="detail-sm">{item.label}</span>
                 <div className="flex flex-col gap-12">
-                  {item.childs.map((child) => (
+                  {item.childs.map((child, index) => (
                     <a
-                      key={child.label}
+                      key={index}
                       href={child.url}
                       className={['subheading sm', styles.anchor].join(' ')}
                     >
@@ -39,8 +39,8 @@ export const Footer = () => {
         <div className={[styles.footer, 'container'].join(' ')}>
           <p className="md">© 2023 Mixivivu. All rights reserved.</p>
           <div className="flex gap-24">
-            {SocialIcons.map((icon) => (
-              <a href={icon.link} key={icon.name}>
+            {SocialIcons.map((icon, index) => (
+              <a href={icon.link} key={index}>
                 {icon.comps}
               </a>
             ))}

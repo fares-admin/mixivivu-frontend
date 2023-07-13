@@ -6,7 +6,7 @@
   box-shadow: var(--shadow-xs);
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 8px;
   fill: var(--base-white);
 }
 
@@ -17,6 +17,11 @@
   left: 16px;
   background-color: white;
   padding: 0px 4px;
+}
+
+.input-group > svg {
+  width: 20px;
+  height: 20px;
 }
 
 .hint-text {
@@ -61,7 +66,9 @@
 .input-group > input {
   border: none;
   flex-grow: 1;
+  width: 0;
   color: var(--gray-800);
+  height: 24px;
 }
 
 .input-group > input:focus {
@@ -82,4 +89,9 @@
 
 .input-group > input::placeholder {
   color: var(--gray-400);
+  font-family: 'Archivo', sans-serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px;
 }
