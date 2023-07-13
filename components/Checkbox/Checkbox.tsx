@@ -1,5 +1,6 @@
 import { InputHTMLAttributes, forwardRef, useEffect, useId, useState } from 'react'
 import styles from './Checkbox.module.css'
+import { CheckIcon } from '../SVGIcon'
 
 interface CheckboxProps extends InputHTMLAttributes<HTMLInputElement> {
   sizeInput: 'sm' | 'md'
@@ -8,12 +9,23 @@ interface CheckboxProps extends InputHTMLAttributes<HTMLInputElement> {
   supportText?: string
   disabled?: boolean
   checked?: boolean
+  checkboxOnly?: boolean
   onChange?: () => {}
 }
 
 export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
   (
-    { checked, type, sizeInput, text, supportText, disabled, onChange = () => {}, ...props },
+    {
+      checked,
+      type,
+      sizeInput,
+      text,
+      supportText,
+      disabled,
+      checkboxOnly = false,
+      onChange = () => {},
+      ...props
+    },
     ref
   ) => {
     const id = useId()
@@ -38,11 +50,15 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
           type={type}
           {...props}
         />
-        <span className={[styles.checkmark, styles[sizeInput]].join(' ')} />
-        <div>
-          <label className={sizeInput}>{text}</label>
-          <p className={sizeInput}>{supportText}</p>
-        </div>
+        <span className={[styles.checkmark, styles[sizeInput]].join(' ')}>
+          {type === 'checkbox' && <CheckIcon />}
+        </span>
+        {!checkboxOnly && (
+          <div className={styles.textGroup}>
+            <label className={[sizeInput, styles.title].join(' ')}>{text}</label>
+            <p className={sizeInput}>{supportText}</p>
+          </div>
+        )}
       </label>
     )
   }

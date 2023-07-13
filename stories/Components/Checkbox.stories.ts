@@ -23,6 +23,10 @@ const meta: Meta<typeof Checkbox> = {
       type: 'boolean',
       defaultValue: false,
     },
+    checkboxOnly: {
+      type: 'boolean',
+      defaultValue: false,
+    },
     checked: {
       type: 'boolean',
       defaultValue: false,
