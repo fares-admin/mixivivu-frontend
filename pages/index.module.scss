@@ -19,9 +19,8 @@
 .banner {
   position: relative;
   margin: auto;
-  max-width: 1392px;
-  height: 720px;
-  margin-bottom: 136px;
+  width: calc(100vw - 64px);
+  height: calc(100vh - 230px);
   border-radius: 24px;
   background: url('../public/banner.jpeg');
   background-size: cover;
@@ -34,8 +33,12 @@
   }
 }
 
+#popularSections {
+  padding-top: 136px;
+}
+
 #reviewSection {
-  background: #f3ffff;
+  background-color: #f3ffff;
   .reviewList {
     display: flex;
     align-items: center;
@@ -47,7 +50,7 @@
 }
 
 #partnersSection {
-  background: #f2f4f7;
+  background-color: #f2f4f7;
   .partnerList {
     display: flex;
     gap: 32px;
