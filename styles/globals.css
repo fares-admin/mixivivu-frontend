@@ -366,3 +366,7 @@ p {
 label {
   cursor: inherit;
 }
+
+.text-center {
+  text-align: center;
+}
