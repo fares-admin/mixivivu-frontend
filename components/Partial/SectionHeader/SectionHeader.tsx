@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import { ReactNode } from 'react'
+import React, { ReactNode } from 'react'
 import styles from './SectionHeader.module.css'
 
 interface SectionHeaderProps {
