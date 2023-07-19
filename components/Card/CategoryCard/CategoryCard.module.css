@@ -4,6 +4,7 @@
   flex-direction: column;
   gap: 20px;
   padding-bottom: 24px;
+  width: 384px;
 }
 
 .imageWrapper {

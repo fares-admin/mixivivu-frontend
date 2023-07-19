@@ -1,13 +1,15 @@
 interface ArrowRightIconProps {
+  width?: string
+  height?: string
   fillColor?: string
   strokeColor?: string
 }
 
-export const ArrowRightIcon = ({ fillColor, strokeColor }: ArrowRightIconProps) => {
+export const ArrowRightIcon = ({ fillColor, strokeColor, width, height }: ArrowRightIconProps) => {
   return (
     <svg
-      width="12"
-      height="12"
+      width={width || '12'}
+      height={height || '12'}
       viewBox="0 0 12 12"
       fill={fillColor}
       xmlns="http://www.w3.org/2000/svg"
