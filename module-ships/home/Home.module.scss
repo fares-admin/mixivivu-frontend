@@ -1,0 +1,58 @@
+.home {
+  section {
+    display: flex;
+    flex-direction: column;
+    gap: 80px;
+    padding: 80px 32px;
+    .cardList {
+      display: flex;
+      gap: 32px;
+      flex-wrap: wrap;
+    }
+    .action {
+      display: flex;
+      justify-content: center;
+    }
+  }
+}
+
+.banner {
+  position: relative;
+  margin: auto;
+  width: calc(100vw - 64px);
+  height: calc(100vh - 230px);
+  border-radius: 24px;
+  background: url('../../public/banner.jpeg');
+  background-size: cover;
+  background-position: center center;
+  .searchBox {
+    position: absolute;
+    bottom: -126px;
+    transform: translateX(-50%);
+    left: 50%;
+  }
+}
+
+#popularSections {
+  padding-top: 136px;
+}
+
+#reviewSection {
+  background-color: #f3ffff;
+  .reviewList {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+  }
+  .reviewBtn {
+    padding: 8px 16px 8px 8px;
+  }
+}
+
+#partnersSection {
+  background-color: #f2f4f7;
+  .partnerList {
+    display: flex;
+    gap: 32px;
+  }
+}

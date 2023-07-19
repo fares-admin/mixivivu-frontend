@@ -9,6 +9,7 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   destructive?: boolean
   placeHolder?: string
   disable?: boolean
+  customClass?: string
 }
 
 /**
@@ -16,13 +17,23 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
  */
 export const Input = forwardRef<HTMLInputElement, InputProps>(
   (
-    { label, hintText, iconSwap, destructive, supportIcon, placeHolder, disable, ...props },
+    {
+      label,
+      hintText,
+      iconSwap,
+      destructive,
+      supportIcon,
+      placeHolder,
+      customClass,
+      disable,
+      ...props
+    },
     ref
   ) => {
     const id = useId()
 
     return (
-      <div className={destructive ? styles.destructive : ''}>
+      <div className={[customClass, destructive ? styles.destructive : ''].join(' ')}>
         <label htmlFor={id} className={styles['input-group']}>
           {iconSwap && iconSwap}
           <input

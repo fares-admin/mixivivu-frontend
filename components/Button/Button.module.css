@@ -1,9 +1,11 @@
 .button-normal {
   padding: 16px 20px;
+  white-space: nowrap;
 }
 
 .button-sm {
   padding: 10px 16px;
+  white-space: nowrap;
 }
 
 .button-normal > svg,

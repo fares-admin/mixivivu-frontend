@@ -14,7 +14,7 @@ interface ProductCardProps {
   price: number
   originalPrice: number
   tags: string[]
-  handleSelect: () => void
+  handleSelect?: () => void
 }
 export const ProductCard = ({
   type = 'grid',
