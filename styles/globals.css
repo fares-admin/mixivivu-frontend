@@ -77,6 +77,10 @@ h6 {
 }
 
 /* Sub Heading */
+.subheading {
+  color: var(--gray-700, #344054);
+}
+
 .subheading.lg {
   font-size: 20px;
   line-height: 30px;

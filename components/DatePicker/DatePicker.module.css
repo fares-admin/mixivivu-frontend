@@ -1,0 +1,67 @@
+.mixi-date-picker :global(.react-datepicker) {
+  display: flex;
+  padding: 20px 24px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+  align-self: stretch;
+  border-radius: 8px;
+  border: 1px solid var(--gray-100, #f2f4f7);
+  background: var(--base-white, #fff);
+  /* Shadow/xl */
+  box-shadow: 0px 8px 8px -4px rgba(16, 24, 40, 0.03), 0px 20px 24px -4px rgba(16, 24, 40, 0.08);
+}
+
+.mixi-date-picker :global(.react-datepicker__triangle) {
+  display: none;
+}
+
+.mixi-date-picker :global(.react-datepicker__header) {
+  background: var(--base-white, #fff);
+  border-bottom: none;
+  margin: 0;
+}
+
+.mixi-date-picker :global(.react-datepicker__day--keyboard-selected) {
+  background-color: transparent;
+}
+
+.mixi-date-picker :global(.react-datepicker__day-name),
+.calendarCell {
+  display: inline-flex;
+  width: 40px;
+  height: 40px;
+  padding: 10px 8px;
+  justify-content: center;
+  align-items: center;
+  color: var(--gray-700, #344054);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  text-align: center;
+  margin: 0;
+}
+
+.mixi-date-picker :global(.react-datepicker__day--today) {
+  color: var(--primary-base);
+  background: none;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 5px;
+}
+
+.calendarCell:hover {
+  background: var(--gray-50, #f9fafb);
+  border-radius: 50%;
+  color: var(--gray-700, #344054);
+}
+
+.selectedDate {
+  background: var(--primary-base, #77dada);
+  color: var(--primary-dark, #0e4f4f);
+  border-radius: 50%;
+}
