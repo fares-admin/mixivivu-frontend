@@ -1,53 +1,34 @@
 import { Button, ChevronDownIcon, Logo, VietnameseFlagIcon } from '@/components'
+import { useRouter } from 'next/router'
 import styles from './Header.module.css'
 
+interface NavItemProps {
+  name: string
+  url: string
+  childrens?: NavItemProps[]
+}
+
+const navigationItems = [
+  {
+    name: 'Tìm du thuyền',
+    url: '/tim-du-thuyen',
+  },
+  {
+    name: 'Tìm vé máy bay',
+    url: '/tim-ve-may-bay',
+  },
+  {
+    name: 'Doanh nghiệp',
+    url: '',
+  },
+  {
+    name: 'Blog',
+    url: '',
+  },
+]
+
 export const Header = () => {
-  const navigationItems = [
-    {
-      name: 'Tìm du thuyền',
-      url: '/',
-      childrens: [
-        {
-          name: 'Tìm du thuyền',
-          url: '/',
-        },
-        {
-          name: 'Tìm du thuyền 1',
-          url: '/',
-        },
-      ],
-    },
-    {
-      name: 'Combo',
-      url: '/',
-    },
-    {
-      name: 'Thuê trọn tàu',
-      url: '/',
-    },
-    {
-      name: 'Doanh nghiệp',
-      url: '/',
-    },
-    {
-      name: 'Blog',
-      url: '/',
-    },
-    {
-      name: 'Thêm',
-      url: '/',
-      childrens: [
-        {
-          name: 'Thêm',
-          url: '/',
-        },
-        {
-          name: 'Thêm 1',
-          url: '/',
-        },
-      ],
-    },
-  ]
+  const router = useRouter()
 
   return (
     <div className={['container flex justify-between align-center', styles.container].join(' ')}>
@@ -56,8 +37,13 @@ export const Header = () => {
           <Logo />
         </div>
         <div className={['flex gap-24 h-full', styles['nav-container']].join(' ')}>
-          {navigationItems.map((navItem) => (
-            <div key={navItem.name} className={styles.menu}>
+          {navigationItems.map((navItem: NavItemProps) => (
+            <div
+              key={navItem.name}
+              className={[router.pathname === navItem.url ? styles.active : '', styles.menu].join(
+                ' '
+              )}
+            >
               <a className="h-full flex align-center" href={navItem.url}>
                 <label htmlFor="" className="md">
                   {navItem.name}
@@ -66,7 +52,7 @@ export const Header = () => {
               </a>
               {navItem?.childrens?.length ? (
                 <div className={styles['sub-menu']}>
-                  {navItem.childrens.map((childItem) => (
+                  {navItem?.childrens.map((childItem) => (
                     <a
                       key={childItem.name}
                       className="h-full flex align-center"

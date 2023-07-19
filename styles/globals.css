@@ -293,6 +293,10 @@ button:focus {
   align-items: end;
 }
 
+.flex-grow {
+  flex-grow: 1;
+}
+
 .gap-1 {
   gap: 1px;
 }
@@ -353,6 +357,10 @@ button:focus {
   gap: 40px;
 }
 
+.gap-80 {
+  gap: 80px;
+}
+
 .h-full {
   height: 100%;
 }
@@ -367,6 +375,10 @@ a:-webkit-any-link {
   color: inherit;
   cursor: pointer;
   text-decoration: inherit;
+}
+
+.cursor-pointer {
+  cursor: pointer;
 }
 
 p {
