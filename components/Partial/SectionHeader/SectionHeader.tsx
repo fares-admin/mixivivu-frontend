@@ -4,7 +4,7 @@ import styles from './SectionHeader.module.css'
 
 interface SectionHeaderProps {
   title: ReactNode
-  description: string
+  description?: string
   center?: boolean
 }
 
@@ -19,7 +19,7 @@ export const SectionHeader = ({ title, description, center = false }: SectionHea
           </div>
         )}
       </div>
-      <label className="lg">{description}</label>
+      {description && <label className={['lg', styles.description].join(' ')}>{description}</label>}
       {center && (
         <div className={styles.headingBorder}>
           <Image src="/heading-border.png" width={80} height={8} />

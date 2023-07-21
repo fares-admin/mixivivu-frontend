@@ -5,14 +5,15 @@ import {
   InfoIcon,
   XMarkIcon,
 } from '@/components'
+import { ReactNode } from 'react'
 import styles from './Alert.module.css'
 
 interface AlertProps {
   color: 'success' | 'gray' | 'error' | 'warning' | 'primary'
-  isMobile: boolean
+  isMobile?: boolean
   title: string
-  content: string
-  onClick: () => void
+  content: string | ReactNode
+  onClick?: () => void
 }
 
 const iconMaps = {
@@ -36,7 +37,7 @@ export const Alert = ({ color, title, content, isMobile = false, onClick }: Aler
       <div>{iconMaps[color]}</div>
       <div>
         <label className="sm">{title}</label>
-        <p className="sm">{content}</p>
+        <div className={styles.content}>{content}</div>
       </div>
     </div>
   )

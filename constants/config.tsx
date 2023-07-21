@@ -1,4 +1,6 @@
-export const productList = [
+import { ProductProps } from './type'
+
+export const productList: ProductProps[] = [
   {
     url: '/card-image.png',
     rating: 5,
@@ -121,5 +123,40 @@ export const blogList = [
     description:
       'Hạ Long - nơi đây được ví như thiên đường nghỉ dưỡng với những hòn đảo kỳ vĩ, hoang...',
     date: '13/01/2023',
+  },
+]
+
+export const rooms = [
+  {
+    url: '/card-image.png',
+    title: 'Delta Suite Có Ban Công Riêng Nhìn Ra Biển - 2 Ngày 1 Đêm',
+    price: 3350000,
+    roomCount: 1,
+    area: 32,
+    userPerRoom: 2,
+  },
+  {
+    url: '/card-image.png',
+    title: 'Delta Suite Có Ban Công Riêng Nhìn Ra Biển - 2 Ngày 1 Đêm',
+    price: 3350000,
+    roomCount: 1,
+    area: 32,
+    userPerRoom: 2,
+  },
+  {
+    url: '/card-image.png',
+    title: 'Delta Suite Có Ban Công Riêng Nhìn Ra Biển - 2 Ngày 1 Đêm',
+    price: 3350000,
+    roomCount: 1,
+    area: 32,
+    userPerRoom: 2,
+  },
+  {
+    url: '/card-image.png',
+    title: 'Delta Suite Có Ban Công Riêng Nhìn Ra Biển - 2 Ngày 1 Đêm',
+    price: 3350000,
+    roomCount: 1,
+    area: 32,
+    userPerRoom: 2,
   },
 ]

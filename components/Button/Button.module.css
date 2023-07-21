@@ -1,11 +1,13 @@
 .button-normal {
   padding: 16px 20px;
   white-space: nowrap;
+  height: fit-content;
 }
 
 .button-sm {
   padding: 10px 16px;
   white-space: nowrap;
+  height: fit-content;
 }
 
 .button-normal > svg,

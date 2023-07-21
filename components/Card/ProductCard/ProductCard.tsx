@@ -3,7 +3,7 @@ import { Badge, StarIcon, MapPinAltIcon, ShipIcon, Button } from '@/components'
 import { Card } from '../Card'
 import styles from './ProductCard.module.css'
 
-interface ProductCardProps {
+export interface ProductCardProps {
   type: 'grid' | 'list'
   url: string
   rating: number

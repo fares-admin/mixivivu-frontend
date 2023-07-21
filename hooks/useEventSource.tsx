@@ -26,7 +26,7 @@ export const useEventSource = <T,>({
       })
       setEvtSource(url)
     }
-  }, [eventUrl])
+  }, [eventUrl, serverUrl, token])
 
   useEffect(() => {
     if (evtSource) {
@@ -51,7 +51,7 @@ export const useEventSource = <T,>({
     return () => {
       evtSource?.close()
     }
-  }, [evtSource])
+  }, [eventName, evtData, evtSource, handleConnected, handleError])
 
   return { evtData, evtSource }
 }

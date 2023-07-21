@@ -1,18 +1,16 @@
-.home {
-  section {
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 80px;
+  padding: 80px 32px;
+  .cardList {
     display: flex;
-    flex-direction: column;
-    gap: 80px;
-    padding: 80px 32px;
-    .cardList {
-      display: flex;
-      gap: 32px;
-      flex-wrap: wrap;
-    }
-    .action {
-      display: flex;
-      justify-content: center;
-    }
+    gap: 32px;
+    flex-wrap: wrap;
+  }
+  .action {
+    display: flex;
+    justify-content: center;
   }
 }
 

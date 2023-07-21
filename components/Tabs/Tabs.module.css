@@ -11,7 +11,8 @@
   box-shadow: none;
 }
 
-.tabItem:hover {
+.tabItem:hover,
+.active {
   color: var(--gray-700);
   box-shadow: var(--shadow-sm);
   cursor: pointer;
