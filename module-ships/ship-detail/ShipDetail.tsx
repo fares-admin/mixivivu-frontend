@@ -57,7 +57,7 @@ export const ShipDetail = () => {
   const tabItems = [
     {
       id: '1',
-      label: 'Đặc điểm nổi bật',
+      label: 'Đặc điểm',
     },
     {
       id: '2',
