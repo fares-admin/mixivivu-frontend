@@ -89,7 +89,7 @@ export const ShipDetail = () => {
         </div>
         <Navigation />
       </div>
-      <div>
+      <div className={styles.carousel}>
         <Carousel imgList={['/banner.jpeg', '/carousel2.png', '/carousel3.png']} />
       </div>
       <div className={[styles['ship-detail'], 'container flex flex-col gap-40'].join(' ')}>

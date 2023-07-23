@@ -3,7 +3,7 @@ import styles from './Pagination.module.css'
 import { ArrowLeftIcon, ArrowRightIcon } from '../SVGIcon'
 
 interface PaginationProps {
-  onPageChange: (page: number) => void
+  onPageChange?: (page: number) => void
   totalCount: number
   siblingCount?: number
   currentPage?: number
@@ -12,7 +12,7 @@ interface PaginationProps {
 }
 
 export const Pagination = ({
-  onPageChange,
+  onPageChange = () => {},
   totalCount,
   siblingCount = 1,
   currentPage = 1,

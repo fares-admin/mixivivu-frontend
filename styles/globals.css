@@ -79,6 +79,10 @@ h6 {
 }
 
 /* Sub Heading */
+.subheading {
+  color: var(--gray-700, #344054);
+}
+
 .subheading.lg {
   font-size: 20px;
   line-height: 30px;
@@ -295,6 +299,10 @@ button:focus {
   align-items: end;
 }
 
+.flex-grow {
+  flex-grow: 1;
+}
+
 .gap-1 {
   gap: 1px;
 }
@@ -373,6 +381,10 @@ a:-webkit-any-link {
   color: inherit;
   cursor: pointer;
   text-decoration: inherit;
+}
+
+.cursor-pointer {
+  cursor: pointer;
 }
 
 p {

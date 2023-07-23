@@ -17,6 +17,7 @@
   left: 16px;
   background-color: white;
   padding: 0px 4px;
+  color: var(--gray-600, #475467);
 }
 
 .input-group > svg {

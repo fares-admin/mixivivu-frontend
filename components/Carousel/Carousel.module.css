@@ -7,6 +7,32 @@
   overflow: hidden;
 }
 
+.carousel-btn {
+  display: flex;
+  padding: 10px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  border: 1px solid var(--gray-200, #eaecf0);
+  background: var(--base-white, #fff);
+  box-shadow: var(--shadow-sm);
+  z-index: 2;
+}
+
+.left-btn {
+  position: absolute;
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.right-btn {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
 .carouselItem {
   width: 1008px;
   height: 568px;
