@@ -1,8 +1,20 @@
-import { Button, RateCard, SearchIcon, SectionHeader, StarIcon, StaticCard } from '@/components'
+import {
+  ArrowRightIcon,
+  Button,
+  Input,
+  RateCard,
+  RatingInput,
+  SearchIcon,
+  SectionHeader,
+  StarIcon,
+  StaticCard,
+  TextArea,
+} from '@/components'
+import styles from '../../ShipDetail.module.scss'
 
 export const Rating = () => {
   return (
-    <div>
+    <div className="flex flex-col gap-40">
       <div className="flex gap-16">
         <SectionHeader title="Đánh giá (66)" />
         <div className="flex gap-16">
@@ -10,7 +22,7 @@ export const Rating = () => {
           <Button size="sm" label="Gửi đánh giá" typeStyle="color" iconLeading={<StarIcon />} />
         </div>
       </div>
-      <div className="flex flex-col gap-20">
+      <div className={['flex flex-col gap-20', styles['rating-list']].join(' ')}>
         <StaticCard rate={4.8} rateCount={[52, 14, 0, 0, 0]} />
         {[1, 2, 3].map((_, index) => (
           <RateCard
@@ -20,6 +32,18 @@ export const Rating = () => {
             date="22/06/2023"
           />
         ))}
+      </div>
+      <div className="flex flex-col gap-24">
+        <div className={styles['group-input']}>
+          <RatingInput />
+          <Input label="Họ và tên" placeHolder="Nhập họ và tên" />
+          <Input label="Số điện thoại" placeHolder="Nhập số điện thoại" />
+          <Input label="Địa chỉ email" placeHolder="Nhập email" />
+        </div>
+        <TextArea label="Đánh giá của bạn" placeHolder="Nhập yêu cầu của bạn" />
+      </div>
+      <div className="flex justify-end">
+        <Button typeStyle="color" label="Tiếp" iconTrailing={<ArrowRightIcon />} />
       </div>
     </div>
   )

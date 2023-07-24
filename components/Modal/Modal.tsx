@@ -1,23 +1,23 @@
-import { MouseEventHandler } from 'react'
+import { ReactNode } from 'react'
 import Popup from 'reactjs-popup'
+import { XMarkIcon } from '../SVGIcon'
+import styles from './Modal.module.css'
 
 interface ModalProps {
-  trigger: JSX.Element | ((isOpen: boolean) => JSX.Element) | undefined
+  open: boolean
+  setOpen: (open: boolean) => void
+  content: ReactNode
 }
 
-export const Modal = ({ trigger }: ModalProps) => (
-  <Popup trigger={trigger} position="top left">
-    <>
-      {(close: MouseEventHandler<HTMLAnchorElement> | undefined) => {
-        return (
-          <div>
-            Content here
-            <a className="close" onClick={close}>
-              &times;
-            </a>
-          </div>
-        )
-      }}
-    </>
-  </Popup>
-)
+export const Modal = ({ open, setOpen, content }: ModalProps) => {
+  return (
+    <Popup modal open={open}>
+      <div>
+        <div className={styles['close-btn']} onClick={() => setOpen(false)}>
+          <XMarkIcon strokeColor="var(--gray-600)" width="20" height="20" />
+        </div>
+        {content}
+      </div>
+    </Popup>
+  )
+}

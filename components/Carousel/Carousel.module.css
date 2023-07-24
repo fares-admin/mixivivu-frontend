@@ -37,6 +37,7 @@
   width: 1008px;
   height: 568px;
   flex-shrink: 0;
+  cursor: pointer;
 }
 
 .thumbs {

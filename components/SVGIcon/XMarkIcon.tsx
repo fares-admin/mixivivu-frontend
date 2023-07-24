@@ -1,13 +1,15 @@
 interface XMarkIconProps {
   fillColor?: string
   strokeColor?: string
+  width?: string
+  height?: string
 }
 
-export const XMarkIcon = ({ fillColor, strokeColor }: XMarkIconProps) => {
+export const XMarkIcon = ({ fillColor, strokeColor, width, height }: XMarkIconProps) => {
   return (
     <svg
-      width="12"
-      height="12"
+      width={width || '12'}
+      height={height || '12'}
       viewBox="0 0 12 12"
       fill={fillColor}
       xmlns="http://www.w3.org/2000/svg"

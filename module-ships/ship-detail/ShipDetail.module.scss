@@ -71,7 +71,31 @@
   }
 }
 
+.rating-list {
+  padding-bottom: 40px;
+  border-bottom: 1px solid var(--gray-200, #eaecf0);
+}
+
 .blog-img {
   border-radius: 24px;
   overflow: hidden;
+}
+
+.booking-detail-modal {
+  width: 800px;
+  display: flex;
+  padding: 24px;
+  flex-direction: column;
+  gap: 24px;
+  flex: 1 0 0;
+}
+
+.divider {
+  border-bottom: 1px solid var(--gray-200, #eaecf0);
+}
+
+.group-input {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
 }

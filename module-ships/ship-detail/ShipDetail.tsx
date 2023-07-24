@@ -5,11 +5,12 @@ import {
   Button,
   Carousel,
   ImageFill,
+  LightBox,
   SectionHeader,
   Tabs,
 } from '@/components'
 import { useState } from 'react'
-import { productList, rooms } from '@/constants/config'
+import { overviews, productList, rooms } from '@/constants/config'
 import { Features, Navigation, Rating, ShipInfo } from '@/module-ships/ship-detail'
 import styles from './ShipDetail.module.scss'
 import { PopularShips } from '../home/components/PopularShips'
@@ -20,37 +21,6 @@ const features = [
   'Du thuyền Heritage có nội thất các phòng nghỉ đẳng cấp và tinh xảo. Trên tàu có WIFI miễn phí.',
   'Trên du thuyền nhiều tiện nghi nổi bật mà du thuyền thường không có như phòng tranh, thư viện, gian hàng bán đồ lưu niệm, quầy bar liền kề hồ bơi.',
   'Du thuyền Heritage Cruises cung cấp các hải trình 2 ngày 1 đêm, 3 ngày 2 đêm, 4 ngày 3 đêm, để du khách chọn lựa chương trình tour phù hợp.',
-]
-
-const overviews = [
-  {
-    icon: '',
-    value: 'Miễn phí kayaking',
-  },
-  {
-    icon: '',
-    value: 'Đi tuyến Lan Hạ',
-  },
-  {
-    icon: '',
-    value: 'Quầy bar',
-  },
-  {
-    icon: '',
-    value: 'Wi-Fi miễn phí',
-  },
-  {
-    icon: '',
-    value: 'Bao gồm tất cả các bữa ăn',
-  },
-  {
-    icon: '',
-    value: 'Bể bơi ngoài trời',
-  },
-  {
-    icon: '',
-    value: 'Phòng không hút thuốc',
-  },
 ]
 
 export const ShipDetail = () => {
@@ -78,6 +48,7 @@ export const ShipDetail = () => {
     },
   ]
   const [activeTab, setActiveTab] = useState(tabItems[0].id)
+  const [openLightBox, setOpenLightBox] = useState(false)
   const handleChangeTab = (key: string) => {
     setActiveTab(key)
   }
@@ -90,7 +61,10 @@ export const ShipDetail = () => {
         <Navigation />
       </div>
       <div className={styles.carousel}>
-        <Carousel imgList={['/banner.jpeg', '/carousel2.png', '/carousel3.png']} />
+        <Carousel
+          handleClickImg={() => setOpenLightBox(true)}
+          imgList={['/banner.jpeg', '/carousel2.png', '/carousel3.png']}
+        />
       </div>
       <div className={[styles['ship-detail'], 'container flex flex-col gap-40'].join(' ')}>
         <Tabs tabs={tabItems} activeKey={activeTab} onChange={handleChangeTab} />
@@ -186,6 +160,16 @@ export const ShipDetail = () => {
       <div>
         <PopularShips ships={productList.slice(0, 3)} />
       </div>
+      <LightBox
+        imgList={['/banner.jpeg', '/carousel2.png', '/carousel3.png']}
+        isOpen={openLightBox}
+        setIsOpen={setOpenLightBox}
+        shipDetail={{
+          title: 'Du thuyền Heritage Bình Chuẩn Cát Bà',
+          price: 3350000,
+          originalPrice: 5400000,
+        }}
+      />
     </>
   )
 }

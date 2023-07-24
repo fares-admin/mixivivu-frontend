@@ -220,3 +220,34 @@ export const filterList = [
     ],
   },
 ]
+
+export const overviews = [
+  {
+    icon: '',
+    value: 'Miễn phí kayaking',
+  },
+  {
+    icon: '',
+    value: 'Đi tuyến Lan Hạ',
+  },
+  {
+    icon: '',
+    value: 'Quầy bar',
+  },
+  {
+    icon: '',
+    value: 'Wi-Fi miễn phí',
+  },
+  {
+    icon: '',
+    value: 'Bao gồm tất cả các bữa ăn',
+  },
+  {
+    icon: '',
+    value: 'Bể bơi ngoài trời',
+  },
+  {
+    icon: '',
+    value: 'Phòng không hút thuốc',
+  },
+]

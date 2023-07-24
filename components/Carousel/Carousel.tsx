@@ -6,9 +6,10 @@ import { ArrowLeftIcon, ArrowRightIcon } from '../SVGIcon'
 
 interface CarouselProps {
   imgList: string[]
+  handleClickImg: () => void
 }
 
-export const Carousel = ({ imgList = [] }: CarouselProps) => {
+export const Carousel = ({ imgList = [], handleClickImg }: CarouselProps) => {
   const [currentImg, setCurrentImg] = useState(1)
   const prevImg = (currentImg - 1 + imgList.length) % imgList.length
   const nextImg = (currentImg + 1) % imgList.length
@@ -29,7 +30,11 @@ export const Carousel = ({ imgList = [] }: CarouselProps) => {
         typeStyle="color"
       />
       {carouselImg.map((item, index) => (
-        <div className={styles.carouselItem} key={index}>
+        <div
+          className={styles.carouselItem}
+          key={index}
+          onClick={item === currentImg ? handleClickImg : undefined}
+        >
           <ImageFill width="100%" height="100%" src={imgList[item]} />
         </div>
       ))}

@@ -5,6 +5,7 @@ import { ReactElement, ReactNode } from 'react'
 import { CookiesProvider } from 'react-cookie'
 import { Provider } from 'react-redux'
 import { ToastContainer } from 'react-toastify'
+import 'reactjs-popup/dist/index.css'
 import 'react-toastify/dist/ReactToastify.css'
 import '../styles/globals.css'
 
