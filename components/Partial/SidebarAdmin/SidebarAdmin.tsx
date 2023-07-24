@@ -1,9 +1,11 @@
-import { ChevronDownIcon, Input, LogoAdmin, SearchIcon, ShipIcon, UserIcon } from '@/components'
+import { Input } from '@/components/Input'
+import { LogoAdmin } from '@/components/Logo'
+import { ChevronDownIcon, SearchIcon, ShipIcon, UserIcon } from '@/components/SVGIcon'
 import { useRouter } from 'next/router'
 import { ReactNode, useState } from 'react'
-import styles from './DashboardLayout.module.scss'
+import styles from './SidebarAdmin.module.css'
 
-const Sidebar = () => {
+const SidebarAdmin = () => {
   const [open, setOpen] = useState('')
 
   const sidebarList: {
@@ -87,13 +89,4 @@ const Sidebar = () => {
   )
 }
 
-const DashboardLayout = ({ children }: { children: ReactNode }) => {
-  return (
-    <div className={styles.container}>
-      <Sidebar />
-      {children}
-    </div>
-  )
-}
-
-export default DashboardLayout
+export default SidebarAdmin

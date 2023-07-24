@@ -1,4 +1,4 @@
-import DashboardLayout from '@/module-admin/layout/DashboardLayout'
+import LayoutAdmin from '@/components/Layout/LayoutAdmin'
 import { NextPageWithLayout } from '../_app'
 
 const AdminDashboard: NextPageWithLayout = () => {
@@ -6,7 +6,7 @@ const AdminDashboard: NextPageWithLayout = () => {
 }
 
 AdminDashboard.getLayout = (page) => {
-  return <DashboardLayout>{page}</DashboardLayout>
+  return <LayoutAdmin>{page}</LayoutAdmin>
 }
 
 export default AdminDashboard
