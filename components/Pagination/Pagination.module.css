@@ -18,6 +18,22 @@
   box-shadow: var(--shadow-xs);
 }
 
+.page-size > input[type='number'] {
+  border: none;
+  outline: none;
+  width: 30px;
+  height: 24px;
+  color: var(--gray-900, #101828);
+  text-align: center;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+}
+
+.page-size > input[type='number']::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+
 .pagination-container {
   display: flex;
   list-style-type: none;

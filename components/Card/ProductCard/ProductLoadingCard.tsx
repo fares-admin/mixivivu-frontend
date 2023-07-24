@@ -23,8 +23,8 @@ export const ProductLoadingCard = ({ type = 'grid' }: ProductCardLoadingProps) =
           <Skeleton height={20} width={240} />
         </div>
         <div className={styles.tags}>
-          {[1, 2, 3, 4].map(() => (
-            <Skeleton height={22} width={80} />
+          {[1, 2, 3, 4].map((item) => (
+            <Skeleton key={item} height={22} width={80} />
           ))}
         </div>
         <div className={styles.footer}>

@@ -10,6 +10,7 @@ import {
 import { NextPageWithLayout } from '@/pages/_app'
 import Image from 'next/image'
 import { filterList, productList } from '@/constants/config'
+import { useState } from 'react'
 import styles from './SearchPageDetail.module.scss'
 
 const Sidebar = () => {
@@ -34,13 +35,14 @@ const Sidebar = () => {
 }
 
 const ShipList = () => {
+  const [pageSize, setPageSize] = useState('5')
   return (
     <div className={[styles['ship-list'], 'flex flex-col gap-32'].join(' ')}>
       <ProductLoadingCard type="list" />
       {productList.map((item, index) => (
         <ProductCard type="list" {...item} key={index} />
       ))}
-      <Pagination totalCount={100} pageSize={5} />
+      <Pagination totalCount={100} pageSize={pageSize} setPageSize={setPageSize} />
     </div>
   )
 }
