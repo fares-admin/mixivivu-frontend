@@ -1,3 +1,4 @@
+import { COOKIE_TOKEN_KEY } from '@/constants/commonValue'
 import axios from 'axios'
 import { NextApiRequest, NextApiResponse } from 'next'
 
@@ -10,7 +11,7 @@ export const config = {
 }
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
-  const url = `${process.env.NEXT_PUBLIC_API_BASE_URL}${req.url}`
+  const url = `${process.env.API_BASE_URL}${req.url}`
   try {
     let result = {}
     // handle method
@@ -20,7 +21,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
           await axios.get(url, {
             ...req,
             headers: {
-              authorization: req.headers.authorization,
+              authorization: req.cookies[COOKIE_TOKEN_KEY],
             },
           })
         ).data
@@ -31,7 +32,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
           await axios.post(url, req.body, {
             ...req,
             headers: {
-              authorization: req.headers.authorization,
+              authorization: req.cookies[COOKIE_TOKEN_KEY],
             },
           })
         ).data
@@ -42,7 +43,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
           await axios.put(url, req.body, {
             ...req,
             headers: {
-              authorization: req.headers.authorization,
+              authorization: req.cookies[COOKIE_TOKEN_KEY],
             },
           })
         ).data
@@ -53,7 +54,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
           await axios.delete(url, {
             ...req,
             headers: {
-              authorization: req.headers.authorization,
+              authorization: req.cookies[COOKIE_TOKEN_KEY],
             },
           })
         ).data
