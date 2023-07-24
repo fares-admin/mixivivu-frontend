@@ -227,3 +227,12 @@
 .button-link-color:disabled > svg > path {
   stroke: var(--gray-200);
 }
+
+.iconOnly {
+  gap: 0;
+  padding: 8px;
+}
+
+.iconOnly:focus {
+  padding: 8px;
+}
