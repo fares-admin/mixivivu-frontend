@@ -1,7 +1,9 @@
+import { COOKIE_TOKEN_KEY } from '@/constants/commonValue'
 import { CommonResponseType } from '@/types'
 import { AxiosResponse } from 'axios'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
+import { useCookies } from 'react-cookie'
 
 export const useApiCall = <T, E>({
   callApi,
@@ -20,6 +22,8 @@ export const useApiCall = <T, E>({
 
   const router = useRouter()
 
+  const [, , removeCookie] = useCookies([COOKIE_TOKEN_KEY])
+
   const getData = async () => {
     try {
       const response = await callApi()
@@ -31,18 +35,18 @@ export const useApiCall = <T, E>({
           handleSuccess(response.data.message, response.data.result)
         }
       } else {
-        const { statusCode } = response.data
-        if (statusCode === 400) {
+        const { status } = response.data
+        if (status === 400) {
           setData(undefined)
           setError(response.data)
         }
         if (handleError) {
-          handleError(statusCode, response.data.message)
+          handleError(status, response.data.message)
         }
-        if (statusCode === 401) {
-          // remove coockie
+        if (status === 401) {
+          removeCookie(COOKIE_TOKEN_KEY)
         }
-        if (statusCode === 403) {
+        if (status === 403) {
           router.push('/403')
         }
       }

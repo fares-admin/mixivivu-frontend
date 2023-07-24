@@ -8,7 +8,7 @@ interface LogoProps {
 }
 export const LogoAdmin = ({ type = 'black', width, height }: LogoProps) => {
   return (
-    <Link href="/">
+    <Link href="/admin">
       <a>
         {type === 'black' ? (
           <Image width={width || 232} height={height || 62} src="/black-logo.png" />
