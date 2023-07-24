@@ -1,11 +1,11 @@
 import {
+  Button,
   Card,
-  SearchIcon,
-  MapPinAltIcon,
-  Input,
   ChevronDownIcon,
   CircleDolarIcon,
-  Button,
+  Input,
+  MapPinAltIcon,
+  SearchIcon,
 } from '@/components'
 
 import styles from './SearchBox.module.css'

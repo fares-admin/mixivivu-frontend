@@ -1,9 +1,7 @@
-import { TOKEN_AUTHENTICATION } from '@/constants/auth'
 import { CommonResponseType } from '@/types'
 import { AxiosResponse } from 'axios'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
-import { useCookies } from 'react-cookie'
 
 export const useApiCall = <T, E>({
   callApi,
@@ -21,8 +19,6 @@ export const useApiCall = <T, E>({
   const [letCall, setLetCall] = useState<boolean>(false)
 
   const router = useRouter()
-
-  const [, , removeCookie] = useCookies([TOKEN_AUTHENTICATION])
 
   const getData = async () => {
     try {
@@ -44,7 +40,7 @@ export const useApiCall = <T, E>({
           handleError(statusCode, response.data.message)
         }
         if (statusCode === 401) {
-          removeCookie(TOKEN_AUTHENTICATION)
+          // remove coockie
         }
         if (statusCode === 403) {
           router.push('/403')
