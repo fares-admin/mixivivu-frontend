@@ -1,6 +1,6 @@
 import { Logo } from '@/components'
+import { ListItemFooter, SocialIcons } from './Footer.inventory'
 import styles from './Footer.module.css'
-import { ListItem, SocialIcons } from './Footer.inventory'
 
 export const Footer = () => {
   return (
@@ -16,7 +16,7 @@ export const Footer = () => {
             </p>
           </div>
           <div className="flex justify-between gap-32">
-            {ListItem.map((item) => (
+            {ListItemFooter.map((item) => (
               <div key={item.label} className="flex flex-col gap-16">
                 <span className="detail-sm">{item.label}</span>
                 <div className="flex flex-col gap-12">

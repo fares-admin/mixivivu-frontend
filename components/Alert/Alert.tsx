@@ -4,7 +4,7 @@ import {
   CirCleExclaimationIcon,
   InfoIcon,
   XMarkIcon,
-} from '@/components'
+} from '@/components/SVGIcon'
 import { ReactNode } from 'react'
 import styles from './Alert.module.css'
 

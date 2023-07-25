@@ -1,5 +1,5 @@
-import LayoutAdmin from '@/components/Layout/LayoutAdmin'
-import InternalUserList from '@/module-admin/internal-user/InternalUserList'
+import { LayoutAdmin } from '@/components/Layout/LayoutAdmin'
+import { InternalUserList } from '@/module-admin/internal-user/list/InternalUserList'
 import { NextPageWithLayout } from '../../_app'
 
 const InternalUserAdmin: NextPageWithLayout = () => {

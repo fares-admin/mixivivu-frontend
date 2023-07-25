@@ -9,7 +9,10 @@
 }
 
 .logo {
-  margin: 30px 20px;
+  height: 30%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .searchInput {
@@ -20,7 +23,22 @@
   width: 100%;
   display: flex;
   justify-content: center;
-  margin: 20px 20px;
+  align-items: center;
+  height: 15%;
+}
+
+.itemWrapper {
+  width: 100%;
+}
+
+.itemList {
+  width: 100%;
+  height: 40%;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: start;
 }
 
 .itemSidebar {
@@ -89,4 +107,25 @@
 .childMenuStyleOpen {
   max-height: 100%;
   transition: max-height 0.2s ease-in;
+}
+
+.footSidebar {
+  width: 100%;
+  height: 15%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.footContent {
+  border-top: 1px solid #eaecf0;
+  width: 80%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+}
+
+.logout {
+  cursor: pointer;
 }

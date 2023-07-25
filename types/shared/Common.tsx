@@ -2,14 +2,14 @@ export interface CommonResponseType<T> {
   success: boolean
   result: T
   message: string
-  statusCode: number
+  status: number
 }
 
 export interface CommonListResultType<T> {
   data: T[]
   page: number
-  pageSize: number
-  totalRows: number
+  size: number
+  total: number
 }
 
 export type QueryParams = {

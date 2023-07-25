@@ -1,4 +1,4 @@
-import LayoutAdmin from '@/components/Layout/LayoutAdmin'
+import { LayoutAdmin } from '@/components/Layout/LayoutAdmin'
 import { NextPageWithLayout } from '../_app'
 
 const AdminDashboard: NextPageWithLayout = () => {

@@ -11,7 +11,7 @@ import { useCookies } from 'react-cookie'
 import { toast } from 'react-toastify'
 import styles from './LoginAdmin.module.css'
 
-const LoginAdmin = () => {
+export const LoginAdmin = () => {
   const [reqLogin, setReqLogin] = useState<LoginReq>({
     username: '',
     password: '',
@@ -35,6 +35,7 @@ const LoginAdmin = () => {
       }
     },
     handleSuccess(mess, data) {
+      toast.success('Đăng nhập thành công')
       setCookies(COOKIE_TOKEN_KEY, data.token)
     },
   })
@@ -60,10 +61,11 @@ const LoginAdmin = () => {
           destructive={!!loginFunc.error?.result.password}
           onChange={(e) => setReqLogin({ ...reqLogin, password: e.target.value })}
         />
-        <Button label="Login" onClick={() => loginFunc.setLetCall(true)} />
+        <Button
+          label={loginFunc.loading ? 'Loading...' : 'Login'}
+          onClick={() => loginFunc.setLetCall(true)}
+        />
       </div>
     </div>
   )
 }
-
-export default LoginAdmin
