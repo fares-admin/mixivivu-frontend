@@ -2,11 +2,12 @@ import Image from 'next/image'
 
 interface ImageFillProps {
   src: string
-  width: string
-  height: string
+  width?: string
+  height?: string
+  className?: string
 }
 
-export const ImageFill = ({ src, width, height }: ImageFillProps) => {
+export const ImageFill = ({ src, width, height, className }: ImageFillProps) => {
   return (
     <div
       style={{
@@ -14,6 +15,7 @@ export const ImageFill = ({ src, width, height }: ImageFillProps) => {
         height,
         position: 'relative',
       }}
+      className={className}
     >
       <Image src={src} layout="fill" />
     </div>

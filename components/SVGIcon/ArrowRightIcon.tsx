@@ -11,7 +11,7 @@ export const ArrowRightIcon = ({ fillColor, strokeColor, width, height }: ArrowR
       width={width || '12'}
       height={height || '12'}
       viewBox="0 0 12 12"
-      fill={fillColor}
+      fill={fillColor || 'none'}
       xmlns="http://www.w3.org/2000/svg"
     >
       <path

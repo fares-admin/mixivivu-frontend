@@ -77,7 +77,7 @@ export const Header = () => {
             typeStyle="outline"
             iconLeading={<VietnameseFlagIcon />}
           />
-          <div className={styles['sub-menu']}>
+          {/* <div className={styles['sub-menu']}>
             <div className="flex align-center gap-8">
               <VietnameseFlagIcon />
               Tiếng việt
@@ -86,9 +86,9 @@ export const Header = () => {
               <VietnameseFlagIcon />
               English
             </div>
-          </div>
+          </div> */}
         </div>
-        <Button label="Đặt khách đoàn" size="sm" typeStyle="color" />
+        <Button label="Liên hệ Mixivivu" size="sm" typeStyle="color" />
       </div>
     </div>
   )

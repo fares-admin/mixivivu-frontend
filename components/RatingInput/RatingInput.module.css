@@ -1,0 +1,15 @@
+.rating {
+  padding: 12px 20px;
+  border-radius: 28px;
+  border: 1px solid var(--gray-200, #eaecf0);
+  background: var(--base-white, #fff);
+  box-shadow: var(--shadow-xs);
+}
+
+.rating label {
+  color: var(--gray-600, #475467);
+}
+
+.rating .star-icon {
+  cursor: pointer;
+}

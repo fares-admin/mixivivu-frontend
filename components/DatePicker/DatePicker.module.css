@@ -1,3 +1,7 @@
+.date-input {
+  width: 365px;
+}
+
 .mixi-date-picker :global(.react-datepicker) {
   display: flex;
   padding: 20px 24px;

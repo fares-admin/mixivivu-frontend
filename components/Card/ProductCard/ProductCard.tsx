@@ -1,9 +1,10 @@
 import Image from 'next/image'
 import { Badge, StarIcon, MapPinAltIcon, ShipIcon, Button } from '@/components'
+import Link from 'next/link'
 import { Card } from '../Card'
 import styles from './ProductCard.module.css'
 
-interface ProductCardProps {
+export interface ProductCardProps {
   type: 'grid' | 'list'
   url: string
   rating: number
@@ -16,6 +17,7 @@ interface ProductCardProps {
   tags: string[]
   handleSelect?: () => void
 }
+
 export const ProductCard = ({
   type = 'grid',
   url,
@@ -78,7 +80,9 @@ export const ProductCard = ({
               <p className={styles.originalPrice}>{formatter.format(originalPrice)}đ</p>
             </div>
           </div>
-          <Button label="Đặt ngay" size="sm" onClick={handleSelect} />
+          <Link href="/du-thuyen">
+            <Button label="Đặt ngay" size="sm" onClick={handleSelect} />
+          </Link>
         </div>
       </div>
     </Card>

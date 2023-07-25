@@ -17,6 +17,7 @@
   left: 16px;
   background-color: white;
   padding: 0px 4px;
+  color: var(--gray-600, #475467);
 }
 
 .input-group > svg {
@@ -63,7 +64,8 @@
 }
 
 /* ignore css input */
-.input-group > input {
+.input-group > input,
+.input-group > textarea {
   border: none;
   flex-grow: 1;
   width: 0;
@@ -71,9 +73,14 @@
   height: 24px;
 }
 
-.input-group > input:focus {
+.input-group > input:focus,
+.input-group > textarea:focus {
   border: none;
   outline: none;
+}
+
+.input-group > textarea {
+  height: 140px;
 }
 
 /* placeholder */

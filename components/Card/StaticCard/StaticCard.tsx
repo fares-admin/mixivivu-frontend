@@ -16,7 +16,7 @@ export const StaticCard = ({ rate, rateCount }: StaticCardProps) => {
       </div>
       <div className={styles.content}>
         {[0, 1, 2, 3, 4].map((item) => (
-          <div className={styles.content__item}>
+          <div className={styles.content__item} key={item}>
             <label className="md">{5 - item} sao</label>
             <div className={styles.progressBar}>
               <div

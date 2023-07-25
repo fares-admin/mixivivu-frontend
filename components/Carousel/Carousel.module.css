@@ -1,0 +1,77 @@
+.carousel {
+  margin: auto;
+  position: relative;
+  width: 1392px;
+  height: 568px;
+  border-radius: 24px;
+  overflow: hidden;
+}
+
+.carousel-btn {
+  display: flex;
+  padding: 10px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  border: 1px solid var(--gray-200, #eaecf0);
+  background: var(--base-white, #fff);
+  box-shadow: var(--shadow-sm);
+  z-index: 2;
+}
+
+.left-btn {
+  position: absolute;
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.right-btn {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.carouselItem {
+  width: 1008px;
+  height: 568px;
+  flex-shrink: 0;
+  cursor: pointer;
+}
+
+.thumbs {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 16px;
+}
+
+.thumbs .thumbItem {
+  width: 66px;
+  height: 66px;
+  border-radius: 8px;
+  border: 2px solid #fff;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.thumbs .thumbItemActive {
+  border-radius: 8px;
+  border: 1px solid var(--primary-base, #77dada);
+  box-shadow: 0px 0px 0px 4px #caf8f8, 0px 1px 2px 0px rgba(24, 24, 27, 0.05);
+}
+
+.fade {
+  animation-name: fade;
+  animation-duration: 1.5s;
+}
+
+@keyframes fade {
+  from {
+    opacity: 0.3;
+  }
+  to {
+    opacity: 1;
+  }
+}

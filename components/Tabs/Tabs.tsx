@@ -3,16 +3,34 @@ import styles from './Tabs.module.css'
 import { ChevronDownIcon } from '../SVGIcon'
 
 interface TabItemProps {
-  size: 'sm' | 'md'
+  id?: string
+  size?: 'sm' | 'md'
   label: string
   badge?: number
+  isActive?: boolean
   fullWidth?: boolean
+  onClick?: () => void
 }
-export const TabItem = ({ size, label, badge, fullWidth }: TabItemProps) => {
+export const TabItem = ({
+  id,
+  size = 'sm',
+  label,
+  badge,
+  fullWidth,
+  onClick,
+  isActive,
+}: TabItemProps) => {
   return (
     <button
+      key={id}
+      onClick={onClick}
       type="button"
-      className={[styles.tabItem, styles[size], fullWidth ? styles['full-w'] : ''].join(' ')}
+      className={[
+        styles.tabItem,
+        styles[size],
+        isActive ? styles.active : '',
+        fullWidth ? styles['full-w'] : '',
+      ].join(' ')}
     >
       <label>{label}</label>
       {badge && (
@@ -24,21 +42,24 @@ export const TabItem = ({ size, label, badge, fullWidth }: TabItemProps) => {
   )
 }
 
-interface TabProps {
-  label: string
-  badge?: number
-}
-
 interface TabsProps {
-  tabs: TabProps[]
-  size: 'sm' | 'md'
+  tabs: TabItemProps[]
+  size?: 'sm' | 'md'
   isMobile?: boolean
+  activeKey?: string
+  onChange?: (key: string) => void
 }
 
-export const Tabs = ({ tabs = [], size, isMobile = false }: TabsProps) => {
+export const Tabs = ({
+  tabs = [],
+  size = 'sm',
+  isMobile = false,
+  activeKey,
+  onChange = () => {},
+}: TabsProps) => {
   const [selected, setSelected] = useState(tabs[0])
   const [showDropdown, setShowDropdown] = useState(false)
-  const handleSelect = (item: TabProps) => {
+  const handleSelect = (item: TabItemProps) => {
     setSelected(item)
     setShowDropdown(false)
   }
@@ -54,7 +75,7 @@ export const Tabs = ({ tabs = [], size, isMobile = false }: TabsProps) => {
             <div>
               {tabs.map((item, index) => (
                 <div key={index} onClick={() => handleSelect(item)}>
-                  <TabItem fullWidth label={item.label} badge={item.badge} size={size} />
+                  <TabItem fullWidth {...item} size={size} />
                 </div>
               ))}
             </div>
@@ -64,7 +85,12 @@ export const Tabs = ({ tabs = [], size, isMobile = false }: TabsProps) => {
         <div className={styles.tabs__header}>
           {tabs.map((item, index) => (
             <div key={index}>
-              <TabItem label={item.label} badge={item.badge} size={size} />
+              <TabItem
+                {...item}
+                size={size}
+                isActive={item.id === activeKey}
+                onClick={() => onChange(item.id as string)}
+              />
             </div>
           ))}
         </div>

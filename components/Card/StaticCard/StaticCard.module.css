@@ -1,6 +1,6 @@
 .staticCard {
   display: flex;
-  width: 632px;
+  width: 100%;
   padding: 24px;
   align-items: center;
   gap: 48px;
@@ -27,6 +27,7 @@
 }
 
 .content__item {
+  width: 100%;
   display: flex;
   align-items: center;
   gap: 16px;

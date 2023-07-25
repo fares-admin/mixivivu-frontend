@@ -8,6 +8,7 @@ import {
   SearchIcon,
 } from '@/components'
 
+import Link from 'next/link'
 import styles from './SearchBox.module.css'
 
 interface SearchBoxProps {
@@ -43,7 +44,9 @@ export const SearchBox = ({ title, description, className }: SearchBoxProps) => 
           supportIcon={<ChevronDownIcon />}
           placeHolder="Tất cả địa điểm"
         />
-        <Button color="color" label="Tìm kiếm" />
+        <Link href="/tim-du-thuyen">
+          <Button color="color" label="Tìm kiếm" />
+        </Link>
       </div>
     </Card>
   )

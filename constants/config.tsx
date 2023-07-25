@@ -1,4 +1,6 @@
-export const productList = [
+import { ProductProps } from './type'
+
+export const productList: ProductProps[] = [
   {
     url: '/card-image.png',
     rating: 5,
@@ -124,6 +126,40 @@ export const blogList = [
   },
 ]
 
+export const rooms = [
+  {
+    url: '/card-image.png',
+    title: 'Delta Suite Có Ban Công Riêng Nhìn Ra Biển - 2 Ngày 1 Đêm',
+    price: 3350000,
+    roomCount: 1,
+    area: 32,
+    userPerRoom: 2,
+  },
+  {
+    url: '/card-image.png',
+    title: 'Delta Suite Có Ban Công Riêng Nhìn Ra Biển - 2 Ngày 1 Đêm',
+    price: 3350000,
+    roomCount: 1,
+    area: 32,
+    userPerRoom: 2,
+  },
+  {
+    url: '/card-image.png',
+    title: 'Delta Suite Có Ban Công Riêng Nhìn Ra Biển - 2 Ngày 1 Đêm',
+    price: 3350000,
+    roomCount: 1,
+    area: 32,
+    userPerRoom: 2,
+  },
+  {
+    url: '/card-image.png',
+    title: 'Delta Suite Có Ban Công Riêng Nhìn Ra Biển - 2 Ngày 1 Đêm',
+    price: 3350000,
+    roomCount: 1,
+    area: 32,
+    userPerRoom: 2,
+  },
+]
 export const filterList = [
   {
     label: 'Xếp hạng sao',
@@ -182,5 +218,36 @@ export const filterList = [
         value: 'freeWifi',
       },
     ],
+  },
+]
+
+export const overviews = [
+  {
+    icon: '',
+    value: 'Miễn phí kayaking',
+  },
+  {
+    icon: '',
+    value: 'Đi tuyến Lan Hạ',
+  },
+  {
+    icon: '',
+    value: 'Quầy bar',
+  },
+  {
+    icon: '',
+    value: 'Wi-Fi miễn phí',
+  },
+  {
+    icon: '',
+    value: 'Bao gồm tất cả các bữa ăn',
+  },
+  {
+    icon: '',
+    value: 'Bể bơi ngoài trời',
+  },
+  {
+    icon: '',
+    value: 'Phòng không hút thuốc',
   },
 ]

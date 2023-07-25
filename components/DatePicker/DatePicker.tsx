@@ -1,6 +1,13 @@
 import React, { forwardRef, useState } from 'react'
 import DatePicker from 'react-datepicker'
-import { Button, CalendarIcon, ChevronLeftIcon, ChevronRightIcon } from '@/components'
+import {
+  Button,
+  CalendarIcon,
+  ChevronDownIcon,
+  ChevronLeftIcon,
+  ChevronRightIcon,
+  Input,
+} from '@/components'
 import 'react-datepicker/dist/react-datepicker.css'
 import { WEEKDAYS } from '@/constants/dateTime'
 import styles from './DatePicker.module.css'
@@ -10,14 +17,16 @@ interface CustomInputProps {
   onClick?: () => void
 }
 
-const CustomInput = forwardRef<HTMLButtonElement, CustomInputProps>(({ value, onClick }, ref) => {
+const CustomInput = forwardRef<HTMLInputElement, CustomInputProps>(({ value, onClick }, ref) => {
   return (
-    <Button
-      iconLeading={<CalendarIcon />}
-      size="sm"
-      label={value || 'Chọn ngày'}
-      onClick={onClick}
+    <Input
+      customClass={styles['date-input']}
       ref={ref}
+      value={value}
+      onClick={onClick}
+      iconSwap={<CalendarIcon />}
+      supportIcon={<ChevronDownIcon />}
+      label="Ngày nhận phòng"
     />
   )
 })
