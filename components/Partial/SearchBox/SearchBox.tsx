@@ -14,7 +14,7 @@ import styles from './SearchBox.module.css'
 interface SearchBoxProps {
   title: string
   description: string
-  className: string
+  className?: string
 }
 
 export const SearchBox = ({ title, description, className }: SearchBoxProps) => {

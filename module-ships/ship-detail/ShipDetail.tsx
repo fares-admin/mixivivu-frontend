@@ -157,7 +157,7 @@ export const ShipDetail = () => {
           </div>
         </div>
       </div>
-      <div>
+      <div className={['section-bg', styles['popular-ships']].join(' ')}>
         <PopularShips ships={productList.slice(0, 3)} />
       </div>
       <LightBox

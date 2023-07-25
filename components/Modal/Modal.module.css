@@ -1,11 +1,20 @@
 .close-btn {
   position: absolute;
-  right: 12px;
-  top: 12px;
-  width: 28px;
+  right: 24px;
+  top: 24px;
   height: 28px;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
+}
+
+.info-modal {
+  width: 800px;
+  padding: 24px;
+  flex: 1 0 0;
+}
+
+.info-modal .img-wrapper {
+  margin-top: 48px;
 }

@@ -12,6 +12,7 @@ import {
 } from '@/components'
 import { RoomProps } from '@/constants/type'
 import { useState } from 'react'
+import { InfoModal } from '@/components/Modal/InfoModal'
 import styles from '../../ShipDetail.module.scss'
 
 interface RoomsProps {
@@ -20,6 +21,12 @@ interface RoomsProps {
 
 export const Rooms = ({ rooms }: RoomsProps) => {
   const [openModal, setOpenModal] = useState(false)
+  const [openSuccessModal, setOpenSuccessModal] = useState(false)
+  const handleBooking = () => {
+    setOpenModal(false)
+    setOpenSuccessModal(true)
+  }
+
   const renderBookDetailContent = () => {
     return (
       <div className={styles['booking-detail-modal']}>
@@ -43,7 +50,12 @@ export const Rooms = ({ rooms }: RoomsProps) => {
           </div>
           <div className="flex gap-16">
             <Button label="Đăng ký tư vấn" typeStyle="outline" />
-            <Button label="Đặt ngay" typeStyle="color" iconTrailing={<ArrowRightIcon />} />
+            <Button
+              onClick={handleBooking}
+              label="Đặt ngay"
+              typeStyle="color"
+              iconTrailing={<ArrowRightIcon />}
+            />
           </div>
         </div>
       </div>
@@ -63,7 +75,7 @@ export const Rooms = ({ rooms }: RoomsProps) => {
           />
           <Button label="Xoá lựa chọn" typeStyle="outline" iconLeading={<XMarkIcon />} size="sm" />
         </div>
-        <div className={[styles['room-types'], 'flex flex-col gap-16'].join(' ')}>
+        <div className={[styles['room-types'], 'flex flex-col gap-16 section-bg'].join(' ')}>
           {rooms.map((item, index) => (
             <RoomCard {...item} key={index} />
           ))}
@@ -80,12 +92,20 @@ export const Rooms = ({ rooms }: RoomsProps) => {
                 typeStyle="color"
                 iconTrailing={<ArrowRightIcon />}
               />
-
-              <Modal open={openModal} setOpen={setOpenModal} content={renderBookDetailContent()} />
             </div>
           </div>
         </div>
       </div>
+      <Modal open={openModal} setOpen={setOpenModal} content={renderBookDetailContent()} />
+      <InfoModal
+        open={openSuccessModal}
+        setOpen={setOpenSuccessModal}
+        title="Bạn đã đặt Tour thành công"
+        description="Vui lòng kiểm tra email và Mixivivu sẽ liên hệ với bạn"
+        actions={
+          <Button label="Về trang chủ" typeStyle="outline" iconTrailing={<ArrowRightIcon />} />
+        }
+      />
     </div>
   )
 }
