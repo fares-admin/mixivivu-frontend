@@ -14,7 +14,7 @@ import styles from '../../ShipDetail.module.scss'
 
 export const Rating = () => {
   return (
-    <div className="flex flex-col gap-40">
+    <div id="reviews" className="flex flex-col gap-40">
       <div className="flex gap-16">
         <SectionHeader title="Đánh giá (66)" />
         <div className="flex gap-16">

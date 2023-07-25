@@ -4,7 +4,6 @@ import {
   BreadCrumbs,
   Button,
   Carousel,
-  ImageFill,
   LightBox,
   SectionHeader,
   Tabs,
@@ -12,9 +11,11 @@ import {
 import { useState } from 'react'
 import { overviews, productList, rooms } from '@/constants/config'
 import { Features, Navigation, Rating, ShipInfo } from '@/module-ships/ship-detail'
+import { useScrollspy } from '@/hooks/useScrollspy'
 import styles from './ShipDetail.module.scss'
 import { PopularShips } from '../home/components/PopularShips'
 import { Rooms } from './components/Rooms'
+import { Intro } from './components/Intro'
 
 const features = [
   'Du thuyền Heritage Cruises Bình Chuẩn có kiến trúc độc đáo, thiết kế mang đậm nét truyền thống và lịch sử.',
@@ -26,32 +27,36 @@ const features = [
 export const ShipDetail = () => {
   const tabItems = [
     {
-      id: '1',
+      id: 'features',
       label: 'Đặc điểm',
     },
     {
-      id: '2',
+      id: 'rooms',
       label: 'Phòng & giá',
     },
     {
-      id: '3',
+      id: 'intro',
       label: 'Giới thiệu',
     },
     {
-      id: '4',
+      id: 'rules',
       label: 'Quy định',
     },
     {
-      id: '5',
+      id: 'reviews',
       label: 'Đánh giá',
       badge: 5,
     },
   ]
-  const [activeTab, setActiveTab] = useState(tabItems[0].id)
   const [openLightBox, setOpenLightBox] = useState(false)
   const handleChangeTab = (key: string) => {
-    setActiveTab(key)
+    const section = document.getElementById(key)
+    section?.scrollIntoView()
   }
+  const activeTab = useScrollspy(
+    tabItems.map((item) => item.id),
+    48
+  )
   return (
     <>
       <div className={['container'].join(' ')}>
@@ -67,47 +72,15 @@ export const ShipDetail = () => {
         />
       </div>
       <div className={[styles['ship-detail'], 'container flex flex-col gap-40'].join(' ')}>
-        <Tabs tabs={tabItems} activeKey={activeTab} onChange={handleChangeTab} />
+        <div className={styles.tabs}>
+          <Tabs tabs={tabItems} activeKey={activeTab} onChange={handleChangeTab} />
+        </div>
         <div className="flex gap-32 w-full">
           <div className="flex flex-col gap-80 flex-grow">
             <Features features={features} overviews={overviews} />
             <Rooms rooms={rooms} />
-            <div className="flex flex-col gap-40">
-              <SectionHeader title="Giới thiệu" />
-              <p className="md">
-                Du thuyền Heritage Bình Chuẩn với hải trình mới lạ đưa du khách thăm quan vịnh Lan
-                Hạ, nơi đây nổi tiếng với quần đảo Cát Bà yên bình, thơ mộng và những địa điểm còn
-                hoang sơ như hang Sáng Tối, khu vực Ba Trái Đào. Với hải trình 2 ngày 1 đêm hoặc 3
-                ngày 2 đêm trên vịnh, du khách sẽ có những trải nghiệm đáng nhớ như chèo kayak, tắm
-                ở một trong những bãi biển sạch nhất và lạc mình vào thiên đường hang động kỳ vĩ. Du
-                thuyền Heritage Cruises Bình Chuẩn mang vẻ đẹp cổ điển truyền thống, được lấy cảm
-                hứng từ thiết kế của “vua tàu thủy” Bạch Thái Bưởi. Nội thất các phòng nghỉ đẳng cấp
-                và tinh xảo, ánh đèn lung linh cùng các bức tranh cổ được trang trí tại mỗi phòng.
-                Mỗi phòng đều có quầy ba mini và ban công riêng thoáng đãng, riêng tư. Đối với hạng
-                phòng Regal và Captain còn được ưu tiên đặt bàn ăn tại ban công trong phòng hoặc hầm
-                rượu.
-              </p>
-              <ImageFill
-                className={styles['blog-img']}
-                height="452px"
-                width="100%"
-                src="/banner.jpeg"
-              />
-              <p className="md">
-                Trên tàu, du khách được thưởng thức đồ uống tại quầy bar La Piscine cạnh hồ bơi, thư
-                giãn với sân sundeck không khí trong lành, đọc sách trong thư viện Bạch Thái Bưởi,
-                hoặc trải nghiệm dịch vụ massage tại spa ngay trên du thuyền. Đặc biệt, Heritage
-                Cruises Bình Chuẩn có phòng triển lãm tranh L’Art de l’Annam độc nhất vô nhị trên
-                vịnh Hạ Long.
-              </p>
-              <ImageFill
-                className={styles['blog-img']}
-                height="452px"
-                width="100%"
-                src="/banner.jpeg"
-              />
-            </div>
-            <div>
+            <Intro />
+            <div id="rules">
               <SectionHeader title="Quy định chung và lưu ý" />
               <div className="flex gap-4 align-center">
                 <label className="md">Bạn có thể xem Quy định chung và lưu ý:</label>

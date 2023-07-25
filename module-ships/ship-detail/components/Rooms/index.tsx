@@ -63,7 +63,7 @@ export const Rooms = ({ rooms }: RoomsProps) => {
   }
 
   return (
-    <div className="flex flex-col gap-40">
+    <div id="rooms" className="flex flex-col gap-40">
       <SectionHeader title={<>Các loại phòng & giá</>} />
       <div className={['flex flex-col gap-40', styles['room-types'], 'section-bg'].join(' ')}>
         <div className="flex justify-between">
