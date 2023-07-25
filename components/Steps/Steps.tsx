@@ -53,4 +53,3 @@ export const Steps = ({ steps, isMobile = false }: StepsProps) => {
     </div>
   )
 }
-export default Steps

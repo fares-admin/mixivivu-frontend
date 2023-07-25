@@ -1,5 +1,5 @@
-import React, { ReactNode } from 'react'
 import { Footer, Header } from '@/components'
+import { ReactNode } from 'react'
 import styles from './Layout.module.css'
 
 interface LayoutProps {

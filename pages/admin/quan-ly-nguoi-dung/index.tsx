@@ -1,8 +1,9 @@
-import LayoutAdmin from '@/components/Layout/LayoutAdmin'
+import { LayoutAdmin } from '@/components/Layout/LayoutAdmin'
+import { InternalUserList } from '@/module-admin/internal-user/list/InternalUserList'
 import { NextPageWithLayout } from '../../_app'
 
 const InternalUserAdmin: NextPageWithLayout = () => {
-  return <div>quan ly nguoi dung</div>
+  return <InternalUserList />
 }
 
 InternalUserAdmin.getLayout = (page) => {

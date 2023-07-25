@@ -5,9 +5,9 @@ import {
   SocialIcon1,
   SocialIcon2,
   TwitterIcon,
-} from '@/components'
+} from '@/components/SVGIcon'
 
-export const ListItem = [
+export const ListItemFooter = [
   {
     label: 'Giới thiệu',
     childs: [

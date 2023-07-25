@@ -1,12 +1,17 @@
 import { Input } from '@/components/Input'
 import { LogoAdmin } from '@/components/Logo'
-import { ChevronDownIcon, SearchIcon, ShipIcon, UserIcon } from '@/components/SVGIcon'
-import { useRouter } from 'next/router'
+import { LogOutIcon, SearchIcon, ShipIcon, UserIcon } from '@/components/SVGIcon'
+import { COOKIE_TOKEN_KEY } from '@/constants/commonValue'
 import { ReactNode, useState } from 'react'
+import { useCookies } from 'react-cookie'
+import { toast } from 'react-toastify'
+import { ItemSidebar } from './ItemSIdebar'
 import styles from './SidebarAdmin.module.css'
 
-const SidebarAdmin = () => {
+export const SidebarAdmin = () => {
   const [open, setOpen] = useState('')
+
+  const [, , removeCookie] = useCookies([COOKIE_TOKEN_KEY])
 
   const sidebarList: {
     icon: ReactNode
@@ -18,25 +23,32 @@ const SidebarAdmin = () => {
     }[]
   }[] = [
     {
-      icon: <UserIcon strokeColor="#344054" />,
-      text: 'Quản lý người dùng',
-      link: '/admin/quan-ly-nguoi-dung',
-      children: [],
-    },
-    {
       icon: <ShipIcon fillColor="#344054" />,
       text: 'Du thuyền Hạ Long',
       link: '/admin/du-thuyen',
       children: [
         {
-          text: 'tour',
+          text: 'Tour',
           link: '/admin/du-thuyen/tour',
+        },
+        {
+          text: 'Review',
+          link: '/admin/du-thuyen/review',
         },
       ],
     },
+    {
+      icon: <UserIcon strokeColor="#344054" />,
+      text: 'Quản lý người dùng',
+      link: '/admin/quan-ly-nguoi-dung',
+      children: [],
+    },
   ]
 
-  const router = useRouter()
+  const logoutFunc = () => {
+    toast.success('Đã đăng xuất')
+    removeCookie(COOKIE_TOKEN_KEY)
+  }
 
   return (
     <div className={styles.sidebar}>
@@ -46,47 +58,19 @@ const SidebarAdmin = () => {
       <div className={styles.searchContainer}>
         <Input customClass={styles.searchInput} placeHolder="Tìm kiếm" iconSwap={<SearchIcon />} />
       </div>
-      {sidebarList.map((item) => (
-        <>
-          <div
-            onClick={() => {
-              if (item.children.length === 0) {
-                router.push(item.link)
-              }
-              if (open === item.link) {
-                setOpen('')
-              } else setOpen(item.link)
-            }}
-            className={styles.itemSidebar}
-          >
-            <div className={styles.iconSidebar}>{item.icon}</div>
-            <div className={styles.contentSidebar}>{item.text}</div>
-            <div className={styles.iconSidebar}>
-              {item.children.length > 0 && (
-                <>
-                  {item.link === open ? (
-                    <ChevronDownIcon strokeColor="#344054" />
-                  ) : (
-                    <div style={{ transform: 'rotate(180deg)' }}>
-                      <ChevronDownIcon strokeColor="#344054" />
-                    </div>
-                  )}
-                </>
-              )}
-            </div>
+      <div className={styles.itemList}>
+        {sidebarList.map((item) => (
+          <ItemSidebar item={item} open={open} setOpen={setOpen} key={item.text} />
+        ))}
+      </div>
+      <div className={styles.footSidebar}>
+        <div className={styles.footContent}>
+          <div>email</div>
+          <div className={styles.logout} onClick={logoutFunc}>
+            <LogOutIcon />
           </div>
-          {item.link === open &&
-            item.children.map((item) => (
-              <div className={styles.itemSidebar}>
-                <div className={styles.iconSidebar} />
-                <div className={styles.contentSidebar}>{item.text}</div>
-                <div className={styles.iconSidebar} />
-              </div>
-            ))}
-        </>
-      ))}
+        </div>
+      </div>
     </div>
   )
 }
-
-export default SidebarAdmin
