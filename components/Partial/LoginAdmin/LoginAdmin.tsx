@@ -2,6 +2,7 @@ import { Button } from '@/components/Button'
 import { Input } from '@/components/Input'
 import { LogoAdmin } from '@/components/Logo'
 import { COOKIE_TOKEN_KEY } from '@/constants/commonValue'
+import { getEndpoint, internalUserEndpoints } from '@/constants/endpoints'
 import { useApiCall } from '@/hooks'
 import { LoginReq, LoginReqErr, LoginRes } from '@/types'
 import axios from 'axios'
@@ -22,15 +23,12 @@ const LoginAdmin = () => {
 
   const [, setCookies] = useCookies([COOKIE_TOKEN_KEY])
 
-  const sendLogin = () => {
-    return axios.post(`/api/internal-user/auth/login`, {
-      ...reqLogin,
-      password: encodeBase64(reqLogin.password),
-    })
-  }
-
   const loginFunc = useApiCall<LoginRes, LoginReqErr>({
-    callApi: () => sendLogin(),
+    callApi: () =>
+      axios.post(getEndpoint(internalUserEndpoints, 'authLogin'), {
+        ...reqLogin,
+        password: encodeBase64(reqLogin.password),
+      }),
     handleError(status, message) {
       if (status !== 400) {
         toast.error(message)

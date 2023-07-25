@@ -24,6 +24,7 @@
 }
 
 .itemSidebar {
+  height: 40px;
   color: #344054;
   /* Label/Regular */
   font-family: Archivo;
@@ -47,7 +48,7 @@
   display: flex;
   align-items: center;
   width: 15%;
-  aspect-ratio: 1;
+  aspect-ratio: 1 / 1;
 }
 
 .contentSidebar {
@@ -55,4 +56,37 @@
   align-items: center;
   width: 70%;
   gap: 10px;
+}
+
+.itemChild {
+  height: 40px;
+  color: #344054;
+  /* Label/Regular */
+  font-family: Archivo;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 24px; /* 150% */
+  width: 100%;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  padding: 6px 20px;
+  border-radius: 10px;
+}
+
+.itemChild:hover {
+  background-color: #caf8f8;
+}
+
+.childMenuStyle {
+  width: 90%;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.2s ease-out;
+}
+
+.childMenuStyleOpen {
+  max-height: 100%;
+  transition: max-height 0.2s ease-in;
 }
