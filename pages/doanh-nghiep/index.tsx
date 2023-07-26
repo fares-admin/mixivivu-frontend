@@ -1,5 +1,5 @@
 import { Layout } from '@/components'
-import { BusinessPage } from '@/module-ships/business/BusinessPage'
+import { BusinessPage } from '@/module-ships/business'
 import { NextPageWithLayout } from '../_app'
 
 const Bussiness: NextPageWithLayout = () => {

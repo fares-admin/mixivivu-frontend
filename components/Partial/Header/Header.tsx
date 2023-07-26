@@ -23,7 +23,7 @@ const navigationItems = [
   },
   {
     name: 'Blog',
-    url: '',
+    url: '/blog',
   },
 ]
 
