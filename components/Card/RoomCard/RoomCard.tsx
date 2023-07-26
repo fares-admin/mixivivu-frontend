@@ -1,4 +1,3 @@
-import Image from 'next/image'
 import {
   Button,
   MinusIcon,
@@ -82,7 +81,9 @@ export const RoomCard = ({ url, title, price, roomCount, area, userPerRoom }: Ro
   return (
     <div className={styles.wrapper}>
       <Card customClass={styles.roomCard}>
-        <Image src={url} width={76} height={76} />
+        <div className={styles['img-wrapper']}>
+          <ImageFill src={url} width="100%" height="100%" />
+        </div>
         <div className={styles.roomDetail}>
           <Modal open={openModal} setOpen={setOpenModal} content={modalContent()} />
           <p className={styles.title} onClick={() => setOpenModal(true)}>

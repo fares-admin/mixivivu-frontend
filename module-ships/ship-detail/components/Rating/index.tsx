@@ -10,9 +10,11 @@ import {
   StaticCard,
   TextArea,
 } from '@/components'
+import { useState } from 'react'
 import styles from '../../ShipDetail.module.scss'
 
 export const Rating = () => {
+  const [rating, setRating] = useState(0)
   return (
     <div id="reviews" className="flex flex-col gap-40">
       <div className="flex gap-16">
@@ -35,7 +37,7 @@ export const Rating = () => {
       </div>
       <div className="flex flex-col gap-24">
         <div className={styles['group-input']}>
-          <RatingInput />
+          <RatingInput rating={rating} onChange={setRating} />
           <Input label="Họ và tên" placeHolder="Nhập họ và tên" />
           <Input label="Số điện thoại" placeHolder="Nhập số điện thoại" />
           <Input label="Địa chỉ email" placeHolder="Nhập email" />

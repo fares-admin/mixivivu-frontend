@@ -6,10 +6,18 @@
   box-shadow: var(--shadow-xs);
 }
 
+.rating path {
+  stroke: var(--gray-400);
+}
+
 .rating label {
   color: var(--gray-600, #475467);
 }
 
 .rating .star-icon {
   cursor: pointer;
+}
+
+.active path {
+  stroke: var(--warning-base);
 }
