@@ -1,0 +1,76 @@
+.room-picker {
+  position: relative;
+}
+
+.room-picker__dropdown {
+  padding-top: 10px;
+  position: absolute;
+  inset: 0px auto auto 0px;
+  transform: translate3d(0px, 70px, 0px);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  align-self: stretch;
+  border-radius: 8px;
+  border: 1px solid var(--gray-100, #f2f4f7);
+  background: var(--base-white, #fff);
+  box-shadow: 0px 8px 8px -4px rgba(16, 24, 40, 0.03), 0px 20px 24px -4px rgba(16, 24, 40, 0.08);
+  z-index: 1;
+}
+
+.content {
+  padding: 20px 24px;
+}
+
+.item {
+  color: var(--gray-900, #101828);
+  width: 280px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--gray-100, #f2f4f7);
+}
+
+.item .item-value {
+  color: var(--primary-dark, #0e4f4f);
+}
+
+.item:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.item .group-btn {
+  display: flex;
+  border-radius: 100px;
+  border: 1px solid var(--gray-200, #eaecf0);
+}
+
+.item .item-btn {
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.item .item-btn svg {
+  width: 20px;
+  height: 20px;
+}
+
+.item .minus {
+  border-right: 1px solid var(--gray-200, #eaecf0);
+}
+
+.actions {
+  width: 100%;
+  padding: 16px;
+  border-top: 1px solid var(--gray-200, #eaecf0);
+}
+
+.actions .action-btn {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

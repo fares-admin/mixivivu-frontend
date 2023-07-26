@@ -6,6 +6,7 @@ import {
   MixiDatePicker,
   Modal,
   RoomCard,
+  RoomPicker,
   SectionHeader,
   TextArea,
   XMarkIcon,
@@ -22,6 +23,11 @@ interface RoomsProps {
 export const Rooms = ({ rooms }: RoomsProps) => {
   const [openModal, setOpenModal] = useState(false)
   const [openSuccessModal, setOpenSuccessModal] = useState(false)
+  const [roomDetail, setRoomDetail] = useState({
+    rooms: 1,
+    adults: 1,
+    children: 0,
+  })
   const handleBooking = () => {
     setOpenModal(false)
     setOpenSuccessModal(true)
@@ -36,7 +42,8 @@ export const Rooms = ({ rooms }: RoomsProps) => {
         <div className="flex flex-col gap-24">
           <div className={styles['group-input']}>
             <MixiDatePicker />
-            <Input label="Số lượng" placeHolder="Chọn số lượng" supportIcon={<ChevronDownIcon />} />
+            {/* <Input label="Số lượng" placeHolder="Chọn số lượng" supportIcon={<ChevronDownIcon />} /> */}
+            <RoomPicker roomDetail={roomDetail} setRoomDetail={setRoomDetail} />
           </div>
           <Input label="Họ và tên" placeHolder="Nhập họ và tên" />
           <Input label="Số điện thoại" placeHolder="Nhập số điện thoại" />
