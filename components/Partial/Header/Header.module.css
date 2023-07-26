@@ -1,8 +1,11 @@
-.container {
-  position: relative;
-  height: 96px;
+.wrapper {
+  position: sticky;
+  top: 0;
   background-color: white;
   z-index: 2;
+}
+.container {
+  height: 96px;
 }
 
 .logo {

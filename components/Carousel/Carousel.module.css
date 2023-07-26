@@ -35,7 +35,7 @@
 }
 
 .carouselItem {
-  width: 1008px;
+  width: 70vw;
   height: 568px;
   flex-shrink: 0;
   cursor: pointer;

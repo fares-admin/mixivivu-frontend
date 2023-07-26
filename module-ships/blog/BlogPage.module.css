@@ -1,0 +1,9 @@
+.blog-page {
+  padding: 80px 32px;
+}
+
+.blog-list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+}
