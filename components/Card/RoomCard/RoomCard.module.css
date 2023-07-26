@@ -6,6 +6,13 @@
   padding: 20px;
 }
 
+.roomCard .img-wrapper {
+  border-radius: 12px;
+  width: 76px;
+  height: 76px;
+  overflow: hidden;
+}
+
 .roomDetail {
   display: flex;
   flex-direction: column;

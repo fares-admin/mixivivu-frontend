@@ -14,10 +14,11 @@ export const ImageFill = ({ src, width, height, className }: ImageFillProps) => 
         width,
         height,
         position: 'relative',
+        overflow: 'hidden',
       }}
       className={className}
     >
-      <Image src={src} layout="fill" />
+      <Image src={src} layout="fill" objectFit="cover" />
     </div>
   )
 }

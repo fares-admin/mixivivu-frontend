@@ -3,7 +3,7 @@ import React, { ReactNode } from 'react'
 import styles from './SectionHeader.module.css'
 
 interface SectionHeaderProps {
-  title: ReactNode
+  title: ReactNode | string
   description?: string
   center?: boolean
 }

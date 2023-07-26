@@ -17,6 +17,12 @@
 
 .ship-detail {
   padding: 80px 32px;
+  .tabs {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
 }
 
 .features {
@@ -33,7 +39,7 @@
 
 .room-types {
   border-radius: 24px;
-  background: #f2f4f7;
+  background-color: #f2f4f7;
   padding: 32px;
   .price-label {
     color: var(--gray-700);
@@ -98,4 +104,8 @@
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 24px;
+}
+
+.popular-ships {
+  background-color: #f2f4f7;
 }

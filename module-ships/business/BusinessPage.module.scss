@@ -1,0 +1,32 @@
+.wrapper {
+  padding: 80px 32px;
+}
+
+.search-box {
+  width: 100%;
+}
+
+.feature-card {
+  width: 488px;
+  border-radius: 24px;
+  border: 1px solid var(--gray-200, #eaecf0);
+  background: var(--base-white, #fff);
+  box-shadow: var(--shadow-sm);
+  padding: 16px 24px 16px 16px;
+  .img-wrapper {
+    width: 120px;
+    min-width: 120px;
+    height: 120px;
+    border-radius: 12px;
+    overflow: hidden;
+  }
+}
+
+.customers {
+  padding: 80px 32px;
+  background-color: #f3ffff;
+  .customer-list {
+    display: flex;
+    justify-content: space-between;
+  }
+}
