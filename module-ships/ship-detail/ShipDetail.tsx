@@ -7,13 +7,13 @@ import {
   LightBox,
   SectionHeader,
   Tabs,
+  PopularShips,
 } from '@/components'
 import { useState } from 'react'
 import { overviews, productList, rooms } from '@/constants/config'
 import { Features, Navigation, Rating, ShipInfo } from '@/module-ships/ship-detail'
 import { useScrollspy } from '@/hooks/useScrollspy'
 import styles from './ShipDetail.module.scss'
-import { PopularShips } from '../home/components/PopularShips'
 import { Rooms } from './components/Rooms'
 import { Intro } from './components/Intro'
 
@@ -63,10 +63,12 @@ export const ShipDetail = () => {
 
   return (
     <>
-      <div className={['container', styles.wrapper].join(' ')}>
-        <div className={styles.breadcrumbs}>
+      <div className={styles.breadcrumbsWrapper}>
+        <div className={['container', styles.breadcrumbs].join(' ')}>
           <BreadCrumbs breadcrumbs={['Top 10 du thuyền', 'Du thuyền Heritage Bình Chuẩn Cát Bà']} />
         </div>
+      </div>
+      <div className={['container', styles.wrapper].join(' ')}>
         <Navigation />
       </div>
       <div className={styles.carousel}>

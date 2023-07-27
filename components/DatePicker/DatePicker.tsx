@@ -42,7 +42,7 @@ interface ReactDatePickerCustomHeaderProps {
 }
 
 export const MixiDatePicker = () => {
-  const [selectedDate, setSelectedDate] = useState<Date | null>()
+  const [selectedDate, setSelectedDate] = useState<Date | null>(new Date())
 
   const renderCustomHeader = ({
     monthDate,

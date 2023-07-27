@@ -6,11 +6,11 @@ import {
   ReviewQuote,
   SectionHeader,
   SearchBox,
+  PopularShips,
 } from '@/components'
 import { blogList, categoryList, productList, reviewers } from '@/constants/config'
 import Image from 'next/image'
 import styles from './Home.module.scss'
-import { PopularShips } from './components/PopularShips'
 
 export const HomePage = () => {
   return (
