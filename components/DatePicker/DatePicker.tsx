@@ -86,7 +86,7 @@ export const MixiDatePicker = () => {
         formatWeekDay={(day) => formatDay(WEEKDAYS.indexOf(day) as Day)}
         customInput={<CustomInput />}
         dayClassName={(date: Date) =>
-          date.getDate() === selectedDate?.getDate()
+          date.getTime() === selectedDate?.getTime()
             ? [styles.selectedDate, styles.calendarCell].join(' ')
             : styles.calendarCell
         }

@@ -19,7 +19,7 @@ const navigationItems = [
   },
   {
     name: 'Doanh nghiệp',
-    url: '',
+    url: '/doanh-nghiep',
   },
   {
     name: 'Blog',

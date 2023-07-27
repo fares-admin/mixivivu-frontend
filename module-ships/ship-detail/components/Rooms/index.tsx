@@ -6,12 +6,14 @@ import {
   MixiDatePicker,
   Modal,
   RoomCard,
+  RoomPicker,
   SectionHeader,
   TextArea,
   XMarkIcon,
 } from '@/components'
 import { RoomProps } from '@/constants/type'
 import { useState } from 'react'
+import { InfoModal } from '@/components/Modal/InfoModal'
 import styles from '../../ShipDetail.module.scss'
 
 interface RoomsProps {
@@ -20,6 +22,17 @@ interface RoomsProps {
 
 export const Rooms = ({ rooms }: RoomsProps) => {
   const [openModal, setOpenModal] = useState(false)
+  const [openSuccessModal, setOpenSuccessModal] = useState(false)
+  const [roomDetail, setRoomDetail] = useState({
+    rooms: 1,
+    adults: 1,
+    children: 0,
+  })
+  const handleBooking = () => {
+    setOpenModal(false)
+    setOpenSuccessModal(true)
+  }
+
   const renderBookDetailContent = () => {
     return (
       <div className={styles['booking-detail-modal']}>
@@ -29,7 +42,8 @@ export const Rooms = ({ rooms }: RoomsProps) => {
         <div className="flex flex-col gap-24">
           <div className={styles['group-input']}>
             <MixiDatePicker />
-            <Input label="Số lượng" placeHolder="Chọn số lượng" supportIcon={<ChevronDownIcon />} />
+            {/* <Input label="Số lượng" placeHolder="Chọn số lượng" supportIcon={<ChevronDownIcon />} /> */}
+            <RoomPicker roomDetail={roomDetail} setRoomDetail={setRoomDetail} />
           </div>
           <Input label="Họ và tên" placeHolder="Nhập họ và tên" />
           <Input label="Số điện thoại" placeHolder="Nhập số điện thoại" />
@@ -43,7 +57,12 @@ export const Rooms = ({ rooms }: RoomsProps) => {
           </div>
           <div className="flex gap-16">
             <Button label="Đăng ký tư vấn" typeStyle="outline" />
-            <Button label="Đặt ngay" typeStyle="color" iconTrailing={<ArrowRightIcon />} />
+            <Button
+              onClick={handleBooking}
+              label="Đặt ngay"
+              typeStyle="color"
+              iconTrailing={<ArrowRightIcon />}
+            />
           </div>
         </div>
       </div>
@@ -51,9 +70,9 @@ export const Rooms = ({ rooms }: RoomsProps) => {
   }
 
   return (
-    <div className="flex flex-col gap-40">
+    <div id="rooms" className="flex flex-col gap-40">
       <SectionHeader title={<>Các loại phòng & giá</>} />
-      <div className={['flex flex-col gap-40'].join(' ')}>
+      <div className={['flex flex-col gap-40', styles['room-types'], 'section-bg'].join(' ')}>
         <div className="flex justify-between">
           <Button
             label="Chọn dịch vụ"
@@ -63,29 +82,37 @@ export const Rooms = ({ rooms }: RoomsProps) => {
           />
           <Button label="Xoá lựa chọn" typeStyle="outline" iconLeading={<XMarkIcon />} size="sm" />
         </div>
-        <div className={[styles['room-types'], 'flex flex-col gap-16'].join(' ')}>
+        <div className={['flex flex-col gap-16 '].join(' ')}>
           {rooms.map((item, index) => (
             <RoomCard {...item} key={index} />
           ))}
-          <div className="flex align-center gap-40 justify-between">
-            <div>
-              <label className={['sm', styles['price-label']].join(' ')}>Tổng tiền</label>
-              <div className={['subheading lg', styles.price].join(' ')}>3,350,000đ</div>
-            </div>
-            <div className="flex gap-16">
-              <Button label="Thuê trọn tàu" typeStyle="outline" />
-              <Button
-                onClick={() => setOpenModal(true)}
-                label="Đặt ngay"
-                typeStyle="color"
-                iconTrailing={<ArrowRightIcon />}
-              />
-
-              <Modal open={openModal} setOpen={setOpenModal} content={renderBookDetailContent()} />
-            </div>
+        </div>
+        <div className="flex align-center gap-40 justify-between">
+          <div>
+            <label className={['sm', styles['price-label']].join(' ')}>Tổng tiền</label>
+            <div className={['subheading lg', styles.price].join(' ')}>3,350,000đ</div>
+          </div>
+          <div className="flex gap-16">
+            <Button label="Thuê trọn tàu" typeStyle="outline" />
+            <Button
+              onClick={() => setOpenModal(true)}
+              label="Đặt ngay"
+              typeStyle="color"
+              iconTrailing={<ArrowRightIcon />}
+            />
           </div>
         </div>
       </div>
+      <Modal open={openModal} setOpen={setOpenModal} content={renderBookDetailContent()} />
+      <InfoModal
+        open={openSuccessModal}
+        setOpen={setOpenSuccessModal}
+        title="Bạn đã đặt Tour thành công"
+        description="Vui lòng kiểm tra email và Mixivivu sẽ liên hệ với bạn"
+        actions={
+          <Button label="Về trang chủ" typeStyle="outline" iconTrailing={<ArrowRightIcon />} />
+        }
+      />
     </div>
   )
 }

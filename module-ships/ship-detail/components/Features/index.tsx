@@ -11,7 +11,7 @@ interface FeatureProps {
 
 export const Features = ({ overviews = [], features = [] }: FeatureProps) => {
   return (
-    <div className={['flex flex-col gap-40 ', styles.features].join(' ')}>
+    <div id="features" className={['flex flex-col gap-40 ', styles.features].join(' ')}>
       <SectionHeader title={<>Đặc điểm nổi bật</>} />
       <div className={styles.overview}>
         {overviews.map((item, index) => (

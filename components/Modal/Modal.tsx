@@ -11,7 +11,7 @@ interface ModalProps {
 
 export const Modal = ({ open, setOpen, content }: ModalProps) => {
   return (
-    <Popup modal open={open}>
+    <Popup modal open={open} onClose={() => setOpen(false)}>
       <div>
         <div className={styles['close-btn']} onClick={() => setOpen(false)}>
           <XMarkIcon strokeColor="var(--gray-600)" width="20" height="20" />

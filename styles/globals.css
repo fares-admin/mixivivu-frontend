@@ -32,6 +32,10 @@
   --shadow-sm: 0px 1px 2px 0px rgba(16, 24, 40, 0.06), 0px 1px 3px 0px rgba(16, 24, 40, 0.1);
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 * {
   font-family: 'Archivo', sans-serif;
   box-sizing: border-box;
@@ -371,6 +375,10 @@ button:focus {
   gap: 80px;
 }
 
+.gap-136 {
+  gap: 136px;
+}
+
 .h-full {
   height: 100%;
 }
@@ -423,4 +431,5 @@ label {
   border: 1px solid var(--gray-200, #eaecf0);
   background: var(--base-white, #fff) !important;
   box-shadow: var(--shadow-sm);
+  padding: 0;
 }
