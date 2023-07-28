@@ -4,7 +4,6 @@ import { COOKIE_TOKEN_KEY } from '@/constants/commonValue'
 import axios from 'axios'
 
 export const config = {
-  runtime: 'experimental-edge',
   api: {
     bodyParser: {
       sizeLimit: '30mb',
