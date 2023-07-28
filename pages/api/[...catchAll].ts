@@ -3,10 +3,9 @@ import { NextApiRequest, NextApiResponse } from 'next'
 import { COOKIE_TOKEN_KEY } from '@/constants/commonValue'
 import axios from 'axios'
 
-export const runtime = 'edge'
-
 export const config = {
   api: {
+    runtime: 'edge',
     bodyParser: {
       sizeLimit: '30mb',
     },
