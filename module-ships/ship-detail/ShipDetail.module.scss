@@ -1,9 +1,15 @@
+.breadcrumbsWrapper {
+  border-bottom: 1px solid var(--gray-200, #eaecf0);
+}
+
 .breadcrumbs {
   padding: 16px 32px;
 }
+
 .carousel {
   padding: 0 24px;
 }
+
 .navigation {
   padding: 80px 32px;
   .mapLink {
@@ -20,7 +26,7 @@
   .tabs {
     position: -webkit-sticky;
     position: sticky;
-    top: 0;
+    top: 96px;
     z-index: 10;
   }
 }

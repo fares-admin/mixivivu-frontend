@@ -6,11 +6,11 @@ import {
   ReviewQuote,
   SectionHeader,
   SearchBox,
+  PopularShips,
 } from '@/components'
 import { blogList, categoryList, productList, reviewers } from '@/constants/config'
 import Image from 'next/image'
 import styles from './Home.module.scss'
-import { PopularShips } from './components/PopularShips'
 
 export const HomePage = () => {
   return (
@@ -94,7 +94,7 @@ export const HomePage = () => {
           description="Hạ Long: Bí mật và Cuộc sống trong Vịnh - Khám phá và Cập nhật những tin tức hấp dẫn từ điểm đến tuyệt vời này."
         />
         <div className={styles.cardList}>
-          {blogList.slice(0, 6).map((item, index) => (
+          {blogList.slice(0, 3).map((item, index) => (
             <BlogCard {...item} key={index} />
           ))}
         </div>

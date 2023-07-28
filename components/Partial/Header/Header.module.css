@@ -1,8 +1,13 @@
-.container {
-  position: relative;
-  height: 96px;
+.wrapper {
+  position: sticky;
+  top: 0;
   background-color: white;
   z-index: 2;
+  border-bottom: 1px solid var(--gray-200);
+}
+
+.container {
+  height: 96px;
 }
 
 .logo {

@@ -4,14 +4,14 @@ import styles from './BusinessPage.module.scss'
 
 export const BusinessPage = () => {
   return (
-    <div>
+    <div className="section-bg">
       <div className={['flex flex-col gap-80 container', styles.wrapper].join(' ')}>
         <SearchBox
           className={styles['search-box']}
           title="Bạn lựa chọn du thuyền Hạ Long nào?"
           description="Hơn 100 tour du thuyền sang trọng, đẳng cấp 5 sao thăm vịnh Hạ Long và vịnh Lan Hạ đang chờ đón bạn."
         />
-        <div className="flex gap-136 section-bg">
+        <div className="flex gap-136 ">
           <div className="flex flex-col justify-between">
             <div className="flex flex-col gap-24">
               <SectionHeader title="Mixivivu - Tour Du thuyền Hạ Long: Kết nối doanh nghiệp, khám phá vẻ đẹp tự nhiên" />

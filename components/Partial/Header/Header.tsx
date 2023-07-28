@@ -23,7 +23,7 @@ const navigationItems = [
   },
   {
     name: 'Blog',
-    url: '',
+    url: '/blog',
   },
 ]
 
@@ -31,53 +31,54 @@ export const Header = () => {
   const router = useRouter()
 
   return (
-    <div className={['container flex justify-between align-center', styles.container].join(' ')}>
-      <div className="flex align-center gap-40 h-full">
-        <div className={styles.logo}>
-          <Logo />
+    <div className={styles.wrapper}>
+      <div className={['container flex justify-between align-center', styles.container].join(' ')}>
+        <div className="flex align-center gap-40 h-full">
+          <div className={styles.logo}>
+            <Logo />
+          </div>
+          <div className={['flex gap-24 h-full', styles['nav-container']].join(' ')}>
+            {navigationItems.map((navItem: NavItemProps) => (
+              <div
+                key={navItem.name}
+                className={[router.pathname === navItem.url ? styles.active : '', styles.menu].join(
+                  ' '
+                )}
+              >
+                <a className="h-full flex align-center" href={navItem.url}>
+                  <label htmlFor="" className="md">
+                    {navItem.name}
+                  </label>
+                  {navItem?.childrens?.length ? <ChevronDownIcon /> : null}
+                </a>
+                {navItem?.childrens?.length ? (
+                  <div className={styles['sub-menu']}>
+                    {navItem?.childrens.map((childItem) => (
+                      <a
+                        key={childItem.name}
+                        className="h-full flex align-center"
+                        href={childItem.url}
+                      >
+                        <label htmlFor="" className="md">
+                          {childItem.name}
+                        </label>
+                      </a>
+                    ))}
+                  </div>
+                ) : null}
+              </div>
+            ))}
+          </div>
         </div>
-        <div className={['flex gap-24 h-full', styles['nav-container']].join(' ')}>
-          {navigationItems.map((navItem: NavItemProps) => (
-            <div
-              key={navItem.name}
-              className={[router.pathname === navItem.url ? styles.active : '', styles.menu].join(
-                ' '
-              )}
-            >
-              <a className="h-full flex align-center" href={navItem.url}>
-                <label htmlFor="" className="md">
-                  {navItem.name}
-                </label>
-                {navItem?.childrens?.length ? <ChevronDownIcon /> : null}
-              </a>
-              {navItem?.childrens?.length ? (
-                <div className={styles['sub-menu']}>
-                  {navItem?.childrens.map((childItem) => (
-                    <a
-                      key={childItem.name}
-                      className="h-full flex align-center"
-                      href={childItem.url}
-                    >
-                      <label htmlFor="" className="md">
-                        {childItem.name}
-                      </label>
-                    </a>
-                  ))}
-                </div>
-              ) : null}
-            </div>
-          ))}
-        </div>
-      </div>
-      <div className="flex gap-16">
-        <div className={styles.menu}>
-          <Button
-            label="Tiếng việt"
-            size="sm"
-            typeStyle="outline"
-            iconLeading={<VietnameseFlagIcon />}
-          />
-          {/* <div className={styles['sub-menu']}>
+        <div className="flex gap-16">
+          <div className={styles.menu}>
+            <Button
+              label="Tiếng việt"
+              size="sm"
+              typeStyle="outline"
+              iconLeading={<VietnameseFlagIcon />}
+            />
+            {/* <div className={styles['sub-menu']}>
             <div className="flex align-center gap-8">
               <VietnameseFlagIcon />
               Tiếng việt
@@ -87,8 +88,9 @@ export const Header = () => {
               English
             </div>
           </div> */}
+          </div>
+          <Button label="Liên hệ Mixivivu" size="sm" typeStyle="color" />
         </div>
-        <Button label="Liên hệ Mixivivu" size="sm" typeStyle="color" />
       </div>
     </div>
   )

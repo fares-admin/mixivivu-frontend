@@ -7,13 +7,13 @@ import {
   LightBox,
   SectionHeader,
   Tabs,
+  PopularShips,
 } from '@/components'
 import { useState } from 'react'
 import { overviews, productList, rooms } from '@/constants/config'
 import { Features, Navigation, Rating, ShipInfo } from '@/module-ships/ship-detail'
 import { useScrollspy } from '@/hooks/useScrollspy'
 import styles from './ShipDetail.module.scss'
-import { PopularShips } from '../home/components/PopularShips'
 import { Rooms } from './components/Rooms'
 import { Intro } from './components/Intro'
 
@@ -23,6 +23,8 @@ const features = [
   'Trên du thuyền nhiều tiện nghi nổi bật mà du thuyền thường không có như phòng tranh, thư viện, gian hàng bán đồ lưu niệm, quầy bar liền kề hồ bơi.',
   'Du thuyền Heritage Cruises cung cấp các hải trình 2 ngày 1 đêm, 3 ngày 2 đêm, 4 ngày 3 đêm, để du khách chọn lựa chương trình tour phù hợp.',
 ]
+
+const offset = 160
 
 export const ShipDetail = () => {
   const tabItems = [
@@ -53,16 +55,20 @@ export const ShipDetail = () => {
     const section = document.getElementById(key)
     section?.scrollIntoView()
   }
+
   const activeTab = useScrollspy(
     tabItems.map((item) => item.id),
-    48
+    offset
   )
+
   return (
     <>
-      <div className={['container'].join(' ')}>
-        <div className={styles.breadcrumbs}>
+      <div className={styles.breadcrumbsWrapper}>
+        <div className={['container', styles.breadcrumbs].join(' ')}>
           <BreadCrumbs breadcrumbs={['Top 10 du thuyền', 'Du thuyền Heritage Bình Chuẩn Cát Bà']} />
         </div>
+      </div>
+      <div className={['container', styles.wrapper].join(' ')}>
         <Navigation />
       </div>
       <div className={styles.carousel}>

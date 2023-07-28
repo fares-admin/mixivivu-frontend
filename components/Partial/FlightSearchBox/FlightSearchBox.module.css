@@ -1,0 +1,17 @@
+.searchBox {
+  padding: 40px 24px 24px 24px;
+  width: 1008px;
+  margin: auto;
+}
+
+.searchBox h4 {
+  margin: 0;
+}
+
+.searchInput {
+  flex: 1 0 0;
+}
+
+.selectInput {
+  width: 210px;
+}
