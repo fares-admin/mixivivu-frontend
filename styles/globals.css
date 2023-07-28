@@ -433,3 +433,11 @@ label {
   box-shadow: var(--shadow-sm);
   padding: 0;
 }
+
+#features,
+#rooms,
+#intro,
+#rule,
+#reviews {
+  scroll-margin-top: 150px;
+}

@@ -1,6 +1,6 @@
 import { ArrowRightIcon, Button, ProductCard, SectionHeader } from '@/components'
 import { ProductProps } from '@/constants/type'
-import styles from '../../Home.module.scss'
+import styles from './PolularShips.module.css'
 
 export const PopularShips = (props: { ships: ProductProps[] }) => {
   const { ships } = props

@@ -124,6 +124,27 @@ export const blogList = [
       'Hạ Long - nơi đây được ví như thiên đường nghỉ dưỡng với những hòn đảo kỳ vĩ, hoang...',
     date: '13/01/2023',
   },
+  {
+    url: '/card-image.png',
+    title: 'Mách Bạn 3 Bãi Biển Đẹp Nhất Hạ Long Không Thể Bỏ Qua',
+    description:
+      'Hạ Long - nơi đây được ví như thiên đường nghỉ dưỡng với những hòn đảo kỳ vĩ, hoang...',
+    date: '13/01/2023',
+  },
+  {
+    url: '/card-image.png',
+    title: 'Mách Bạn 3 Bãi Biển Đẹp Nhất Hạ Long Không Thể Bỏ Qua',
+    description:
+      'Hạ Long - nơi đây được ví như thiên đường nghỉ dưỡng với những hòn đảo kỳ vĩ, hoang...',
+    date: '13/01/2023',
+  },
+  {
+    url: '/card-image.png',
+    title: 'Mách Bạn 3 Bãi Biển Đẹp Nhất Hạ Long Không Thể Bỏ Qua',
+    description:
+      'Hạ Long - nơi đây được ví như thiên đường nghỉ dưỡng với những hòn đảo kỳ vĩ, hoang...',
+    date: '13/01/2023',
+  },
 ]
 
 export const rooms = [
