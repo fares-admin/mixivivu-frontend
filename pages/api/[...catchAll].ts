@@ -1,6 +1,7 @@
+import { NextApiRequest, NextApiResponse } from 'next'
+
 import { COOKIE_TOKEN_KEY } from '@/constants/commonValue'
 import axios from 'axios'
-import { NextApiRequest, NextApiResponse } from 'next'
 
 export const config = {
   api: {

@@ -5,6 +5,7 @@ import {
   InfoIcon,
   XMarkIcon,
 } from '@/components/SVGIcon'
+
 import { ReactNode } from 'react'
 import styles from './Alert.module.css'
 

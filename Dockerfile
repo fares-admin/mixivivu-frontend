@@ -1,6 +1,6 @@
 FROM node:lts as dependencies
 WORKDIR /mixivivu-frontend
-COPY package.json yarn.lock ./
+COPY package.json ./
 RUN yarn install --frozen-lockfile
 
 FROM node:lts as builder
