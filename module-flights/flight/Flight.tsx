@@ -1,4 +1,4 @@
-import { FlightSearchBox } from '@/components'
+import { FlightSearchBox, ReviewsSection, PartnerSection, BlogSection } from '@/components'
 import styles from './Flight.module.scss'
 
 export const Flight = () => {
@@ -10,6 +10,15 @@ export const Flight = () => {
           title="Mở cánh cửa khám phá cùng Mixivivu"
           description="Mixivivu - Đặt chân lên đỉnh mây với một bước nhảy"
         />
+      </div>
+      <div className={styles.reviewSection}>
+        <ReviewsSection />
+      </div>
+      <div>
+        <PartnerSection />
+      </div>
+      <div>
+        <BlogSection />
       </div>
     </div>
   )

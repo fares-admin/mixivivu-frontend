@@ -1,0 +1,11 @@
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 80px;
+  padding: 80px 32px;
+}
+
+.partnerList {
+  display: flex;
+  gap: 32px;
+}
