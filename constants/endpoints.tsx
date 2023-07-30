@@ -11,6 +11,8 @@ export const internalUserEndpoints: EndPointObject = {
     authLogin: '/auth/login',
     getList: '/get-list',
     add: '/add-new',
+    update: '/update-user',
+    delete: '/delete-user',
   },
 }
 

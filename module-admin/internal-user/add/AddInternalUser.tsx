@@ -1,15 +1,15 @@
 import { ArrowRightIcon, Button, Card, HeaderAdmin } from '@/components'
-import { getEndpoint, internalUserEndpoints } from '@/constants/endpoints'
-import { UserReq, UserReqError } from '@/types'
 import React, { useState } from 'react'
+import { UserReq, UserReqError } from '@/types'
+import { getEndpoint, internalUserEndpoints } from '@/constants/endpoints'
 
 import { Routes } from '@/constants/routes'
-import { useApiCall } from '@/hooks'
-import axios from 'axios'
-import { useRouter } from 'next/router'
-import { toast } from 'react-toastify'
 import { UserForm } from '../user-form/UserForm'
+import axios from 'axios'
 import styles from './AddInternalUser.module.css'
+import { toast } from 'react-toastify'
+import { useApiCall } from '@/hooks'
+import { useRouter } from 'next/router'
 
 export const AddInternalUser = () => {
   const [user, setUser] = useState<UserReq>({
@@ -58,7 +58,7 @@ export const AddInternalUser = () => {
       />
       <Card customClass={styles.card}>
         <h6 className={styles.cardHeader}>Thông tin tài khoản</h6>
-        <UserForm changeUser={changeUser} error={addUser.error?.result} />
+        <UserForm changeUser={changeUser} error={addUser.error?.result} user={user} />
       </Card>
     </div>
   )

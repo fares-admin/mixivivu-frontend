@@ -1,4 +1,4 @@
-import { Button, CheckIcon, HeaderAdmin, PlusIcon } from '@/components'
+import { Button, CheckIcon, HeaderAdmin, PlusIcon, SearchIcon } from '@/components'
 import { getEndpoint, internalUserEndpoints } from '@/constants/endpoints'
 import { CommonListResultType, UserRes } from '@/types'
 import { useEffect, useState } from 'react'
@@ -50,6 +50,14 @@ export const InternalUserList = () => {
         }
       />
       <Table
+        actions={[
+          {
+            icon: <SearchIcon />,
+            func: (item: UserRes) => {
+              router.push(`${Routes.admin.detailUser}?username=${item.username}`)
+            },
+          },
+        ]}
         loading={getList.loading}
         headers={[
           { key: 'name', label: 'Tên' },

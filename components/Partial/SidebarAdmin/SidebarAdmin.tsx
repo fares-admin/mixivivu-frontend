@@ -1,15 +1,20 @@
+import { LogOutIcon, SearchIcon, ShipIcon, UserIcon } from '@/components/SVGIcon'
+import { ReactNode, useState } from 'react'
+
 import { Input } from '@/components/Input'
 import { LogoAdmin } from '@/components/Logo'
-import { LogOutIcon, SearchIcon, ShipIcon, UserIcon } from '@/components/SVGIcon'
 import { COOKIE_TOKEN_KEY } from '@/constants/commonValue'
-import { ReactNode, useState } from 'react'
+import { Routes } from '@/constants/routes'
+import { ShareStoreSelector } from '@/redux/share-store'
 import { useCookies } from 'react-cookie'
+import { useSelector } from 'react-redux'
 import { toast } from 'react-toastify'
-import { ItemSidebar } from './ItemSIdebar'
+import { ItemSidebar } from './ItemSidebar'
 import styles from './SidebarAdmin.module.css'
 
 export const SidebarAdmin = () => {
   const [open, setOpen] = useState('')
+  const [search, setSearch] = useState('')
 
   const [, , removeCookie] = useCookies([COOKIE_TOKEN_KEY])
 
@@ -39,8 +44,8 @@ export const SidebarAdmin = () => {
     },
     {
       icon: <UserIcon strokeColor="#344054" />,
-      text: 'Quản lý người dùng',
-      link: '/admin/quan-ly-nguoi-dung',
+      text: 'Quản lý tài khoản',
+      link: Routes.admin.internalUserList,
       children: [],
     },
   ]
@@ -50,22 +55,38 @@ export const SidebarAdmin = () => {
     removeCookie(COOKIE_TOKEN_KEY)
   }
 
+  const { userInfo } = useSelector(ShareStoreSelector)
+
+  const sidebarItems = sidebarList
+    .filter((item) => {
+      if (!!search) {
+        const findChild = item.children.find((child) =>
+          child.text.toLowerCase().includes(search.toLowerCase())
+        )
+        return item.text.toLowerCase().includes(search.toLowerCase()) || !!findChild
+      }
+      return true
+    })
+    .map((item) => <ItemSidebar item={item} open={open} setOpen={setOpen} key={item.text} />)
+
   return (
     <div className={styles.sidebar}>
       <div className={styles.logo}>
         <LogoAdmin />
       </div>
       <div className={styles.searchContainer}>
-        <Input customClass={styles.searchInput} placeHolder="Tìm kiếm" iconSwap={<SearchIcon />} />
+        <Input
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+          customClass={styles.searchInput}
+          placeHolder="Tìm kiếm"
+          iconSwap={<SearchIcon />}
+        />
       </div>
-      <div className={styles.itemList}>
-        {sidebarList.map((item) => (
-          <ItemSidebar item={item} open={open} setOpen={setOpen} key={item.text} />
-        ))}
-      </div>
+      <div className={styles.itemList}>{sidebarItems}</div>
       <div className={styles.footSidebar}>
         <div className={styles.footContent}>
-          <div>email</div>
+          <div>{userInfo.email}</div>
           <div className={styles.logout} onClick={logoutFunc}>
             <LogOutIcon />
           </div>

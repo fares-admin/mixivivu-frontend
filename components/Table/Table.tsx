@@ -1,3 +1,4 @@
+import { ReactNode } from 'react'
 import { Alert } from '../Alert'
 import { Pagination } from '../Pagination'
 import { Skeleton } from '../Skeleton'
@@ -18,6 +19,10 @@ interface TableProps<T> {
     setPageSize: (pageSize: string) => void
   }
   loading?: boolean
+  actions?: {
+    func: (item: T) => void
+    icon: ReactNode
+  }[]
 }
 
 export const Table = <T,>({
@@ -28,11 +33,19 @@ export const Table = <T,>({
   customDataCell,
   paginationProps,
   loading,
+  actions,
 }: TableProps<T>) => {
   return (
     <table className={styles.container}>
       <thead>
         <tr>
+          {actions &&
+            actions.length > 0 &&
+            actions.map((item) => (
+              <th className={styles.th} key={item.toString()}>
+                {null}
+              </th>
+            ))}
           {headers.map((item) => (
             <th className={styles.th} key={item.key}>
               {item.label}
@@ -41,24 +54,33 @@ export const Table = <T,>({
         </tr>
       </thead>
       {loading ? (
-        <>
-          {[0, 1, 2, 3, 4, 5, 6, 7, 8, 9].map((item) => (
-            <tr key={item}>
-              {headers.map((keyHead) => (
-                <td
-                  className={[styles.td].join(' ')}
-                  key={`${item[idField as keyof typeof item]}${keyHead.key}`}
-                >
-                  <Skeleton width="100%" height={32} />
-                </td>
-              ))}
-            </tr>
-          ))}
-        </>
+        <tbody>
+          <tr>
+            {[
+              ...Array.from(
+                Array(headers.length + (actions && actions?.length ? actions.length : 0)).keys()
+              ),
+            ].map((item) => (
+              <td
+                className={[styles.td].join(' ')}
+                key={`${item[idField as keyof typeof item]}${item}`}
+              >
+                <Skeleton width="100%" height={32} />
+              </td>
+            ))}
+          </tr>
+        </tbody>
       ) : (
         <tbody>
           {data.map((item) => (
             <tr key={String(item[idField as keyof typeof item])}>
+              {actions &&
+                actions.length > 0 &&
+                actions.map((thisAction) => (
+                  <td className={styles.td} key={thisAction.toString()}>
+                    <div onClick={() => thisAction.func(item)}>{thisAction.icon}</div>
+                  </td>
+                ))}
               {headers.map((keyHead) => (
                 <td
                   className={[
