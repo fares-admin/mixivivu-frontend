@@ -1,11 +1,14 @@
-import { CheckIcon } from '@/components'
+import { Button, CheckIcon, HeaderAdmin, PlusIcon, SearchIcon } from '@/components'
+import { getEndpoint, internalUserEndpoints } from '@/constants/endpoints'
+import { CommonListResultType, UserRes } from '@/types'
+import { useEffect, useState } from 'react'
+
 import { CloseIcon } from '@/components/SVGIcon/CloseIcon'
 import { Table } from '@/components/Table/Table'
-import { getEndpoint, internalUserEndpoints } from '@/constants/endpoints'
+import { Routes } from '@/constants/routes'
 import { useApiCall } from '@/hooks'
-import { CommonListResultType, UserRes } from '@/types'
 import axios from 'axios'
-import { useEffect, useState } from 'react'
+import { useRouter } from 'next/router'
 import { toast } from 'react-toastify'
 import styles from './InternalUserList.module.css'
 
@@ -29,14 +32,33 @@ export const InternalUserList = () => {
     getList.setLetCall(true)
   }, [])
 
+  const router = useRouter()
+
+  const clickAddInternal = () => router.push(Routes.admin.addUser)
+
   return (
     <div className={styles.container}>
-      <div className={styles.head}>
-        <div className={styles.headContent}>
-          <h5>Thống kê</h5>
-        </div>
-      </div>
+      <HeaderAdmin
+        label="Danh sách tài khoản"
+        trailButton={
+          <Button
+            iconLeading={<PlusIcon />}
+            label="Tạo tài khoản"
+            size="sm"
+            onClick={clickAddInternal}
+          />
+        }
+      />
       <Table
+        actions={[
+          {
+            icon: <SearchIcon />,
+            func: (item: UserRes) => {
+              router.push(`${Routes.admin.detailUser}?username=${item.username}`)
+            },
+          },
+        ]}
+        loading={getList.loading}
         headers={[
           { key: 'name', label: 'Tên' },
           { key: 'username', label: 'Tên đăng nhập' },

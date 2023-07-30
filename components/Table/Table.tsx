@@ -1,5 +1,7 @@
+import { ReactNode } from 'react'
 import { Alert } from '../Alert'
 import { Pagination } from '../Pagination'
+import { Skeleton } from '../Skeleton'
 import styles from './Table.module.css'
 
 interface TableProps<T> {
@@ -16,6 +18,11 @@ interface TableProps<T> {
     className?: string
     setPageSize: (pageSize: string) => void
   }
+  loading?: boolean
+  actions?: {
+    func: (item: T) => void
+    icon: ReactNode
+  }[]
 }
 
 export const Table = <T,>({
@@ -25,11 +32,20 @@ export const Table = <T,>({
   customStyleCell,
   customDataCell,
   paginationProps,
+  loading,
+  actions,
 }: TableProps<T>) => {
   return (
     <table className={styles.container}>
       <thead>
         <tr>
+          {actions &&
+            actions.length > 0 &&
+            actions.map((item) => (
+              <th className={styles.th} key={item.toString()}>
+                {null}
+              </th>
+            ))}
           {headers.map((item) => (
             <th className={styles.th} key={item.key}>
               {item.label}
@@ -37,40 +53,66 @@ export const Table = <T,>({
           ))}
         </tr>
       </thead>
-      <tbody>
-        {data.map((item) => (
-          <tr key={String(item[idField as keyof typeof item])}>
-            {headers.map((keyHead) => (
+      {loading ? (
+        <tbody>
+          <tr>
+            {[
+              ...Array.from(
+                Array(headers.length + (actions && actions?.length ? actions.length : 0)).keys()
+              ),
+            ].map((item) => (
               <td
-                className={[
-                  styles.td,
-                  customStyleCell && customStyleCell[keyHead.key as keyof typeof customDataCell]
-                    ? customStyleCell[keyHead.key as keyof typeof customDataCell]
-                    : '',
-                ].join(' ')}
-                key={`${item[idField as keyof typeof item]}${keyHead.key}`}
+                className={[styles.td].join(' ')}
+                key={`${item[idField as keyof typeof item]}${item}`}
               >
-                {String(item[keyHead.key as unknown as keyof typeof item]) !== 'undefined' ? (
-                  <>
-                    {customDataCell &&
-                    customDataCell[keyHead.key as unknown as keyof typeof customDataCell]
-                      ? customDataCell[keyHead.key as unknown as keyof typeof customDataCell]!(
-                          item[keyHead.key as unknown as keyof typeof item]
-                        )
-                      : item[keyHead.key as unknown as keyof typeof item]}
-                  </>
-                ) : (
-                  <Alert
-                    color="error"
-                    title={`Not found '${keyHead.key}'`}
-                    content={`Not found '${keyHead.key}' in object data`}
-                  />
-                )}
+                <Skeleton width="100%" height={32} />
               </td>
             ))}
           </tr>
-        ))}
-      </tbody>
+        </tbody>
+      ) : (
+        <tbody>
+          {data.map((item) => (
+            <tr key={String(item[idField as keyof typeof item])}>
+              {actions &&
+                actions.length > 0 &&
+                actions.map((thisAction) => (
+                  <td className={styles.td} key={thisAction.toString()}>
+                    <div onClick={() => thisAction.func(item)}>{thisAction.icon}</div>
+                  </td>
+                ))}
+              {headers.map((keyHead) => (
+                <td
+                  className={[
+                    styles.td,
+                    customStyleCell && customStyleCell[keyHead.key as keyof typeof customDataCell]
+                      ? customStyleCell[keyHead.key as keyof typeof customDataCell]
+                      : '',
+                  ].join(' ')}
+                  key={`${item[idField as keyof typeof item]}${keyHead.key}`}
+                >
+                  {String(item[keyHead.key as unknown as keyof typeof item]) !== 'undefined' ? (
+                    <>
+                      {customDataCell &&
+                      customDataCell[keyHead.key as unknown as keyof typeof customDataCell]
+                        ? customDataCell[keyHead.key as unknown as keyof typeof customDataCell]!(
+                            item[keyHead.key as unknown as keyof typeof item]
+                          )
+                        : item[keyHead.key as unknown as keyof typeof item]}
+                    </>
+                  ) : (
+                    <Alert
+                      color="error"
+                      title={`Not found '${keyHead.key}'`}
+                      content={`Not found '${keyHead.key}' in object data`}
+                    />
+                  )}
+                </td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      )}
       <tfoot>
         <tr>
           <td colSpan={headers.length}>
