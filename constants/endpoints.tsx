@@ -10,6 +10,7 @@ export const internalUserEndpoints: EndPointObject = {
   child: {
     authLogin: '/auth/login',
     getList: '/get-list',
+    add: '/add-new',
   },
 }
 
