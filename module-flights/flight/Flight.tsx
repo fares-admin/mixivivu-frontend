@@ -11,10 +11,10 @@ export const Flight = () => {
           description="Mixivivu - Đặt chân lên đỉnh mây với một bước nhảy"
         />
       </div>
-      <div className={styles.reviewSection}>
+      <div className={[styles.reviewSection, 'section-bg'].join(' ')}>
         <ReviewsSection />
       </div>
-      <div>
+      <div className={styles.partnerSection}>
         <PartnerSection />
       </div>
       <div>

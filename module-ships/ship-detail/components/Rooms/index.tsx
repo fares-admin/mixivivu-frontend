@@ -3,13 +3,13 @@ import {
   Button,
   ChevronDownIcon,
   Input,
-  MixiDatePicker,
   Modal,
   RoomCard,
   RoomPicker,
   SectionHeader,
   TextArea,
   XMarkIcon,
+  RoomDatePicker,
 } from '@/components'
 import { RoomProps } from '@/constants/type'
 import { useState } from 'react'
@@ -41,7 +41,7 @@ export const Rooms = ({ rooms }: RoomsProps) => {
         <RoomCard {...rooms[0]} />
         <div className="flex flex-col gap-24">
           <div className={styles['group-input']}>
-            <MixiDatePicker />
+            <RoomDatePicker />
             {/* <Input label="Số lượng" placeHolder="Chọn số lượng" supportIcon={<ChevronDownIcon />} /> */}
             <RoomPicker roomDetail={roomDetail} setRoomDetail={setRoomDetail} />
           </div>

@@ -1,15 +1,23 @@
+.button {
+  height: fit-content;
+  width: fit-content;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.button-w-full {
+  width: 100%;
+}
+
 .button-normal {
   padding: 16px 20px;
   white-space: nowrap;
-  height: fit-content;
-  width: fit-content;
 }
 
 .button-sm {
   padding: 10px 16px;
   white-space: nowrap;
-  height: fit-content;
-  width: fit-content;
 }
 
 .button-normal > svg,

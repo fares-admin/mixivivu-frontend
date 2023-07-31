@@ -9,12 +9,16 @@
   background-position: center center;
   .searchBox {
     position: absolute;
-    bottom: -126px;
+    bottom: -252px;
     transform: translateX(-50%);
     left: 50%;
   }
 }
 
 .reviewSection {
-  padding-top: 136px;
+  padding-top: 332px;
+}
+
+.partnerSection {
+  background: var(--gray-50, #f9fafb);
 }
