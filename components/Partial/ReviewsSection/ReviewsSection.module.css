@@ -1,0 +1,15 @@
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 80px;
+  padding: 80px 32px;
+}
+
+.reviewList {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+.reviewBtn {
+  padding: 8px 16px 8px 8px;
+}

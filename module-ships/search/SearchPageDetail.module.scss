@@ -17,6 +17,8 @@
 }
 
 .side-bar {
+  position: sticky;
+  top: 120px;
   width: 280px;
   height: fit-content;
   border-radius: 24px;

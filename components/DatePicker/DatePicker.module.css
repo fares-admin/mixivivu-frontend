@@ -1,5 +1,5 @@
-.date-input {
-  width: 365px;
+.mixi-date-picker :global(.react-datepicker-wrapper) {
+  width: 100%;
 }
 
 .mixi-date-picker :global(.react-datepicker) {
