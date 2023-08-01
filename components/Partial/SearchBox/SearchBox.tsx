@@ -2,10 +2,10 @@ import {
   Button,
   Card,
   ChevronDownIcon,
-  CircleDolarIcon,
   Input,
   MapPinAltIcon,
   SearchIcon,
+  SelectPrice,
 } from '@/components'
 
 import Link from 'next/link'
@@ -38,12 +38,7 @@ export const SearchBox = ({ title, description, className }: SearchBoxProps) => 
           supportIcon={<ChevronDownIcon />}
           placeHolder="Tất cả địa điểm"
         />
-        <Input
-          customClass={styles.selectInput}
-          iconSwap={<CircleDolarIcon />}
-          supportIcon={<ChevronDownIcon />}
-          placeHolder="Tất cả địa điểm"
-        />
+        <SelectPrice customClass={styles.selectInput} />
         <Link href="/tim-du-thuyen">
           <Button color="color" label="Tìm kiếm" />
         </Link>
