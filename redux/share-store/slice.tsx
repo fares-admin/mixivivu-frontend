@@ -1,10 +1,22 @@
-import { ShareStoreTypes } from '@/types'
-import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { ShareStoreTypes, UserRes } from '@/types'
+import { PayloadAction, createSlice } from '@reduxjs/toolkit'
 
 const initialState: ShareStoreTypes = {
   loading: 0,
   breakPoint: 1,
   language: {},
+  userInfo: {
+    active: true,
+    created: '',
+    email: '',
+    modified: '',
+    name: '',
+    phone: '',
+    twoFactor: true,
+    username: '',
+    verify: true,
+    _id: '',
+  },
 }
 
 const ShareStoreSlice = createSlice({
@@ -20,6 +32,9 @@ const ShareStoreSlice = createSlice({
       }
       return state
     },
+    setUserInfo: (state, actions: PayloadAction<UserRes>) => {
+      state.userInfo = actions.payload
+    },
     setLanguage: (state, actions: PayloadAction<{ [key: string]: string }>) => {
       state.language = actions.payload
     },
@@ -33,7 +48,13 @@ const ShareStoreSlice = createSlice({
   },
 })
 
-export const { resetShareStore, setLoading, setLanguage, setBreakPoint, resetLoading } =
-  ShareStoreSlice.actions
+export const {
+  resetShareStore,
+  setLoading,
+  setLanguage,
+  setBreakPoint,
+  resetLoading,
+  setUserInfo,
+} = ShareStoreSlice.actions
 
 export default ShareStoreSlice
