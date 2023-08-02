@@ -1,6 +1,6 @@
 import { Layout } from '@/components'
 import { Flight } from '@/module-flights/flight'
-import { NextPageWithLayout } from '../_app'
+import { NextPageWithLayout } from '@/pages/_app'
 
 const FlightPage: NextPageWithLayout = () => {
   return <Flight />
