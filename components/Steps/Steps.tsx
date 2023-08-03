@@ -1,7 +1,7 @@
 import { CheckIcon } from '../SVGIcon'
 import styles from './Steps.module.css'
 
-interface StepItemProps {
+export interface StepItemProps {
   title: string
   description: string
   status: 'incomplete' | 'inprogress' | 'done'
@@ -41,7 +41,7 @@ export const StepItem = ({
 
 interface StepsProps {
   steps: StepItemProps[]
-  isMobile: boolean
+  isMobile?: boolean
 }
 
 export const Steps = ({ steps, isMobile = false }: StepsProps) => {

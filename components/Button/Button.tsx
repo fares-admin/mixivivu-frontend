@@ -11,6 +11,7 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   disable?: boolean
   label?: string
   customClass?: string
+  fullWidth?: boolean
   onClick?: () => void
 }
 
@@ -29,6 +30,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       disable,
       customClass,
       iconOnly,
+      fullWidth = false,
       ...props
     },
     ref
@@ -40,10 +42,12 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       <button
         type="button"
         className={[
+          styles.button,
           customClass,
           styles[`button-${size}`],
           styles[mode],
           iconOnly ? styles.iconOnly : '',
+          fullWidth ? styles['button-w-full'] : '',
         ].join(' ')}
         disabled={disable}
         {...props}

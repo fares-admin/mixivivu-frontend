@@ -1,36 +1,9 @@
-import React, { forwardRef, useState } from 'react'
+import React, { ReactNode, useState } from 'react'
 import DatePicker from 'react-datepicker'
-import {
-  Button,
-  CalendarIcon,
-  ChevronDownIcon,
-  ChevronLeftIcon,
-  ChevronRightIcon,
-  Input,
-} from '@/components'
+import { Button, ChevronLeftIcon, ChevronRightIcon } from '@/components'
 import 'react-datepicker/dist/react-datepicker.css'
 import { WEEKDAYS } from '@/constants/dateTime'
 import styles from './DatePicker.module.css'
-
-interface CustomInputProps {
-  value?: string
-  onClick?: () => void
-}
-
-const CustomInput = forwardRef<HTMLInputElement, CustomInputProps>(({ value, onClick }, ref) => {
-  return (
-    <Input
-      type="button"
-      customClass={styles['date-input']}
-      ref={ref}
-      value={value}
-      onClick={onClick}
-      iconSwap={<CalendarIcon />}
-      supportIcon={<ChevronDownIcon />}
-      label="Ngày nhận phòng"
-    />
-  )
-})
 
 interface ReactDatePickerCustomHeaderProps {
   monthDate: Date
@@ -42,7 +15,11 @@ interface ReactDatePickerCustomHeaderProps {
   increaseMonth(): void
 }
 
-export const MixiDatePicker = () => {
+interface MixiDatePickerProps {
+  customInput: ReactNode
+}
+
+export const MixiDatePicker = ({ customInput }: MixiDatePickerProps) => {
   const [selectedDate, setSelectedDate] = useState<Date | null>(new Date())
 
   const renderCustomHeader = ({
@@ -85,7 +62,7 @@ export const MixiDatePicker = () => {
         onChange={(date: Date) => setSelectedDate(date)}
         renderCustomHeader={renderCustomHeader}
         formatWeekDay={(day) => formatDay(WEEKDAYS.indexOf(day) as Day)}
-        customInput={<CustomInput />}
+        customInput={customInput}
         dayClassName={(date: Date) =>
           date.getTime() === selectedDate?.getTime()
             ? [styles.selectedDate, styles.calendarCell].join(' ')

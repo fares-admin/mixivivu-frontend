@@ -1,17 +1,21 @@
 .searchBox {
   padding: 40px 24px 24px 24px;
-  width: 1008px;
+  width: 1216px;
   margin: auto;
+  z-index: 2;
 }
 
 .searchBox h4 {
   margin: 0;
 }
 
-.searchInput {
-  flex: 1 0 0;
+.distance svg path {
+  stroke: none;
 }
 
-.selectInput {
-  width: 210px;
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-row-gap: 24px;
+  grid-column-gap: 16px;
 }
