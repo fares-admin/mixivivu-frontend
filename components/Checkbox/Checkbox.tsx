@@ -10,7 +10,7 @@ interface CheckboxProps extends InputHTMLAttributes<HTMLInputElement> {
   disabled?: boolean
   checked?: boolean
   checkboxOnly?: boolean
-  onChange?: () => {}
+  onChange?: (e: any) => void
 }
 
 export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
@@ -35,9 +35,9 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
       if (typeof checked !== 'undefined') setIsChecked(checked)
     }, [checked])
 
-    const handleChange = () => {
+    const handleChange = (e: any) => {
       setIsChecked(!isChecked)
-      onChange()
+      onChange(e)
     }
     return (
       <label htmlFor={id} className={styles.container}>

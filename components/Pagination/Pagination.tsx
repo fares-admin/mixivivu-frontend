@@ -1,5 +1,5 @@
 import { DOTS, usePagination } from '@/hooks/usePagination'
-import { useState } from 'react'
+import { Dispatch, SetStateAction, useState } from 'react'
 import styles from './Pagination.module.css'
 import { ArrowLeftIcon, ArrowRightIcon } from '../SVGIcon'
 
@@ -8,9 +8,9 @@ interface PaginationProps {
   totalCount: number
   siblingCount?: number
   currentPage?: number
-  pageSize: string
+  pageSize: number
   className?: string
-  setPageSize: (pageSize: string) => void
+  setPageSize: Dispatch<SetStateAction<number>>
 }
 
 export const Pagination = ({
@@ -29,7 +29,7 @@ export const Pagination = ({
     pageSize: Number(pageSize),
   })
 
-  const [perPage, setPerPage] = useState(pageSize)
+  const [perPage, setPerPage] = useState(pageSize.toString())
 
   if (currentPage === 0 || paginationRange.length < 2) {
     return null
@@ -45,14 +45,14 @@ export const Pagination = ({
 
   const handlePageChange = (value: string) => {
     if (value && Number(value) >= 1 && Number(value) <= 20) {
-      setPageSize(value)
+      setPageSize(Number(value))
     } else {
       if (Number(value) < 1) {
-        setPageSize('1')
+        setPageSize(1)
         setPerPage('1')
       }
       if (Number(value) > 20) {
-        setPageSize('20')
+        setPageSize(20)
         setPerPage('20')
       }
     }

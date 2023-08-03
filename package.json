@@ -18,6 +18,7 @@
     "chromatic": "npx chromatic --project-token=chpt_0ea299b277c6015"
   },
   "dependencies": {
+    "@editorjs/editorjs": "^2.27.2",
     "@fontsource/roboto": "^4.5.8",
     "@reduxjs/toolkit": "^1.8.6",
     "@types/jsonwebtoken": "^8.5.9",
@@ -26,9 +27,12 @@
     "axios": "^1.1.3",
     "core-util-is": "^1.0.3",
     "dayjs": "^1.11.6",
+    "editorjs-react-renderer": "^3.5.1",
     "jsonwebtoken": "^8.5.1",
     "next": "12.3.1",
     "pusher-js": "^8.0.1",
+    "qs": "^6.11.2",
+    "query-string": "^8.1.0",
     "rc-slider": "^10.2.1",
     "react": "18.2.0",
     "react-cookie": "^4.1.1",

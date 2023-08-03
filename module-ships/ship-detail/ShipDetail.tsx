@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import {
   Alert,
   ArrowRightIcon,
@@ -7,49 +8,70 @@ import {
   LightBox,
   SectionHeader,
   Tabs,
-  PopularShips,
 } from '@/components'
-import { useState } from 'react'
-import { overviews, productList, rooms } from '@/constants/config'
+import Output from 'editorjs-react-renderer'
+import { useEffect, useState } from 'react'
+import { rooms } from '@/constants/config'
 import { Features, Navigation, Rating, ShipInfo } from '@/module-ships/ship-detail'
 import { useScrollspy } from '@/hooks/useScrollspy'
 import styles from './ShipDetail.module.scss'
 import { Rooms } from './components/Rooms'
-import { Intro } from './components/Intro'
-
-const features = [
-  'Du thuyền Heritage Cruises Bình Chuẩn có kiến trúc độc đáo, thiết kế mang đậm nét truyền thống và lịch sử.',
-  'Du thuyền Heritage có nội thất các phòng nghỉ đẳng cấp và tinh xảo. Trên tàu có WIFI miễn phí.',
-  'Trên du thuyền nhiều tiện nghi nổi bật mà du thuyền thường không có như phòng tranh, thư viện, gian hàng bán đồ lưu niệm, quầy bar liền kề hồ bơi.',
-  'Du thuyền Heritage Cruises cung cấp các hải trình 2 ngày 1 đêm, 3 ngày 2 đêm, 4 ngày 3 đêm, để du khách chọn lựa chương trình tour phù hợp.',
-]
+import axios from 'axios'
+import { getEndpoint, productEndpoints } from '@/constants/endpoints'
+import { CommonListResultType } from '@/types'
+import { ProductRes } from '@/types/product'
+import { useApiCall } from '@/hooks'
+import { useRouter } from 'next/router'
 
 const offset = 160
 
+const tabItems = [
+  {
+    id: 'features',
+    label: 'Đặc điểm',
+  },
+  {
+    id: 'rooms',
+    label: 'Phòng & giá',
+  },
+  {
+    id: 'intro',
+    label: 'Giới thiệu',
+  },
+  {
+    id: 'rules',
+    label: 'Quy định',
+  },
+  {
+    id: 'reviews',
+    label: 'Đánh giá',
+    badge: 5,
+  },
+]
+
 export const ShipDetail = () => {
-  const tabItems = [
-    {
-      id: 'features',
-      label: 'Đặc điểm',
+  const router = useRouter()
+
+  const [shipDetail, setShipDetail] = useState<ProductRes>()
+
+  const { setLetCall: fetchShipDetail } = useApiCall<CommonListResultType<ProductRes>, string>({
+    callApi: () =>
+      axios.get(getEndpoint(productEndpoints, 'getList'), {
+        params: {
+          slug: router.query.slug,
+        },
+      }),
+    handleSuccess: (message, data) => {
+      if (message) {
+        setShipDetail(data.data[0])
+      }
     },
-    {
-      id: 'rooms',
-      label: 'Phòng & giá',
-    },
-    {
-      id: 'intro',
-      label: 'Giới thiệu',
-    },
-    {
-      id: 'rules',
-      label: 'Quy định',
-    },
-    {
-      id: 'reviews',
-      label: 'Đánh giá',
-      badge: 5,
-    },
-  ]
+  })
+
+  useEffect(() => {
+    if (router.isReady) fetchShipDetail(true)
+  }, [fetchShipDetail, router.query.slug, router.isReady])
+
   const [openLightBox, setOpenLightBox] = useState(false)
   const handleChangeTab = (key: string) => {
     const section = document.getElementById(key)
@@ -69,7 +91,12 @@ export const ShipDetail = () => {
         </div>
       </div>
       <div className={['container', styles.wrapper].join(' ')}>
-        <Navigation />
+        <Navigation
+          title={shipDetail?.title}
+          review={shipDetail?.scoreReview}
+          reviewCount={shipDetail?.numReviews}
+          location={shipDetail?.address}
+        />
       </div>
       <div className={styles.carousel}>
         <Carousel
@@ -83,9 +110,14 @@ export const ShipDetail = () => {
         </div>
         <div className="flex gap-32 w-full">
           <div className="flex flex-col gap-80 flex-grow">
-            <Features features={features} overviews={overviews} />
+            {shipDetail?.features && shipDetail?.shortDescription && (
+              <Features
+                features={shipDetail?.features}
+                shortDescription={shipDetail.shortDescription}
+              />
+            )}
             <Rooms rooms={rooms} />
-            <Intro />
+            <Output data={shipDetail?.longDescription} />
             <div id="rules">
               <SectionHeader title="Quy định chung và lưu ý" />
               <div className="flex gap-4 align-center">
@@ -131,13 +163,15 @@ export const ShipDetail = () => {
             </div>
             <Rating />
           </div>
-          <div className={styles['side-bar']}>
-            <ShipInfo />
-          </div>
+          {shipDetail?.spec.ship && (
+            <div className={styles['side-bar']}>
+              <ShipInfo info={shipDetail?.spec.ship} />
+            </div>
+          )}
         </div>
       </div>
       <div className={['section-bg', styles['popular-ships']].join(' ')}>
-        <PopularShips ships={productList.slice(0, 3)} />
+        {/* <PopularShips ships={productList.slice(0, 3)} /> */}
       </div>
       <LightBox
         imgList={['/banner.jpeg', '/carousel2.png', '/carousel3.png']}

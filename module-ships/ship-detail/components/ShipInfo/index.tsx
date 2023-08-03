@@ -6,34 +6,36 @@ import {
   MapPinAltIcon,
   ShipIcon,
 } from '@/components'
+import { IShipSpec } from '@/types/product'
 import styles from '../../ShipDetail.module.scss'
 
-export const ShipInfo = () => {
+export const ShipInfo = ({ info }: { info: IShipSpec }) => {
+  const { launch, cabin, shell, trip, admin } = info
   const shipInfo = [
     {
       icon: <AnchorIcon strokeColor="var(--gray-600)" />,
       label: 'Hạ thuỷ',
-      value: 2019,
+      value: launch,
     },
     {
       icon: <BedDoubleIcon fillColor="var(--gray-600)" />,
       label: 'Cabin',
-      value: 20,
+      value: cabin,
     },
     {
       icon: <ShipIcon fillColor="var(--gray-600)" />,
       label: 'Thân vỏ',
-      value: 'Kim loại',
+      value: shell,
     },
     {
       icon: <MapPinAltIcon strokeColor="var(--gray-600)" />,
       label: 'Hành trình',
-      value: 'Vịnh Lan Hạ - Bãi tắm Ba Trái Đào - Hang Sáng Tối',
+      value: trip,
     },
     {
       icon: <BriefCaseIcon strokeColor="var(--gray-600)" />,
       label: 'Điều hành',
-      value: 'Công ty cổ phần Heritage Cruises',
+      value: admin,
     },
   ]
   return (
