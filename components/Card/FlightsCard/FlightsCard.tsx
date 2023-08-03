@@ -46,9 +46,9 @@ export const FlightsCard = ({
             <PlaneArrivalIcon width="48" height="48" fillColor="var(--primary-base)" />
           )}
           <div className={[styles.header__details, 'flex flex-col gap-8'].join(' ')}>
-            <div className="flex gap-8">
+            <div className="flex gap-8 align-center">
               <label className="sm">{from}</label>
-              <ArrowRightIcon />
+              <ArrowRightIcon width="20" height="20" strokeColor="var(--black)" />
               <label className="sm">{to}</label>
             </div>
             <p className="sm">{date}</p>
