@@ -16,6 +16,6 @@ export const PaginationExam: Story = {
   args: {
     totalCount: 100,
     currentPage: 1,
-    pageSize: '5',
+    pageSize: 5,
   },
 }

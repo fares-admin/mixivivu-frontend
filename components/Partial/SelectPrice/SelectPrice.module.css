@@ -1,26 +1,15 @@
-.searchBox {
-  padding: 40px 24px 24px 24px;
-  width: 1008px;
-  margin: auto;
-}
-
-.searchBox h4 {
-  margin: 0;
-}
-
-.searchInput {
+.select-price {
   position: relative;
-  flex: 1 0 0;
+  cursor: pointer;
 }
 
-.selectInput {
-  width: 210px;
-  position: relative;
+.select-price input {
+  pointer-events: none;
+  cursor: pointer;
 }
 
-.dropdown {
-  min-width: 500px;
-  width: fit-content;
+.select-price__dropdown {
+  width: 400px;
   padding-top: 10px;
   position: absolute;
   inset: 0px auto auto 0px;
@@ -36,21 +25,26 @@
   z-index: 1;
 }
 
-.dropdown a {
+.select-price__content {
+  width: 100%;
+  display: flex;
+  padding: 20px 24px;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.select-price__footer {
+  width: 100%;
+  padding: 16px;
+  border-top: 1px solid var(--gray-200, #eaecf0);
+}
+
+.range-input {
   width: 100%;
 }
 
-.dropdown-item {
+.apply-btn {
+  display: flex;
+  justify-content: center;
   width: 100%;
-  padding: 15px 30px;
-  cursor: pointer;
-}
-
-.dropdown-item:hover {
-  width: 100%;
-  background: var(--gray-50, #f9fafb);
-}
-
-.selectInput .dropdown {
-  min-width: 300px;
 }

@@ -16,6 +16,27 @@ export const internalUserEndpoints: EndPointObject = {
   },
 }
 
+export const productEndpoints: EndPointObject = {
+  baseUrl: '/api/products',
+  child: {
+    getList: '/get-list',
+  },
+}
+
+export const featureEndpoints: EndPointObject = {
+  baseUrl: '/api/features',
+  child: {
+    getList: '/get-list',
+  },
+}
+
+export const categoryEndpoints: EndPointObject = {
+  baseUrl: '/api/categories',
+  child: {
+    getList: '/get-list',
+  },
+}
+
 export const getEndpoint = (
   endpointObject: EndPointObject,
   target: keyof typeof endpointObject.child

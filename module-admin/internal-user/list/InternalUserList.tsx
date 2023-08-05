@@ -13,7 +13,7 @@ import { toast } from 'react-toastify'
 import styles from './InternalUserList.module.css'
 
 export const InternalUserList = () => {
-  const [size, setSize] = useState('0')
+  const [size, setSize] = useState(0)
 
   const getList = useApiCall<CommonListResultType<UserRes>, string>({
     callApi: () => axios.get(getEndpoint(internalUserEndpoints, 'getList')),

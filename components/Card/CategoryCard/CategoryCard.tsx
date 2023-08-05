@@ -1,19 +1,20 @@
-import Image from 'next/image'
-import { Badge, Button, ShipIcon } from '@/components'
+import { Badge, Button, ImageFill, ShipIcon } from '@/components'
 import { Card } from '../Card'
 import styles from './CategoryCard.module.css'
+import Link from 'next/link'
 
 interface CategoryCardProps {
   url: string
   shipCount: number
   title: string
+  category: string
 }
 
-export const CategoryCard = ({ url, shipCount, title }: CategoryCardProps) => {
+export const CategoryCard = ({ url, shipCount, title, category }: CategoryCardProps) => {
   return (
     <Card customClass={styles.categoryCard}>
       <div className={styles.imageWrapper}>
-        <Image src={url} width={352} height={216} />
+        <ImageFill src={url} width="100%" height="100%" />
       </div>
       <div className={styles.body}>
         <Badge
@@ -26,7 +27,11 @@ export const CategoryCard = ({ url, shipCount, title }: CategoryCardProps) => {
         <h6>{title}</h6>
       </div>
       <div className={styles.footer}>
-        <Button label="Xem ngay" size="sm" typeStyle="outline" />
+        <Link href={`/tim-du-thuyen?category=${category}`}>
+          <a>
+            <Button label="Xem ngay" size="sm" typeStyle="outline" />
+          </a>
+        </Link>
       </div>
     </Card>
   )
