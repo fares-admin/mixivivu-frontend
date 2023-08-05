@@ -4,9 +4,10 @@ import styles from './FlightItemCard.module.css'
 
 interface FlightItemCardProps {
   isSelected?: boolean
+  handleSelect: () => void
 }
 
-export const FlightItemCard = ({ isSelected = false }: FlightItemCardProps) => {
+export const FlightItemCard = ({ isSelected = false, handleSelect }: FlightItemCardProps) => {
   const [isCollapse, setIsCollapse] = useState(true)
 
   const handleCollapse = () => {
@@ -18,7 +19,11 @@ export const FlightItemCard = ({ isSelected = false }: FlightItemCardProps) => {
       isCollapse={isCollapse}
       header={
         <div
-          className={[styles.header, 'flex gap-16 align-center'].join(' ')}
+          className={[
+            styles.header,
+            'flex gap-16 align-center',
+            isSelected ? styles['selected-flight'] : ' ',
+          ].join(' ')}
           onClick={handleCollapse}
         >
           <div className={styles['img-wrapper']}>
@@ -40,7 +45,12 @@ export const FlightItemCard = ({ isSelected = false }: FlightItemCardProps) => {
             <label className="sm">1,352,200</label>
             <p className="sm">VND</p>
           </div>
-          <Button label="Chọn" size="sm" typeStyle="outline" />
+          <Button
+            onClick={handleSelect}
+            label={isSelected ? 'Chọn lại' : 'Chọn'}
+            size="sm"
+            typeStyle="outline"
+          />
           <div>
             <ChevronDownIcon strokeColor="var(--gray-600)" />
           </div>

@@ -2,12 +2,12 @@ import { Layout } from '@/components'
 import { FlightSearch } from '@/module-flights/flight-search'
 import { NextPageWithLayout } from '@/pages/_app'
 
-const FlightPage: NextPageWithLayout = () => {
+const FlightSearchPage: NextPageWithLayout = () => {
   return <FlightSearch />
 }
 
-FlightPage.getLayout = (page) => {
+FlightSearchPage.getLayout = (page) => {
   return <Layout>{page}</Layout>
 }
 
-export default FlightPage
+export default FlightSearchPage
