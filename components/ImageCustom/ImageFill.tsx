@@ -7,7 +7,7 @@ interface ImageFillProps {
   className?: string
 }
 
-export const ImageFill = ({ src, width, height, className }: ImageFillProps) => {
+export const ImageFill = ({ src, width = '100%', height = '100%', className }: ImageFillProps) => {
   return (
     <div
       style={{

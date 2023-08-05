@@ -272,3 +272,60 @@ export const overviews = [
     value: 'Phòng không hút thuốc',
   },
 ]
+
+export const flightFilterList = [
+  {
+    label: 'Theo chuyến bay',
+    items: [
+      {
+        label: 'Giá',
+        value: 5,
+      },
+      {
+        label: 'Giờ khởi hành',
+        value: 4,
+      },
+      {
+        label: 'Giờ hạ cánh',
+        value: 3,
+      },
+      {
+        label: 'Thời gian bay',
+        value: 2,
+      },
+    ],
+  },
+  {
+    label: 'Hiển thị theo',
+    items: [
+      {
+        label: 'Tất cả',
+        value: 'freeWifi',
+      },
+      {
+        label: 'Trung tâm Spa & chăm sóc sức khoẻ',
+        value: 'freeWifi',
+      },
+      {
+        label: 'Phòng gia đình',
+        value: 'freeWifi',
+      },
+      {
+        label: 'Phòng không hút thuốc',
+        value: 'freeWifi',
+      },
+      {
+        label: 'Wi-Fi miễn phí',
+        value: 'freeWifi',
+      },
+      {
+        label: 'Wi-Fi miễn phí',
+        value: 'freeWifi',
+      },
+      {
+        label: 'Wi-Fi miễn phí',
+        value: 'freeWifi',
+      },
+    ],
+  },
+]

@@ -7,10 +7,16 @@ import {
   PartnerSection,
   BlogSection,
 } from '@/components'
-import { categoryList, productList } from '@/constants/config'
 import styles from './Home.module.scss'
+import { ProductRes } from '@/types/product'
+import { CategoryRes } from '@/types/category'
 
-export const HomePage = () => {
+interface HomePageProps {
+  popularShips: ProductRes[]
+  categories: CategoryRes[]
+}
+
+export const HomePage = ({ popularShips, categories }: HomePageProps) => {
   return (
     <div className={styles.home}>
       <div className={styles.banner}>
@@ -18,10 +24,11 @@ export const HomePage = () => {
           className={styles.searchBox}
           title="Bạn lựa chọn du thuyền Hạ Long nào?"
           description="Hơn 100 tour du thuyền hạng sang giá tốt đang chờ bạn"
+          categories={categories}
         />
       </div>
       <div id={styles.popularSections} className="section-bg">
-        <PopularShips ships={productList} />
+        <PopularShips ships={popularShips} />
       </div>
       <div id={styles.reviewSection} className="section-bg">
         <ReviewsSection />
@@ -33,8 +40,14 @@ export const HomePage = () => {
           center
         />
         <div className={styles.cardList}>
-          {categoryList.map((item, index) => (
-            <CategoryCard {...item} key={index} />
+          {categories.map((item, index) => (
+            <CategoryCard
+              url={item.image}
+              title={item.name}
+              shipCount={0}
+              category={item._id}
+              key={index}
+            />
           ))}
         </div>
       </div>

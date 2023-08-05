@@ -1,0 +1,50 @@
+.select-price {
+  position: relative;
+  cursor: pointer;
+}
+
+.select-price input {
+  pointer-events: none;
+  cursor: pointer;
+}
+
+.select-price__dropdown {
+  width: 400px;
+  padding-top: 10px;
+  position: absolute;
+  inset: 0px auto auto 0px;
+  transform: translate3d(0px, 70px, 0px);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  align-self: stretch;
+  border-radius: 8px;
+  border: 1px solid var(--gray-100, #f2f4f7);
+  background: var(--base-white, #fff);
+  box-shadow: 0px 8px 8px -4px rgba(16, 24, 40, 0.03), 0px 20px 24px -4px rgba(16, 24, 40, 0.08);
+  z-index: 1;
+}
+
+.select-price__content {
+  width: 100%;
+  display: flex;
+  padding: 20px 24px;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.select-price__footer {
+  width: 100%;
+  padding: 16px;
+  border-top: 1px solid var(--gray-200, #eaecf0);
+}
+
+.range-input {
+  width: 100%;
+}
+
+.apply-btn {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}

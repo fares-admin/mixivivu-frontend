@@ -12,6 +12,7 @@ interface CustomInputProps {
 const CustomInput = forwardRef<HTMLInputElement, CustomInputProps>(({ value, onClick }, ref) => {
   return (
     <Input
+      type="button"
       customClass={styles['date-input']}
       ref={ref}
       value={value}

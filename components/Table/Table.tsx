@@ -1,4 +1,4 @@
-import { ReactNode } from 'react'
+import { Dispatch, ReactNode, SetStateAction } from 'react'
 import { Alert } from '../Alert'
 import { Pagination } from '../Pagination'
 import { Skeleton } from '../Skeleton'
@@ -14,9 +14,9 @@ interface TableProps<T> {
     totalCount: number
     siblingCount?: number
     currentPage?: number
-    pageSize: string
+    pageSize: number
     className?: string
-    setPageSize: (pageSize: string) => void
+    setPageSize: Dispatch<SetStateAction<number>>
   }
   loading?: boolean
   actions?: {

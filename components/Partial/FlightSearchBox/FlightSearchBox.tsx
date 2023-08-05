@@ -11,6 +11,7 @@ import {
 } from '@/components'
 
 import styles from './FlightSearchBox.module.css'
+import Link from 'next/link'
 
 interface SearchBoxProps {
   title: string
@@ -69,12 +70,14 @@ export const FlightSearchBox = ({ title, description, className }: SearchBoxProp
             iconSwap={<UserIcon />}
             supportIcon={<ChevronDownIcon />}
           />
-          <Button
-            label="Tìm chuyến bay"
-            typeStyle="color"
-            customClass={styles['search-btn']}
-            fullWidth
-          />
+          <Link href="/tim-ve-may-bay/ket-qua">
+            <Button
+              label="Tìm chuyến bay"
+              typeStyle="color"
+              customClass={styles['search-btn']}
+              fullWidth
+            />
+          </Link>
         </div>
       </div>
     </Card>

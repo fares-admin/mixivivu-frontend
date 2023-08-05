@@ -419,6 +419,10 @@ label {
   text-align: right;
 }
 
+.m-auto {
+  margin: auto;
+}
+
 .section-bg {
   background-image: url('/section-background.png');
   background-repeat: repeat;
@@ -437,7 +441,7 @@ label {
 #features,
 #rooms,
 #intro,
-#rule,
+#rules,
 #reviews {
   scroll-margin-top: 150px;
 }
