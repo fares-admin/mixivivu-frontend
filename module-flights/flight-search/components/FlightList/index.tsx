@@ -1,14 +1,23 @@
 import { FlightItemCard, FlightsCard, FlightItemLoadingCard } from '@/components'
 import styles from './FlightList.module.scss'
 import { FlightCalendar } from '@/components/FlightCalendar'
-import { useState } from 'react'
+import { Dispatch, SetStateAction } from 'react'
 
-export const FlightList = () => {
-  const [departureFlight, setDepartureFlight] = useState<number | null>(null)
-  const [returnFlight, setReturnFlight] = useState<number | null>(null)
+interface FlightListProps {
+  departureFlight: number | null
+  returnFlight: number | null
+  setDepartureFlight: Dispatch<SetStateAction<number | null>>
+  setReturnFlight: Dispatch<SetStateAction<number | null>>
+}
 
+export const FlightList = ({
+  departureFlight,
+  setDepartureFlight,
+  returnFlight,
+  setReturnFlight,
+}: FlightListProps) => {
   return (
-    <div className={[styles['flight-list'], 'flex-grow flex flex-col gap-16'].join(' ')}>
+    <>
       <FlightsCard
         from="Cảng hàng không quốc tế Hồ Chí Minh (SGN)"
         to="Cảng hàng không quốc tế Hà Nội (HAN)"
@@ -58,6 +67,6 @@ export const FlightList = () => {
           </>
         }
       />
-    </div>
+    </>
   )
 }

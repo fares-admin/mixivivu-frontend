@@ -311,6 +311,18 @@ button:focus {
   flex-grow: 1;
 }
 
+.grid {
+  display: grid;
+}
+
+.grid-cols-2 {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.grid-cols-3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+
 .gap-1 {
   gap: 1px;
 }
@@ -345,6 +357,10 @@ button:focus {
 
 .gap-16 {
   gap: 16px;
+}
+
+.gap-19 {
+  gap: 19px;
 }
 
 .gap-20 {
@@ -397,6 +413,10 @@ a:-webkit-any-link {
 
 .cursor-pointer {
   cursor: pointer;
+}
+
+.pointer-none {
+  pointer-events: none;
 }
 
 p {
