@@ -1,6 +1,5 @@
 import {
   PartnerSection,
-  StepItemProps,
   Steps,
   BreadCrumbs,
   Button,
@@ -13,24 +12,7 @@ import { FlightList } from './components/FlightList'
 import { TicketDetail } from './components/TicketDetail'
 import { useState } from 'react'
 import { CustomerContact, CustomerInfo } from './components/CustomerInfo'
-
-const steps: StepItemProps[] = [
-  {
-    status: 'done',
-    title: 'Your details',
-    description: 'Please provide your name and email',
-  },
-  {
-    status: 'inprogress',
-    title: 'Your details',
-    description: 'Please provide your name and email',
-  },
-  {
-    status: 'incomplete',
-    title: 'Your details',
-    description: 'Please provide your name and email',
-  },
-]
+import { steps } from '@/constants/config'
 
 export const FlightSearch = () => {
   const [departureFlight, setDepartureFlight] = useState<number | null>(null)

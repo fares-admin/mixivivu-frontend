@@ -391,6 +391,10 @@ button:focus {
   gap: 80px;
 }
 
+.gap-120 {
+  gap: 120px;
+}
+
 .gap-136 {
   gap: 136px;
 }

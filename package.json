@@ -31,6 +31,7 @@
     "jsonwebtoken": "^8.5.1",
     "next": "12.3.1",
     "pusher-js": "^8.0.1",
+    "qrcode.react": "^3.1.0",
     "qs": "^6.11.2",
     "query-string": "^8.1.0",
     "rc-slider": "^10.2.1",

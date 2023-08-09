@@ -11,7 +11,7 @@ export const FlightItemCard = ({ isSelected = false, handleSelect }: FlightItemC
   const [isCollapse, setIsCollapse] = useState(true)
 
   const handleCollapse = () => {
-    if (!isSelected) setIsCollapse(!isCollapse)
+    setIsCollapse(!isCollapse)
   }
 
   return (
@@ -22,7 +22,7 @@ export const FlightItemCard = ({ isSelected = false, handleSelect }: FlightItemC
           className={[
             styles.header,
             'flex gap-16 align-center',
-            isSelected ? styles['selected-flight'] : ' ',
+            isSelected && isCollapse ? styles['selected-flight'] : ' ',
           ].join(' ')}
           onClick={handleCollapse}
         >
