@@ -7,7 +7,7 @@ export const Footer = () => {
     <>
       <div className={['flex justify-center', styles.footer1].join(' ')}>
         <div className={`${styles.footer} container`}>
-          <div className="flex flex-col gap-20">
+          <div className={[styles.intro, `flex flex-col gap-20`].join(' ')}>
             <Logo type="white" />
             <p className="md">
               Mixivivu - đối tác tin cậy của các hãng du thuyền lớn, mang đến cho bạn chương trình
@@ -15,7 +15,7 @@ export const Footer = () => {
               nghiệm du thuyền đẳng cấp và nhận những ưu đãi đặc biệt từ chúng tôi.
             </p>
           </div>
-          <div className="flex justify-between gap-32">
+          <div className={[styles['footer-list'], `flex justify-between gap-32`].join(' ')}>
             {ListItemFooter.map((item) => (
               <div key={item.label} className="flex flex-col gap-16">
                 <span className="detail-sm">{item.label}</span>

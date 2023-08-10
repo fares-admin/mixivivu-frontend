@@ -91,6 +91,7 @@
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
+  max-width: 100%;
 }
 
 .list .title {
@@ -133,4 +134,10 @@
   letter-spacing: 0.96px;
   text-decoration: line-through;
   text-transform: uppercase;
+}
+
+@media (max-width: 1024px) {
+  .grid {
+    width: 345px;
+  }
 }

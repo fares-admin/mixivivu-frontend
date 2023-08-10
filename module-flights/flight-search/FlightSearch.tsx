@@ -1,4 +1,10 @@
-import { PartnerSection, StepItemProps, Steps, BreadCrumbs } from '@/components'
+import {
+  PartnerSection,
+  StepItemProps,
+  Steps,
+  BreadCrumbs,
+  FlightSearchNavigation,
+} from '@/components'
 import styles from './FlightSearch.module.scss'
 import { FlightSidebar } from './components/FlightSidebar'
 import { FlightList } from './components/FlightList'
@@ -30,6 +36,7 @@ export const FlightSearch = () => {
       <div
         className={['container flex flex-col gap-40 section-bg', styles['flight-search']].join(' ')}
       >
+        <FlightSearchNavigation />
         <div className="m-auto">
           <Steps steps={steps} />
         </div>

@@ -6,10 +6,18 @@
 }
 
 .reviewList {
+  overflow: auto;
   display: flex;
   align-items: center;
   gap: 24px;
 }
 .reviewBtn {
   padding: 8px 16px 8px 8px;
+}
+
+@media (max-width: 1024px) {
+  .section {
+    padding: 24px;
+    gap: 24px;
+  }
 }

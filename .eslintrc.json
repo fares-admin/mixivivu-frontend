@@ -56,10 +56,7 @@
     "import/no-cycle": "off",
     "import/no-extraneous-dependencies": [
       "error",
-      {
-        "devDependencies": ["**/*.stories.*", "**/.storybook/**/*.*"],
-        "peerDependencies": true
-      }
+      { "devDependencies": false, "optionalDependencies": false, "peerDependencies": false }
     ]
   }
 }

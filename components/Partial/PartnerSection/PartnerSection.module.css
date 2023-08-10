@@ -8,4 +8,27 @@
 .partnerList {
   display: flex;
   gap: 32px;
+  overflow: auto;
+}
+
+.partnerList .img-wrapper {
+  width: 176px;
+  height: 64px;
+}
+
+@media (max-width: 1024px) {
+  .section {
+    padding: 24px;
+    gap: 24px;
+  }
+
+  .partnerList {
+    gap: 16px;
+  }
+
+  .partnerList .img-wrapper {
+    width: 132px;
+    min-width: 132px;
+    height: 48px;
+  }
 }

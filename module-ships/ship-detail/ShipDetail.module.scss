@@ -115,3 +115,9 @@
 .popular-ships {
   background-color: #f2f4f7;
 }
+
+@media (max-width: 1200px) {
+  .side-bar {
+    display: none;
+  }
+}
