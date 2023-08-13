@@ -11,7 +11,7 @@ export const FlightItemCard = ({ isSelected = false, handleSelect }: FlightItemC
   const [isCollapse, setIsCollapse] = useState(true)
 
   const handleCollapse = () => {
-    if (!isSelected) setIsCollapse(!isCollapse)
+    setIsCollapse(!isCollapse)
   }
 
   return (
@@ -22,7 +22,7 @@ export const FlightItemCard = ({ isSelected = false, handleSelect }: FlightItemC
           className={[
             styles.header,
             'flex gap-16 align-center',
-            isSelected ? styles['selected-flight'] : ' ',
+            isSelected && isCollapse ? styles['selected-flight'] : ' ',
           ].join(' ')}
           onClick={handleCollapse}
         >
@@ -59,6 +59,13 @@ export const FlightItemCard = ({ isSelected = false, handleSelect }: FlightItemC
       content={
         <div className={styles.content}>
           <div className="flex gap-19 flex-grow">
+            <div className={styles['vertical-steps']}>
+              <div className={styles['vertical-big-dot']} />
+              {[1, 2, 3, 4, 5, 6, 7].map((_, idx) => (
+                <div className={styles['vertical-small-dot']} key={idx} />
+              ))}
+              <div className={styles['vertical-big-dot']} />
+            </div>
             <div className="flex flex-col gap-12">
               <div className="flex gap-8 align-center">
                 <label className="sm">07:20</label>

@@ -1,3 +1,4 @@
+import { StepItemProps } from '@/components'
 import { ProductProps } from './type'
 
 export const productList: ProductProps[] = [
@@ -327,5 +328,22 @@ export const flightFilterList = [
         value: 'freeWifi',
       },
     ],
+  },
+]
+export const steps: StepItemProps[] = [
+  {
+    status: 'done',
+    title: 'Your details',
+    description: 'Please provide your name and email',
+  },
+  {
+    status: 'inprogress',
+    title: 'Your details',
+    description: 'Please provide your name and email',
+  },
+  {
+    status: 'incomplete',
+    title: 'Your details',
+    description: 'Please provide your name and email',
   },
 ]

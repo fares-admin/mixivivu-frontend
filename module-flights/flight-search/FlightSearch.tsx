@@ -1,27 +1,22 @@
-import { PartnerSection, StepItemProps, Steps, BreadCrumbs } from '@/components'
+import {
+  PartnerSection,
+  Steps,
+  BreadCrumbs,
+  Button,
+  ArrowRightIcon,
+  ArrowLeftIcon,
+} from '@/components'
 import styles from './FlightSearch.module.scss'
 import { FlightSidebar } from './components/FlightSidebar'
 import { FlightList } from './components/FlightList'
-
-const steps: StepItemProps[] = [
-  {
-    status: 'done',
-    title: 'Your details',
-    description: 'Please provide your name and email',
-  },
-  {
-    status: 'inprogress',
-    title: 'Your details',
-    description: 'Please provide your name and email',
-  },
-  {
-    status: 'incomplete',
-    title: 'Your details',
-    description: 'Please provide your name and email',
-  },
-]
+import { TicketDetail } from './components/TicketDetail'
+import { useState } from 'react'
+import { CustomerContact, CustomerInfo } from './components/CustomerInfo'
+import { steps } from '@/constants/config'
 
 export const FlightSearch = () => {
+  const [departureFlight, setDepartureFlight] = useState<number | null>(null)
+  const [returnFlight, setReturnFlight] = useState<number | null>(null)
   return (
     <>
       <div className={[styles.navigation, 'container'].join(' ')}>
@@ -34,11 +29,28 @@ export const FlightSearch = () => {
           <Steps steps={steps} />
         </div>
         <div className="flex gap-32">
-          <FlightSidebar />
-          <FlightList />
+          {departureFlight && returnFlight ? <TicketDetail /> : <FlightSidebar />}
+          <div className={[styles['flight-content'], 'flex-grow flex flex-col gap-16'].join(' ')}>
+            <FlightList
+              departureFlight={departureFlight}
+              setDepartureFlight={setDepartureFlight}
+              returnFlight={returnFlight}
+              setReturnFlight={setReturnFlight}
+            />
+            {departureFlight && returnFlight && (
+              <>
+                <CustomerInfo />
+                <CustomerContact />
+                <div className="flex justify-between">
+                  <Button label="Quay lại" iconLeading={<ArrowLeftIcon />} typeStyle="outline" />
+                  <Button label="Tiếp" iconTrailing={<ArrowRightIcon />} />
+                </div>
+              </>
+            )}
+          </div>
         </div>
       </div>
-      <div>
+      <div className={styles.partners}>
         <PartnerSection />
       </div>
     </>
