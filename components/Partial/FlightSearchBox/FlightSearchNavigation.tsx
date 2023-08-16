@@ -1,4 +1,13 @@
-import { Button, Card, ChevronDownIcon, UserIcon } from '@/components'
+import {
+  Button,
+  Card,
+  ChevronDownIcon,
+  FlightDatePicker,
+  Input,
+  PlaneArrivalIcon,
+  PlaneFlyIcon,
+  UserIcon,
+} from '@/components'
 import { SwitchHorizonIcon } from '@/components/SVGIcon/SwitchHorizonIcon'
 import styles from './FlightSearchNavigation.module.css'
 
@@ -23,7 +32,21 @@ export const FlightSearchNavigation = () => {
               iconTrailing={<ChevronDownIcon />}
             />
           </div>
-          <div className="flex gap-16px">test</div>
+        </div>
+        <div className="flex gap-16">
+          <div className="flex-grow">
+            <Input label="Điểm đi" iconSwap={<PlaneFlyIcon />} />
+          </div>
+          <div className="flex-grow">
+            <Input label="Điểm đến" iconSwap={<PlaneArrivalIcon />} />
+          </div>
+          <div className="flex-grow">
+            <FlightDatePicker label="Ngày đi" />
+          </div>
+          <div className="flex-grow">
+            <FlightDatePicker label="Ngày về" />
+          </div>
+          <Button label="Tìm kiếm" />
         </div>
       </div>
     </Card>

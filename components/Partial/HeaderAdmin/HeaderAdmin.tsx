@@ -4,7 +4,7 @@ import styles from './HeaderAdmin.module.css'
 
 interface IHeaderAdmin {
   label: string
-  trailButton: ReactNode
+  trailButton?: ReactNode
   breadCrumbs?: ReactNode[]
 }
 

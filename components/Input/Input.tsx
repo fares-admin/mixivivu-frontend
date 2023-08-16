@@ -1,6 +1,4 @@
-/* eslint-disable import/no-extraneous-dependencies */
 import React, { InputHTMLAttributes, forwardRef, useId } from 'react'
-// import { useField } from 'formik'
 import styles from './Input.module.css'
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
@@ -33,31 +31,26 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
     ref
   ) => {
     const id = useId()
-    // const [field, meta] = useField(props as any)
     const isError = destructive
     return (
-      <>
-        <div className={[customClass, isError ? styles.destructive : ''].join(' ')}>
-          <label htmlFor={id} className={styles['input-group']}>
-            {iconSwap && iconSwap}
-            <input
-              // {...field}
-              id={id}
-              ref={ref}
-              className="p-md"
-              placeholder={placeHolder}
-              disabled={disable}
-              {...props}
-            />
-            {supportIcon && supportIcon}
-            <label htmlFor={id} className="sm">
-              {label}
-            </label>
+      <div className={[customClass, isError ? styles.destructive : ''].join(' ')}>
+        <label htmlFor={id} className={styles['input-group']}>
+          {iconSwap && iconSwap}
+          <input
+            id={id}
+            ref={ref}
+            className="p-md"
+            placeholder={placeHolder}
+            disabled={disable}
+            {...props}
+          />
+          {supportIcon && supportIcon}
+          <label htmlFor={id} className="sm">
+            {label}
           </label>
-          {hintText && <p className={['sm', styles['hint-text']].join(' ')}>{hintText}</p>}
-        </div>
-        {/* {meta.touched && meta.error && <div className="error">{meta.error}</div>} */}
-      </>
+        </label>
+        {hintText && <p className={['sm', styles['hint-text']].join(' ')}>{hintText}</p>}
+      </div>
     )
   }
 )

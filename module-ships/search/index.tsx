@@ -1,5 +1,5 @@
 /* eslint-disable import/no-extraneous-dependencies */
-import { SearchBox, Pagination, ProductCard, ProductLoadingCard } from '@/components'
+import { SearchBox, Pagination, ProductCard, ProductLoadingCard, NotFound } from '@/components'
 import { NextPageWithLayout } from '@/pages/_app'
 import { useCallback, useEffect, useState } from 'react'
 import { Sidebar } from './components/Sidebar'
@@ -29,12 +29,12 @@ const SearchPageDetail: NextPageWithLayout = () => {
   const [shipList, setShipList] = useState<ProductRes[]>([])
   const [categories, setCategories] = useState<CategoryRes[]>([])
   const [pageSize, setPageSize] = useState(5)
-  const [totalShips, setTotalShips] = useState(5)
+  const [totalShips, setTotalShips] = useState(0)
   const [currentPage, setCurrentPage] = useState(1)
   const [filter, setFilter] = useState<IFilter>({
     features: [],
     scoreReview: [],
-    sort_defaultPrice: '',
+    sort_defaultPrice: undefined,
   })
   const router = useRouter()
   const { setLetCall: fetchCategories } = useApiCall<CommonListResultType<CategoryRes>, string>({
@@ -103,38 +103,44 @@ const SearchPageDetail: NextPageWithLayout = () => {
           categories={categories}
         />
         <Header totalShips={totalShips} filter={filter} setFilter={setFilter} />
-        <div className="flex gap-32">
+        <div className={`flex gap-32 ${loading ? 'pointer-none' : ''}`}>
           <Sidebar filter={filter} setFilter={setFilter} />
           <div className={[styles['ship-list'], 'flex flex-col gap-32'].join(' ')}>
-            {shipList.length > 0 && !loading ? (
-              <>
-                {shipList.map((item, index) => (
-                  <ProductCard
-                    slug={item.slug}
-                    type="list"
-                    {...test}
-                    title={item.title}
-                    desciption={`Hạ thuỷ ${item.spec.ship?.launch} - Tàu vỏ ${item.spec.ship?.shell} - ${item.spec.ship?.cabin} phòng`}
-                    location={getCategory(item.category)}
-                    originalPrice={item.defaultPrice}
-                    rating={item.scoreReview}
-                    ratingCount={item.numReviews}
-                    key={index}
-                  />
-                ))}
-                <Pagination
-                  totalCount={totalShips}
-                  pageSize={pageSize}
-                  setPageSize={setPageSize}
-                  onPageChange={setCurrentPage}
-                  currentPage={currentPage}
-                />
-              </>
-            ) : (
+            {loading ? (
               <>
                 {Array.from({ length: 5 }, (_, i) => (
                   <ProductLoadingCard type="list" key={i} />
                 ))}
+              </>
+            ) : (
+              <>
+                {shipList.length > 0 ? (
+                  <>
+                    {shipList.map((item, index) => (
+                      <ProductCard
+                        slug={item.slug}
+                        type="list"
+                        {...test}
+                        title={item.title}
+                        desciption={`Hạ thuỷ ${item.spec.ship?.launch} - Tàu vỏ ${item.spec.ship?.shell} - ${item.spec.ship?.cabin} phòng`}
+                        location={getCategory(item.category)}
+                        originalPrice={item.defaultPrice}
+                        rating={item.scoreReview}
+                        ratingCount={item.numReviews}
+                        key={index}
+                      />
+                    ))}
+                    <Pagination
+                      totalCount={totalShips}
+                      pageSize={pageSize}
+                      setPageSize={setPageSize}
+                      onPageChange={setCurrentPage}
+                      currentPage={currentPage}
+                    />
+                  </>
+                ) : (
+                  <NotFound />
+                )}
               </>
             )}
           </div>

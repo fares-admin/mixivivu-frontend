@@ -19,16 +19,25 @@
   position: relative;
   margin: auto;
   width: calc(100vw - 64px);
-  height: calc(100vh - 230px);
+  height: 45vw;
   border-radius: 24px;
-  background: url('../../public/banner.jpeg');
-  background-size: cover;
-  background-position: center center;
+  // background: url('../../public/banner.jpeg');
+  // background-size: cover;
+  // background-position: center center;
   .searchBox {
     position: absolute;
     bottom: -126px;
     transform: translateX(-50%);
     left: 50%;
+  }
+  .bg-video {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80vw;
+    height: 45vw;
+    border-radius: 24px;
   }
 }
 

@@ -54,7 +54,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         ref={ref}
       >
         {iconLeading && iconLeading}
-        <label className={labelSize}>{label}</label>
+        <div className={['label', labelSize].join(' ')}>{label}</div>
         {iconTrailing && iconTrailing}
         {iconOnly && iconOnly}
       </button>

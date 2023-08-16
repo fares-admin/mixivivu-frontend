@@ -20,9 +20,18 @@ interface RoomCardProps {
   roomCount: number
   area: number
   userPerRoom: number
+  disabled?: boolean
 }
 
-export const RoomCard = ({ url, title, price, roomCount, area, userPerRoom }: RoomCardProps) => {
+export const RoomCard = ({
+  url,
+  title,
+  price,
+  roomCount,
+  area,
+  userPerRoom,
+  disabled = false,
+}: RoomCardProps) => {
   const formatter = new Intl.NumberFormat('en-US')
   const [openModal, setOpenModal] = useState(false)
   const modalContent = () => {
@@ -86,7 +95,7 @@ export const RoomCard = ({ url, title, price, roomCount, area, userPerRoom }: Ro
         </div>
         <div className={styles.roomDetail}>
           <Modal open={openModal} setOpen={setOpenModal} content={modalContent()} />
-          <p className={styles.title} onClick={() => setOpenModal(true)}>
+          <p className={styles.title} onClick={() => !disabled && setOpenModal(true)}>
             {title}
           </p>
           <div className={styles.roomInfo}>

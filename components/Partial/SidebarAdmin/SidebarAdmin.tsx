@@ -37,8 +37,12 @@ export const SidebarAdmin = () => {
           link: '/admin/du-thuyen/tour',
         },
         {
+          text: 'Thống kê',
+          link: '/admin/du-thuyen/thong-ke',
+        },
+        {
           text: 'Review',
-          link: '/admin/du-thuyen/review',
+          link: '/admin/du-thuyen/quan-ly-review',
         },
       ],
     },

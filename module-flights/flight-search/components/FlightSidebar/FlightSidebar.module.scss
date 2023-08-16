@@ -1,6 +1,9 @@
+@mixin side-bar-item {
+  display: flex;
+  padding: 20px 24px;
+  gap: 16px;
+}
 .side-bar {
-  position: sticky;
-  top: 120px;
   width: 280px;
   height: fit-content;
   border-radius: 24px;
@@ -8,17 +11,22 @@
   background: var(--base-white, #fff);
   box-shadow: var(--shadow-sm);
   &__header {
-    display: flex;
-    padding: 20px 24px;
+    @include side-bar-item();
     align-items: center;
-    gap: 16px;
     border-bottom: 1px solid var(--gray-200, #eaecf0);
   }
   .filter-item {
-    display: flex;
-    padding: 20px 24px;
+    @include side-bar-item();
     flex-direction: column;
     justify-content: center;
-    gap: 16px;
+  }
+  &__footer {
+    @include side-bar-item();
+    align-items: center;
+    border-top: 1px solid var(--gray-200, #eaecf0);
+  }
+  .img-wrapper {
+    width: 40px;
+    height: 40px;
   }
 }

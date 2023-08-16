@@ -2,8 +2,8 @@ import React, { useState } from 'react'
 import styles from './Tabs.module.css'
 import { ChevronDownIcon } from '../SVGIcon'
 
-interface TabItemProps {
-  id?: string
+export interface TabItemProps {
+  id?: string | number
   size?: 'sm' | 'md'
   label: string
   badge?: number
@@ -46,7 +46,7 @@ interface TabsProps {
   tabs: TabItemProps[]
   size?: 'sm' | 'md'
   isMobile?: boolean
-  activeKey?: string
+  activeKey?: string | number
   onChange?: (key: string) => void
 }
 
