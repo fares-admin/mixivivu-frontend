@@ -7,18 +7,24 @@
 }
 
 .payment-content {
-  padding: 16px 24px;
   display: flex;
   flex-direction: column;
   gap: 16px;
-  .card-header {
-    padding: 20px 24px;
-    gap: 16px;
-    border-bottom: 1px solid var(--gray-200, #eaecf0);
-  }
-  .card-content {
-    padding: 20px 24px;
-  }
+}
+
+.card-header {
+  padding: 20px 24px;
+  gap: 16px;
+  border-bottom: 1px solid var(--gray-200, #eaecf0);
+}
+
+.card-content {
+  padding: 20px 24px;
+}
+
+.card-footer {
+  padding: 20px 24px;
+  border-top: 1px solid var(--gray-200, #eaecf0);
 }
 
 .partners {

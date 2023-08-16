@@ -9,7 +9,7 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   iconTrailing?: React.ReactNode
   iconOnly?: React.ReactNode
   disable?: boolean
-  label?: string
+  label?: string | number
   customClass?: string
   fullWidth?: boolean
   onClick?: () => void
@@ -54,7 +54,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         ref={ref}
       >
         {iconLeading && iconLeading}
-        <label className={labelSize}>{label}</label>
+        <div className={['label', labelSize].join(' ')}>{label}</div>
         {iconTrailing && iconTrailing}
         {iconOnly && iconOnly}
       </button>

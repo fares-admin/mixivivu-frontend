@@ -7,12 +7,23 @@ interface InfoModalProps {
   open: boolean
   setOpen: (open: boolean) => void
   title: string
-  description: string
+  description?: string
+  content?: ReactNode
+  customImg?: ReactNode
   img?: string
-  actions: ReactNode
+  actions?: ReactNode
 }
 
-export const InfoModal = ({ open, setOpen, title, description, img, actions }: InfoModalProps) => {
+export const InfoModal = ({
+  open,
+  setOpen,
+  title,
+  description,
+  content,
+  img,
+  customImg,
+  actions,
+}: InfoModalProps) => {
   return (
     <Modal
       open={open}
@@ -20,12 +31,13 @@ export const InfoModal = ({ open, setOpen, title, description, img, actions }: I
       content={
         <div className={[styles['info-modal'], 'flex flex-col gap-24 align-center'].join(' ')}>
           <div className={styles['img-wrapper']}>
-            <Image width={240} height={206} src={img || '/modal-icon.png'} />
+            {customImg || <Image width={240} height={206} src={img || '/modal-icon.png'} />}
           </div>
-          <div className="flex flex-col gap-8">
+          <div className="flex flex-col gap-8 text-center">
             <h5>{title}</h5>
-            <p className="md">{description}</p>
+            {description && <p className="md">{description}</p>}
           </div>
+          {content && content}
           <div className={styles.actions}>{actions}</div>
         </div>
       }

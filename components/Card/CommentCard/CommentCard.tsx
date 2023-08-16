@@ -41,18 +41,20 @@ export const CommentItem = ({
 
 interface CommentCardProps {
   comment: CommentItemProps
-  replies: CommentItemProps[]
+  replies?: CommentItemProps[]
 }
 
 export const CommentCard = ({ comment, replies }: CommentCardProps) => {
   return (
     <Card>
       <CommentItem {...comment}>
-        <div>
-          {replies.map((item, index) => (
-            <CommentItem {...item} key={index} isReply />
-          ))}
-        </div>
+        {replies && (
+          <div>
+            {replies.map((item, index) => (
+              <CommentItem {...item} key={index} isReply />
+            ))}
+          </div>
+        )}
       </CommentItem>
     </Card>
   )

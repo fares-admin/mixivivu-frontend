@@ -145,10 +145,10 @@ export const SearchBox = ({ title, description, categories = [], className }: Se
       customClass={[className, styles.searchBox, 'flex flex-col justify-center gap-40'].join(' ')}
     >
       <div className="flex flex-col gap-16 gray-900">
-        <h4 className="text-center">{title}</h4>
-        <p className="lg text-center">{description}</p>
+        <h4 className={['text-center', styles.title].join(' ')}>{title}</h4>
+        <p className={['lg text-center', styles.description].join(' ')}>{description}</p>
       </div>
-      <div className="flex gap-20">
+      <div className={['flex gap-20', styles['input-group']].join(' ')}>
         <div className={styles.searchInput}>
           <Input
             placeHolder="Nhập tên du thuyền"
@@ -218,7 +218,12 @@ export const SearchBox = ({ title, description, categories = [], className }: Se
             </div>
           )}
         </div>
-        <Button color="color" label="Tìm kiếm" onClick={handleSearch} />
+        <Button
+          customClass={styles['submit-btn']}
+          color="color"
+          label="Tìm kiếm"
+          onClick={handleSearch}
+        />
       </div>
     </Card>
   )

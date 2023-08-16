@@ -1,9 +1,23 @@
-import { BreadCrumbs, FlightItemCard, FlightsCard, PartnerSection, Steps } from '@/components'
+import {
+  ArrowRightIcon,
+  BreadCrumbs,
+  Button,
+  FlightItemCard,
+  FlightsCard,
+  PartnerSection,
+  Steps,
+} from '@/components'
 import styles from './Payment.module.scss'
 import { steps } from '@/constants/config'
-import { QrPayment } from './components/QrPayment'
+import { CustomerInfo, PackageDetail, QrPayment, TicketDetail } from '@/module-flights/payment'
+import { InfoModal } from '@/components/Modal/InfoModal'
+import Image from 'next/image'
+import { useState } from 'react'
+import { BookingSuccessModal } from './components/BookingSuccessModal'
 
 export const Payment = () => {
+  const [open, setOpen] = useState(false)
+  const [openSuccessModal, setOpenSuccessModal] = useState(false)
   return (
     <>
       <div className={[styles.navigation, 'container'].join(' ')}>
@@ -40,12 +54,27 @@ export const Payment = () => {
               </div>
             }
           />
+          <TicketDetail />
+          <PackageDetail />
+          <CustomerInfo />
         </div>
       </div>
-
       <div className={styles.partners}>
         <PartnerSection />
       </div>
+      <BookingSuccessModal
+        openSuccessModal={openSuccessModal}
+        setOpenSuccessModal={setOpenSuccessModal}
+      />
+      <InfoModal
+        open={open}
+        setOpen={setOpen}
+        title="Thời gian giữ vé của bạn đã hết"
+        customImg={<Image src="/sad.png" width={400} height={360} />}
+        actions={
+          <Button label="Tìm vé ngay" iconTrailing={<ArrowRightIcon />} typeStyle="outline" />
+        }
+      />
     </>
   )
 }

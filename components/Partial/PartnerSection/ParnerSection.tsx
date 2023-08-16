@@ -1,5 +1,4 @@
-import { SectionHeader } from '@/components'
-import Image from 'next/image'
+import { ImageFill, SectionHeader } from '@/components'
 import styles from './PartnerSection.module.css'
 
 export const PartnerSection = () => {
@@ -16,7 +15,9 @@ export const PartnerSection = () => {
       />
       <div className={styles.partnerList}>
         {[1, 2, 3, 4, 5, 6].map((item) => (
-          <Image src={`/partners/partner${item}.png`} key={item} width={176} height={64} />
+          <div className={styles['img-wrapper']}>
+            <ImageFill src={`/partners/partner${item}.png`} key={item} width="100%" height="100%" />
+          </div>
         ))}
       </div>
     </div>

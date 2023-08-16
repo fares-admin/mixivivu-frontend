@@ -29,7 +29,7 @@ const SearchPageDetail: NextPageWithLayout = () => {
   const [shipList, setShipList] = useState<ProductRes[]>([])
   const [categories, setCategories] = useState<CategoryRes[]>([])
   const [pageSize, setPageSize] = useState(5)
-  const [totalShips, setTotalShips] = useState(5)
+  const [totalShips, setTotalShips] = useState(0)
   const [currentPage, setCurrentPage] = useState(1)
   const [filter, setFilter] = useState<IFilter>({
     features: [],

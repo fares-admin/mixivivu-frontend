@@ -71,3 +71,13 @@
   color: var(--primary-dark);
   border-bottom: 2px solid var(--primary-base, #77dada);
 }
+
+@media (max-width: 1024px) {
+  .nav-container {
+    display: none;
+  }
+
+  .menu {
+    display: none;
+  }
+}

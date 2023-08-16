@@ -199,17 +199,31 @@
   box-shadow: none;
 }
 
+.button-link-color-destructive {
+  color: var(--error-base);
+  border: none;
+  background-color: transparent;
+  padding: 0;
+  box-shadow: none;
+}
+
 .button-link-color > svg > path {
   stroke: var(--primary-dark);
 }
 
-.button-link-color:hover {
+.button-link-color-destructive > svg > path {
+  stroke: var(--error-base);
+}
+
+.button-link-color:hover,
+.button-link-color-destructive:hover {
   color: var(--primary-base);
   fill: var(--primary-base);
   cursor: pointer;
 }
 
-.button-link-color:hover > svg > path {
+.button-link-color:hover > svg > path,
+.button-link-color-destructive:hover > svg > path {
   stroke: var(--primary-base);
 }
 

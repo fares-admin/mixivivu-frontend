@@ -1,0 +1,6 @@
+.wrapper {
+  padding: 20px 24px;
+  position: sticky;
+  top: 97px;
+  z-index: 9;
+}

@@ -5,6 +5,7 @@
   padding: 80px 32px;
   .cardList {
     display: flex;
+    justify-content: center;
     gap: 32px;
     flex-wrap: wrap;
   }
@@ -61,5 +62,26 @@
   .partnerList {
     display: flex;
     gap: 32px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .section {
+    padding: 24px;
+  }
+
+  .cardList {
+    gap: 16px;
+  }
+
+  .banner {
+    width: calc(100vw - 8px);
+    .searchBox {
+      bottom: -251px;
+    }
+  }
+
+  #popularSections {
+    padding-top: 250px;
   }
 }

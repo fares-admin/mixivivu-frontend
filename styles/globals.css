@@ -136,6 +136,36 @@ label.xs {
   font-weight: 500;
 }
 
+.label.xl {
+  font-size: 20px;
+  line-height: 30px;
+  font-weight: 500;
+}
+
+.label.lg {
+  font-size: 18px;
+  line-height: 28px;
+  font-weight: 500;
+}
+
+.label.md {
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 500;
+}
+
+.label.sm {
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 500;
+}
+
+.label.xs {
+  font-size: 12px;
+  line-height: 18px;
+  font-weight: 500;
+}
+
 /* paragraph tag */
 
 p {
@@ -321,6 +351,10 @@ button:focus {
 
 .grid-cols-3 {
   grid-template-columns: repeat(3, 1fr);
+}
+
+.grid-cols-4 {
+  grid-template-columns: repeat(4, 1fr);
 }
 
 .gap-1 {

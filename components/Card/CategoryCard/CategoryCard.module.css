@@ -28,3 +28,19 @@
 .body h6 {
   margin: 0;
 }
+
+@media (max-width: 1024px) {
+  .categoryCard {
+    width: 345px;
+    gap: 16px;
+  }
+
+  .body h6 {
+    font-size: 18px;
+  }
+
+  .imageWrapper {
+    width: 313px;
+    height: 192px;
+  }
+}

@@ -31,9 +31,9 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
     ref
   ) => {
     const id = useId()
-
+    const isError = destructive
     return (
-      <div className={[customClass, destructive ? styles.destructive : ''].join(' ')}>
+      <div className={[customClass, isError ? styles.destructive : ''].join(' ')}>
         <label htmlFor={id} className={styles['input-group']}>
           {iconSwap && iconSwap}
           <input
