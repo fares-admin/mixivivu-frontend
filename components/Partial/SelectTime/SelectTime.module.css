@@ -1,15 +1,16 @@
-.select-price {
+.select-time {
   position: relative;
   cursor: pointer;
 }
 
-.select-price input {
+.select-time input {
   pointer-events: none;
   cursor: pointer;
 }
 
-.select-price__dropdown {
+.select-time__dropdown {
   width: 400px;
+  min-width: 400px;
   padding-top: 10px;
   position: absolute;
   inset: 0px auto auto 0px;
@@ -25,7 +26,7 @@
   z-index: 1;
 }
 
-.select-price__content {
+.select-time__content {
   width: 100%;
   display: flex;
   padding: 20px 24px;
@@ -33,7 +34,7 @@
   gap: 24px;
 }
 
-.select-price__footer {
+.select-time__footer {
   width: 100%;
   padding: 16px;
   border-top: 1px solid var(--gray-200, #eaecf0);

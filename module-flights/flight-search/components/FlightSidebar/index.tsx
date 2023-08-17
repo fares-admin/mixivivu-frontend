@@ -1,4 +1,4 @@
-import { Button, Checkbox } from '@/components'
+import { Button, Checkbox, SelectTime } from '@/components'
 import { flightFilterList } from '@/constants/config'
 import styles from './FlightSidebar.module.scss'
 
@@ -18,6 +18,11 @@ export const FlightSidebar = () => {
             ))}
           </div>
         ))}
+        <div className={styles['filter-item']}>
+          <label className="md">Chọn giờ</label>
+          <SelectTime label="Giờ khởi hành" />
+          <SelectTime label="Giờ hạ cánh" />
+        </div>
       </div>
     </div>
   )

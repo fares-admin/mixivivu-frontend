@@ -43,6 +43,10 @@ html {
   margin: 0;
 }
 
+.relative {
+  position: relative;
+}
+
 /* Heading */
 h1 {
   font-size: 80px;
@@ -303,6 +307,10 @@ button:focus {
 
 .flex-row {
   flex-direction: row;
+}
+
+.flex-wrap {
+  flex-wrap: wrap;
 }
 
 .justify-center {

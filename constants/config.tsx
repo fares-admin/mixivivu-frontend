@@ -300,31 +300,11 @@ export const flightFilterList = [
     label: 'Hiển thị theo',
     items: [
       {
-        label: 'Tất cả',
+        label: 'Vé cơ bản',
         value: 'freeWifi',
       },
       {
-        label: 'Trung tâm Spa & chăm sóc sức khoẻ',
-        value: 'freeWifi',
-      },
-      {
-        label: 'Phòng gia đình',
-        value: 'freeWifi',
-      },
-      {
-        label: 'Phòng không hút thuốc',
-        value: 'freeWifi',
-      },
-      {
-        label: 'Wi-Fi miễn phí',
-        value: 'freeWifi',
-      },
-      {
-        label: 'Wi-Fi miễn phí',
-        value: 'freeWifi',
-      },
-      {
-        label: 'Wi-Fi miễn phí',
+        label: 'Vé báo gồm thuế và phí',
         value: 'freeWifi',
       },
     ],

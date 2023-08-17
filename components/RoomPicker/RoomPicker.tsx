@@ -2,13 +2,19 @@ import { Button, ChevronDownIcon, Input, MinusIcon, PlusIcon } from '@/component
 import { useState } from 'react'
 import styles from './RoomPicker.module.css'
 
-interface RoomItemProps {
+interface QuantityItemProps {
   name: string
   defaultValue: number
   handleChange: (amount: number) => void
+  customClass?: string
 }
 
-const RoomItem = ({ defaultValue, name, handleChange }: RoomItemProps) => {
+export const QuantityItem = ({
+  defaultValue,
+  name,
+  handleChange,
+  customClass,
+}: QuantityItemProps) => {
   const handleMinus = () => {
     if (defaultValue > 0) handleChange(defaultValue - 1)
   }
@@ -16,7 +22,7 @@ const RoomItem = ({ defaultValue, name, handleChange }: RoomItemProps) => {
     handleChange(defaultValue + 1)
   }
   return (
-    <div className={[styles.item, 'flex gap-8'].join(' ')}>
+    <div className={[styles.item, 'flex gap-8', customClass].join(' ')}>
       <div className={['subheading md', styles['item-value']].join(' ')}>{defaultValue}</div>
       <label className="lg flex-grow">{name}</label>
       <div className={styles['group-btn']}>
@@ -66,9 +72,9 @@ export const RoomPicker = ({ roomDetail, setRoomDetail }: RoomPickerProps) => {
       {showRoomPicker && (
         <div className={styles['room-picker__dropdown']}>
           <div className={[styles.content, 'flex flex-col gap-16'].join(' ')}>
-            <RoomItem defaultValue={rooms} name="Phòng" handleChange={setRooms} />
-            <RoomItem defaultValue={adults} name="Người lớn" handleChange={setAdults} />
-            <RoomItem defaultValue={children} name="Trẻ em" handleChange={setChildren} />
+            <QuantityItem defaultValue={rooms} name="Phòng" handleChange={setRooms} />
+            <QuantityItem defaultValue={adults} name="Người lớn" handleChange={setAdults} />
+            <QuantityItem defaultValue={children} name="Trẻ em" handleChange={setChildren} />
           </div>
           <div className={styles.actions}>
             <Button

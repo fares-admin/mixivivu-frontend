@@ -26,7 +26,6 @@ export const PopularShips = ({ ships }: { ships: ProductRes[] }) => {
             ?.slice(0, 6)
             .map((item, index) => (
               <ProductCard
-                slug={item.slug}
                 {...test}
                 title={item.title}
                 desciption={`Hạ thuỷ ${item.spec.ship?.launch} - Tàu vỏ ${item.spec.ship?.shell} - ${item.spec.ship?.cabin} phòng`}
