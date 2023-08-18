@@ -12,6 +12,8 @@ export const TicketDetail = () => {
   const goTicket = selected[0]
   const backTicket: FaresResponse | undefined = selected[1]
 
+  if (!goTicket) return null
+
   return (
     <div className={[styles['side-bar'], 'flex flex-col'].join(' ')}>
       <div className={styles['side-bar__header']}>
@@ -65,7 +67,7 @@ export const TicketDetail = () => {
                 (backTicket?.TaxAdt || 0)
               ).toLocaleString('it-IT', { style: 'currency', currency: 'VND' })}
             </label>
-            {goTicket.Chd && (
+            {goTicket.Chd > 0 && (
               <>
                 <p className="sm">Trẻ em</p>
                 <label className="sm">
