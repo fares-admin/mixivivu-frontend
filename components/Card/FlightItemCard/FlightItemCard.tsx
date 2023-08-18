@@ -1,18 +1,39 @@
 import { Button, ChevronDownIcon, Collapse, ImageFill } from '@/components'
+import { getAirlineByCode, getAirportByCode, getHourAndMin } from '@/constants/commonValue'
+
+import { FlightStoreSelector } from '@/redux/flight-store'
 import { useState } from 'react'
+import { useSelector } from 'react-redux'
 import styles from './FlightItemCard.module.css'
 
 interface FlightItemCardProps {
   isSelected?: boolean
   handleSelect: () => void
+  FareDataId: number
 }
 
-export const FlightItemCard = ({ isSelected = false, handleSelect }: FlightItemCardProps) => {
+export const FlightItemCard = ({
+  isSelected = false,
+  handleSelect,
+  FareDataId,
+}: FlightItemCardProps) => {
   const [isCollapse, setIsCollapse] = useState(true)
 
   const handleCollapse = () => {
     setIsCollapse(!isCollapse)
   }
+
+  const { data } = useSelector(FlightStoreSelector)
+
+  const detail = data?.ListFareData.find((item) => item.FareDataId === FareDataId)
+
+  if (!detail) return null
+
+  const airline = getAirlineByCode(detail.Airline)
+
+  const startPoint = getAirportByCode(detail.ListFlight[0].StartPoint)
+
+  const endPoint = getAirportByCode(detail.ListFlight[0].EndPoint)
 
   return (
     <Collapse
@@ -27,22 +48,28 @@ export const FlightItemCard = ({ isSelected = false, handleSelect }: FlightItemC
           onClick={handleCollapse}
         >
           <div className={styles['img-wrapper']}>
-            <ImageFill src="/card-image.png" />
+            <ImageFill src={airline.icon} />
           </div>
           <div className="flex flex-col gap-8 flex-grow">
-            <label className="sm">VN116</label>
-            <p className="sm">Vietnam Airlines</p>
+            <label className="sm">{detail.ListFlight[0].FlightNumber}</label>
+            <p className="sm">{airline.name}</p>
           </div>
           <div className={styles.destination}>
-            <label className="sm">08:40</label>
-            <p className="sm">Hồ Chí Minh (SGN)</p>
+            <label className="sm">{getHourAndMin(detail.ListFlight[0].StartDate)}</label>
+            <p className="sm">
+              {startPoint.name} ({startPoint.code})
+            </p>
           </div>
           <div className={styles.destination}>
-            <label className="sm">08:40</label>
-            <p className="sm">Hồ Chí Minh (SGN)</p>
+            <label className="sm">{getHourAndMin(detail.ListFlight[0].EndDate)}</label>
+            <p className="sm">
+              {endPoint.name} ({endPoint.code})
+            </p>
           </div>
           <div className={styles.price}>
-            <label className="sm">1,352,200</label>
+            <label className="sm">
+              {detail.TotalPrice.toLocaleString('it-IT', { style: 'currency', currency: 'VND' })}
+            </label>
             <p className="sm">VND</p>
           </div>
           <Button
@@ -68,23 +95,29 @@ export const FlightItemCard = ({ isSelected = false, handleSelect }: FlightItemC
             </div>
             <div className="flex flex-col gap-12">
               <div className="flex gap-8 align-center">
-                <label className="sm">07:20</label>
+                <label className="sm">{getHourAndMin(detail.ListFlight[0].StartDate)}</label>
                 <div className={styles.dot} />
-                <label className="sm">Cảng hàng không quốc tế Tân Sơn Nhất (SGN)</label>
+                <label className="sm">
+                  {startPoint.airport} ({startPoint.code})
+                </label>
               </div>
-              <p className="sm">Thời gian chuyến đi: 55 phút</p>
+              <p className="sm">Thời gian chuyến đi: {detail.ListFlight[0].Duration} phút</p>
               <div className="flex gap-8 align-center">
-                <label className="sm">07:20</label>
+                <label className="sm">{getHourAndMin(detail.ListFlight[0].EndDate)}</label>
                 <div className={styles.dot} />
-                <label className="sm">Cảng hàng không quốc tế Nội Bài (HAN)</label>
+                <label className="sm">
+                  {endPoint.airport} ({endPoint.code})
+                </label>
               </div>
             </div>
           </div>
           <div className="flex flex-col gap-8">
-            <p className="sm">Chuyến bay: VN116</p>
-            <p className="sm">Hạng chỗ: A1_ECO</p>
-            <p className="sm">Máy bay: A321</p>
-            <p className="sm">Hành lý xách tay: 7kg</p>
+            <p className="sm">Chuyến bay: {detail.ListFlight[0].FlightNumber}</p>
+            <p className="sm">Hạng chỗ: {detail.ListFlight[0].FareClass}</p>
+            <p className="sm">Máy bay: A{detail.ListFlight[0].ListSegment[0].Plane}</p>
+            <p className="sm">
+              Hành lý xách tay: {detail.ListFlight[0].ListSegment[0].HandBaggage}
+            </p>
             <p className="sm">Hành lý ký gửi: Vui lòng chọn ở bước tiếp theo</p>
           </div>
         </div>

@@ -1,8 +1,11 @@
-import React, { ReactNode, useState } from 'react'
-import DatePicker from 'react-datepicker'
-import { Button, ChevronLeftIcon, ChevronRightIcon } from '@/components'
 import 'react-datepicker/dist/react-datepicker.css'
+
+import { Button, ChevronLeftIcon, ChevronRightIcon } from '@/components'
+import { ReactNode, useEffect, useState } from 'react'
+
+import { getFormatDate } from '@/constants/commonValue'
 import { WEEKDAYS } from '@/constants/dateTime'
+import DatePicker from 'react-datepicker'
 import styles from './DatePicker.module.css'
 
 interface ReactDatePickerCustomHeaderProps {
@@ -17,10 +20,17 @@ interface ReactDatePickerCustomHeaderProps {
 
 interface MixiDatePickerProps {
   customInput: ReactNode
+  onChangDate?: (value: string) => void
 }
 
-export const MixiDatePicker = ({ customInput }: MixiDatePickerProps) => {
+export const MixiDatePicker = ({ customInput, onChangDate }: MixiDatePickerProps) => {
   const [selectedDate, setSelectedDate] = useState<Date | null>(new Date())
+
+  useEffect(() => {
+    if (selectedDate && onChangDate) {
+      onChangDate(getFormatDate(selectedDate))
+    }
+  }, [selectedDate])
 
   const renderCustomHeader = ({
     monthDate,

@@ -20,3 +20,99 @@
   width: 100%;
   border-top: 1px solid var(--gray-200, #eaecf0);
 }
+
+.selectInput {
+  position: relative;
+}
+
+.dropdownPeople {
+  min-width: 250px;
+  padding: 10px;
+  width: fit-content;
+  position: absolute;
+  inset: 0px auto auto 0px;
+  top: 20px;
+  display: flex;
+  gap: 20px;
+  flex-direction: column;
+  align-items: flex-start;
+  align-self: stretch;
+  border-radius: 8px;
+  border: 1px solid var(--gray-100, #f2f4f7);
+  background: var(--base-white, #fff);
+  box-shadow: 0px 8px 8px -4px rgba(16, 24, 40, 0.03), 0px 20px 24px -4px rgba(16, 24, 40, 0.08);
+  z-index: 1;
+}
+
+.dropdown {
+  min-width: 500px;
+  width: fit-content;
+  padding-top: 10px;
+  position: absolute;
+  inset: 0px auto auto 0px;
+  transform: translate3d(0px, 70px, 0px);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  align-self: stretch;
+  border-radius: 8px;
+  border: 1px solid var(--gray-100, #f2f4f7);
+  background: var(--base-white, #fff);
+  box-shadow: 0px 8px 8px -4px rgba(16, 24, 40, 0.03), 0px 20px 24px -4px rgba(16, 24, 40, 0.08);
+  z-index: 1;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.dropdown a {
+  width: 100%;
+}
+
+.dropdown-item {
+  width: 100%;
+  padding: 15px 30px;
+  cursor: pointer;
+}
+
+.dropdown-item:hover {
+  width: 100%;
+  background: var(--gray-50, #f9fafb);
+}
+
+.selectInput .dropdown {
+  min-width: 300px;
+}
+
+@media (max-width: 1024px) {
+  .searchBox {
+    width: 95%;
+    padding: 16px;
+    gap: 16px;
+  }
+
+  .title {
+    font-size: 24px;
+  }
+
+  .description {
+    font-size: 16px;
+  }
+
+  .input-group {
+    flex-direction: column;
+    gap: 8;
+  }
+
+  .selectInput {
+    width: 100%;
+  }
+
+  .dropdown {
+    min-width: 0;
+    width: 100%;
+  }
+
+  .submit-btn {
+    width: 100%;
+  }
+}
