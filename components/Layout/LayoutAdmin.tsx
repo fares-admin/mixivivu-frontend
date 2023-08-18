@@ -54,8 +54,8 @@ export const LayoutAdmin = ({ children }: { children: ReactNode }) => {
   useEffect(() => {
     if (cookies.token) {
       const tokenInfo = decode(cookies.token.split(' ')[1]) as any
-      if (tokenInfo.userId) {
-        setUserId(tokenInfo.userId)
+      if (tokenInfo?.userId) {
+        setUserId(tokenInfo?.userId)
       }
     }
   }, [cookies])

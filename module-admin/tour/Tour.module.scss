@@ -1,0 +1,16 @@
+.wrapper {
+  width: 100%;
+}
+.container {
+  padding: 0 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.search-input {
+  > label {
+    padding: 8px 14px;
+    width: 235px;
+  }
+}

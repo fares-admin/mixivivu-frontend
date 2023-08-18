@@ -3,13 +3,14 @@ import styles from './Checkbox.module.css'
 import { CheckIcon } from '../SVGIcon'
 
 interface CheckboxProps extends InputHTMLAttributes<HTMLInputElement> {
-  sizeInput: 'sm' | 'md'
+  sizeInput?: 'sm' | 'md'
   type: 'checkbox' | 'radio'
   text?: string
   supportText?: string
   disabled?: boolean
   checked?: boolean
   checkboxOnly?: boolean
+  customClass?: string
   onChange?: (e: any) => void
 }
 
@@ -18,12 +19,13 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
     {
       checked,
       type,
-      sizeInput,
+      sizeInput = 'sm',
       text,
       supportText,
       disabled,
       checkboxOnly = false,
       onChange = () => {},
+      customClass,
       ...props
     },
     ref
@@ -40,7 +42,7 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
       onChange(e)
     }
     return (
-      <label htmlFor={id} className={styles.container}>
+      <label htmlFor={id} className={[customClass, styles.container].join(' ')}>
         <input
           ref={ref}
           disabled={disabled}

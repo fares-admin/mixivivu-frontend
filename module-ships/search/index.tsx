@@ -13,6 +13,7 @@ import { CategoryRes } from '@/types/category'
 import qs from 'qs'
 import styles from './SearchPageDetail.module.scss'
 import { Header } from './components/Header'
+import Link from 'next/link'
 
 const test = {
   url: '/card-image.png',
@@ -117,18 +118,21 @@ const SearchPageDetail: NextPageWithLayout = () => {
                 {shipList.length > 0 ? (
                   <>
                     {shipList.map((item, index) => (
-                      <ProductCard
-                        slug={item.slug}
-                        type="list"
-                        {...test}
-                        title={item.title}
-                        desciption={`Hạ thuỷ ${item.spec.ship?.launch} - Tàu vỏ ${item.spec.ship?.shell} - ${item.spec.ship?.cabin} phòng`}
-                        location={getCategory(item.category)}
-                        originalPrice={item.defaultPrice}
-                        rating={item.scoreReview}
-                        ratingCount={item.numReviews}
-                        key={index}
-                      />
+                      <Link href={`/du-thuyen/${item.slug}`}>
+                        <a>
+                          <ProductCard
+                            type="list"
+                            {...test}
+                            title={item.title}
+                            desciption={`Hạ thuỷ ${item.spec.ship?.launch} - Tàu vỏ ${item.spec.ship?.shell} - ${item.spec.ship?.cabin} phòng`}
+                            location={getCategory(item.category)}
+                            originalPrice={item.defaultPrice}
+                            rating={item.scoreReview}
+                            ratingCount={item.numReviews}
+                            key={index}
+                          />
+                        </a>
+                      </Link>
                     ))}
                     <Pagination
                       totalCount={totalShips}
