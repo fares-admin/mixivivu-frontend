@@ -7,12 +7,13 @@ import {
   PartnerSection,
   Steps,
 } from '@/components'
-import styles from './Payment.module.scss'
-import { steps } from '@/constants/config'
 import { CustomerInfo, PackageDetail, QrPayment, TicketDetail } from '@/module-flights/payment'
+
 import { InfoModal } from '@/components/Modal/InfoModal'
+import { steps } from '@/constants/config'
 import Image from 'next/image'
 import { useState } from 'react'
+import styles from './Payment.module.scss'
 import { BookingSuccessModal } from './components/BookingSuccessModal'
 
 export const Payment = () => {
@@ -39,7 +40,7 @@ export const Payment = () => {
             date="Thứ 3, 18/02/2023"
             content={
               <div style={{ padding: '16px 24px' }}>
-                <FlightItemCard isSelected handleSelect={() => {}} />
+                <FlightItemCard FareDataId={0} isSelected handleSelect={() => {}} />
               </div>
             }
           />
@@ -50,7 +51,7 @@ export const Payment = () => {
             date="Thứ 3, 18/02/2023"
             content={
               <div style={{ padding: '16px 24px' }}>
-                <FlightItemCard isSelected handleSelect={() => {}} />
+                <FlightItemCard FareDataId={0} isSelected handleSelect={() => {}} />
               </div>
             }
           />

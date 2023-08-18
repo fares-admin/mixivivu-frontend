@@ -37,6 +37,13 @@ export const categoryEndpoints: EndPointObject = {
   },
 }
 
+export const flightEndpoints: EndPointObject = {
+  baseUrl: '/api/plane-ticket-fe',
+  child: {
+    search: '/search-flight',
+  },
+}
+
 export const getEndpoint = (
   endpointObject: EndPointObject,
   target: keyof typeof endpointObject.child

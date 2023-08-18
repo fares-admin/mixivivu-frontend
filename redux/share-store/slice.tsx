@@ -23,7 +23,7 @@ const ShareStoreSlice = createSlice({
   name: 'share_store',
   initialState,
   reducers: {
-    setLoading: (state, actions: PayloadAction<boolean>) => {
+    setLoadingGlobal: (state, actions: PayloadAction<boolean>) => {
       if (actions.payload) {
         return { ...state, loading: state.loading + 1 }
       }
@@ -41,7 +41,7 @@ const ShareStoreSlice = createSlice({
     setBreakPoint: (state, actions: PayloadAction<number>) => {
       state.breakPoint = actions.payload
     },
-    resetLoading: (state) => {
+    resetLoadingGlobal: (state) => {
       return { ...state, loading: 0 }
     },
     resetShareStore: () => initialState,
@@ -50,10 +50,10 @@ const ShareStoreSlice = createSlice({
 
 export const {
   resetShareStore,
-  setLoading,
+  setLoadingGlobal,
   setLanguage,
   setBreakPoint,
-  resetLoading,
+  resetLoadingGlobal,
   setUserInfo,
 } = ShareStoreSlice.actions
 

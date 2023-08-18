@@ -39,3 +39,4 @@ build-storybook.log
 /storybook-static
 yarn.lock
 package-lock.json
+*.env

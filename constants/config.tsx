@@ -1,4 +1,5 @@
 import { StepItemProps } from '@/components'
+import { airlines } from './commonValue'
 import { ProductProps } from './type'
 
 export const productList: ProductProps[] = [
@@ -276,54 +277,35 @@ export const overviews = [
 
 export const flightFilterList = [
   {
-    label: 'Theo chuyến bay',
-    items: [
-      {
-        label: 'Giá',
-        value: 5,
-      },
-      {
-        label: 'Giờ khởi hành',
-        value: 4,
-      },
-      {
-        label: 'Giờ hạ cánh',
-        value: 3,
-      },
-      {
-        label: 'Thời gian bay',
-        value: 2,
-      },
-    ],
-  },
-  {
     label: 'Hiển thị theo',
     items: [
       {
-        label: 'Vé cơ bản',
-        value: 'freeWifi',
+        label: 'Tất cả',
+        value: '',
       },
-      {
-        label: 'Vé báo gồm thuế và phí',
-        value: 'freeWifi',
-      },
+      ...airlines.map((item) => {
+        return {
+          label: item.name,
+          value: item.code,
+        }
+      }),
     ],
   },
 ]
 export const steps: StepItemProps[] = [
   {
-    status: 'done',
-    title: 'Your details',
-    description: 'Please provide your name and email',
-  },
-  {
     status: 'inprogress',
-    title: 'Your details',
-    description: 'Please provide your name and email',
+    title: 'Chọn chuyến bay',
+    description: 'Vui lòng chọn chuyến bay',
   },
   {
     status: 'incomplete',
-    title: 'Your details',
-    description: 'Please provide your name and email',
+    title: 'Đặt chỗ',
+    description: 'Điền thông tin để đặt chỗ',
+  },
+  {
+    status: 'incomplete',
+    title: 'Thanh toán',
+    description: 'Thanh toán để nhận vé máy bay',
   },
 ]

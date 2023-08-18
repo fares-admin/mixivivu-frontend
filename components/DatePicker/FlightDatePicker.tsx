@@ -1,7 +1,9 @@
-import { MixiDatePicker } from './DatePicker'
-import React, { forwardRef } from 'react'
-import { CalendarIcon, Input } from '@/components'
 import 'react-datepicker/dist/react-datepicker.css'
+
+import { CalendarIcon, Input } from '@/components'
+
+import { forwardRef } from 'react'
+import { MixiDatePicker } from './DatePicker'
 import styles from './DatePicker.module.css'
 
 interface CustomInputProps {
@@ -25,6 +27,12 @@ const CustomInput = forwardRef<HTMLInputElement, CustomInputProps>(
   }
 )
 
-export const FlightDatePicker = ({ label }: { label: string }) => {
-  return <MixiDatePicker customInput={<CustomInput label={label} />} />
+export const FlightDatePicker = ({
+  label,
+  onChangDate,
+}: {
+  label: string
+  onChangDate?: (value: string) => void
+}) => {
+  return <MixiDatePicker onChangDate={onChangDate} customInput={<CustomInput label={label} />} />
 }

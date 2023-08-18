@@ -1,14 +1,18 @@
+import { useEffect, useState } from 'react'
+
 import { COOKIE_TOKEN_KEY } from '@/constants/commonValue'
+import { setLoadingGlobal } from '@/redux/share-store'
 import { CommonResponseType } from '@/types'
 import { AxiosResponse } from 'axios'
 import { useRouter } from 'next/router'
-import { useEffect, useState } from 'react'
 import { useCookies } from 'react-cookie'
+import { useDispatch } from 'react-redux'
 
 export const useApiCall = <T, E>({
   callApi,
   handleError,
   handleSuccess,
+  preventLoadingGlobal,
 }: {
   callApi: () => Promise<AxiosResponse<any, any>>
   handleError?: (status: number, message: string) => void
@@ -23,6 +27,8 @@ export const useApiCall = <T, E>({
   const router = useRouter()
 
   const [, , removeCookie] = useCookies([COOKIE_TOKEN_KEY])
+
+  const dispatch = useDispatch()
 
   const getData = async () => {
     try {
@@ -53,6 +59,7 @@ export const useApiCall = <T, E>({
     } finally {
       setLoading(false)
       setLetCall(false)
+      dispatch(setLoadingGlobal(false))
     }
   }
 
@@ -60,6 +67,7 @@ export const useApiCall = <T, E>({
     if (letCall) {
       setLoading(true)
       getData()
+      if (!preventLoadingGlobal) dispatch(setLoadingGlobal(true))
     }
   }, [letCall])
 
