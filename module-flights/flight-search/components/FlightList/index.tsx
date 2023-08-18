@@ -48,10 +48,18 @@ export const FlightList = ({
   const backRoute = getAirportByCode(req ? req.ListFlight[0].EndPoint : '')
 
   const goData =
-    data?.ListFareData.filter((item) => item.ListFlight[0].StartPoint === goRoute.code) || []
+    data?.ListFareData.filter(
+      (item) =>
+        item.ListFlight[0].StartPoint === goRoute.code &&
+        item.ListFlight[0].ListSegment.length === 1
+    ) || []
 
   const backData =
-    data?.ListFareData.filter((item) => item.ListFlight[0].StartPoint === backRoute.code) || []
+    data?.ListFareData.filter(
+      (item) =>
+        item.ListFlight[0].StartPoint === backRoute.code &&
+        item.ListFlight[0].ListSegment.length === 1
+    ) || []
 
   return (
     <>
@@ -95,7 +103,7 @@ export const FlightList = ({
                 </div>
               </>
             )}
-            {loading === 0 && (
+            {loading === 0 && departureFlight === null && (
               <Pagination
                 pageSize={goSize}
                 onPageChange={setGoPage}
@@ -144,7 +152,7 @@ export const FlightList = ({
                         />
                       ))}
                   </div>
-                  {loading === 0 && (
+                  {loading === 0 && returnFlight === null && (
                     <Pagination
                       pageSize={backSize}
                       onPageChange={setBackPage}

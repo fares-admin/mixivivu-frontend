@@ -1,24 +1,24 @@
 import { AuthReq, FLIGHT_API_URL } from './constants'
+import { GetBaggageRes } from './flight-types'
 
 import { CommonResponseType } from '@/types'
 import axios from 'axios'
 import { NextApiRequest } from 'next'
 import { flightEndpoints } from './endpoints'
-import { SearchFlightResponse } from './flight-types'
 
-export const searchFlight = async (
+export const getBaggage = async (
   req: NextApiRequest
-): Promise<CommonResponseType<SearchFlightResponse | string>> => {
+): Promise<CommonResponseType<GetBaggageRes | string>> => {
   if (req.headers.host?.includes(String(process.env.ACCESS_API_HOST))) {
     try {
-      const getFlights = await axios.post(`${FLIGHT_API_URL}${flightEndpoints.searchFlight}`, {
+      const getBaggages = await axios.post(`${FLIGHT_API_URL}${flightEndpoints.getBaggage}`, {
         ...req.body,
         ...AuthReq(),
       })
-      const result: CommonResponseType<SearchFlightResponse> = {
+      const result: CommonResponseType<GetBaggageRes> = {
         status: 200,
         success: true,
-        result: getFlights.data,
+        result: getBaggages.data,
         message: 'ok',
       }
       return result

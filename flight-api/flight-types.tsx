@@ -129,3 +129,41 @@ export interface SearchFlightResponse {
   Message: string
   Langguage: string
 }
+
+export interface FaresBaggageReq {
+  Session: string
+  FareDataId: number
+  ListFlight: [
+    {
+      FlightValue: string
+    }
+  ]
+}
+export interface GetBaggageRequest {
+  ListFareData: FaresBaggageReq[]
+}
+
+export interface BaggageResItem {
+  Airline: string
+  Value: string
+  Code: string
+  Name: string
+  Price: number
+  Currency: string
+  Leg: number
+  Route: string
+  StartPoint: string
+  EndPoint: string
+  StatusCode: string
+  Confirmed: boolean
+}
+
+export interface GetBaggageRes {
+  ListBaggage: BaggageResItem[]
+  Status: boolean
+  ErrorCode: string
+  ErrorValue: string
+  ErrorField: string
+  Message: string
+  Language: string
+}
