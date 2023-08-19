@@ -20,6 +20,7 @@ export const productEndpoints: EndPointObject = {
   baseUrl: '/api/products',
   child: {
     getList: '/get-list',
+    addNew: '/add-new',
   },
 }
 
@@ -41,6 +42,36 @@ export const flightEndpoints: EndPointObject = {
   baseUrl: '/api/plane-ticket-fe',
   child: {
     search: '/search-flight',
+  },
+}
+
+export const reviewEndpoints: EndPointObject = {
+  baseUrl: '/api/reviews',
+  child: {
+    getList: '/get-list',
+    addNew: '/add-new',
+    approve: '/approve',
+    delete: '/delete-review',
+  },
+}
+
+export const roomEndpoints: EndPointObject = {
+  baseUrl: '/api/rooms',
+  child: {
+    getList: '/get-list',
+    addNew: '/add-new',
+    update: '/update-room',
+    delete: '/delete-room',
+  },
+}
+
+export const imageEndpoints: EndPointObject = {
+  baseUrl: '/api/images',
+  child: {
+    getList: '/get-list',
+    addNew: '/add-new',
+    update: '/update-image',
+    delete: '/delete-image',
   },
 }
 

@@ -1,12 +1,24 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import { createReactEditorJS } from 'react-editor-js'
 import { EDITOR_JS_TOOLS } from '@/constants/editorJsTool'
+import React from 'react'
 
 const ReactEditorJS = createReactEditorJS()
 
-export const Editor = () => {
+export const Editor = ({ onChange }: { onChange: (data) => void }) => {
+  const editorCore = React.useRef(null)
+
+  const handleInitialize = React.useCallback((instance) => {
+    editorCore.current = instance
+  }, [])
+
   return (
     <ReactEditorJS
+      onInitialize={handleInitialize}
+      onChange={async () => {
+        const savedData = await editorCore?.current?.save()
+        onChange(savedData)
+      }}
       tools={EDITOR_JS_TOOLS}
       defaultValue={{
         time: 1635603431943,

@@ -116,6 +116,10 @@ export const SearchBox = ({ title, description, categories = [], className }: Se
     },
     [categories]
   )
+
+  const getPrice = useCallback((greater_defaultPrice: string | string[] | undefined) => {
+    return priceRange.find((item) => item?.min?.toString() === greater_defaultPrice)
+  }, [])
   const handleSelectCategory = (category: CategoryRes | null) => {
     setSelectedCategory(category)
     setShowCategory(false)
@@ -138,7 +142,8 @@ export const SearchBox = ({ title, description, categories = [], className }: Se
   useEffect(() => {
     if (!router.isReady) return
     setSelectedCategory(getCategory(router.query.category))
-  }, [getCategory, router.query, router.isReady])
+    setSelectedPriceRange(getPrice(router.query.greater_defaultPrice))
+  }, [getCategory, router.query, router.isReady, getPrice])
 
   return (
     <Card

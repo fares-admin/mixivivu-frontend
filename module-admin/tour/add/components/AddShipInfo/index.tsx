@@ -10,7 +10,7 @@ export const AddShipInfo = () => {
       </div>
       <div className={styles['card-content']}>
         <div className="flex flex-col gap-16">
-          <Field name="name">
+          <Field name="spec.ship.launch">
             {({ field, meta }: any) => (
               <div>
                 <Input {...field} label="Hạ thuỷ" placeHolder="Nhập hạ thuỷ" />
@@ -18,7 +18,7 @@ export const AddShipInfo = () => {
               </div>
             )}
           </Field>
-          <Field name="name">
+          <Field name="spec.ship.shell">
             {({ field, meta }: any) => (
               <div>
                 <Input {...field} label="Thân vỏ" placeHolder="Nhập thân vỏ" />
@@ -26,7 +26,7 @@ export const AddShipInfo = () => {
               </div>
             )}
           </Field>
-          <Field name="name">
+          <Field name="spec.ship.cabin">
             {({ field, meta }: any) => (
               <div>
                 <Input {...field} label="Cabin" placeHolder="Nhập cabin" />
@@ -34,7 +34,7 @@ export const AddShipInfo = () => {
               </div>
             )}
           </Field>
-          <Field name="name">
+          <Field name="spec.ship.trip">
             {({ field, meta }: any) => (
               <div>
                 <Input {...field} label="Hành trình" placeHolder="Nhập hành trình" />
@@ -42,7 +42,7 @@ export const AddShipInfo = () => {
               </div>
             )}
           </Field>
-          <Field name="name">
+          <Field name="spec.ship.admin">
             {({ field, meta }: any) => (
               <div>
                 <Input {...field} label="Điều hành" placeHolder="Nhập điều hành" />

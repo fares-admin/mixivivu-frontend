@@ -1,8 +1,61 @@
-import { Button, Card, Input, UploadCloudIcon } from '@/components'
+/* eslint-disable import/no-extraneous-dependencies */
+import {
+  Button,
+  Card,
+  ChevronDownIcon,
+  ImageFill,
+  Input,
+  MapPinAltIcon,
+  UploadCloudIcon,
+  XMarkIcon,
+} from '@/components'
 import { Field } from 'formik'
+import { useApiCall } from '@/hooks'
+import { CommonListResultType } from '@/types'
+import axios from 'axios'
+import { categoryEndpoints, getEndpoint } from '@/constants/endpoints'
+import { CategoryRes } from '@/types/category'
+import { Dispatch, SetStateAction, useEffect, useState } from 'react'
+import { Dropdown } from '@/components/Dropdown'
+import ImageUploading, { ImageListType } from 'react-images-uploading'
 import styles from '../../AddTour.module.scss'
 
-export const AddTourInfo = () => {
+interface AddTourInfoProps {
+  selectedCategory: CategoryRes
+  setSelectedCategory: Dispatch<SetStateAction<CategoryRes>>
+  tourImages: ImageListType
+  setTourImages: Dispatch<SetStateAction<ImageListType>>
+}
+export const AddTourInfo = ({
+  selectedCategory,
+  setSelectedCategory,
+  tourImages,
+  setTourImages,
+}: AddTourInfoProps) => {
+  const [categories, setCategories] = useState<CategoryRes[]>([])
+  const [showCategory, setShowCategory] = useState(false)
+  const { setLetCall: fetchCategories } = useApiCall<CommonListResultType<CategoryRes>, string>({
+    callApi: () => axios.get(getEndpoint(categoryEndpoints, 'getList')),
+    handleSuccess: (message, data) => {
+      if (message) {
+        setCategories(data.data)
+      }
+    },
+  })
+
+  useEffect(() => {
+    fetchCategories(true)
+  }, [fetchCategories])
+
+  const handleSelectCategory = (category: CategoryRes | null) => {
+    setSelectedCategory(category)
+    setShowCategory(false)
+  }
+  const onChange = (imageList: ImageListType) => {
+    // data for submit
+    setTourImages(imageList as never[])
+  }
+
   return (
     <Card>
       <div className={styles['card-header']}>
@@ -11,7 +64,7 @@ export const AddTourInfo = () => {
       <div className={styles['card-content']}>
         <div className="flex flex-col gap-16">
           <div className="grid grid-cols-2 gap-16">
-            <Field name="name">
+            <Field name="title">
               {({ field, meta }: any) => (
                 <div>
                   <Input {...field} label="Tên tour" placeHolder="Nhập tên tour" />
@@ -27,23 +80,91 @@ export const AddTourInfo = () => {
                 </div>
               )}
             </Field>
-          </div>
-          <div className="grid grid-cols-2 gap-16">
-            <Input label="Giá tour" placeHolder="Nhập giá tour" />
-            <Input label="Giá khuyến mãi" placeHolder="Nhập giá khuyến mãi" />
+            <Field name="defaultPrice">
+              {({ field, meta }: any) => (
+                <div>
+                  <Input {...field} label="Giá tour" placeHolder="Nhập giá tour" />
+                  {meta.touched && meta.error && <div className="error">{meta.error}</div>}
+                </div>
+              )}
+            </Field>
+            <Field name="schedule">
+              {({ field, meta }: any) => (
+                <div>
+                  <Input {...field} label="Lịch trình" placeHolder="Nhập lịch trình" />
+                  {meta.touched && meta.error && <div className="error">{meta.error}</div>}
+                </div>
+              )}
+            </Field>
+            <Field name="address">
+              {({ field, meta }: any) => (
+                <div>
+                  <Input {...field} label="Địa chỉ" placeHolder="Nhập địa chỉ" />
+                  {meta.touched && meta.error && <div className="error">{meta.error}</div>}
+                </div>
+              )}
+            </Field>
+
+            <div className="relative">
+              <Input
+                type="button"
+                iconSwap={<MapPinAltIcon />}
+                supportIcon={<ChevronDownIcon />}
+                value={selectedCategory?.name}
+                onClick={() => setShowCategory(true)}
+              />
+              {showCategory && (
+                <Dropdown>
+                  {categories.map((item, index) => (
+                    <div
+                      className={styles['dropdown-item']}
+                      key={index}
+                      onClick={() => handleSelectCategory(item)}
+                    >
+                      {item.name}
+                    </div>
+                  ))}
+                </Dropdown>
+              )}
+            </div>
           </div>
         </div>
       </div>
       <div className={styles['card-footer']}>
         <div className="flex flex-col gap-24">
           <label className="lg">Ảnh chi tiết tour</label>
-          <div className={styles['upload-images']}>
-            <UploadCloudIcon />
-            <div className="flex flex-col gap-4 align-center">
-              <Button label="Nhấp hoặc Thả ảnh" size="sm" typeStyle="link-color" />
-              <p className="sm">PNG, JPG</p>
-            </div>
-          </div>
+          <ImageUploading
+            multiple
+            value={tourImages}
+            onChange={onChange}
+            maxNumber={3}
+            dataURLKey="data_url"
+          >
+            {({ imageList, onImageUpload, onImageRemove, dragProps }) => (
+              <>
+                <div className={styles['upload-images']} onClick={onImageUpload} {...dragProps}>
+                  <UploadCloudIcon />
+                  <div className="flex flex-col gap-4 align-center">
+                    <Button label="Nhấp hoặc Thả ảnh" size="sm" typeStyle="link-color" />
+                    <p className="sm">PNG, JPG</p>
+                  </div>
+                </div>
+                <div className="flex gap-16">
+                  {imageList.map((image, index) => (
+                    <div key={index} className={styles['image-item']}>
+                      <div
+                        onClick={() => onImageRemove(index)}
+                        className={styles['remove-image-btn']}
+                      >
+                        <XMarkIcon width="12" height="12" />
+                      </div>
+                      <ImageFill src={image.data_url} width="100%" height="100%" />
+                    </div>
+                  ))}
+                </div>
+              </>
+            )}
+          </ImageUploading>
         </div>
       </div>
     </Card>

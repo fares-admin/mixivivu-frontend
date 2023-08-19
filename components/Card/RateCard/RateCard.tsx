@@ -1,14 +1,17 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import { StarIcon, Card, Button, ThumbsUpIcon, TrashIcon } from '@/components'
+import moment from 'moment'
 import styles from './RateCard.module.css'
 
 interface RateCardProps {
   name: string
   comment: string
-  date: string
+  date: Date | string
   isAdmin?: boolean
 }
 
 export const RateCard = ({ name, comment, date, isAdmin = false }: RateCardProps) => {
+  const formatDate = 'DD/MM/yyyy'
   return (
     <Card customClass={styles.rateCard}>
       <div>
@@ -31,13 +34,13 @@ export const RateCard = ({ name, comment, date, isAdmin = false }: RateCardProps
             destructive
           />
           <div className={styles.dot} />
-          <p className={`${styles.date} sm`}>{date}</p>
+          <p className={`${styles.date} sm`}>{moment(date).format(formatDate)}</p>
         </div>
       ) : (
         <div className={styles.action}>
           <Button iconLeading={<ThumbsUpIcon />} label="Hữu ích" typeStyle="link-color" size="sm" />
           <div className={styles.dot} />
-          <p className={`${styles.date} sm`}>{date}</p>
+          <p className={`${styles.date} sm`}>{moment(date).format(formatDate)}</p>
         </div>
       )}
     </Card>

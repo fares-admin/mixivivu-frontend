@@ -7,13 +7,19 @@ import { useApiCall } from '@/hooks'
 import { ProductRes } from '@/types/product'
 import { CommonListResultType } from '@/types'
 import axios from 'axios'
-import { categoryEndpoints, getEndpoint, productEndpoints } from '@/constants/endpoints'
+import {
+  categoryEndpoints,
+  getEndpoint,
+  productEndpoints,
+  featureEndpoints,
+} from '@/constants/endpoints'
 import { useRouter } from 'next/router'
 import { CategoryRes } from '@/types/category'
 import qs from 'qs'
 import styles from './SearchPageDetail.module.scss'
 import { Header } from './components/Header'
 import Link from 'next/link'
+import { FeatureRes } from '@/types/feature'
 
 const test = {
   url: '/card-image.png',
@@ -32,6 +38,7 @@ const SearchPageDetail: NextPageWithLayout = () => {
   const [pageSize, setPageSize] = useState(5)
   const [totalShips, setTotalShips] = useState(0)
   const [currentPage, setCurrentPage] = useState(1)
+  const [features, setFeatures] = useState<FeatureRes[]>([])
   const [filter, setFilter] = useState<IFilter>({
     features: [],
     scoreReview: [],
@@ -39,12 +46,7 @@ const SearchPageDetail: NextPageWithLayout = () => {
   })
   const router = useRouter()
   const { setLetCall: fetchCategories } = useApiCall<CommonListResultType<CategoryRes>, string>({
-    callApi: () =>
-      axios.get(getEndpoint(categoryEndpoints, 'getList'), {
-        params: {
-          slug: router.query.slug,
-        },
-      }),
+    callApi: () => axios.get(getEndpoint(categoryEndpoints, 'getList')),
     handleSuccess: (message, data) => {
       if (message) {
         setCategories(data.data)
@@ -75,6 +77,18 @@ const SearchPageDetail: NextPageWithLayout = () => {
       }
     },
   })
+  const { setLetCall: fetchFeatures } = useApiCall<CommonListResultType<FeatureRes>, string>({
+    callApi: () => axios.get(getEndpoint(featureEndpoints, 'getList')),
+    handleSuccess: (message, data) => {
+      if (message) {
+        setFeatures(data.data)
+      }
+    },
+  })
+
+  useEffect(() => {
+    fetchFeatures(true)
+  }, [fetchFeatures])
 
   useEffect(() => {
     fetchCategories(true)
@@ -105,7 +119,7 @@ const SearchPageDetail: NextPageWithLayout = () => {
         />
         <Header totalShips={totalShips} filter={filter} setFilter={setFilter} />
         <div className={`flex gap-32 ${loading ? 'pointer-none' : ''}`}>
-          <Sidebar filter={filter} setFilter={setFilter} />
+          <Sidebar filter={filter} setFilter={setFilter} features={features} />
           <div className={[styles['ship-list'], 'flex flex-col gap-32'].join(' ')}>
             {loading ? (
               <>
@@ -123,6 +137,9 @@ const SearchPageDetail: NextPageWithLayout = () => {
                           <ProductCard
                             type="list"
                             {...test}
+                            tags={features
+                              .filter((feature) => item.features.includes(feature._id))
+                              .map((item) => item.text)}
                             title={item.title}
                             desciption={`Hạ thuỷ ${item.spec.ship?.launch} - Tàu vỏ ${item.spec.ship?.shell} - ${item.spec.ship?.cabin} phòng`}
                             location={getCategory(item.category)}

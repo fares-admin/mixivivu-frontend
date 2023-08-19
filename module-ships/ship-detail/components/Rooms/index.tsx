@@ -6,19 +6,42 @@ import {
   SectionHeader,
   XMarkIcon,
 } from '@/components'
-import { RoomProps } from '@/constants/type'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { InfoModal } from '@/components/Modal/InfoModal'
 import styles from '../../ShipDetail.module.scss'
 import { BookingTourModal } from '../BookingTourModal'
+import { RoomRes } from '@/types/room'
+import { useApiCall } from '@/hooks'
+import axios from 'axios'
+import { getEndpoint, reviewEndpoints } from '@/constants/endpoints'
+import { CommonListResultType } from '@/types'
+import { rooms as room1 } from '@/constants/config'
 
 export interface RoomsProps {
-  rooms: RoomProps[]
+  id: string
 }
 
-export const Rooms = ({ rooms }: RoomsProps) => {
+export const Rooms = ({ id }: RoomsProps) => {
+  const [rooms, setRooms] = useState<RoomRes[]>([])
   const [openModal, setOpenModal] = useState(false)
   const [openSuccessModal, setOpenSuccessModal] = useState(false)
+  const { setLetCall: fetchReviews } = useApiCall<CommonListResultType<RoomRes>, string>({
+    callApi: () =>
+      axios.get(getEndpoint(reviewEndpoints, 'getList'), {
+        params: {
+          productId: id,
+        },
+      }),
+    handleSuccess: (message, data) => {
+      if (message) {
+        setRooms(data.data)
+      }
+    },
+  })
+
+  useEffect(() => {
+    fetchReviews(true)
+  }, [fetchReviews])
 
   return (
     <div id="rooms" className="flex flex-col gap-40">
@@ -35,7 +58,15 @@ export const Rooms = ({ rooms }: RoomsProps) => {
         </div>
         <div className={['flex flex-col gap-16 '].join(' ')}>
           {rooms.map((item, index) => (
-            <RoomCard {...item} key={index} />
+            <RoomCard
+              url="/blog-card.png"
+              title={item.title}
+              price={item.price}
+              roomCount={1}
+              key={index}
+              area={item.size}
+              userPerRoom={item.maxPersons}
+            />
           ))}
         </div>
         <div className="flex align-center gap-40 justify-between">
@@ -58,7 +89,7 @@ export const Rooms = ({ rooms }: RoomsProps) => {
         openModal={openModal}
         setOpenModal={setOpenModal}
         setOpenSuccessModal={setOpenSuccessModal}
-        rooms={rooms}
+        rooms={room1}
       />
       <InfoModal
         open={openSuccessModal}

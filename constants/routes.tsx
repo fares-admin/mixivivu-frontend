@@ -4,5 +4,6 @@ export const Routes = {
     addUser: '/admin/them-tai-khoan',
     detailUser: '/admin/thong-tin-tai-khoan',
     addTour: '/admin/du-thuyen/tao-moi-tour',
+    updateTour: '/admin/du-thuyen/cap-nhat-tour/[slug]',
   },
 }

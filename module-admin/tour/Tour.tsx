@@ -105,7 +105,7 @@ export const Tour = () => {
           ) : (
             <>
               {shipList.map((item, index) => (
-                <Link href={`/admin/du-thuyen/${item.slug}`} key={index}>
+                <Link href={`/admin/du-thuyen/cap-nhat-tour/${item.slug}`} key={index}>
                   <a>
                     <ProductCard
                       type="grid"
