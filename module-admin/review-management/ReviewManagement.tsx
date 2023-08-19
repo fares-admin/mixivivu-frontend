@@ -7,8 +7,14 @@ import {
   TabItemProps,
   Tabs,
 } from '@/components'
+import axios from 'axios'
+import { getEndpoint, reviewEndpoints } from '@/constants/endpoints'
+import { CommonListResultType } from '@/types'
+import { useApiCall } from '@/hooks'
+
 import styles from './ReviewManagement.module.scss'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import { ReviewRes } from '@/types/review'
 
 const tabs: TabItemProps[] = [
   {
@@ -29,6 +35,22 @@ export const ReviewManagement = () => {
   const [pageSize, setPageSize] = useState(5)
   const [total] = useState(10)
   const [currentPage, setCurrentPage] = useState(1)
+  const [reviews, setReviews] = useState<ReviewRes[]>([])
+  // const [searchKey, setSearchKey] = useState('')
+
+  const { setLetCall: fetchReviews } = useApiCall<CommonListResultType<ReviewRes>, string>({
+    callApi: () => axios.get(getEndpoint(reviewEndpoints, 'getList')),
+    handleSuccess: (message, data) => {
+      if (message) {
+        setReviews(data.data)
+      }
+    },
+  })
+
+  useEffect(() => {
+    fetchReviews(true)
+  }, [fetchReviews])
+
   return (
     <div className={styles['reviews-wrapper']}>
       <HeaderAdmin label="Review" />
@@ -43,17 +65,20 @@ export const ReviewManagement = () => {
               iconSwap={<SearchIcon />}
               placeHolder="Tìm kiếm"
               customClass={styles['search-input']}
+              // onChange={(e) => setSearchKey(e.target.value)}
             />
           </div>
           <Tabs tabs={tabs} size="sm" activeKey={1} />
         </div>
         <div className="flex flex-col gap-16">
-          <RateCard
-            name="Nguyễn Anh Tuấn"
-            comment="Tôi đã bị cuốn hút bởi vẻ đẹp kỳ vĩ của các hòn đảo và hang động tại vịnh Hạ Long. Du thuyền sang trọng và dịch vụ tận tâm đã làm cho chuyến đi của tôi trở nên hoàn hảo. Tôi không thể quên những bữa ăn ngon lành trên du thuyền và hoạt động khám phá thú vị như kayak và thăm làng chài truyền thống. Tôi chắc chắn sẽ khuyên bạn bè và gia đình tôi tham gia Tour du lịch Du thuyền Hạ Long."
-            date="22/06/2023"
-            isAdmin
-          />
+          {reviews.map((item) => (
+            <RateCard
+              name="Nguyễn Anh Tuấn"
+              comment="Tôi đã bị cuốn hút bởi vẻ đẹp kỳ vĩ của các hòn đảo và hang động tại vịnh Hạ Long. Du thuyền sang trọng và dịch vụ tận tâm đã làm cho chuyến đi của tôi trở nên hoàn hảo. Tôi không thể quên những bữa ăn ngon lành trên du thuyền và hoạt động khám phá thú vị như kayak và thăm làng chài truyền thống. Tôi chắc chắn sẽ khuyên bạn bè và gia đình tôi tham gia Tour du lịch Du thuyền Hạ Long."
+              date={item.created}
+              isAdmin
+            />
+          ))}
         </div>
         <Pagination
           totalCount={total}

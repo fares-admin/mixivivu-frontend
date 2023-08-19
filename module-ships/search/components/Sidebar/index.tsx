@@ -1,33 +1,15 @@
 import { Button, Checkbox } from '@/components'
 import styles from '../../SearchPageDetail.module.scss'
-import { useEffect, useState } from 'react'
-import { FeatureRes } from '@/types/feature'
-import { CommonListResultType } from '@/types'
-import { featureEndpoints, getEndpoint } from '@/constants/endpoints'
-import { useApiCall } from '@/hooks'
 import { IFilter } from '@/module-ships/search'
-import axios from 'axios'
+import { FeatureRes } from '@/types/feature'
 
 interface SidebarProps {
   filter: IFilter
   setFilter: (filter: IFilter) => void
+  features: FeatureRes[]
 }
 
-export const Sidebar = ({ filter, setFilter }: SidebarProps) => {
-  const [features, setFeatures] = useState<FeatureRes[]>([])
-  const { setLetCall } = useApiCall<CommonListResultType<FeatureRes>, string>({
-    callApi: () => axios.get(getEndpoint(featureEndpoints, 'getList')),
-    handleSuccess: (message, data) => {
-      if (message) {
-        setFeatures(data.data)
-      }
-    },
-  })
-
-  useEffect(() => {
-    setLetCall(true)
-  }, [setLetCall])
-
+export const Sidebar = ({ filter, setFilter, features }: SidebarProps) => {
   const onFeaturesChecked = (checked: boolean, id: string) => {
     if (checked) setFilter({ ...filter, features: [...filter.features, id] })
     else setFilter({ ...filter, features: filter.features.filter((item) => item !== id) })

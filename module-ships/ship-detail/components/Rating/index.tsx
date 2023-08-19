@@ -10,26 +10,68 @@ import {
   StaticCard,
   TextArea,
 } from '@/components'
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import styles from '../../ShipDetail.module.scss'
 import { Field, Form, Formik } from 'formik'
+import { useApiCall } from '@/hooks'
+import axios from 'axios'
+import { getEndpoint, reviewEndpoints } from '@/constants/endpoints'
+import { CommonListResultType } from '@/types'
+import { ReviewReq, ReviewRequestError, ReviewRes } from '@/types/review'
+import { toast } from 'react-toastify'
 
-export const Rating = () => {
+const initialReview = {
+  name: '',
+  phone: '',
+  email: '',
+  comment: '',
+}
+export const Rating = ({ id }) => {
+  const [reviews, setReviews] = useState([])
   const [rating, setRating] = useState(0)
-  const handleSubmit = (values: any) => {
-    // eslint-disable-next-line no-alert
-    alert(values)
-  }
+  const formRef = useRef(null)
+  const { setLetCall: fetchReviews } = useApiCall<CommonListResultType<ReviewRes>, string>({
+    callApi: () =>
+      axios.get(getEndpoint(reviewEndpoints, 'getList'), {
+        params: {
+          productId: id,
+        },
+      }),
+    handleSuccess: (message, data) => {
+      if (message) {
+        setReviews(data.data)
+      }
+    },
+  })
+
+  useEffect(() => {
+    fetchReviews(true)
+  }, [fetchReviews])
+
+  const { setLetCall: submitReview } = useApiCall<ReviewReq, ReviewRequestError>({
+    callApi: () =>
+      axios.post(getEndpoint(reviewEndpoints, 'addNew'), {
+        ...formRef?.current?.values,
+        score: rating,
+        variantId: { id, type: 'room' },
+        productId: id,
+      }),
+    handleError(status, message) {
+      if (status !== 400) {
+        toast.error(message)
+      }
+    },
+    handleSuccess() {
+      toast.success('Gửi review thành công')
+    },
+  })
+
   return (
     <Formik
-      initialValues={{
-        name: '',
-        phone: '',
-        email: '',
-        comment: '',
-      }}
+      innerRef={formRef}
+      initialValues={initialReview}
       onSubmit={(values, { setSubmitting }) => {
-        handleSubmit(values)
+        submitReview(true)
         setSubmitting(false)
       }}
     >
@@ -49,12 +91,12 @@ export const Rating = () => {
           </div>
           <div className={['flex flex-col gap-20', styles['rating-list']].join(' ')}>
             <StaticCard rate={4.8} rateCount={[52, 14, 0, 0, 0]} />
-            {[1, 2, 3].map((_, index) => (
+            {reviews.map((_, index) => (
               <RateCard
                 key={index}
                 name="Nguyễn Anh Tuấn"
                 comment="Tôi đã bị cuốn hút bởi vẻ đẹp kỳ vĩ của các hòn đảo và hang động tại vịnh Hạ Long. Du thuyền sang trọng và dịch vụ tận tâm đã làm cho chuyến đi của tôi trở nên hoàn hảo. Tôi không thể quên những bữa ăn ngon lành trên du thuyền và hoạt động khám phá thú vị như kayak và thăm làng chài truyền thống. Tôi chắc chắn sẽ khuyên bạn bè và gia đình tôi tham gia Tour du lịch Du thuyền Hạ Long."
-                date="22/06/2023"
+                date={new Date('22/06/2023')}
               />
             ))}
           </div>

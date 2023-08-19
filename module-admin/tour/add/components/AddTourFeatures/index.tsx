@@ -1,34 +1,28 @@
 import { Card, Checkbox } from '@/components'
+import { FeatureRes } from '@/types/feature'
+import { CommonListResultType } from '@/types'
+import { featureEndpoints, getEndpoint } from '@/constants/endpoints'
+import { useApiCall } from '@/hooks'
+import axios from 'axios'
+import { useEffect, useState } from 'react'
 import styles from '../../AddTour.module.scss'
-
-const features = [
-  {
-    label: 'Miễn phí kayaking',
-  },
-  {
-    label: 'Bao gồm tất cả các bữa ăn',
-  },
-  {
-    label: 'Đi tuyến Lan Hạ',
-  },
-  {
-    label: 'Bể bơi ngoài trời',
-  },
-  {
-    label: 'Quầy bar',
-  },
-  {
-    label: 'Phòng không hút thuốc',
-  },
-  {
-    label: 'Wi-Fi miễn phí',
-  },
-  {
-    label: 'Miễn phí xe đưa đón nữa',
-  },
-]
+import { Field } from 'formik'
 
 export const AddTourFeatures = () => {
+  const [features, setFeatures] = useState<FeatureRes[]>([])
+  const { setLetCall } = useApiCall<CommonListResultType<FeatureRes>, string>({
+    callApi: () => axios.get(getEndpoint(featureEndpoints, 'getList')),
+    handleSuccess: (message, data) => {
+      if (message) {
+        setFeatures(data.data)
+      }
+    },
+  })
+
+  useEffect(() => {
+    setLetCall(true)
+  }, [setLetCall])
+
   return (
     <Card>
       <div className={styles['card-header']}>
@@ -37,9 +31,15 @@ export const AddTourFeatures = () => {
       <div className={styles['card-content']}>
         <div className="flex flex-col gap-24">
           <label className="lg">Đặc điểm</label>
-          <div className="grid grid-cols-2 gap-16">
+          <div className="grid grid-cols-2 gap-16" role="group" aria-labelledby="checkbox-group">
             {features.map((item) => (
-              <Checkbox type="checkbox" text={item.label} sizeInput="sm" />
+              <Field type="checkbox" name="features" value={item._id}>
+                {({ field }: any) => (
+                  <div>
+                    <Checkbox {...field} type="checkbox" text={item.text} sizeInput="sm" />
+                  </div>
+                )}
+              </Field>
             ))}
           </div>
         </div>

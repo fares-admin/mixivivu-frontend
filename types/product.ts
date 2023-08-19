@@ -32,3 +32,45 @@ export interface ProductRes {
   scoreReview: number
   typeProduct: TypeProduct
 }
+
+export interface ProductReq {
+  defaultPrice: number
+  category: string
+  title: string
+  address: string
+  mapLink: string
+  mapIframeLink: string
+  spec: {
+    ship?: IShipSpec
+  }
+  shortDescription: string[]
+  features: string[]
+  longDescription: OutputData
+  slug: string
+  schedule: string
+  typeProduct: TypeProduct
+}
+
+export type ProductRequestError = {
+  defaultPrice: string
+  title: string
+  address: string
+  mapLink: string
+  mapIframeLink: string
+  category: string
+  spec: {
+    ship?: {
+      launch: string
+      cabin: string
+      shell: string
+      trip: string
+      admin: string
+    }
+  }
+  shortDescription: string
+  features: string
+  longDescription: string
+  typeProduct: string
+  schedule: string
+  slug: string
+}

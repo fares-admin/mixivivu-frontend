@@ -11,7 +11,6 @@ import {
 } from '@/components'
 import Output from 'editorjs-react-renderer'
 import { useEffect, useState } from 'react'
-import { rooms } from '@/constants/config'
 import { Features, Navigation, Rating, ShipInfo } from '@/module-ships/ship-detail'
 import { useScrollspy } from '@/hooks/useScrollspy'
 import styles from './ShipDetail.module.scss'
@@ -116,7 +115,7 @@ export const ShipDetail = () => {
                 shortDescription={shipDetail.shortDescription}
               />
             )}
-            <Rooms rooms={rooms} />
+            {shipDetail?._id && <Rooms id={shipDetail._id} />}
             <Output data={shipDetail?.longDescription} />
             <div id="rules">
               <SectionHeader title="Quy định chung và lưu ý" />
@@ -141,8 +140,7 @@ export const ShipDetail = () => {
                   content={
                     <ul>
                       <li>
-                        Du thuyền Heritage Bình Chuẩn xuất phát từ Lux Cruises, Lô 28 Cảng Quốc Tế
-                        Tuần Châu
+                        Du thuyền {shipDetail?.title} xuất phát từ {shipDetail?.address}
                       </li>
                       <li>Bạn có thể xem chi tiết lịch trình 2 ngày 1 đêm tại đây.</li>
                     </ul>
@@ -161,7 +159,7 @@ export const ShipDetail = () => {
                 />
               </div>
             </div>
-            <Rating />
+            {shipDetail?._id && <Rating id={shipDetail._id} />}
           </div>
           {shipDetail?.spec.ship && (
             <div className={styles['side-bar']}>
