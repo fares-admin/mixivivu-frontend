@@ -37,7 +37,7 @@ export const ProductCard = ({
       <div className={styles.imageWrapper}>
         <ImageFill
           className={styles.imageWrapper__image}
-          src={url}
+          src={url || '/carousel2.png'}
           width="352px"
           height={type === 'grid' ? '216px' : '264px'}
         />
@@ -46,7 +46,7 @@ export const ProductCard = ({
           size="sm"
           color="warning"
           iconLeading={<StarIcon width="12" height="12" strokeColor="var(--warning-base)" />}
-          label={`${rating} (${ratingCount}) đánh giá`}
+          label={`${(rating / ratingCount || 0).toFixed(1)} (${ratingCount}) đánh giá`}
         />
       </div>
       <div className={styles.cardContent}>

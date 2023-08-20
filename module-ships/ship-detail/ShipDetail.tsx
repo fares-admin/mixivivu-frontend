@@ -24,30 +24,6 @@ import { useRouter } from 'next/router'
 
 const offset = 160
 
-const tabItems = [
-  {
-    id: 'features',
-    label: 'Đặc điểm',
-  },
-  {
-    id: 'rooms',
-    label: 'Phòng & giá',
-  },
-  {
-    id: 'intro',
-    label: 'Giới thiệu',
-  },
-  {
-    id: 'rules',
-    label: 'Quy định',
-  },
-  {
-    id: 'reviews',
-    label: 'Đánh giá',
-    badge: 5,
-  },
-]
-
 export const ShipDetail = () => {
   const router = useRouter()
 
@@ -76,7 +52,29 @@ export const ShipDetail = () => {
     const section = document.getElementById(key)
     section?.scrollIntoView()
   }
-
+  const tabItems = [
+    {
+      id: 'features',
+      label: 'Đặc điểm',
+    },
+    {
+      id: 'rooms',
+      label: 'Phòng & giá',
+    },
+    {
+      id: 'intro',
+      label: 'Giới thiệu',
+    },
+    {
+      id: 'rules',
+      label: 'Quy định',
+    },
+    {
+      id: 'reviews',
+      label: 'Đánh giá',
+      badge: shipDetail?.numReviews || 0,
+    },
+  ]
   const activeTab = useScrollspy(
     tabItems.map((item) => item.id),
     offset
@@ -86,7 +84,7 @@ export const ShipDetail = () => {
     <>
       <div className={styles.breadcrumbsWrapper}>
         <div className={['container', styles.breadcrumbs].join(' ')}>
-          <BreadCrumbs breadcrumbs={['Top 10 du thuyền', 'Du thuyền Heritage Bình Chuẩn Cát Bà']} />
+          {shipDetail && <BreadCrumbs breadcrumbs={['Tìm du thuyền', shipDetail.title]} />}
         </div>
       </div>
       <div className={['container', styles.wrapper].join(' ')}>
@@ -95,12 +93,13 @@ export const ShipDetail = () => {
           review={shipDetail?.scoreReview}
           reviewCount={shipDetail?.numReviews}
           location={shipDetail?.address}
+          map={shipDetail?.mapLink}
         />
       </div>
       <div className={styles.carousel}>
         <Carousel
           handleClickImg={() => setOpenLightBox(true)}
-          imgList={['/banner.jpeg', '/carousel2.png', '/carousel3.png']}
+          listImages={shipDetail?.catalogs?.slice(0, 3)}
         />
       </div>
       <div className={[styles['ship-detail'], 'container flex flex-col gap-40'].join(' ')}>
@@ -146,20 +145,27 @@ export const ShipDetail = () => {
                     </ul>
                   }
                 />
-                <iframe
-                  title="google-map"
-                  width="100%"
-                  height="332"
-                  style={{ border: 0, borderRadius: 24 }}
-                  loading="lazy"
-                  allowFullScreen
-                  referrerPolicy="no-referrer-when-downgrade"
-                  src="https://www.google.com/maps/embed/v1/place?key=&callback=initMap
-    &q=Space+Needle,Seattle+WA"
-                />
+                {shipDetail?.mapIframeLink !== '' && (
+                  <iframe
+                    title="google-map"
+                    width="100%"
+                    height="332"
+                    style={{ border: 0, borderRadius: 24 }}
+                    loading="lazy"
+                    allowFullScreen
+                    referrerPolicy="no-referrer-when-downgrade"
+                    src={shipDetail?.mapIframeLink}
+                  />
+                )}
               </div>
             </div>
-            {shipDetail?._id && <Rating id={shipDetail._id} />}
+            {shipDetail?._id && (
+              <Rating
+                id={shipDetail._id}
+                score={shipDetail?.scoreReview}
+                numberOfReviews={shipDetail.numReviews}
+              />
+            )}
           </div>
           {shipDetail?.spec.ship && (
             <div className={styles['side-bar']}>
@@ -172,7 +178,7 @@ export const ShipDetail = () => {
         {/* <PopularShips ships={productList.slice(0, 3)} /> */}
       </div>
       <LightBox
-        imgList={['/banner.jpeg', '/carousel2.png', '/carousel3.png']}
+        listImages={shipDetail?.catalogs?.slice(0, 3)}
         isOpen={openLightBox}
         setIsOpen={setOpenLightBox}
         shipDetail={{

@@ -5,16 +5,17 @@ import { Button } from '../Button'
 import { ArrowLeftIcon, ArrowRightIcon } from '../SVGIcon'
 
 interface CarouselProps {
-  imgList: string[]
+  listImages: string[]
   handleClickImg: () => void
 }
+const defaultCatalog = ['/banner.jpeg', '/carousel2.png', '/carousel3.png']
 
-export const Carousel = ({ imgList = [], handleClickImg }: CarouselProps) => {
+export const Carousel = ({ listImages = [], handleClickImg }: CarouselProps) => {
+  const imgList = listImages?.length >= 3 ? listImages : defaultCatalog
   const [currentImg, setCurrentImg] = useState(1)
   const prevImg = (currentImg - 1 + imgList.length) % imgList.length
   const nextImg = (currentImg + 1) % imgList.length
   const carouselImg = [prevImg, currentImg, nextImg]
-
   return (
     <div className={['flex gap-32 justify-center', styles.carousel].join(' ')}>
       <Button

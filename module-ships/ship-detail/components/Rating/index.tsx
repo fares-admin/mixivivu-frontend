@@ -26,8 +26,9 @@ const initialReview = {
   email: '',
   comment: '',
 }
-export const Rating = ({ id }) => {
-  const [reviews, setReviews] = useState([])
+export const Rating = ({ id, score, numberOfReviews }) => {
+  const [reviews, setReviews] = useState<ReviewRes[]>([])
+  const [keySearch, setKeySearch] = useState('')
   const [rating, setRating] = useState(0)
   const formRef = useRef(null)
   const { setLetCall: fetchReviews } = useApiCall<CommonListResultType<ReviewRes>, string>({
@@ -35,8 +36,14 @@ export const Rating = ({ id }) => {
       axios.get(getEndpoint(reviewEndpoints, 'getList'), {
         params: {
           productId: id,
+          comment: keySearch,
         },
       }),
+    handleError(status, message) {
+      if (status !== 400) {
+        toast.error(message)
+      }
+    },
     handleSuccess: (message, data) => {
       if (message) {
         setReviews(data.data)
@@ -53,7 +60,7 @@ export const Rating = ({ id }) => {
       axios.post(getEndpoint(reviewEndpoints, 'addNew'), {
         ...formRef?.current?.values,
         score: rating,
-        variantId: { id, type: 'room' },
+        variantId: [],
         productId: id,
       }),
     handleError(status, message) {
@@ -62,10 +69,24 @@ export const Rating = ({ id }) => {
       }
     },
     handleSuccess() {
+      setKeySearch('')
+      formRef?.current?.resetForm()
+      fetchReviews(true)
       toast.success('Gửi review thành công')
     },
   })
+  const scrollToReview = () => {
+    const section = document.getElementById('review-submit')
+    section?.scrollIntoView()
+  }
 
+  const getReviews = () => {
+    const stars = [0, 0, 0, 0, 0]
+    reviews.forEach((item) => {
+      stars[`${item.score - 1}`] = stars[item.score - 1] + 1
+    })
+    return stars
+  }
   return (
     <Formik
       innerRef={formRef}
@@ -78,30 +99,42 @@ export const Rating = ({ id }) => {
       <Form>
         <div id="reviews" className="flex flex-col gap-40">
           <div className="flex gap-16">
-            <SectionHeader title="Đánh giá (66)" />
+            <SectionHeader title={`Đánh giá (${numberOfReviews || 0})`} />
             <div className="flex gap-16">
+              <Input
+                placeHolder="Tìm đánh giá"
+                iconSwap={<SearchIcon />}
+                customClass={styles['search-input']}
+                onChange={(e) => setKeySearch(e.target.value)}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter') {
+                    fetchReviews(true)
+                  }
+                }}
+              />
               <Button
                 size="sm"
-                label="Tìm đánh giá"
-                typeStyle="outline"
-                iconLeading={<SearchIcon />}
+                label="Gửi đánh giá"
+                typeStyle="color"
+                iconLeading={<StarIcon />}
+                onClick={scrollToReview}
               />
-              <Button size="sm" label="Gửi đánh giá" typeStyle="color" iconLeading={<StarIcon />} />
             </div>
           </div>
           <div className={['flex flex-col gap-20', styles['rating-list']].join(' ')}>
-            <StaticCard rate={4.8} rateCount={[52, 14, 0, 0, 0]} />
-            {reviews.map((_, index) => (
+            <StaticCard rate={(score / numberOfReviews).toFixed(1)} rateCount={getReviews()} />
+            {reviews.map((item, index) => (
               <RateCard
                 key={index}
-                name="Nguyễn Anh Tuấn"
-                comment="Tôi đã bị cuốn hút bởi vẻ đẹp kỳ vĩ của các hòn đảo và hang động tại vịnh Hạ Long. Du thuyền sang trọng và dịch vụ tận tâm đã làm cho chuyến đi của tôi trở nên hoàn hảo. Tôi không thể quên những bữa ăn ngon lành trên du thuyền và hoạt động khám phá thú vị như kayak và thăm làng chài truyền thống. Tôi chắc chắn sẽ khuyên bạn bè và gia đình tôi tham gia Tour du lịch Du thuyền Hạ Long."
-                date={new Date('22/06/2023')}
+                name={item.name}
+                comment={item.comment}
+                score={item.score}
+                date={new Date(item.created)}
               />
             ))}
           </div>
 
-          <div className="flex flex-col gap-24">
+          <div className="flex flex-col gap-24" id="review-submit">
             <div className={styles['group-input']}>
               <RatingInput rating={rating} onChange={setRating} />
               <Field name="name">
@@ -143,12 +176,7 @@ export const Rating = ({ id }) => {
             </Field>
           </div>
           <div className="flex justify-end">
-            <Button
-              type="submit"
-              typeStyle="color"
-              label="Tiếp"
-              iconTrailing={<ArrowRightIcon />}
-            />
+            <Button type="submit" typeStyle="color" label="Gửi" iconTrailing={<ArrowRightIcon />} />
           </div>
         </div>
       </Form>

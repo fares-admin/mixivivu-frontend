@@ -21,11 +21,6 @@ import { Header } from './components/Header'
 import Link from 'next/link'
 import { FeatureRes } from '@/types/feature'
 
-const test = {
-  url: '/card-image.png',
-  tags: ['Du thuyền nổi bật', 'Ưu đãi hè 2022', 'Bể bơi ngoài trời', 'Xe đưa đón'],
-}
-
 export interface IFilter {
   features: string[]
   scoreReview: number[]
@@ -136,7 +131,7 @@ const SearchPageDetail: NextPageWithLayout = () => {
                         <a>
                           <ProductCard
                             type="list"
-                            {...test}
+                            url={item.thumbnail}
                             tags={features
                               .filter((feature) => item.features.includes(feature._id))
                               .map((item) => item.text)}

@@ -4,6 +4,7 @@ export interface ReviewRes {
   variantId: string[]
   email: string
   name: string
+  comment: string
   score: number
   created: Date
 }

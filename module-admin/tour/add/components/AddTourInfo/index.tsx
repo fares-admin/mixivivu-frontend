@@ -19,6 +19,7 @@ import { Dispatch, SetStateAction, useEffect, useState } from 'react'
 import { Dropdown } from '@/components/Dropdown'
 import ImageUploading, { ImageListType } from 'react-images-uploading'
 import styles from '../../AddTour.module.scss'
+import { useOutsideClick } from '@/hooks/useClickOutside'
 
 interface AddTourInfoProps {
   selectedCategory: CategoryRes
@@ -39,6 +40,7 @@ export const AddTourInfo = ({
     handleSuccess: (message, data) => {
       if (message) {
         setCategories(data.data)
+        setSelectedCategory(data.data[0])
       }
     },
   })
@@ -55,6 +57,9 @@ export const AddTourInfo = ({
     // data for submit
     setTourImages(imageList as never[])
   }
+  const categoryRef = useOutsideClick(() => {
+    setShowCategory(false)
+  })
 
   return (
     <Card>
@@ -114,16 +119,18 @@ export const AddTourInfo = ({
                 onClick={() => setShowCategory(true)}
               />
               {showCategory && (
-                <Dropdown>
-                  {categories.map((item, index) => (
-                    <div
-                      className={styles['dropdown-item']}
-                      key={index}
-                      onClick={() => handleSelectCategory(item)}
-                    >
-                      {item.name}
-                    </div>
-                  ))}
+                <Dropdown ref={categoryRef}>
+                  <div>
+                    {categories.map((item, index) => (
+                      <div
+                        className={styles['dropdown-item']}
+                        key={index}
+                        onClick={() => handleSelectCategory(item)}
+                      >
+                        {item.name}
+                      </div>
+                    ))}
+                  </div>
                 </Dropdown>
               )}
             </div>

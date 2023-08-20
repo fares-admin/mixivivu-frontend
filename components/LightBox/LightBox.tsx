@@ -6,7 +6,7 @@ import { MinusIcon, PlusIcon } from '../SVGIcon'
 
 interface LightBoxProps {
   isOpen: boolean
-  imgList: string[]
+  listImages: string[]
   shipDetail: {
     title: string
     price: number
@@ -14,13 +14,15 @@ interface LightBoxProps {
   }
   setIsOpen: (isOpen: boolean) => void
 }
+const defaultCatalog = ['/banner.jpeg', '/carousel2.png', '/carousel3.png']
 
 export const LightBox = ({
   isOpen = false,
   setIsOpen,
-  imgList = [],
+  listImages = [],
   shipDetail,
 }: LightBoxProps) => {
+  const imgList = listImages?.length >= 3 ? listImages : defaultCatalog
   const [currentImg, setCurrentImg] = useState(0)
   return (
     <div className={[isOpen ? styles.open : '', styles['light-box']].join(' ')}>

@@ -8,15 +8,16 @@ interface RateCardProps {
   comment: string
   date: Date | string
   isAdmin?: boolean
+  score: number
 }
 
-export const RateCard = ({ name, comment, date, isAdmin = false }: RateCardProps) => {
+export const RateCard = ({ name, comment, date, score, isAdmin = false }: RateCardProps) => {
   const formatDate = 'DD/MM/yyyy'
   return (
     <Card customClass={styles.rateCard}>
       <div>
-        {[1, 2, 3, 4, 5].map((item) => (
-          <StarIcon key={item} width="24" height="24" strokeColor="var(--warning-base)" />
+        {Array.from({ length: score }, (_, idx) => (
+          <StarIcon key={idx} width="24" height="24" strokeColor="var(--warning-base)" />
         ))}
       </div>
       <label className="md">{name}</label>
