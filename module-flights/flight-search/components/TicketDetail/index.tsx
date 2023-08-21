@@ -7,10 +7,23 @@ import { useSelector } from 'react-redux'
 import styles from '../FlightSidebar/FlightSidebar.module.scss'
 
 export const TicketDetail = () => {
-  const { selected } = useSelector(FlightStoreSelector)
+  const { selected, passengers, baggage } = useSelector(FlightStoreSelector)
 
   const goTicket = selected[0]
   const backTicket: FaresResponse | undefined = selected[1]
+
+  const priceBaggage = () => {
+    let total = 0
+    baggage?.ListBaggage.forEach((item) => {
+      passengers.forEach((pass) => {
+        const findBaggage = pass.ListBaggage.filter((bag) => bag.Name === item.Name)
+        findBaggage.forEach((find) => {
+          total += find.Price
+        })
+      })
+    })
+    return total
+  }
 
   if (!goTicket) return null
 
@@ -98,14 +111,46 @@ export const TicketDetail = () => {
           </div>
         </div>
       </div>
+      {passengers?.length > 0 && (
+        <div className={styles['filter-item']}>
+          <label className="md">Hành lý ký gửi</label>
+          <div className="flex gap-16">
+            <div className="flex flex-col gap-4">
+              {baggage?.ListBaggage.map((item) => {
+                let count = 0
+                passengers.forEach((pass) => {
+                  const findBaggage = pass.ListBaggage.filter((bag) => bag.Name === item.Name)
+                  count += findBaggage.length
+                })
+                if (count === 0) return null
+                return (
+                  <>
+                    <p className="sm">{item.Name}</p>
+                    <label className="sm">
+                      {count} x{' '}
+                      {Number(item.Price).toLocaleString('it-IT', {
+                        style: 'currency',
+                        currency: 'VND',
+                      })}
+                    </label>
+                  </>
+                )
+              })}
+            </div>
+          </div>
+        </div>
+      )}
       <div className={styles['side-bar__footer']}>
         <div className="flex justify-between gap-12 w-full">
           <label className="md">Tổng</label>
           <div className="subheading sm">
-            {(goTicket.TotalPrice + (backTicket?.TotalPrice || 0)).toLocaleString('it-IT', {
-              style: 'currency',
-              currency: 'VND',
-            })}
+            {(goTicket.TotalPrice + (backTicket?.TotalPrice || 0) + priceBaggage()).toLocaleString(
+              'it-IT',
+              {
+                style: 'currency',
+                currency: 'VND',
+              }
+            )}
           </div>
         </div>
       </div>

@@ -167,3 +167,35 @@ export interface GetBaggageRes {
   Message: string
   Language: string
 }
+
+export interface BaggagePassenger {
+  Airline: string
+  Value: string
+  Code: string
+  Name: string
+  Price: number
+  Currency: string
+  Leg: number
+  Route: string
+  StartPoint: string
+  EndPoint: string
+}
+
+export interface PassengerContact {
+  Gender: boolean
+  FirstName: string
+  LastName: string
+  Area: '+84'
+  Phone: string
+  Email: string
+  Address?: string
+}
+export interface Passenger {
+  Index: number
+  ParentId: number
+  FirstName: string
+  LastName: string
+  Type: string
+  Gender: boolean
+  ListBaggage: BaggagePassenger[]
+}

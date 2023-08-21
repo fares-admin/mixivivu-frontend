@@ -1,13 +1,13 @@
 import { FlightItemCard, FlightItemLoadingCard, FlightsCard, Pagination } from '@/components'
 import { getAirportByCode, getDateFromFlightReq, getThisDay } from '@/constants/commonValue'
 import { FaresResponse, SearchFlightReq } from '@/flight-api/flight-types'
+import { FlightStoreSelector, setSelectedFlight } from '@/redux/flight-store'
 import { Dispatch, SetStateAction, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 
 import { FlightCalendar } from '@/components/FlightCalendar'
-import { FlightStoreSelector } from '@/redux/flight-store'
 import { ShareStoreSelector } from '@/redux/share-store'
 import { useRouter } from 'next/router'
-import { useSelector } from 'react-redux'
 import styles from './FlightList.module.scss'
 
 interface FlightListProps {
@@ -25,11 +25,6 @@ export const FlightList = ({
 }: FlightListProps) => {
   const { data } = useSelector(FlightStoreSelector)
   const { loading } = useSelector(ShareStoreSelector)
-
-  const paginate = (array: FaresResponse[], page_size: number, page_number: number) => {
-    // human-readable page numbers usually start with 1, so we reduce 1 in the first argument
-    return array.slice((page_number - 1) * page_size, page_number * page_size)
-  }
 
   const [goPage, setGoPage] = useState(1)
   const [goSize, setGoSize] = useState(5)
@@ -61,6 +56,20 @@ export const FlightList = ({
         item.ListFlight[0].ListSegment.length === 1
     ) || []
 
+  const dispatch = useDispatch()
+
+  const handleReSelect = () => {
+    setDepartureFlight(null)
+    setReturnFlight(null)
+    dispatch(setSelectedFlight([]))
+  }
+
+  const paginate = (array: FaresResponse[], page_size: number, page_number: number) => {
+    // human-readable page numbers usually start with 1, so we reduce 1 in the first argument
+    if (array.length < page_size) return array
+    return array.slice((page_number - 1) * page_size, page_number * page_size)
+  }
+
   return (
     <>
       <FlightsCard
@@ -78,7 +87,7 @@ export const FlightList = ({
                 <FlightItemCard
                   FareDataId={departureFlight}
                   isSelected
-                  handleSelect={() => setDepartureFlight(null)}
+                  handleSelect={handleReSelect}
                 />
               </div>
             ) : (
@@ -134,7 +143,7 @@ export const FlightList = ({
                   <FlightItemCard
                     FareDataId={returnFlight}
                     isSelected
-                    handleSelect={() => setReturnFlight(null)}
+                    handleSelect={handleReSelect}
                   />
                 </div>
               ) : (

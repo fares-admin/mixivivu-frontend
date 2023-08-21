@@ -41,7 +41,7 @@
   border: 1px solid var(--gray-100, #f2f4f7);
   background: var(--base-white, #fff);
   box-shadow: 0px 8px 8px -4px rgba(16, 24, 40, 0.03), 0px 20px 24px -4px rgba(16, 24, 40, 0.08);
-  z-index: 1;
+  z-index: 4;
 }
 
 .dropdown {
@@ -59,7 +59,7 @@
   border: 1px solid var(--gray-100, #f2f4f7);
   background: var(--base-white, #fff);
   box-shadow: 0px 8px 8px -4px rgba(16, 24, 40, 0.03), 0px 20px 24px -4px rgba(16, 24, 40, 0.08);
-  z-index: 1;
+  z-index: 4;
   max-height: 200px;
   overflow-y: auto;
 }
