@@ -154,6 +154,9 @@ export const FlightSearchNavigation = () => {
       if (!thisReq) {
         handleClick()
       } else {
+        if (thisReq.ListFlight.length > 0) {
+          setIsDeparting(true)
+        }
         setRequest({
           ...thisReq,
           ListFlight: thisReq.ListFlight.map((item) => {
