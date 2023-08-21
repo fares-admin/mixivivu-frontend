@@ -4,7 +4,6 @@ import styles from './PolularShips.module.css'
 import Link from 'next/link'
 
 const test = {
-  url: '/card-image.png',
   tags: ['Du thuyền nổi bật', 'Ưu đãi hè 2022', 'Bể bơi ngoài trời', 'Xe đưa đón'],
 }
 export const PopularShips = ({ ships }: { ships: ProductRes[] }) => {
@@ -27,6 +26,7 @@ export const PopularShips = ({ ships }: { ships: ProductRes[] }) => {
             .map((item, index) => (
               <ProductCard
                 {...test}
+                url={item?.thumbnail || '/card-image.png'}
                 title={item.title}
                 desciption={`Hạ thuỷ ${item.spec.ship?.launch} - Tàu vỏ ${item.spec.ship?.shell} - ${item.spec.ship?.cabin} phòng`}
                 location={item.address}

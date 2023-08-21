@@ -14,6 +14,6 @@ type Story = StoryObj<typeof Carousel>
 // More on writing stories with args: https://storybook.js.org/docs/react/writing-stories/args
 export const Examp: Story = {
   args: {
-    imgList: ['/banner.jpeg', '/carousel2.png', '/carousel3.png'],
+    // imgList: ['/banner.jpeg', '/carousel2.png', '/carousel3.png'],
   },
 }

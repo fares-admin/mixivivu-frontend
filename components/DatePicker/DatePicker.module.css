@@ -1,5 +1,6 @@
 .mixi-date-picker :global(.react-datepicker-wrapper) {
   width: 100%;
+  z-index: 99;
 }
 
 .mixi-date-picker :global(.react-datepicker) {

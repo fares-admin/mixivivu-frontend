@@ -253,7 +253,9 @@ export const FlightSearchBox = ({ title, description, className }: SearchBoxProp
       </div>
       <div className={styles.grid}>
         <FlightDatePicker label="Ngày đi" onChangDate={(date) => handleChangeDate(date, true)} />
-        <FlightDatePicker label="Ngày về" onChangDate={(date) => handleChangeDate(date, true)} />
+        {!isDeparting && (
+          <FlightDatePicker label="Ngày về" onChangDate={(date) => handleChangeDate(date, true)} />
+        )}
       </div>
       <div className={styles.grid}>
         <div className={styles.grid}>

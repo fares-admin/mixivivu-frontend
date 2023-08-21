@@ -2,11 +2,11 @@
 import { Button, Card, HeaderAdmin, PlusIcon } from '@/components'
 import styles from './AddTour.module.scss'
 import { Form, Formik } from 'formik'
-import { AddRooms, AddShipInfo, AddTourFeatures, AddTourInfo } from './components'
+import { AddShipInfo, AddTourFeatures, AddTourInfo } from './components'
 import dynamic from 'next/dynamic'
 import { useEffect, useRef, useState } from 'react'
 import axios from 'axios'
-import { getEndpoint, imageEndpoints, productEndpoints } from '@/constants/endpoints'
+import { getEndpoint, productEndpoints } from '@/constants/endpoints'
 import { useApiCall } from '@/hooks'
 import { toast } from 'react-toastify'
 import { ProductReq, ProductRequestError, ProductRes } from '@/types/product'
@@ -15,6 +15,8 @@ import { CommonListResultType } from '@/types'
 import { Routes } from '@/constants/routes'
 import { CategoryRes } from '@/types/category'
 import { ImageListType } from 'react-images-uploading'
+import { COOKIE_TOKEN_KEY } from '@/constants/commonValue'
+import { useCookies } from 'react-cookie'
 
 const Editor = dynamic(() => import('@/components/Editor').then((module) => module.Editor), {
   ssr: false,
@@ -25,26 +27,28 @@ export const AddTour = () => {
   const formRef = useRef(null)
   const router = useRouter()
   // const [shipDetail, setShipDetail] = useState<ProductRes>()
+  // const [rooms, setRooms] = useState([])
   const [tourImages, setTourImages] = useState<ImageListType>([])
   const [selectedCategory, setSelectedCategory] = useState<CategoryRes | null>()
   const [belongId, setBelongId] = useState(null)
-
+  const [cookies] = useCookies([COOKIE_TOKEN_KEY])
   const { setLetCall: addNewImages } = useApiCall<ProductReq, ProductRequestError>({
     callApi: () => {
       const data = new FormData()
       tourImages.forEach((image) => {
-        data.append('files', image.file)
+        data.append('file', image.file)
       })
       data.append('belongId', belongId)
-      return axios.post(getEndpoint(imageEndpoints, 'addNew'), data)
+      return axios.post(`/api/images/add-new`, data, {
+        headers: {
+          Authorization: cookies.token,
+        },
+      })
     },
     handleError(status, message) {
       if (status !== 400) {
         toast.error(message)
       }
-    },
-    handleSuccess() {
-      toast.success('Tạo mới tour thành công')
     },
   })
 
@@ -52,7 +56,7 @@ export const AddTour = () => {
     callApi: () =>
       axios.post(getEndpoint(productEndpoints, 'addNew'), {
         ...formRef?.current?.values,
-        category: selectedCategory._id,
+        category: selectedCategory?._id,
         typeProduct: 'ship',
         shortDescription: 'Test',
         mapLink: 'test',
@@ -65,7 +69,8 @@ export const AddTour = () => {
       }
     },
     handleSuccess(message, data) {
-      setBelongId(data._id)
+      setBelongId(data)
+      addNewImages(true)
       toast.success('Tạo mới tour thành công')
     },
   })
@@ -77,19 +82,10 @@ export const AddTour = () => {
           slug: router.query.slug,
         },
       }),
-    // handleSuccess: (message, data) => {
-    //   if (message) {
-    //     setShipDetail(data.data[0])
-    //   }
-    // },
   })
   useEffect(() => {
     if (router.isReady && router.query.slug) fetchShipDetail(true)
   }, [fetchShipDetail, router.query.slug, router.isReady])
-
-  useEffect(() => {
-    addNewImages(true)
-  }, [addNewImages, belongId])
 
   return (
     <div className={styles.wrapper}>
@@ -127,7 +123,7 @@ export const AddTour = () => {
                 setTourImages={setTourImages}
               />
               <AddTourFeatures />
-              <AddRooms />
+              {/* <AddRooms rooms={rooms} setRooms={setRooms}/> */}
               <Card>
                 <Editor onChange={(data) => setLongDes(data)} />
               </Card>

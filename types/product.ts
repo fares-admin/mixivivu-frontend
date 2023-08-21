@@ -31,6 +31,8 @@ export interface ProductRes {
   numReviews: number
   scoreReview: number
   typeProduct: TypeProduct
+  thumbnail: string
+  catalogs: string[]
 }
 
 export interface ProductReq {

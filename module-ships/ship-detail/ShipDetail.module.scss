@@ -88,6 +88,15 @@
   border-bottom: 1px solid var(--gray-200, #eaecf0);
 }
 
+.search-input {
+  width: 200px;
+  height: 40px;
+  > label {
+    padding: 5px 16px;
+    height: 100%;
+  }
+}
+
 .blog-img {
   border-radius: 24px;
   overflow: hidden;

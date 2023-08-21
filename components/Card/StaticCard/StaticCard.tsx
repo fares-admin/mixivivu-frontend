@@ -2,7 +2,7 @@ import { Card, StarIcon } from '@/components'
 import styles from './StaticCard.module.css'
 
 interface StaticCardProps {
-  rate: number
+  rate: number | string
   rateCount: number[]
 }
 
@@ -17,7 +17,7 @@ export const StaticCard = ({ rate, rateCount }: StaticCardProps) => {
       <div className={styles.content}>
         {[0, 1, 2, 3, 4].map((item) => (
           <div className={styles.content__item} key={item}>
-            <label className="md">{5 - item} sao</label>
+            <label className="md">{item + 1} sao</label>
             <div className={styles.progressBar}>
               <div
                 className={styles.progress}

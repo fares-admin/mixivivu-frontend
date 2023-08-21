@@ -534,6 +534,7 @@ label {
 #rooms,
 #intro,
 #rules,
-#reviews {
+#reviews,
+#review-submit {
   scroll-margin-top: 150px;
 }
