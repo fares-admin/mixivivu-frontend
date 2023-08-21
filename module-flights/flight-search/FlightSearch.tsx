@@ -9,7 +9,7 @@ import {
 } from '@/components'
 import { flightEndpoints, getEndpoint } from '@/constants/endpoints'
 import { SearchFlightReq, SearchFlightResponse } from '@/flight-api/flight-types'
-import { setData, setSelectedFlight } from '@/redux/flight-store'
+import { resetFlightStore, setData, setSelectedFlight } from '@/redux/flight-store'
 import { useEffect, useState } from 'react'
 import { CustomerContact, CustomerInfo } from './components/CustomerInfo'
 
@@ -100,8 +100,7 @@ export const FlightSearch = () => {
             )
           )
         )
-      }
-      if (departureFlight !== null && returnFlight !== null) {
+      } else if (departureFlight !== null && returnFlight !== null) {
         dispatch(
           setSelectedFlight(
             searchFlightData.data!.result.ListFareData.filter(
@@ -112,6 +111,12 @@ export const FlightSearch = () => {
       }
     }
   }, [departureFlight, returnFlight])
+
+  const handleReset = () => {
+    setDepartureFlight(null)
+    setReturnFlight(null)
+    dispatch(resetFlightStore())
+  }
 
   return (
     <>
@@ -139,7 +144,12 @@ export const FlightSearch = () => {
                   <CustomerInfo />
                   <CustomerContact />
                   <div className="flex justify-between">
-                    <Button label="Quay lại" iconLeading={<ArrowLeftIcon />} typeStyle="outline" />
+                    <Button
+                      label="Quay lại"
+                      iconLeading={<ArrowLeftIcon />}
+                      typeStyle="outline"
+                      onClick={handleReset}
+                    />
                     <Link href="/tim-ve-may-bay/thanh-toan">
                       <Button label="Tiếp" iconTrailing={<ArrowRightIcon />} />
                     </Link>
