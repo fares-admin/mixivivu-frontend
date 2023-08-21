@@ -1,6 +1,6 @@
 /* eslint-disable import/no-mutable-exports */
 const dev = {
-  API_BASE_URL: 'https://mixivivu-api.vercel.app/',
+  API_BASE_URL: 'https://api-mixi.fares.vn',
 }
 let MIXIVIVU_CONFIG: {
   API_BASE_URL: string
