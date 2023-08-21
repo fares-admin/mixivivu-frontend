@@ -113,8 +113,8 @@ export const FlightItemCard = ({
           </div>
           <div className="flex flex-col gap-8">
             <p className="sm">Chuyến bay: {detail.ListFlight[0].FlightNumber}</p>
-            <p className="sm">Hạng chỗ: {detail.ListFlight[0].FareClass}</p>
-            <p className="sm">Máy bay: A{detail.ListFlight[0].ListSegment[0].Plane}</p>
+            <p className="sm">Hạng chỗ: {detail.ListFlight[0].GroupClass}</p>
+            <p className="sm">Máy bay: {detail.ListFlight[0].ListSegment[0].Plane}</p>
             <p className="sm">
               Hành lý xách tay: {detail.ListFlight[0].ListSegment[0].HandBaggage}
             </p>

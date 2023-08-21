@@ -4,7 +4,7 @@ const nextConfig = {
       return [
         {
           source: '/api/images/add-new',
-          destination: `${process.env.API_IMAGE_URL}/api/images/add-new`,
+          destination: `https://images-mixi.fares.vn/api/images/add-new`,
         },
       ]
     },

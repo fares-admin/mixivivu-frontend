@@ -42,6 +42,7 @@ export const flightEndpoints: EndPointObject = {
   baseUrl: '/api/plane-ticket-fe',
   child: {
     search: '/search-flight',
+    baggage: '/get-baggage',
   },
 }
 

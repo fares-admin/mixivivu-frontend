@@ -18,6 +18,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     req.headers.host?.includes(String(process.env.ACCESS_API_HOST))
   ) {
     const url = `${process.env.API_BASE_URL}${req.url}`
+
     try {
       let result = {}
       // handle method
