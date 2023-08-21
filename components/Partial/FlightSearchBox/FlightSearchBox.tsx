@@ -9,9 +9,14 @@ import {
   PlaneFlyIcon,
   UserIcon,
 } from '@/components'
+import { airports, getAirportByCode, getFormatDate } from '@/constants/commonValue'
+import { useEffect, useState } from 'react'
 
+import { SearchFlightReq } from '@/flight-api/flight-types'
+import { useOutsideClick } from '@/hooks/useClickOutside'
+import { useRouter } from 'next/router'
+import { toast } from 'react-toastify'
 import styles from './FlightSearchBox.module.css'
-import Link from 'next/link'
 
 interface SearchBoxProps {
   title: string
@@ -20,6 +25,156 @@ interface SearchBoxProps {
 }
 
 export const FlightSearchBox = ({ title, description, className }: SearchBoxProps) => {
+  const [isDeparting, setIsDeparting] = useState(false)
+  const [request, setRequest] = useState<SearchFlightReq>({
+    Adt: 1,
+    Chd: 0,
+    Inf: 0,
+    ViewMode: '',
+    ListFlight: [
+      {
+        StartPoint: 'HAN',
+        EndPoint: 'SGN',
+        DepartDate: getFormatDate(new Date()),
+        Airline: '',
+      },
+    ],
+  })
+
+  const [showGo, setShowGo] = useState(false)
+  const [showBack, setShowBack] = useState(false)
+
+  const showGoRef = useOutsideClick(() => {
+    setShowGo(false)
+  })
+
+  const showBackRef = useOutsideClick(() => {
+    setShowBack(false)
+  })
+
+  const valueGo = getAirportByCode(request.ListFlight[0].StartPoint)
+  const valueBack = getAirportByCode(request.ListFlight[0].EndPoint)
+
+  const handleSelectAirport = (code: string, isGo: boolean) => {
+    if (isGo) {
+      setRequest({
+        ...request,
+        ListFlight: [
+          { ...request.ListFlight[0], StartPoint: code },
+          ...request.ListFlight.filter((value, index) => index > 0),
+        ],
+      })
+    } else {
+      setRequest({
+        ...request,
+        ListFlight: [
+          { ...request.ListFlight[0], EndPoint: code },
+          ...request.ListFlight.filter((value, index) => index > 0),
+        ],
+      })
+    }
+    setShowGo(false)
+    setShowBack(false)
+  }
+
+  const handleChangeDepart = () => {
+    setRequest({
+      ...request,
+      ListFlight: !isDeparting
+        ? [
+            request.ListFlight[0],
+            {
+              ...request.ListFlight[0],
+              StartPoint: request.ListFlight[0].EndPoint,
+              EndPoint: request.ListFlight[0].StartPoint,
+            },
+          ]
+        : [request.ListFlight[0]],
+    })
+  }
+
+  useEffect(() => {
+    handleChangeDepart()
+  }, [isDeparting])
+
+  const router = useRouter()
+
+  const handleClick = () => {
+    const startParseDate = request.ListFlight[0].DepartDate.split('/')
+      .map((item, index, array) => {
+        if (index === 0) return array[1]
+        if (index === 1) return array[0]
+        return item
+      })
+      .join('/')
+    const nowDate = getFormatDate(new Date())
+      .split('/')
+      .map((item, index, array) => {
+        if (index === 0) return array[1]
+        if (index === 1) return array[0]
+        return item
+      })
+      .join('/')
+    if (new Date(startParseDate).getTime() < new Date(nowDate).getTime()) {
+      toast.error('Hãy chọn ngày hôm nay hoặc sau ngày hôm nay')
+    } else if (
+      isDeparting &&
+      new Date(startParseDate).getTime() >
+        new Date(
+          request.ListFlight[1].DepartDate.split('/')
+            .map((item, index, array) => {
+              if (index === 0) return array[1]
+              if (index === 1) return array[0]
+              return item
+            })
+            .join('/')
+        ).getTime()
+    ) {
+      toast.error('Hãy chọn ngày sau ngày đi')
+    } else
+      router.push({
+        pathname: `${router.pathname}/ket-qua`,
+        query: {
+          req: JSON.stringify({
+            ...request,
+            ListFlight: request.ListFlight.map((item) => {
+              return { ...item, DepartDate: item.DepartDate.replaceAll('/', '') }
+            }),
+          }),
+        },
+      })
+  }
+
+  const handleChangeDate = (date: string, isGo: boolean) => {
+    if (isGo) {
+      setRequest({
+        ...request,
+        ListFlight: request.ListFlight.map((item, index) => {
+          if (index === 0) {
+            return {
+              ...item,
+              DepartDate: date,
+            }
+          }
+          return item
+        }),
+      })
+    } else if (isDeparting) {
+      setRequest({
+        ...request,
+        ListFlight: request.ListFlight.map((item, index) => {
+          if (index === 1) {
+            return {
+              ...item,
+              DepartDate: date,
+            }
+          }
+          return item
+        }),
+      })
+    }
+  }
+
   return (
     <Card
       customClass={[className, styles.searchBox, 'flex flex-col justify-center gap-40'].join(' ')}
@@ -29,55 +184,121 @@ export const FlightSearchBox = ({ title, description, className }: SearchBoxProp
         <p className="lg text-center">{description}</p>
       </div>
       <div className="flex gap-16">
-        <Checkbox name="type" type="radio" text="Một chiều" sizeInput="sm" />
-        <Checkbox name="type" type="radio" text="Khứ hồi" sizeInput="sm" />
+        <Checkbox
+          checked={isDeparting}
+          onChange={() => setIsDeparting(true)}
+          name="type"
+          type="radio"
+          text="Một chiều"
+          sizeInput="sm"
+        />
+        <Checkbox
+          checked={!isDeparting}
+          onChange={() => setIsDeparting(false)}
+          name="type"
+          type="radio"
+          text="Khứ hồi"
+          sizeInput="sm"
+        />
       </div>
       <div className={[styles.grid, styles.distance].join(' ')}>
-        <Input
-          iconSwap={<PlaneFlyIcon />}
-          label="Điểm đi"
-          placeHolder="Nhập thành phố / mã sân bay"
-        />
-        <Input
-          iconSwap={<PlaneArrivalIcon />}
-          label="Điểm đến"
-          placeHolder="Nhập thành phố / mã sân bay"
-        />
+        <div className={styles.selectInput}>
+          <Input
+            label="Điểm đi"
+            iconSwap={<PlaneFlyIcon />}
+            supportIcon={<ChevronDownIcon />}
+            onClick={() => setShowGo(true)}
+            value={valueGo.name}
+          />
+          {showGo && (
+            <div className={styles.dropdown} ref={showGoRef}>
+              {/* <div className={styles['dropdown-item']}>{valueGo.name}</div> */}
+              {airports.map((item, index) => (
+                <div
+                  className={styles['dropdown-item']}
+                  key={index}
+                  onClick={() => handleSelectAirport(item.code, true)}
+                >
+                  {item.name}
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+        <div className={styles.selectInput}>
+          <Input
+            label="Điểm đến"
+            iconSwap={<PlaneArrivalIcon />}
+            supportIcon={<ChevronDownIcon />}
+            onClick={() => setShowBack(true)}
+            value={valueBack.name}
+          />
+          {showBack && (
+            <div className={styles.dropdown} ref={showBackRef}>
+              {/* <div className={styles['dropdown-item']}>{valueGo.name}</div> */}
+              {airports
+                .filter((item) => item.code !== valueGo.code)
+                .map((item, index) => (
+                  <div
+                    className={styles['dropdown-item']}
+                    key={index}
+                    onClick={() => handleSelectAirport(item.code, false)}
+                  >
+                    {item.name}
+                  </div>
+                ))}
+            </div>
+          )}
+        </div>
       </div>
       <div className={styles.grid}>
-        <FlightDatePicker label="Ngày đi" />
-        <FlightDatePicker label="Ngày về" />
+        <FlightDatePicker label="Ngày đi" onChangDate={(date) => handleChangeDate(date, true)} />
+        <FlightDatePicker label="Ngày về" onChangDate={(date) => handleChangeDate(date, true)} />
       </div>
       <div className={styles.grid}>
         <div className={styles.grid}>
           <Input
             label="Người lớn"
-            value={1}
+            value={request.Adt}
             iconSwap={<UserIcon />}
             supportIcon={<ChevronDownIcon />}
+            onChange={(e) => {
+              if (Number.isFinite(Number(e.target.value))) {
+                setRequest({ ...request, Adt: Number(e.target.value) })
+              }
+            }}
           />
           <Input
             label="Trẻ em"
-            value={0}
+            value={request.Chd}
             iconSwap={<UserIcon />}
             supportIcon={<ChevronDownIcon />}
+            onChange={(e) => {
+              if (Number.isFinite(Number(e.target.value))) {
+                setRequest({ ...request, Chd: Number(e.target.value) })
+              }
+            }}
           />
         </div>
         <div className={styles.grid}>
           <Input
             label="Em bé"
-            value={0}
+            value={request.Inf}
             iconSwap={<UserIcon />}
             supportIcon={<ChevronDownIcon />}
+            onChange={(e) => {
+              if (Number.isFinite(Number(e.target.value))) {
+                setRequest({ ...request, Inf: Number(e.target.value) })
+              }
+            }}
           />
-          <Link href="/tim-ve-may-bay/ket-qua">
-            <Button
-              label="Tìm chuyến bay"
-              typeStyle="color"
-              customClass={styles['search-btn']}
-              fullWidth
-            />
-          </Link>
+          <Button
+            onClick={handleClick}
+            label="Tìm chuyến bay"
+            typeStyle="color"
+            customClass={styles['search-btn']}
+            fullWidth
+          />
         </div>
       </div>
     </Card>
