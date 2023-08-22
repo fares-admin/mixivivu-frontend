@@ -2,17 +2,27 @@
 import { StarIcon, Card, Button, ThumbsUpIcon, TrashIcon } from '@/components'
 import moment from 'moment'
 import styles from './RateCard.module.css'
+import { formatDate } from '@/constants/dateTime'
 
 interface RateCardProps {
   name: string
   comment: string
   date: Date | string
   isAdmin?: boolean
+  phone?: number | string
+  email?: string
   score: number
 }
 
-export const RateCard = ({ name, comment, date, score, isAdmin = false }: RateCardProps) => {
-  const formatDate = 'DD/MM/yyyy'
+export const RateCard = ({
+  name,
+  comment,
+  date,
+  score,
+  isAdmin = false,
+  phone,
+  email,
+}: RateCardProps) => {
   return (
     <Card customClass={styles.rateCard}>
       <div>
@@ -20,6 +30,12 @@ export const RateCard = ({ name, comment, date, score, isAdmin = false }: RateCa
           <StarIcon key={idx} width="24" height="24" strokeColor="var(--warning-base)" />
         ))}
       </div>
+      {isAdmin && (
+        <>
+          <label>{phone}</label>
+          <label>{email}</label>
+        </>
+      )}
       <label className="md">{name}</label>
       <p className="sm">{comment}</p>
       {isAdmin ? (

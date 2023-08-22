@@ -1,8 +1,11 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import { Card, CheckCircleIcon } from '@/components'
 import { QRCodeSVG } from 'qrcode.react'
+import Countdown from 'react-countdown'
 import styles1 from '../../Payment.module.scss'
 import styles from './QrPayment.module.scss'
+
+const Completionist = () => <span>Hết thời gian giữ vé</span>
 
 export const QrPayment = () => {
   return (
@@ -16,7 +19,22 @@ export const QrPayment = () => {
       <div className={styles1['card-content']}>
         <div className={`flex gap-120 ${styles['qr-content']}`}>
           <div className="flex flex-col gap-8 align-center flex-grow">
-            <h4>20:59</h4>
+            <h4>
+              <Countdown
+                date={Date.now() + 200 * 1000}
+                renderer={({ minutes, seconds, completed }) => {
+                  if (completed) {
+                    return <Completionist />
+                  }
+                  return (
+                    <span>
+                      {minutes}:{seconds}
+                    </span>
+                  )
+                }}
+                onComplete={() => {}}
+              />
+            </h4>
             <div className={styles['qr-code']}>
               <QRCodeSVG
                 value="https://reactjs.org/"

@@ -3,6 +3,7 @@ export interface ReviewRes {
   productId: string
   variantId: string[]
   email: string
+  phone: number
   name: string
   comment: string
   score: number
