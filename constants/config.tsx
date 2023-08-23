@@ -93,6 +93,7 @@ export const reviewers = [
   {
     url: '/avatar.png',
     name: 'Nguyễn Anh Tuấn',
+    isActive: true,
   },
   {
     url: '/avatar.png',

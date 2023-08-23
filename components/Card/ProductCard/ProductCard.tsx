@@ -74,7 +74,10 @@ export const ProductCard = ({
         <div className={styles.footer}>
           <div>
             <div>
-              <p className={[styles.price, 'subheading md'].join(' ')}>
+              <p
+                className={[styles.price, 'subheading md'].join(' ')}
+                style={{ color: 'var(--primary-dark, #0E4F4F)' }}
+              >
                 {formatter.format(price || originalPrice)}đ
               </p>
               {price && <p className={styles.originalPrice}>{formatter.format(originalPrice)}đ</p>}

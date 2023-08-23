@@ -10,6 +10,7 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   placeHolder?: string
   disable?: boolean
   customClass?: string
+  required?: boolean
 }
 
 /**
@@ -26,6 +27,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
       placeHolder,
       customClass,
       disable,
+      required,
       ...props
     },
     ref
@@ -45,7 +47,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
             {...props}
           />
           {supportIcon && supportIcon}
-          <label htmlFor={id} className="sm">
+          <label htmlFor={id} className={['sm', required ? styles.required : ''].join(' ')}>
             {label}
           </label>
         </label>

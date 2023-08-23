@@ -2,19 +2,38 @@ import {
   ArrowRightIcon,
   BreadCrumbs,
   Button,
+  Card,
   FlightItemCard,
   FlightsCard,
   PartnerSection,
+  StepItemProps,
   Steps,
 } from '@/components'
 import { CustomerInfo, PackageDetail, QrPayment, TicketDetail } from '@/module-flights/payment'
 
 import { InfoModal } from '@/components/Modal/InfoModal'
-import { steps } from '@/constants/config'
 import Image from 'next/image'
 import { useState } from 'react'
 import styles from './Payment.module.scss'
 import { BookingSuccessModal } from './components/BookingSuccessModal'
+
+export const steps: StepItemProps[] = [
+  {
+    status: 'done',
+    title: 'Chọn chuyến bay',
+    description: 'Vui lòng chọn chuyến bay',
+  },
+  {
+    status: 'done',
+    title: 'Đặt chỗ',
+    description: 'Điền thông tin để đặt chỗ',
+  },
+  {
+    status: 'inprogress',
+    title: 'Thanh toán',
+    description: 'Thanh toán để nhận vé máy bay',
+  },
+]
 
 export const Payment = () => {
   const [open, setOpen] = useState(false)
@@ -60,6 +79,27 @@ export const Payment = () => {
           <CustomerInfo />
         </div>
       </div>
+      <Card customClass={styles['total-price-pin']}>
+        <div className={styles['total-price-pin__content']}>
+          <div className="flex gap-12 ">
+            <p style={{ color: 'var(--gray-600)' }} className="sm">
+              Phí dịch vụ
+            </p>
+            <p style={{ color: 'var(--gray-600)' }} className="sm flex-grow text-right">
+              100,000 VND{' '}
+            </p>
+          </div>
+          <div className="flex gap-12 ">
+            <label className="xl">Phí dịch vụ</label>
+            <label
+              className="xl flex-grow text-right"
+              style={{ color: 'var(--success-dark, #054F31)' }}
+            >
+              2,812,400 VND
+            </label>
+          </div>
+        </div>
+      </Card>
       <div className={styles.partners}>
         <PartnerSection />
       </div>

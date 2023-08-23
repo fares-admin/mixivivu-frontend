@@ -84,7 +84,7 @@ export const ShipDetail = () => {
     <>
       <div className={styles.breadcrumbsWrapper}>
         <div className={['container', styles.breadcrumbs].join(' ')}>
-          {shipDetail && <BreadCrumbs breadcrumbs={['Tìm du thuyền', shipDetail.title]} />}
+          {shipDetail && <BreadCrumbs breadcrumbs={['Tìm du thuyền', shipDetail?.title]} />}
         </div>
       </div>
       <div className={['container', styles.wrapper].join(' ')}>
@@ -177,16 +177,14 @@ export const ShipDetail = () => {
       <div className={['section-bg', styles['popular-ships']].join(' ')}>
         {/* <PopularShips ships={productList.slice(0, 3)} /> */}
       </div>
-      <LightBox
-        listImages={shipDetail?.catalogs?.slice(0, 3)}
-        isOpen={openLightBox}
-        setIsOpen={setOpenLightBox}
-        shipDetail={{
-          title: 'Du thuyền Heritage Bình Chuẩn Cát Bà',
-          price: 3350000,
-          originalPrice: 5400000,
-        }}
-      />
+      {shipDetail && (
+        <LightBox
+          listImages={shipDetail?.catalogs?.slice(0, 3)}
+          isOpen={openLightBox}
+          setIsOpen={setOpenLightBox}
+          shipDetail={shipDetail}
+        />
+      )}
     </>
   )
 }

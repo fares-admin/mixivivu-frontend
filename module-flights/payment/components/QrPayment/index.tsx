@@ -23,6 +23,7 @@ export const QrPayment = () => {
                 width="100%"
                 height="100%"
                 bgColor="#77DADA"
+                fgColor="#0E4F4F"
               />
             </div>
             <div className="subheading sm">Quét mã để thanh toán</div>
