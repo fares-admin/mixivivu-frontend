@@ -7,3 +7,5 @@ export const WEEKDAYS = [
   'Friday',
   'Saturday',
 ]
+
+export const formatDate = 'DD/MM/yyyy'

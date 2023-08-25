@@ -116,7 +116,7 @@ export const Tour = () => {
                       rating={item.scoreReview}
                       ratingCount={item.numReviews}
                       key={index}
-                      url="/carousel2.png"
+                      url={item.thumbnail}
                       tags={[]}
                       isAdmin
                     />

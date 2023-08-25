@@ -67,7 +67,7 @@ export const ReviewManagement = () => {
           <div className="flex gap-16 align-center">
             <div className="flex flex-col gap-4 flex-grow">
               <div className="subheading md">Tất cả các Review</div>
-              <p className="sm">99 review gửi về Mixivivu</p>
+              <p className="sm">{total} review gửi về Mixivivu</p>
             </div>
             <Input
               iconSwap={<SearchIcon />}
@@ -86,6 +86,8 @@ export const ReviewManagement = () => {
         <div className="flex flex-col gap-16">
           {reviews.map((item) => (
             <RateCard
+              phone={item.phone}
+              email={item.email}
               name={item.name}
               comment={item.comment}
               date={item.created}

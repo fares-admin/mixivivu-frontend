@@ -17,7 +17,6 @@ import { getAirportByCode } from '@/constants/commonValue'
 import { steps } from '@/constants/config'
 import { useApiCall } from '@/hooks'
 import axios from 'axios'
-import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useDispatch } from 'react-redux'
 import { toast } from 'react-toastify'
@@ -25,10 +24,12 @@ import styles from './FlightSearch.module.scss'
 import { FlightList } from './components/FlightList'
 import { FlightSidebar } from './components/FlightSidebar'
 import { TicketDetail } from './components/TicketDetail'
+import { OtpCard } from '@/components/Card/OtpCard'
 
 export const FlightSearch = () => {
   const [departureFlight, setDepartureFlight] = useState<number | null>(null)
   const [returnFlight, setReturnFlight] = useState<number | null>(null)
+  const [currentStep, setCurrentStep] = useState(0)
   const [req, setReq] = useState('')
 
   const dispatch = useDispatch()
@@ -117,7 +118,26 @@ export const FlightSearch = () => {
     setReturnFlight(null)
     dispatch(resetFlightStore())
   }
+  const handleNextStep = () => {
+    if (currentStep < 2) {
+      setCurrentStep(currentStep + 1)
+    } else {
+      router.push('/tim-ve-may-bay/thanh-toan')
+    }
+  }
 
+  const handleBack = () => {
+    setCurrentStep(currentStep - 1)
+    if (currentStep === 0) {
+      handleReset()
+    }
+  }
+
+  useEffect(() => {
+    if (!departureFlight) {
+      setCurrentStep(0)
+    }
+  }, [departureFlight])
   return (
     <>
       <div className={[styles.navigation, 'container'].join(' ')}>
@@ -133,26 +153,48 @@ export const FlightSearch = () => {
           <div className="flex gap-32">
             {departureFlight !== null ? <TicketDetail /> : <FlightSidebar />}
             <div className={[styles['flight-content'], 'flex-grow flex flex-col gap-16'].join(' ')}>
-              <FlightList
-                departureFlight={departureFlight}
-                setDepartureFlight={setDepartureFlight}
-                returnFlight={returnFlight}
-                setReturnFlight={setReturnFlight}
-              />
+              {currentStep < 1 && (
+                <FlightList
+                  departureFlight={departureFlight}
+                  setDepartureFlight={setDepartureFlight}
+                  returnFlight={returnFlight}
+                  setReturnFlight={setReturnFlight}
+                />
+              )}
+
               {departureFlight !== null && (
                 <>
-                  <CustomerInfo />
-                  <CustomerContact />
+                  {currentStep === 0 && (
+                    <>
+                      <CustomerInfo />
+                      <CustomerContact />
+                    </>
+                  )}
+                  {currentStep === 1 && (
+                    <OtpCard
+                      title="Xác thực Email"
+                      description="Một mã gồm 4 chữ số đã được gửi đến email@email.com của bạn"
+                    />
+                  )}
+                  {currentStep === 2 && (
+                    <OtpCard
+                      title="Xãc thực OTP"
+                      description="Một mã gồm 6 chữ số đã được gửi đến số điện thoại (+84) 999 999 999 của bạn"
+                    />
+                  )}
                   <div className="flex justify-between">
                     <Button
                       label="Quay lại"
                       iconLeading={<ArrowLeftIcon />}
                       typeStyle="outline"
-                      onClick={handleReset}
+                      onClick={handleBack}
                     />
-                    <Link href="/tim-ve-may-bay/thanh-toan">
-                      <Button label="Tiếp" iconTrailing={<ArrowRightIcon />} />
-                    </Link>
+
+                    <Button
+                      label="Tiếp"
+                      iconTrailing={<ArrowRightIcon />}
+                      onClick={handleNextStep}
+                    />
                   </div>
                 </>
               )}

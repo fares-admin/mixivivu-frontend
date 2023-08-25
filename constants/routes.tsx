@@ -6,4 +6,8 @@ export const Routes = {
     addTour: '/admin/du-thuyen/tao-moi-tour',
     updateTour: '/admin/du-thuyen/cap-nhat-tour/[slug]',
   },
+  ship: {
+    filterShip: '/tim-du-thuyen',
+    shipDetail: '/du-thuyen',
+  },
 }
