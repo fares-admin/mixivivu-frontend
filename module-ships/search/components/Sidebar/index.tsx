@@ -43,6 +43,7 @@ export const Sidebar = ({ filter, setFilter, features }: SidebarProps) => {
               type="checkbox"
               sizeInput="sm"
               text={`${item} sao`}
+              checked={filter.scoreReview.includes(item)}
               onChange={(e) => onScoreReviewChecked(e.target.checked, item)}
             />
           ))}

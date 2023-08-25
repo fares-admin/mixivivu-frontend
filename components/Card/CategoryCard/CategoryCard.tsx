@@ -1,17 +1,14 @@
 import { Badge, Button, ImageFill, ShipIcon } from '@/components'
 import { Card } from '../Card'
 import styles from './CategoryCard.module.css'
-import Link from 'next/link'
-import { Routes } from '@/constants/routes'
 
 interface CategoryCardProps {
   url: string
   shipCount: number
   title: string
-  category: string
 }
 
-export const CategoryCard = ({ url, shipCount, title, category }: CategoryCardProps) => {
+export const CategoryCard = ({ url, shipCount, title }: CategoryCardProps) => {
   return (
     <Card customClass={styles.categoryCard}>
       <div className={styles.imageWrapper}>
@@ -28,11 +25,7 @@ export const CategoryCard = ({ url, shipCount, title, category }: CategoryCardPr
         <h6>{title}</h6>
       </div>
       <div className={styles.footer}>
-        <Link href={`${Routes.ship.filterShip}?category=${category}`}>
-          <a>
-            <Button label="Xem ngay" size="sm" typeStyle="outline" />
-          </a>
-        </Link>
+        <Button label="Xem ngay" size="sm" typeStyle="outline" />
       </div>
     </Card>
   )

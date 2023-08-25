@@ -27,6 +27,7 @@
   flex-direction: column;
   border-radius: 16px;
   background: var(--white-100, #fff);
+  height: fit-content;
 }
 
 .action-item {
@@ -53,7 +54,8 @@
 }
 
 .img-wrapper {
-  padding: 40px 32px;
+  position: relative;
+  padding: 20px 32px 100px 32px;
   max-width: 1264px;
   height: 712px;
 }
@@ -62,7 +64,7 @@
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
-  bottom: 16px;
+  bottom: 60px;
 }
 
 .thumbs .thumbItem {

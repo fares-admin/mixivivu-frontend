@@ -10,6 +10,7 @@ import {
 import styles from './Home.module.scss'
 import { ProductRes } from '@/types/product'
 import { CategoryRes } from '@/types/category'
+import Link from 'next/link'
 
 interface HomePageProps {
   popularShips: ProductRes[]
@@ -28,7 +29,7 @@ export const HomePage = ({ popularShips, categories }: HomePageProps) => {
           categories={categories}
         />
       </div>
-      <div id={styles.popularSections} className="section-bg">
+      <div id={styles.popularSections}>
         <PopularShips ships={popularShips} categories={categories} />
       </div>
       <div id={styles.reviewSection} className="section-bg">
@@ -42,13 +43,11 @@ export const HomePage = ({ popularShips, categories }: HomePageProps) => {
         />
         <div className={styles.cardList}>
           {categories.map((item, index) => (
-            <CategoryCard
-              url={item.image}
-              title={item.name}
-              shipCount={0}
-              category={item._id}
-              key={index}
-            />
+            <Link href={`/tim-du-thuyen?category=${item._id}`}>
+              <a>
+                <CategoryCard url={item.image} title={item.name} shipCount={0} key={index} />
+              </a>
+            </Link>
           ))}
         </div>
       </div>

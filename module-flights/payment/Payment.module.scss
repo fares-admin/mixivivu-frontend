@@ -30,3 +30,19 @@
 .partners {
   background: var(--gray-50, #f9fafb);
 }
+
+.total-price-pin {
+  border-radius: 0;
+  bottom: 0;
+  position: sticky;
+  padding: 20px 32px;
+  &__content {
+    padding: 0 32px;
+    width: 1280px;
+    max-width: 100%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+}

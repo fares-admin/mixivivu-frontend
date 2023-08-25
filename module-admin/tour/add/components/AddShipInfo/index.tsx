@@ -13,7 +13,7 @@ export const AddShipInfo = () => {
           <Field name="spec.ship.launch">
             {({ field, meta }: any) => (
               <div>
-                <Input {...field} label="Hạ thuỷ" placeHolder="Nhập hạ thuỷ" />
+                <Input {...field} label="Hạ thuỷ" placeHolder="Nhập hạ thuỷ" required />
                 {meta.touched && meta.error && <div className="error">{meta.error}</div>}
               </div>
             )}
@@ -21,7 +21,7 @@ export const AddShipInfo = () => {
           <Field name="spec.ship.shell">
             {({ field, meta }: any) => (
               <div>
-                <Input {...field} label="Thân vỏ" placeHolder="Nhập thân vỏ" />
+                <Input {...field} label="Thân vỏ" placeHolder="Nhập thân vỏ" required />
                 {meta.touched && meta.error && <div className="error">{meta.error}</div>}
               </div>
             )}
@@ -29,7 +29,7 @@ export const AddShipInfo = () => {
           <Field name="spec.ship.cabin">
             {({ field, meta }: any) => (
               <div>
-                <Input {...field} label="Cabin" placeHolder="Nhập cabin" />
+                <Input {...field} label="Cabin" placeHolder="Nhập cabin" required />
                 {meta.touched && meta.error && <div className="error">{meta.error}</div>}
               </div>
             )}
@@ -37,7 +37,7 @@ export const AddShipInfo = () => {
           <Field name="spec.ship.trip">
             {({ field, meta }: any) => (
               <div>
-                <Input {...field} label="Hành trình" placeHolder="Nhập hành trình" />
+                <Input {...field} label="Hành trình" placeHolder="Nhập hành trình" required />
                 {meta.touched && meta.error && <div className="error">{meta.error}</div>}
               </div>
             )}
@@ -45,7 +45,7 @@ export const AddShipInfo = () => {
           <Field name="spec.ship.admin">
             {({ field, meta }: any) => (
               <div>
-                <Input {...field} label="Điều hành" placeHolder="Nhập điều hành" />
+                <Input {...field} label="Điều hành" placeHolder="Nhập điều hành" required />
                 {meta.touched && meta.error && <div className="error">{meta.error}</div>}
               </div>
             )}

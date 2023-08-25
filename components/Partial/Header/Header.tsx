@@ -1,6 +1,7 @@
 import { Button, ChevronDownIcon, Logo, VietnameseFlagIcon } from '@/components'
 import { useRouter } from 'next/router'
 import styles from './Header.module.css'
+import Link from 'next/link'
 
 interface NavItemProps {
   name: string
@@ -31,7 +32,9 @@ export const Header = () => {
   const router = useRouter()
 
   return (
-    <div className={styles.wrapper}>
+    <div
+      className={[styles.wrapper, router.pathname === '/' ? styles['home-header'] : ''].join(' ')}
+    >
       <div className={['container flex justify-between align-center', styles.container].join(' ')}>
         <div className="flex align-center gap-40 h-full">
           <div className={styles.logo}>
@@ -89,7 +92,9 @@ export const Header = () => {
             </div>
           </div> */}
           </div>
-          <Button label="Liên hệ Mixivivu" size="sm" typeStyle="color" />
+          <Link href="/lien-he">
+            <Button label="Liên hệ Mixivivu" size="sm" typeStyle="color" />
+          </Link>
         </div>
       </div>
     </div>

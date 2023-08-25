@@ -6,6 +6,10 @@
   color: var(--gray-700, #344054);
 }
 
+.pagination label {
+  color: var(--gray-700, #344054);
+}
+
 .pagination .page-size {
   display: flex;
   align-items: center;
@@ -51,6 +55,7 @@
   align-items: center;
   border-right: 1px solid var(--gray-300, #d0d5dd);
   background: var(--base-white, #fff);
+  color: var(--gray-800, #1d2939);
 }
 
 .pagination-container .pagination-item:last-child {

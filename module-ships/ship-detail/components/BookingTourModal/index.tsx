@@ -64,7 +64,7 @@ export const BookingTourModal = ({
                 <Field name="name">
                   {({ field, meta }: any) => (
                     <div>
-                      <Input {...field} label="Họ và tên" placeHolder="Nhập họ và tên" />
+                      <Input {...field} label="Họ và tên" placeHolder="Nhập họ và tên" required />
                       {meta.touched && meta.error && <div className="error">{meta.error}</div>}
                     </div>
                   )}
@@ -72,7 +72,12 @@ export const BookingTourModal = ({
                 <Field name="name">
                   {({ field, meta }: any) => (
                     <div>
-                      <Input {...field} label="Số điện thoại" placeHolder="Nhập số điện thoại" />
+                      <Input
+                        {...field}
+                        label="Số điện thoại"
+                        placeHolder="Nhập số điện thoại"
+                        required
+                      />
                       {meta.touched && meta.error && <div className="error">{meta.error}</div>}
                     </div>
                   )}
@@ -80,7 +85,7 @@ export const BookingTourModal = ({
                 <Field name="name">
                   {({ field, meta }: any) => (
                     <div>
-                      <Input {...field} label="Địa chỉ email" placeHolder="Nhập email" />
+                      <Input {...field} label="Địa chỉ email" placeHolder="Nhập email" required />
                       {meta.touched && meta.error && <div className="error">{meta.error}</div>}
                     </div>
                   )}
@@ -92,6 +97,7 @@ export const BookingTourModal = ({
                         {...field}
                         label="Yêu cầu của bạn"
                         placeHolder="Nhập yêu cầu của bạn"
+                        required
                       />
                       {meta.touched && meta.error && <div className="error">{meta.error}</div>}
                     </div>

@@ -72,7 +72,7 @@ export const AddTourInfo = ({
             <Field name="title">
               {({ field, meta }: any) => (
                 <div>
-                  <Input {...field} label="Tên tour" placeHolder="Nhập tên tour" />
+                  <Input {...field} label="Tên tour" placeHolder="Nhập tên tour" required />
                   {meta.touched && meta.error && <div className="error">{meta.error}</div>}
                 </div>
               )}
@@ -80,7 +80,7 @@ export const AddTourInfo = ({
             <Field name="slug">
               {({ field, meta }: any) => (
                 <div>
-                  <Input {...field} label="Slug" placeHolder="Slug" />
+                  <Input {...field} label="Slug" placeHolder="Slug" required />
                   {meta.touched && meta.error && <div className="error">{meta.error}</div>}
                 </div>
               )}
@@ -88,7 +88,7 @@ export const AddTourInfo = ({
             <Field name="defaultPrice">
               {({ field, meta }: any) => (
                 <div>
-                  <Input {...field} label="Giá tour" placeHolder="Nhập giá tour" />
+                  <Input {...field} label="Giá tour" placeHolder="Nhập giá tour" required />
                   {meta.touched && meta.error && <div className="error">{meta.error}</div>}
                 </div>
               )}
@@ -96,7 +96,7 @@ export const AddTourInfo = ({
             <Field name="schedule">
               {({ field, meta }: any) => (
                 <div>
-                  <Input {...field} label="Lịch trình" placeHolder="Nhập lịch trình" />
+                  <Input {...field} label="Lịch trình" placeHolder="Nhập lịch trình" required />
                   {meta.touched && meta.error && <div className="error">{meta.error}</div>}
                 </div>
               )}
@@ -104,7 +104,7 @@ export const AddTourInfo = ({
             <Field name="address">
               {({ field, meta }: any) => (
                 <div>
-                  <Input {...field} label="Địa chỉ" placeHolder="Nhập địa chỉ" />
+                  <Input {...field} label="Địa chỉ" placeHolder="Nhập địa chỉ" required />
                   {meta.touched && meta.error && <div className="error">{meta.error}</div>}
                 </div>
               )}

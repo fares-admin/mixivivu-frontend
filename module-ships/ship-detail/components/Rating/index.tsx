@@ -140,7 +140,7 @@ export const Rating = ({ id, score, numberOfReviews }) => {
               <Field name="name">
                 {({ field, meta }: any) => (
                   <div>
-                    <Input {...field} label="Họ và tên" placeHolder="Nhập họ và tên" />
+                    <Input {...field} label="Họ và tên" placeHolder="Nhập họ và tên" required />
                     {meta.touched && meta.error && <div className="error">{meta.error}</div>}
                   </div>
                 )}
@@ -148,7 +148,12 @@ export const Rating = ({ id, score, numberOfReviews }) => {
               <Field name="phone">
                 {({ field, meta }: any) => (
                   <div>
-                    <Input {...field} label="Số điện thoại" placeHolder="Nhập số điện thoại" />
+                    <Input
+                      {...field}
+                      label="Số điện thoại"
+                      placeHolder="Nhập số điện thoại"
+                      required
+                    />
                     {meta.touched && meta.error && <div className="error">{meta.error}</div>}
                   </div>
                 )}
@@ -156,7 +161,7 @@ export const Rating = ({ id, score, numberOfReviews }) => {
               <Field name="email">
                 {({ field, meta }: any) => (
                   <div>
-                    <Input {...field} label="Địa chỉ email" placeHolder="Nhập email" />
+                    <Input {...field} label="Địa chỉ email" placeHolder="Nhập email" required />
                     {meta.touched && meta.error && <div className="error">{meta.error}</div>}
                   </div>
                 )}
@@ -169,6 +174,7 @@ export const Rating = ({ id, score, numberOfReviews }) => {
                     {...field}
                     label="Đánh giá của bạn"
                     placeHolder="Nhập yêu cầu của bạn"
+                    required
                   />
                   {meta.touched && meta.error && <div className="error">{meta.error}</div>}
                 </div>

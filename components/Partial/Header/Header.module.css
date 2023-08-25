@@ -6,6 +6,10 @@
   border-bottom: 1px solid var(--gray-200);
 }
 
+.home-header {
+  border-bottom: none;
+}
+
 .container {
   height: 96px;
 }

@@ -23,7 +23,7 @@ export const ReviewsSection = () => {
       <div className={styles.reviewList}>
         {reviewers.map((item, index) => (
           <Button
-            customClass={styles.reviewBtn}
+            customClass={[styles.reviewBtn, item.isActive ? '' : styles.defaultBtn].join(' ')}
             key={index}
             typeStyle="outline"
             label={item.name}

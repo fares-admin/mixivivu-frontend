@@ -10,6 +10,7 @@ interface TextAreaProps {
   placeHolder?: string
   disable?: boolean
   customClass?: string
+  required?: boolean
 }
 
 /**
@@ -24,6 +25,7 @@ export const TextArea = ({
   placeHolder,
   customClass,
   disable,
+  required,
   ...props
 }: TextAreaProps) => {
   const id = useId()
@@ -40,7 +42,7 @@ export const TextArea = ({
           {...props}
         />
         {supportIcon && supportIcon}
-        <label htmlFor={id} className="sm">
+        <label htmlFor={id} className={['sm', required ? styles.required : ''].join(' ')}>
           {label}
         </label>
       </label>

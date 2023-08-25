@@ -312,14 +312,14 @@ export const FlightSearchNavigation = () => {
               onChangDate={(date) => handleChangeDate(date, true)}
             />
           </div>
-          <div className="flex-grow">
-            {isDeparting && (
+          {isDeparting && (
+            <div className="flex-grow">
               <FlightDatePicker
                 label="Ngày về"
                 onChangDate={(date) => handleChangeDate(date, false)}
               />
-            )}
-          </div>
+            </div>
+          )}
           <Button label="Tìm kiếm" onClick={handleClick} />
         </div>
       </div>
