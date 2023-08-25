@@ -18,6 +18,7 @@
     "chromatic": "npx chromatic --project-token=chpt_0ea299b277c6015"
   },
   "dependencies": {
+    "@artsy/fresnel": "^6.1.0",
     "@editorjs/checklist": "latest",
     "@editorjs/code": "latest",
     "@editorjs/delimiter": "latest",

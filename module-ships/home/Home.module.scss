@@ -76,12 +76,20 @@
 
   .banner {
     width: calc(100vw - 8px);
+    height: fit-content;
+    padding: 24px 0;
+
     .searchBox {
-      bottom: -251px;
+      position: static;
+      bottom: 0;
+      transform: none;
+    }
+    .bg-video {
+      display: none;
     }
   }
 
   #popularSections {
-    padding-top: 250px;
+    padding-top: 0;
   }
 }
