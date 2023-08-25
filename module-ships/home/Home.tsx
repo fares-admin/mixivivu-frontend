@@ -29,7 +29,7 @@ export const HomePage = ({ popularShips, categories }: HomePageProps) => {
         />
       </div>
       <div id={styles.popularSections} className="section-bg">
-        <PopularShips ships={popularShips} />
+        <PopularShips ships={popularShips} categories={categories} />
       </div>
       <div id={styles.reviewSection} className="section-bg">
         <ReviewsSection />

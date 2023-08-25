@@ -1,0 +1,35 @@
+.card-header {
+  padding: 20px 24px;
+  gap: 16px;
+  border-bottom: 1px solid var(--gray-200, #eaecf0);
+}
+.card-content {
+  padding: 20px 24px;
+}
+
+.card-content input {
+  width: 64px !important;
+  padding: 2px 8px;
+  color: var(--primary-dark, #0e4f4f);
+  text-align: center;
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 60px;
+  border-radius: 8px;
+  border: 1px solid var(--gray-300, #d0d5dd);
+  background: var(--base-white, #fff);
+  box-shadow: var(--shadow-xs);
+}
+
+.card-content input:focus {
+  outline: none;
+}
+
+.divider {
+  width: 28px;
+  color: var(--gray-300, #d0d5dd);
+  text-align: center;
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 60px;
+}
