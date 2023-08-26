@@ -6,7 +6,14 @@ export const Flight = () => {
   return (
     <div className={styles.flight}>
       <div className={styles.banner}>
-        <video className={styles['bg-video']} src="/banner.mp4" autoPlay muted playsInline loop />
+        <video
+          className={styles['bg-video']}
+          src="https://minio.fares.vn/mixivivu-dev/video/banner.mp4"
+          autoPlay
+          muted
+          playsInline
+          loop
+        />
         <FlightSearchBox
           className={styles.searchBox}
           title="Mở cánh cửa khám phá cùng Mixivivu"
