@@ -16,17 +16,22 @@ Home.getLayout = (page) => {
 export const getServerSideProps: any = async () => {
   let popularShips = []
   let categories = []
-  const [popularShipRes, categoryRes] = await Promise.all([
-    axios.get(`${MIXIVIVU_CONFIG.API_BASE_URL}${getEndpoint(productEndpoints, 'getList')}`, {
-      params: { limit: 6, type: 'ship' },
-    }),
-    axios.get(`${MIXIVIVU_CONFIG.API_BASE_URL}${getEndpoint(categoryEndpoints, 'getList')}`),
-  ])
-  if (popularShipRes.data) {
-    popularShips = popularShipRes.data.result.data
-  }
-  if (categoryRes.data) {
-    categories = categoryRes.data.result.data
+  try {
+    const [popularShipRes, categoryRes] = await Promise.all([
+      axios.get(`${MIXIVIVU_CONFIG.API_BASE_URL}${getEndpoint(productEndpoints, 'getList')}`, {
+        params: { limit: 6, type: 'ship' },
+      }),
+      axios.get(`${MIXIVIVU_CONFIG.API_BASE_URL}${getEndpoint(categoryEndpoints, 'getList')}`),
+    ])
+    if (popularShipRes.data) {
+      popularShips = popularShipRes.data.result.data
+    }
+    if (categoryRes.data) {
+      categories = categoryRes.data.result.data
+    }
+  } catch (e) {
+    // eslint-disable-next-line no-console
+    console.error(e)
   }
   return {
     props: {
