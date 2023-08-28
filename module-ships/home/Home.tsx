@@ -21,7 +21,14 @@ export const HomePage = ({ popularShips, categories }: HomePageProps) => {
   return (
     <div className={styles.home}>
       <div className={styles.banner}>
-        <video className={styles['bg-video']} src="/banner.mp4" autoPlay muted playsInline loop />
+        <video
+          className={styles['bg-video']}
+          src="https://minio.fares.vn/mixivivu-dev/video/banner.mp4"
+          autoPlay
+          muted
+          playsInline
+          loop
+        />
         <SearchBox
           className={styles.searchBox}
           title="Bạn lựa chọn du thuyền Hạ Long nào?"
