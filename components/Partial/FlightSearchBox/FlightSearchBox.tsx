@@ -121,7 +121,7 @@ export const FlightSearchBox = ({ title, description, className }: SearchBoxProp
       isDeparting &&
       new Date(startParseDate).getTime() >
         new Date(
-          request.ListFlight[1].DepartDate.split('/')
+          request?.ListFlight[1]?.DepartDate?.split('/')
             .map((item, index, array) => {
               if (index === 0) return array[1]
               if (index === 1) return array[0]
