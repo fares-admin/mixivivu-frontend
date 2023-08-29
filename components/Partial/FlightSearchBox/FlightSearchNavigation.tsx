@@ -121,7 +121,7 @@ export const FlightSearchNavigation = () => {
       isDeparting &&
       new Date(startParseDate).getTime() >
         new Date(
-          request.ListFlight[1].DepartDate.split('/')
+          request?.ListFlight[1]?.DepartDate?.split('/')
             .map((item, index, array) => {
               if (index === 0) return array[1]
               if (index === 1) return array[0]
@@ -154,8 +154,10 @@ export const FlightSearchNavigation = () => {
       if (!thisReq) {
         handleClick()
       } else {
-        if (thisReq.ListFlight.length > 0) {
+        if (thisReq?.ListFlight?.length > 1) {
           setIsDeparting(true)
+        } else {
+          setIsDeparting(false)
         }
         setRequest({
           ...thisReq,
