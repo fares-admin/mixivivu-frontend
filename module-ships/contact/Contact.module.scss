@@ -17,3 +17,19 @@
     left: 50%;
   }
 }
+
+@media (max-width: 1024px) {
+  .contact {
+    padding: 0 8px 800px 8px;
+    iframe {
+      height: 500px;
+    }
+    .contact-card {
+      width: 90%;
+      top: 300px;
+    }
+    .group-input {
+      grid-template-columns: auto;
+    }
+  }
+}

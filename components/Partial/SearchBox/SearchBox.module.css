@@ -8,6 +8,10 @@
   margin: 0;
 }
 
+.description {
+  opacity: 0.6;
+}
+
 .searchInput {
   position: relative;
   flex: 1 0 0;
@@ -64,10 +68,11 @@
 
   .title {
     font-size: 24px;
+    line-height: 32px;
   }
 
   .description {
-    font-size: 16px;
+    font-size: 16px !important;
   }
 
   .input-group {

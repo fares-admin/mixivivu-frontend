@@ -9,6 +9,7 @@
 
 .imageWrapper {
   padding: 16px 16px 0 16px;
+  max-width: 100%;
 }
 
 .body {
@@ -35,4 +36,10 @@
 
 .footer {
   padding: 0px 24px;
+}
+
+@media (max-width: 1024px) {
+  .blogCard {
+    width: 100%;
+  }
 }

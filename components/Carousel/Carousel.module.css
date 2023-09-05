@@ -76,3 +76,26 @@
     opacity: 1;
   }
 }
+
+@media (max-width: 1024px) {
+  .carousel-btn {
+    padding: 4px;
+  }
+  .carousel-btn svg {
+    width: 16px;
+    height: 16px;
+  }
+  .left-btn {
+    left: 8px;
+  }
+  .right-btn {
+    right: 8px;
+  }
+  .carouselItem {
+    width: 100vw;
+    height: 203px;
+  }
+  .thumbs {
+    display: none;
+  }
+}

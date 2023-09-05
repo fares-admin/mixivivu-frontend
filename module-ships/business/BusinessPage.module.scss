@@ -26,7 +26,44 @@
   padding: 80px 32px;
   background-color: #f3ffff;
   .customer-list {
+    overflow-x: auto;
     display: flex;
     justify-content: space-between;
+  }
+}
+
+@media (max-width: 1024px) {
+  .wrapper {
+    padding: 24px;
+  }
+  .business-info {
+    flex-direction: column;
+    gap: 24px;
+  }
+  .contact-btn {
+    display: none;
+  }
+  .feature-card {
+    flex-direction: column;
+    width: 100%;
+    gap: 16px;
+    .img-wrapper {
+      width: 80px;
+      height: 80px;
+      min-width: 80px;
+    }
+    h6 {
+      font-size: 16px;
+    }
+    p {
+      font-size: 12px;
+    }
+  }
+  .customer-list {
+    .customer-img {
+      width: 176px;
+      min-width: 176px;
+      height: 64px;
+    }
   }
 }

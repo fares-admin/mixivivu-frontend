@@ -56,12 +56,14 @@ export const Rooms = ({ id }: RoomsProps) => {
           />
           <Button label="Xoá lựa chọn" typeStyle="outline" iconLeading={<XMarkIcon />} size="sm" />
         </div>
-        <div className={['flex flex-col gap-16 '].join(' ')}>
+        <div className={['flex flex-col gap-16 ', styles['rooms-list']].join(' ')}>
           {room1.map((item, index) => (
             <RoomCard {...item} key={index} />
           ))}
         </div>
-        <div className="flex align-center gap-40 justify-between">
+        <div
+          className={['flex align-center gap-40 justify-between', styles['rooms-footer']].join(' ')}
+        >
           <div>
             <label className={['sm', styles['price-label']].join(' ')}>Tổng tiền</label>
             <div className={['subheading lg', styles.price].join(' ')}>3,350,000đ</div>

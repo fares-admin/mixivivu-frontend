@@ -1,6 +1,7 @@
 import { Button, ChevronDownIcon, Input, MinusIcon, PlusIcon } from '@/components'
 import { useState } from 'react'
 import styles from './RoomPicker.module.css'
+import { useOutsideClick } from '@/hooks/useClickOutside'
 
 interface QuantityItemProps {
   name: string
@@ -61,11 +62,15 @@ export const RoomPicker = ({ roomDetail, setRoomDetail }: RoomPickerProps) => {
     })
     setShowRoomPicker(false)
   }
+  const showRoomPickerRef = useOutsideClick(() => {
+    setShowRoomPicker(false)
+  })
   return (
-    <div className={styles['room-picker']}>
+    <div className={styles['room-picker']} ref={showRoomPickerRef}>
       <Input
         onClick={() => setShowRoomPicker(true)}
         label="Số lượng"
+        type="button"
         value={`${roomDetail.rooms} Phòng - ${roomDetail.adults} Người lớn - ${roomDetail.children} - Trẻ em`}
         supportIcon={<ChevronDownIcon />}
       />

@@ -5,7 +5,7 @@ import styles from './BlogPage.module.css'
 export const BlogPage = () => {
   return (
     <div className={[styles['blog-page'], 'container flex flex-col gap-80'].join(' ')}>
-      <div className="flex justify-betwee gap-16">
+      <div className={[styles['blog-header'], 'flex justify-betwee gap-16'].join(' ')}>
         <SectionHeader
           column
           title={
@@ -15,7 +15,12 @@ export const BlogPage = () => {
           }
           description="Hạ Long: Bí mật và Cuộc sống trong Vịnh - Khám phá và Cập nhật những tin tức hấp dẫn từ điểm đến tuyệt vời này."
         />
-        <Button label="Đọc nhiều" iconTrailing={<ChevronDownIcon />} typeStyle="outline" />
+        <Button
+          customClass={styles['filter-btn']}
+          label="Đọc nhiều"
+          iconTrailing={<ChevronDownIcon />}
+          typeStyle="outline"
+        />
       </div>
       <div className={styles['blog-list']}>
         {blogList.slice(0, 6).map((item, index) => (

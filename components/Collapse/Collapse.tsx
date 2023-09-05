@@ -4,12 +4,19 @@ import styles from './Collapse.module.css'
 
 interface CollapseProps {
   isCollapse: boolean
+  customHeaderClass?: string
   customClass?: string
   header: ReactNode
   content: ReactNode
 }
 
-export const Collapse = ({ isCollapse = true, customClass, header, content }: CollapseProps) => {
+export const Collapse = ({
+  isCollapse = true,
+  customClass,
+  customHeaderClass,
+  header,
+  content,
+}: CollapseProps) => {
   const [height, setHeight] = useState<number | undefined>(isCollapse ? 0 : undefined)
   const ref = useRef<HTMLDivElement>(null)
 
@@ -32,7 +39,9 @@ export const Collapse = ({ isCollapse = true, customClass, header, content }: Co
 
   return (
     <Card customClass={customClass}>
-      <div className={!isCollapse ? styles['open-header'] : ''}>{header}</div>
+      <div className={[!isCollapse ? styles['open-header'] : '', customHeaderClass].join(' ')}>
+        {header}
+      </div>
       <div
         className={[isCollapse ? styles['collapsed-content'] : '', styles.collapse].join(' ')}
         style={{ height }}

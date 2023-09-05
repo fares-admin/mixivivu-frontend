@@ -19,6 +19,7 @@ import { getEndpoint, reviewEndpoints } from '@/constants/endpoints'
 import { CommonListResultType } from '@/types'
 import { ReviewReq, ReviewRequestError, ReviewRes } from '@/types/review'
 import { toast } from 'react-toastify'
+import { ReviewValidationSchema } from '@/validations'
 
 const initialReview = {
   name: '',
@@ -29,7 +30,6 @@ const initialReview = {
 export const Rating = ({ id, score, numberOfReviews }) => {
   const [reviews, setReviews] = useState<ReviewRes[]>([])
   const [keySearch, setKeySearch] = useState('')
-  const [rating, setRating] = useState(0)
   const formRef = useRef(null)
   const { setLetCall: fetchReviews } = useApiCall<CommonListResultType<ReviewRes>, string>({
     callApi: () =>
@@ -59,7 +59,6 @@ export const Rating = ({ id, score, numberOfReviews }) => {
     callApi: () =>
       axios.post(getEndpoint(reviewEndpoints, 'addNew'), {
         ...formRef?.current?.values,
-        score: rating,
         variantId: [],
         productId: id,
       }),
@@ -91,101 +90,134 @@ export const Rating = ({ id, score, numberOfReviews }) => {
     <Formik
       innerRef={formRef}
       initialValues={initialReview}
+      validationSchema={ReviewValidationSchema}
       onSubmit={(values, { setSubmitting }) => {
         submitReview(true)
         setSubmitting(false)
       }}
     >
-      <Form>
-        <div id="reviews" className="flex flex-col gap-40">
-          <div className="flex gap-16">
-            <SectionHeader title={`Đánh giá (${numberOfReviews || 0})`} />
-            <div className="flex gap-16">
-              <Input
-                placeHolder="Tìm đánh giá"
-                iconSwap={<SearchIcon />}
-                customClass={styles['search-input']}
-                onChange={(e) => setKeySearch(e.target.value)}
-                onKeyDown={(e) => {
-                  if (e.key === 'Enter') {
-                    fetchReviews(true)
-                  }
-                }}
-              />
-              <Button
-                size="sm"
-                label="Gửi đánh giá"
-                typeStyle="color"
-                iconLeading={<StarIcon />}
-                onClick={scrollToReview}
-              />
+      {({ setFieldValue }) => (
+        <Form>
+          <div id="reviews" className="flex flex-col gap-40">
+            <div className={['flex gap-16', styles['review-header']].join(' ')}>
+              <SectionHeader title={`Đánh giá (${numberOfReviews || 0})`} />
+              <div className={['flex gap-16', styles['group-btn']].join(' ')}>
+                <Input
+                  placeHolder="Tìm đánh giá"
+                  iconSwap={<SearchIcon />}
+                  customClass={styles['search-input']}
+                  onChange={(e) => setKeySearch(e.target.value)}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter') {
+                      fetchReviews(true)
+                    }
+                  }}
+                />
+                <Button
+                  size="sm"
+                  label="Gửi đánh giá"
+                  typeStyle="color"
+                  iconLeading={<StarIcon />}
+                  onClick={scrollToReview}
+                />
+              </div>
             </div>
-          </div>
-          <div className={['flex flex-col gap-20', styles['rating-list']].join(' ')}>
-            <StaticCard rate={(score / numberOfReviews).toFixed(1)} rateCount={getReviews()} />
-            {reviews.map((item, index) => (
-              <RateCard
-                key={index}
-                name={item.name}
-                comment={item.comment}
-                score={item.score}
-                date={new Date(item.created)}
-              />
-            ))}
-          </div>
+            <div className={['flex flex-col gap-20', styles['rating-list']].join(' ')}>
+              <StaticCard rate={(score / numberOfReviews).toFixed(1)} rateCount={getReviews()} />
+              {reviews.map((item, index) => (
+                <RateCard
+                  key={index}
+                  name={item.name}
+                  comment={item.comment}
+                  score={item.score}
+                  date={new Date(item.created)}
+                />
+              ))}
+            </div>
 
-          <div className="flex flex-col gap-24" id="review-submit">
-            <div className={styles['group-input']}>
-              <RatingInput rating={rating} onChange={setRating} />
-              <Field name="name">
+            <div className="flex flex-col gap-24" id="review-submit">
+              <div className={styles['group-input']}>
+                <Field name="score">
+                  {({ field, meta }: any) => (
+                    <div>
+                      <RatingInput
+                        rating={field.value}
+                        onChange={(value) => setFieldValue('score', value)}
+                        error={meta.error}
+                      />
+                      {meta.error && <div className="error">{meta.error}</div>}
+                    </div>
+                  )}
+                </Field>
+                <Field name="name">
+                  {({ field, meta }: any) => (
+                    <div>
+                      <Input
+                        {...field}
+                        label="Họ và tên"
+                        placeHolder="Nhập họ và tên"
+                        required
+                        destructive={meta.touched && meta.error}
+                      />
+                      {meta.touched && meta.error && <div className="error">{meta.error}</div>}
+                    </div>
+                  )}
+                </Field>
+                <Field name="phone">
+                  {({ field, meta }: any) => (
+                    <div>
+                      <Input
+                        {...field}
+                        label="Số điện thoại"
+                        placeHolder="Nhập số điện thoại"
+                        required
+                        destructive={meta.touched && meta.error}
+                      />
+                      {meta.touched && meta.error && <div className="error">{meta.error}</div>}
+                    </div>
+                  )}
+                </Field>
+                <Field name="email">
+                  {({ field, meta }: any) => (
+                    <div>
+                      <Input
+                        {...field}
+                        label="Địa chỉ email"
+                        placeHolder="Nhập email"
+                        required
+                        destructive={meta.touched && meta.error}
+                      />
+                      {meta.touched && meta.error && <div className="error">{meta.error}</div>}
+                    </div>
+                  )}
+                </Field>
+              </div>
+              <Field name="comment">
                 {({ field, meta }: any) => (
                   <div>
-                    <Input {...field} label="Họ và tên" placeHolder="Nhập họ và tên" required />
-                    {meta.touched && meta.error && <div className="error">{meta.error}</div>}
-                  </div>
-                )}
-              </Field>
-              <Field name="phone">
-                {({ field, meta }: any) => (
-                  <div>
-                    <Input
+                    <TextArea
                       {...field}
-                      label="Số điện thoại"
-                      placeHolder="Nhập số điện thoại"
+                      label="Đánh giá của bạn"
+                      placeHolder="Nhập yêu cầu của bạn"
                       required
+                      destructive={meta.touched && meta.error}
                     />
                     {meta.touched && meta.error && <div className="error">{meta.error}</div>}
                   </div>
                 )}
               </Field>
-              <Field name="email">
-                {({ field, meta }: any) => (
-                  <div>
-                    <Input {...field} label="Địa chỉ email" placeHolder="Nhập email" required />
-                    {meta.touched && meta.error && <div className="error">{meta.error}</div>}
-                  </div>
-                )}
-              </Field>
             </div>
-            <Field name="comment">
-              {({ field, meta }: any) => (
-                <div>
-                  <TextArea
-                    {...field}
-                    label="Đánh giá của bạn"
-                    placeHolder="Nhập yêu cầu của bạn"
-                    required
-                  />
-                  {meta.touched && meta.error && <div className="error">{meta.error}</div>}
-                </div>
-              )}
-            </Field>
+            <div className="flex justify-end">
+              <Button
+                type="submit"
+                typeStyle="color"
+                label="Gửi"
+                iconTrailing={<ArrowRightIcon />}
+              />
+            </div>
           </div>
-          <div className="flex justify-end">
-            <Button type="submit" typeStyle="color" label="Gửi" iconTrailing={<ArrowRightIcon />} />
-          </div>
-        </div>
-      </Form>
+        </Form>
+      )}
     </Formik>
   )
 }

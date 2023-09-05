@@ -4,6 +4,7 @@
   border: 1px solid var(--gray-200, #eaecf0);
   background: var(--base-white, #fff);
   box-shadow: var(--shadow-xs);
+  height: fit-content;
 }
 
 .rating path {
@@ -20,4 +21,8 @@
 
 .active path {
   stroke: var(--warning-base);
+}
+
+.error {
+  border: 1px solid var(--error-base);
 }

@@ -1,4 +1,4 @@
-import { Button, ChevronDownIcon, Logo, VietnameseFlagIcon } from '@/components'
+import { Button, ChevronDownIcon, GridCircleIcon, Logo, VietnameseFlagIcon } from '@/components'
 import { useRouter } from 'next/router'
 import styles from './Header.module.css'
 import Link from 'next/link'
@@ -73,7 +73,7 @@ export const Header = () => {
             ))}
           </div>
         </div>
-        <div className="flex gap-16">
+        <div className="flex gap-16 align-center">
           <div className={styles.menu}>
             <Button
               label="Tiếng việt"
@@ -95,6 +95,7 @@ export const Header = () => {
           <Link href="/lien-he">
             <Button label="Liên hệ Mixivivu" size="sm" typeStyle="color" />
           </Link>
+          <GridCircleIcon />
         </div>
       </div>
     </div>

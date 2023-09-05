@@ -5,12 +5,15 @@ import styles from './RatingInput.module.css'
 interface RatingInputProps {
   rating: number
   onChange: (rating: number) => void
+  error?: boolean
 }
 
-export const RatingInput = ({ rating, onChange }: RatingInputProps) => {
+export const RatingInput = ({ rating, onChange, error }: RatingInputProps) => {
   const [hovered, setHovered] = useState(0)
   return (
-    <div className={['flex gap-12 align-center', styles.rating].join(' ')}>
+    <div
+      className={['flex gap-12 align-center', styles.rating, error ? styles.error : ''].join(' ')}
+    >
       <label className="sm">Chất lượng</label>
       {[1, 2, 3, 4, 5].map((item) => (
         <div

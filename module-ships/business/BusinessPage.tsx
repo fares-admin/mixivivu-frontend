@@ -1,6 +1,7 @@
 import { ArrowRightIcon, Button, ImageFill, SearchBox, SectionHeader } from '@/components'
-import Image from 'next/image'
 import styles from './BusinessPage.module.scss'
+import Link from 'next/link'
+import { Routes } from '@/constants/routes'
 
 export const BusinessPage = () => {
   return (
@@ -11,8 +12,8 @@ export const BusinessPage = () => {
           title="Bạn lựa chọn du thuyền Hạ Long nào?"
           description="Hơn 100 tour du thuyền sang trọng, đẳng cấp 5 sao thăm vịnh Hạ Long và vịnh Lan Hạ đang chờ đón bạn."
         />
-        <div className="flex gap-136 ">
-          <div className="flex flex-col justify-between">
+        <div className={[styles['business-info'], 'flex gap-136 '].join(' ')}>
+          <div className="flex flex-col justify-between gap-40">
             <div className="flex flex-col gap-24">
               <SectionHeader title="Mixivivu - Tour Du thuyền Hạ Long: Kết nối doanh nghiệp, khám phá vẻ đẹp tự nhiên" />
               <label className="lg">
@@ -24,11 +25,14 @@ export const BusinessPage = () => {
                 trải nghiệm không thể quên cho doanh nghiệp của bạn.
               </label>
             </div>
-            <Button
-              label="Liên hệ với Mixivivu"
-              typeStyle="color"
-              iconTrailing={<ArrowRightIcon />}
-            />
+            <Link href={Routes.contact}>
+              <Button
+                customClass={styles['contact-btn']}
+                label="Liên hệ với Mixivivu"
+                typeStyle="color"
+                iconTrailing={<ArrowRightIcon />}
+              />
+            </Link>
           </div>
           <div className="flex flex-col gap-24">
             {[1, 2, 3].map((item) => (
@@ -57,7 +61,13 @@ export const BusinessPage = () => {
           />
           <div className={styles['customer-list']}>
             {[1, 2, 3, 4, 5, 6].map((item) => (
-              <Image src={`/partners/partner${item}.png`} key={item} width={176} height={64} />
+              <ImageFill
+                className={styles['customer-img']}
+                src={`/partners/partner${item}.png`}
+                key={item}
+                width="176px"
+                height="64px"
+              />
             ))}
           </div>
         </div>

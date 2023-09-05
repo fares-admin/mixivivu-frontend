@@ -42,7 +42,7 @@ export const RoomCard = ({
             <ImageFill src="/carousel3.png" width="100%" height="100%" />
           </div>
           <div className="flex gap-8">
-            {[1, 2, 3, 4, 5, 6].map((item, index) => (
+            {[1, 2, 3, 4, 5].map((item, index) => (
               <div key={index} className={styles['img-item']}>
                 <ImageFill width="100%" height="100%" src="/carousel3.png" />
               </div>
@@ -111,19 +111,21 @@ export const RoomCard = ({
             </div>
           </div>
         </div>
-        <div>
-          <div className={[styles.price, 'subheading md'].join(' ')}>
-            {formatter.format(price)}đ
+        <div className={['flex gap-20 justify-between', styles.footer].join(' ')}>
+          <div>
+            <div className={[styles.price, 'subheading md'].join(' ')}>
+              {formatter.format(price)}đ
+            </div>
+            <div className={styles.user}>/khách</div>
           </div>
-          <div className={styles.user}>/khách</div>
+          <Button
+            customClass={styles.roomBtn}
+            label={roomCount.toString()}
+            typeStyle="outline"
+            iconLeading={<MinusIcon />}
+            iconTrailing={<PlusIcon />}
+          />
         </div>
-        <Button
-          customClass={styles.roomBtn}
-          label={roomCount.toString()}
-          typeStyle="outline"
-          iconLeading={<MinusIcon />}
-          iconTrailing={<PlusIcon />}
-        />
       </Card>
     </div>
   )
