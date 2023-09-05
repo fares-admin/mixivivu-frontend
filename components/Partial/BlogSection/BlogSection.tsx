@@ -1,6 +1,8 @@
 import { ArrowRightIcon, BlogCard, Button, SectionHeader } from '@/components'
 import { blogList } from '@/constants/config'
 import styles from './BlogSection.module.css'
+import Link from 'next/link'
+import { Routes } from '@/constants/routes'
 
 export const BlogSection = () => {
   return (
@@ -19,7 +21,9 @@ export const BlogSection = () => {
         ))}
       </div>
       <div className={styles.action}>
-        <Button label="Xem tất cả" iconTrailing={<ArrowRightIcon />} typeStyle="outline" />
+        <Link href={Routes.blog}>
+          <Button label="Xem tất cả" iconTrailing={<ArrowRightIcon />} typeStyle="outline" />
+        </Link>
       </div>
     </div>
   )

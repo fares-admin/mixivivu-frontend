@@ -46,7 +46,7 @@ interface StepsProps {
 
 export const Steps = ({ steps, isMobile = false }: StepsProps) => {
   return (
-    <div className={[isMobile ? styles['steps-mobile'] : '', 'flex gap-16 align-center'].join(' ')}>
+    <div className={[styles.steps, 'flex gap-16 align-center'].join(' ')}>
       {steps.map((item, index) => (
         <StepItem {...item} key={index} isMobile={isMobile} />
       ))}

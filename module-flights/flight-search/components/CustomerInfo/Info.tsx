@@ -119,7 +119,7 @@ export const CustomerInfo = () => {
   return (
     <Card customClass={styles['customer-info']}>
       <div className={styles['customer-info__header']}>
-        <div className="subheading md">Thông tin Hành khách</div>
+        <div className="subheading md">Thông tin hành khách</div>
       </div>
       <div className={styles['customer-info__content']}>
         <div className="flex flex-col gap-24">
@@ -137,7 +137,7 @@ export const CustomerInfo = () => {
                     <p className="md">Hành khách {item + 1}</p>
                   </div>
                 </div>
-                <div className="grid grid-cols-3 gap-16">
+                <div className={['grid grid-cols-3 gap-16', styles['input-group']].join(' ')}>
                   <GenderDropDown
                     thisValue={
                       passengers.find((thisPass) => thisPass.Index === item + goTicket.Adt)?.Gender
@@ -179,7 +179,7 @@ export const CustomerInfo = () => {
                     <p className="md">Hành khách {item + 1}</p>
                   </div>
                 </div>
-                <div className="grid grid-cols-3 gap-16">
+                <div className={['grid grid-cols-3 gap-16', styles['input-group']].join(' ')}>
                   <GenderDropDown
                     thisValue={
                       passengers.find(

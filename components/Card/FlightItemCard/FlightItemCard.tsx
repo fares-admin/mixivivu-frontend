@@ -10,12 +10,14 @@ interface FlightItemCardProps {
   isSelected?: boolean
   handleSelect: () => void
   FareDataId: number
+  hideSelect?: boolean
 }
 
 export const FlightItemCard = ({
   isSelected = false,
   handleSelect,
   FareDataId,
+  hideSelect = false,
 }: FlightItemCardProps) => {
   const [isCollapse, setIsCollapse] = useState(true)
 
@@ -47,37 +49,56 @@ export const FlightItemCard = ({
           ].join(' ')}
           onClick={handleCollapse}
         >
-          <div className={styles['img-wrapper']}>
-            <ImageFill src={airline.icon} />
+          <div className={styles['item-group']}>
+            <div className="flex gap-16">
+              <div className={styles['img-wrapper']}>
+                <ImageFill src={airline.icon} />
+              </div>
+              <div className="flex flex-col gap-8 flex-grow">
+                <label className="sm">{detail.ListFlight[0].FlightNumber}</label>
+                <p className="sm">{airline.name}</p>
+              </div>
+            </div>
+
+            <div className={styles['price-mobile']}>
+              <label className="sm">
+                {detail.TotalPrice.toLocaleString('it-IT', { style: 'currency', currency: 'VND' })}
+              </label>
+              <p className="sm">VND</p>
+            </div>
           </div>
-          <div className="flex flex-col gap-8 flex-grow">
-            <label className="sm">{detail.ListFlight[0].FlightNumber}</label>
-            <p className="sm">{airline.name}</p>
+
+          <div className={styles['item-group']}>
+            <div className={styles.destination}>
+              <label className="sm">{getHourAndMin(detail.ListFlight[0].StartDate)}</label>
+              <p className="sm">
+                {startPoint.name} ({startPoint.code})
+              </p>
+            </div>
+            <div className={styles.destination}>
+              <label className="sm">{getHourAndMin(detail.ListFlight[0].EndDate)}</label>
+              <p className="sm">
+                {endPoint.name} ({endPoint.code})
+              </p>
+            </div>
           </div>
-          <div className={styles.destination}>
-            <label className="sm">{getHourAndMin(detail.ListFlight[0].StartDate)}</label>
-            <p className="sm">
-              {startPoint.name} ({startPoint.code})
-            </p>
-          </div>
-          <div className={styles.destination}>
-            <label className="sm">{getHourAndMin(detail.ListFlight[0].EndDate)}</label>
-            <p className="sm">
-              {endPoint.name} ({endPoint.code})
-            </p>
-          </div>
+
           <div className={styles.price}>
             <label className="sm">
               {detail.TotalPrice.toLocaleString('it-IT', { style: 'currency', currency: 'VND' })}
             </label>
             <p className="sm">VND</p>
           </div>
-          <Button
-            onClick={handleSelect}
-            label={isSelected ? 'Chọn lại' : 'Chọn'}
-            size="sm"
-            typeStyle="outline"
-          />
+          {!hideSelect && (
+            <Button
+              onClick={handleSelect}
+              label={isSelected ? 'Chọn lại' : 'Chọn'}
+              size="sm"
+              typeStyle="outline"
+              customClass={styles['select-btn']}
+            />
+          )}
+
           <div>
             <ChevronDownIcon strokeColor="var(--gray-600)" />
           </div>

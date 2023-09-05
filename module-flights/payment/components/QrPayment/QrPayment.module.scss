@@ -3,7 +3,7 @@
   border: 1px solid var(--primary-base, #77dada);
   background: #f3ffff;
   box-shadow: var(--shadow-sm);
-  padding: 40px 0px;
+  padding: 40px;
 }
 .qr-code {
   background-color: var(--primary-base);
@@ -11,4 +11,17 @@
   border-radius: 24px;
   width: 200px;
   height: 200px;
+}
+@media (max-width: 1024px) {
+  .qr-content {
+    flex-direction: column;
+    padding: 24px;
+    gap: 24px;
+  }
+  .qr-content h4 {
+    font-size: 26px;
+  }
+  .qr-content label {
+    font-size: 16px;
+  }
 }

@@ -58,8 +58,8 @@ export const Payment = () => {
             to="Cảng hàng không quốc tế Hà Nội (HAN)"
             date="Thứ 3, 18/02/2023"
             content={
-              <div style={{ padding: '16px 24px' }}>
-                <FlightItemCard FareDataId={0} isSelected handleSelect={() => {}} />
+              <div style={{ padding: '8px 16px 16px 16px' }}>
+                <FlightItemCard FareDataId={0} isSelected handleSelect={() => {}} hideSelect />
               </div>
             }
           />
@@ -69,8 +69,8 @@ export const Payment = () => {
             to="Cảng hàng không quốc tế Hà Nội (HAN)"
             date="Thứ 3, 18/02/2023"
             content={
-              <div style={{ padding: '16px 24px' }}>
-                <FlightItemCard FareDataId={0} isSelected handleSelect={() => {}} />
+              <div style={{ padding: '8px 16px 16px 16px' }}>
+                <FlightItemCard FareDataId={0} isSelected handleSelect={() => {}} hideSelect />
               </div>
             }
           />

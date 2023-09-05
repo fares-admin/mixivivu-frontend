@@ -26,7 +26,7 @@ export const CustomerContact = () => {
       </div>
       <div className={styles['customer-info__content']}>
         <div className="flex flex-col gap-24">
-          <div className="grid grid-cols-2 gap-16">
+          <div className={['grid grid-cols-2 gap-16', styles['input-group']].join(' ')}>
             <GenderDropDown
               labelMale="Ông"
               labelFemale="Bà"
@@ -40,7 +40,7 @@ export const CustomerContact = () => {
               placeHolder="Nhập họ"
             />
           </div>
-          <div className="grid grid-cols-3 gap-16">
+          <div className={['grid grid-cols-3 gap-16', styles['input-group']].join(' ')}>
             <Input
               value={contact.FirstName}
               onChange={(e) => onChangeContact('FirstName', e.target.value)}

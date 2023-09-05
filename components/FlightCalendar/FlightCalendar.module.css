@@ -1,11 +1,15 @@
 .flight-calendar {
   display: flex;
+  justify-content: center;
   gap: 12px;
   flex: 1 0 0;
   padding: 16px 24px;
+  overflow: auto;
+  max-width: 100%;
 }
 
 .flight-calendar-item {
+  min-width: 96px;
   display: flex;
   padding: 8px 16px;
   flex-direction: column;
