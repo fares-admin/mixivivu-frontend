@@ -11,7 +11,7 @@ export const StaticCard = ({ rate, rateCount }: StaticCardProps) => {
   return (
     <Card customClass={styles.staticCard}>
       <div className={styles.rate}>
-        <h4>{rate}</h4>
+        <h4 style={{ color: 'var(--warning-base)' }}>{rate}</h4>
         <StarIcon width="40" height="40" strokeColor="var(--warning-base)" />
       </div>
       <div className={styles.content}>
@@ -24,7 +24,9 @@ export const StaticCard = ({ rate, rateCount }: StaticCardProps) => {
                 style={{ width: `${(rateCount[item] / total) * 100}%` }}
               />
             </div>
-            <label className="md">{rateCount[item]} đánh giá</label>
+            <label className={['md', styles['rating-count']].join(' ')}>
+              {rateCount[item]} đánh giá
+            </label>
           </div>
         ))}
       </div>

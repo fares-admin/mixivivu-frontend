@@ -10,9 +10,13 @@
   display: flex;
   justify-content: space-between;
   gap: 80px;
+  margin-bottom: 80px;
   .title h4 {
     margin: 0;
     color: var(--gray-900, #101828);
+  }
+  .filter-btn {
+    display: none;
   }
   .sort-btn {
     position: relative;
@@ -73,4 +77,59 @@
 
 .ship-list {
   flex-grow: 1;
+  margin-bottom: 20px;
+}
+.side-bar-mobile {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 99;
+  width: 100%;
+  height: 100vh;
+  border-radius: 0;
+}
+
+.custom-header {
+  border-bottom: none;
+}
+.collapse {
+  border-radius: 16px;
+
+  .collapse-header {
+    display: flex;
+    gap: 16px;
+    padding: 16px;
+    border: none;
+  }
+
+  .search-box-mb {
+    border: none;
+    box-shadow: none;
+    width: 100%;
+    padding-top: 0;
+  }
+}
+
+@media (max-width: 1024px) {
+  .header {
+    flex-direction: column;
+    gap: 24px;
+    margin-bottom: 24px;
+    .title {
+      font-size: 30px;
+    }
+    .filter-btn {
+      display: block;
+    }
+  }
+
+  .ship-list {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .search-page {
+    padding: 24px !important;
+    gap: 24px;
+  }
 }

@@ -7,3 +7,22 @@
   grid-template-columns: repeat(3, 1fr);
   gap: 32px;
 }
+@media (max-width: 1024px) {
+  .blog-page {
+    padding: 24px;
+    gap: 24px;
+  }
+
+  .blog-header {
+    flex-direction: column;
+  }
+
+  .filter-btn {
+    width: 100%;
+  }
+
+  .blog-list {
+    gap: 16px;
+    grid-template-columns: auto;
+  }
+}

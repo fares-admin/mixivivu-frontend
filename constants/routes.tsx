@@ -10,4 +10,5 @@ export const Routes = {
     filterShip: '/tim-du-thuyen',
     shipDetail: '/du-thuyen',
   },
+  contact: '/lien-he',
 }

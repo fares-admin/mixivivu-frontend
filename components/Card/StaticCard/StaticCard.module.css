@@ -55,3 +55,26 @@
 .content__item label {
   color: var(--infomation-base, #356ad1);
 }
+
+@media (max-width: 1024px) {
+  .staticCard {
+    gap: 16px;
+  }
+  .rate {
+    width: fit-content;
+    padding-right: 16px;
+  }
+  .rate h4 {
+    font-size: 20px;
+  }
+  .rate svg {
+    width: 24px;
+    height: 24px;
+  }
+  .progressBar {
+    width: 100%;
+  }
+  .rating-count {
+    display: none;
+  }
+}

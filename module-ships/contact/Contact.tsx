@@ -22,7 +22,7 @@ export const ContactPage = () => {
         </div>
         <div className="flex flex-col gap-24 w-full">
           <Input label="Họ và tên" placeHolder="Nhập họ và tên" required />
-          <div className="grid grid-cols-2 gap-24">
+          <div className={['grid grid-cols-2 gap-24', styles['group-input']].join(' ')}>
             <Input label="Email" placeHolder="Nhập email" required />
             <Input label="Số điện thoại" placeHolder="Nhập số điện thoại" required />
           </div>

@@ -63,7 +63,7 @@ export const usePagination = ({
       const rightItemCount = 3
       const rightRange = range(totalPageCount - rightItemCount + 1, totalPageCount)
       const leftRange = range(1, 3)
-      return [leftRange, DOTS, ...rightRange]
+      return [...leftRange, DOTS, ...rightRange]
     }
 
     /*

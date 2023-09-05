@@ -104,7 +104,12 @@ export const BookingTourModal = ({
                   )}
                 </Field>
               </div>
-              <div className="flex gap-40 justify-between">
+              <div
+                className={[
+                  'flex gap-40 justify-between',
+                  styles['booking-detail-modal__footer'],
+                ].join(' ')}
+              >
                 <div className="flex flex-col gap-6">
                   <label className={['sm', styles['price-label']].join(' ')}>Tổng tiền</label>
                   <div className={['subheading lg', styles.price].join(' ')}>3,350,000đ</div>

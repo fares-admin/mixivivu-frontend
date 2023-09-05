@@ -115,7 +115,9 @@ export const ShipDetail = () => {
               />
             )}
             {shipDetail?._id && <Rooms id={shipDetail._id} />}
-            <Output data={shipDetail?.longDescription} />
+            <div id="intro">
+              <Output data={shipDetail?.longDescription} />
+            </div>
             <div id="rules">
               <SectionHeader title="Quy định chung và lưu ý" />
               <div className="flex gap-4 align-center">

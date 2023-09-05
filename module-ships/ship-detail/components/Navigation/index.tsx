@@ -23,7 +23,7 @@ export const Navigation = ({
         title={
           <div className="flex flex-col gap-16">
             <h4>{title}</h4>
-            <div className="flex gap-8">
+            <div className={['flex gap-8', styles['badge-list']].join(' ')}>
               <Badge
                 customClass={styles.imageWrapper__badge}
                 size="lg"

@@ -10,7 +10,9 @@ export const NotFound = () => {
       </div>
       <div className="flex flex-col gap-8">
         <h5>Rất tiếc, Mixivivu không tìm thấy kết quả cho bạn</h5>
-        <p className="md">Nhấn OK để bắt đầu tìm kiếm mới.</p>
+        <p className="md" style={{ color: ' var(--gray-600, #475467)' }}>
+          Nhấn OK để bắt đầu tìm kiếm mới.
+        </p>
       </div>
       <Link href="/">
         <a>
