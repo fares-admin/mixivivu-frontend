@@ -97,3 +97,37 @@
 .selectInput .dropdown {
   min-width: 300px;
 }
+
+@media (max-width: 1024px) {
+  .searchBox {
+    width: 95%;
+    padding: 16px;
+    gap: 16px;
+  }
+
+  .title {
+    font-size: 24px;
+  }
+
+  .description {
+    font-size: 16px;
+  }
+
+  .input-group {
+    flex-direction: column;
+    gap: 8;
+  }
+
+  .selectInput {
+    width: 100%;
+  }
+
+  .dropdown {
+    min-width: 0;
+    width: 100%;
+  }
+
+  .submit-btn {
+    width: 100%;
+  }
+}

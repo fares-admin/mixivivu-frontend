@@ -21,6 +21,14 @@ import { CommonListResultType } from '@/types'
 import { ProductRes } from '@/types/product'
 import { useApiCall } from '@/hooks'
 import { useRouter } from 'next/router'
+import dynamic from 'next/dynamic'
+
+const Messenger = dynamic(
+  () => import('@/components/Messenger').then((module) => module.Messenger),
+  {
+    ssr: false,
+  }
+)
 
 const offset = 160
 
@@ -172,6 +180,7 @@ export const ShipDetail = () => {
           {shipDetail?.spec.ship && (
             <div className={styles['side-bar']}>
               <ShipInfo info={shipDetail?.spec.ship} />
+              {/* <MessengerCustomerChat pageId="1895382890692545" appId="215971755540323" /> */}
             </div>
           )}
         </div>
@@ -187,6 +196,7 @@ export const ShipDetail = () => {
           shipDetail={shipDetail}
         />
       )}
+      <Messenger />
     </>
   )
 }

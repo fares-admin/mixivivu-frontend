@@ -84,10 +84,11 @@
 }
 
 @media (max-width: 1024px) {
-  .searchBox {
+  .wrapper {
     width: 95%;
     padding: 16px;
     gap: 16px;
+    margin: auto;
   }
 
   .title {

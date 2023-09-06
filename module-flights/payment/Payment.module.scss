@@ -46,3 +46,13 @@
     gap: 16px;
   }
 }
+
+@media (max-width: 1024px) {
+  .flight-payment {
+    padding: 24px;
+    gap: 24px;
+  }
+  .card-content {
+    padding: 16px;
+  }
+}

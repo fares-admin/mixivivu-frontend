@@ -22,6 +22,7 @@ import { useOutsideClick } from '@/hooks/useClickOutside'
 import { useRouter } from 'next/router'
 import { toast } from 'react-toastify'
 import styles from './FlightSearchNavigation.module.css'
+import { Routes } from '@/constants/routes'
 
 export const FlightSearchNavigation = () => {
   const [isDeparting, setIsDeparting] = useState(false)
@@ -119,6 +120,7 @@ export const FlightSearchNavigation = () => {
       toast.error('Hãy chọn ngày hôm nay hoặc sau ngày hôm nay')
     } else if (
       isDeparting &&
+      request?.ListFlight[1]?.DepartDate &&
       new Date(startParseDate).getTime() >
         new Date(
           request?.ListFlight[1]?.DepartDate?.split('/')
@@ -131,9 +133,12 @@ export const FlightSearchNavigation = () => {
         ).getTime()
     ) {
       toast.error('Hãy chọn ngày sau ngày đi')
-    } else
+    } else {
       router.push({
-        pathname: router.pathname,
+        pathname:
+          router.pathname === Routes.flight.filterFlight
+            ? router.pathname
+            : `${router.pathname}/ket-qua`,
         query: {
           req: JSON.stringify({
             ...request,
@@ -143,6 +148,7 @@ export const FlightSearchNavigation = () => {
           }),
         },
       })
+    }
   }
 
   useEffect(() => {
@@ -152,7 +158,7 @@ export const FlightSearchNavigation = () => {
       const thisReq = reqString ? (JSON.parse(reqString as string) as SearchFlightReq) : undefined
 
       if (!thisReq) {
-        handleClick()
+        // handleClick()
       } else {
         if (thisReq?.ListFlight?.length > 1) {
           setIsDeparting(true)
@@ -255,7 +261,7 @@ export const FlightSearchNavigation = () => {
             </div>
           </div>
         </div>
-        <div className="flex gap-16">
+        <div className={['flex gap-16', styles['input-group']].join(' ')}>
           <div className="flex-grow">
             <div className={styles.selectInput}>
               <Input
@@ -322,7 +328,7 @@ export const FlightSearchNavigation = () => {
               />
             </div>
           )}
-          <Button label="Tìm kiếm" onClick={handleClick} />
+          <Button customClass={styles['submit-btn']} label="Tìm kiếm" onClick={handleClick} />
         </div>
       </div>
     </Card>

@@ -112,9 +112,14 @@ export const BookingTourModal = ({
               >
                 <div className="flex flex-col gap-6">
                   <label className={['sm', styles['price-label']].join(' ')}>Tổng tiền</label>
-                  <div className={['subheading lg', styles.price].join(' ')}>3,350,000đ</div>
+                  <div
+                    className={['subheading lg', styles.price].join(' ')}
+                    style={{ color: 'var(--primary-dark, #0E4F4F)' }}
+                  >
+                    3,350,000đ
+                  </div>
                 </div>
-                <div className="flex gap-16">
+                <div className={[styles.actions, 'flex gap-16'].join(' ')}>
                   <Button label="Đăng ký tư vấn" typeStyle="outline" />
                   <Button
                     onClick={handleBooking}

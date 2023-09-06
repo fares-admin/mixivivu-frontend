@@ -8,8 +8,18 @@
 
 .flight-content {
   padding: 16px 24px;
+  max-width: 100%;
 }
 
 .partners {
   background: var(--gray-50, #f9fafb);
+}
+
+@media (max-width: 1024px) {
+  .flight-search {
+    padding: 24px;
+  }
+  .flight-content {
+    padding: 16px 0;
+  }
 }

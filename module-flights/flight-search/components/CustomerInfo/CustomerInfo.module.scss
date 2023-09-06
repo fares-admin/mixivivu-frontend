@@ -84,3 +84,9 @@
 .selectInput .dropdown {
   min-width: 300px;
 }
+
+@media (max-width: 1024px) {
+  .input-group {
+    grid-template-columns: 100%;
+  }
+}

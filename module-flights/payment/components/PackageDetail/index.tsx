@@ -9,7 +9,7 @@ export const PackageDetail = () => {
         <div className="subheading md">Hành lý ký gửi</div>
       </div>
       <div className={styles1['card-content']}>
-        <div className="flex gap-16">
+        <div className={[styles['input-group'], 'flex gap-16'].join(' ')}>
           <div className="flex flex-col gap-4 flex-grow">
             <label className="sm">Hành khách</label>
             <p className="md">Nguyen Van Linh</p>

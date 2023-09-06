@@ -10,5 +10,9 @@ export const Routes = {
     filterShip: '/tim-du-thuyen',
     shipDetail: '/du-thuyen',
   },
+  flight: {
+    filterFlight: '/tim-ve-may-bay/ket-qua',
+  },
   contact: '/lien-he',
+  blog: '/blog',
 }

@@ -94,7 +94,7 @@ export const PassengerItem = ({
         </div>
       </div>
 
-      <div className="grid grid-cols-3 gap-16">
+      <div className={['grid grid-cols-3 gap-16', styles['input-group']].join(' ')}>
         <div className={styles.selectInput}>
           <GenderDropDown
             thisValue={passengers.find((thisPass) => thisPass.Index === index)?.Gender}

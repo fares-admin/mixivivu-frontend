@@ -29,3 +29,14 @@
 .partnerSection {
   background-color: var(--gray-50, #f9fafb);
 }
+
+@media (max-width: 1024px) {
+  .banner {
+    width: calc(100vw - 8px);
+    height: fit-content;
+    padding: 24px 0;
+  }
+  .reviewSection {
+    padding-top: 0;
+  }
+}
