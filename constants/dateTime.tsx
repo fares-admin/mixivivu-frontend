@@ -9,3 +9,5 @@ export const WEEKDAYS = [
 ]
 
 export const formatDate = 'DD/MM/yyyy'
+
+export const emailFormatDate = 'yyyy-MM-DD'

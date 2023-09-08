@@ -76,6 +76,10 @@
   border-bottom: 2px solid var(--primary-base, #77dada);
 }
 
+.menu-mb {
+  display: none;
+}
+
 @media (max-width: 1024px) {
   .nav-container {
     display: none;
@@ -83,5 +87,8 @@
 
   .menu {
     display: none;
+  }
+  .menu-mb {
+    display: block;
   }
 }

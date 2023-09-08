@@ -18,8 +18,13 @@
 @media (max-width: 1024px) {
   .flight-search {
     padding: 24px;
+    gap: 24px;
   }
   .flight-content {
     padding: 16px 0;
+  }
+  .flight-container {
+    flex-direction: column;
+    gap: 0;
   }
 }

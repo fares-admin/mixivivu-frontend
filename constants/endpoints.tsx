@@ -76,6 +76,13 @@ export const imageEndpoints: EndPointObject = {
   },
 }
 
+export const emailEndpoints: EndPointObject = {
+  baseUrl: '',
+  child: {
+    sendEmail: '/send_email',
+  },
+}
+
 export const getEndpoint = (
   endpointObject: EndPointObject,
   target: keyof typeof endpointObject.child

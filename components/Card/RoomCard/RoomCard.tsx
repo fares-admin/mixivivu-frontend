@@ -22,6 +22,13 @@ interface RoomCardProps {
   userPerRoom: number
   disabled?: boolean
 }
+const defaultCatalog = [
+  '/banner.jpeg',
+  '/carousel2.png',
+  '/carousel3.png',
+  '/card-image.png',
+  '/sad.png',
+]
 
 export const RoomCard = ({
   url,
@@ -34,17 +41,26 @@ export const RoomCard = ({
 }: RoomCardProps) => {
   const formatter = new Intl.NumberFormat('en-US')
   const [openModal, setOpenModal] = useState(false)
+  const [currentImg, setCurrentImg] = useState(defaultCatalog[0])
+
   const modalContent = () => {
     return (
       <div className={styles['room-content']}>
-        <div className="flex flex-col gap-8">
+        <div className="flex flex-col gap-8 justify-center align-center">
           <div className={styles['img-wrapper']}>
-            <ImageFill src="/carousel3.png" width="100%" height="100%" />
+            <ImageFill src={currentImg} width="100%" height="100%" />
           </div>
           <div className="flex gap-8">
-            {[1, 2, 3, 4, 5].map((item, index) => (
-              <div key={index} className={styles['img-item']}>
-                <ImageFill width="100%" height="100%" src="/carousel3.png" />
+            {defaultCatalog.map((item, index) => (
+              <div
+                key={index}
+                className={[
+                  styles['img-item'],
+                  item === currentImg ? styles['img-item-active'] : '',
+                ].join(' ')}
+                onClick={() => setCurrentImg(item)}
+              >
+                <ImageFill width="100%" height="100%" src={item} />
               </div>
             ))}
           </div>
@@ -76,12 +92,12 @@ export const RoomCard = ({
           <div className="flex gap-20">
             <Button
               customClass={styles.roomBtn}
-              label={roomCount.toString()}
+              label={roomCount}
               typeStyle="outline"
               iconLeading={<MinusIcon />}
               iconTrailing={<PlusIcon />}
             />
-            <Button typeStyle="color" label="Chọn phòng" />
+            <Button typeStyle="color" label="Chọn phòng" onClick={() => setOpenModal(false)} />
           </div>
         </div>
       </div>
@@ -120,7 +136,7 @@ export const RoomCard = ({
           </div>
           <Button
             customClass={styles.roomBtn}
-            label={roomCount.toString()}
+            label={roomCount}
             typeStyle="outline"
             iconLeading={<MinusIcon />}
             iconTrailing={<PlusIcon />}

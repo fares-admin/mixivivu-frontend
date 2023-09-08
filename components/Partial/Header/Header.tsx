@@ -95,7 +95,9 @@ export const Header = () => {
           <Link href="/lien-he">
             <Button label="Liên hệ Mixivivu" size="sm" typeStyle="color" />
           </Link>
-          <GridCircleIcon />
+          <div className={styles['menu-mb']}>
+            <GridCircleIcon />
+          </div>
         </div>
       </div>
     </div>

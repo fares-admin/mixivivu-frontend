@@ -96,6 +96,11 @@
     margin: auto;
     justify-content: center;
   }
+  .left-pagination,
+  .pagination-container .pagination-left-item,
+  .pagination-container .pagination-right-item {
+    display: none;
+  }
   .pagination-container .pagination-item {
     width: 35px;
   }

@@ -16,12 +16,15 @@ import axios from 'axios'
 import { getEndpoint, roomEndpoints } from '@/constants/endpoints'
 import { CommonListResultType } from '@/types'
 import { rooms as room1 } from '@/constants/config'
+import { ProductRes } from '@/types/product'
+import Link from 'next/link'
+import { Routes } from '@/constants/routes'
 
 export interface RoomsProps {
-  id: string
+  shipDetail: ProductRes
 }
 
-export const Rooms = ({ id }: RoomsProps) => {
+export const Rooms = ({ shipDetail }: RoomsProps) => {
   const [, setRooms] = useState<RoomRes[]>([])
   const [openModal, setOpenModal] = useState(false)
   const [openSuccessModal, setOpenSuccessModal] = useState(false)
@@ -29,7 +32,7 @@ export const Rooms = ({ id }: RoomsProps) => {
     callApi: () =>
       axios.get(getEndpoint(roomEndpoints, 'getList'), {
         params: {
-          productId: id,
+          productId: shipDetail?._id,
         },
       }),
     handleSuccess: (message, data) => {
@@ -80,6 +83,7 @@ export const Rooms = ({ id }: RoomsProps) => {
         </div>
       </div>
       <BookingTourModal
+        shipDetail={shipDetail}
         openModal={openModal}
         setOpenModal={setOpenModal}
         setOpenSuccessModal={setOpenSuccessModal}
@@ -91,7 +95,9 @@ export const Rooms = ({ id }: RoomsProps) => {
         title="Bạn đã đặt Tour thành công"
         description="Vui lòng kiểm tra email và Mixivivu sẽ liên hệ với bạn"
         actions={
-          <Button label="Về trang chủ" typeStyle="outline" iconTrailing={<ArrowRightIcon />} />
+          <Link href={Routes.home}>
+            <Button label="Về trang chủ" typeStyle="outline" iconTrailing={<ArrowRightIcon />} />
+          </Link>
         }
       />
     </div>

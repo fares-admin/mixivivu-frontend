@@ -59,6 +59,13 @@
   min-width: 384px;
 }
 
+.side-bar-mb {
+  display: none;
+  min-width: 0;
+  width: 100%;
+  padding: 24px;
+}
+
 .ship-info {
   &__header {
     padding: 20px 24px;
@@ -143,6 +150,9 @@
   }
   .side-bar {
     display: none;
+  }
+  .side-bar-mb {
+    display: block;
   }
   .navigation {
     padding: 24px;

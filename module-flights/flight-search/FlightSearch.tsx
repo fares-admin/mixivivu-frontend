@@ -3,6 +3,8 @@ import {
   ArrowRightIcon,
   BreadCrumbs,
   Button,
+  ChevronDownIcon,
+  FilterIcon,
   FlightSearchNavigation,
   PartnerSection,
   Steps,
@@ -25,11 +27,14 @@ import { FlightList } from './components/FlightList'
 import { FlightSidebar } from './components/FlightSidebar'
 import { TicketDetail } from './components/TicketDetail'
 import { OtpCard } from '@/components/Card/OtpCard'
+import { Media, MediaContextProvider } from '@/media-query'
+import { Routes } from '@/constants/routes'
 
 export const FlightSearch = () => {
   const [departureFlight, setDepartureFlight] = useState<number | null>(null)
   const [returnFlight, setReturnFlight] = useState<number | null>(null)
   const [currentStep, setCurrentStep] = useState(0)
+  const [openFilter, setOpenFilter] = useState(false)
   const [req, setReq] = useState('')
 
   const dispatch = useDispatch()
@@ -141,7 +146,13 @@ export const FlightSearch = () => {
   return (
     <>
       <div className={[styles.navigation, 'container'].join(' ')}>
-        <BreadCrumbs breadcrumbs={['Tìm vé máy bay', `${goRoute.code} - ${backRoute.code}`]} />
+        <BreadCrumbs
+          home={Routes.flight.home}
+          breadcrumbs={[
+            { label: 'Tìm vé máy bay', link: Routes.flight.filterFlight },
+            { label: `${goRoute.code} - ${backRoute.code}` },
+          ]}
+        />
       </div>
       <div className="section-bg">
         <div className={['container flex flex-col gap-40 ', styles['flight-search']].join(' ')}>
@@ -150,8 +161,32 @@ export const FlightSearch = () => {
           <div className="m-auto">
             <Steps steps={getSteps() as any} />
           </div>
-          <div className="flex gap-32">
-            {departureFlight !== null ? <TicketDetail /> : <FlightSidebar />}
+          <Button
+            iconLeading={<FilterIcon />}
+            label="Bộ lọc"
+            iconTrailing={<ChevronDownIcon />}
+            typeStyle="outline"
+            fullWidth
+            onClick={() => setOpenFilter(true)}
+          />
+
+          <div className={['flex gap-32', styles['flight-container']].join(' ')}>
+            <MediaContextProvider>
+              <Media lessThan="md">
+                {openFilter && (
+                  <>
+                    {departureFlight !== null ? (
+                      <TicketDetail />
+                    ) : (
+                      <FlightSidebar setOpenFilter={setOpenFilter} />
+                    )}
+                  </>
+                )}
+              </Media>
+              <Media greaterThan="mdless">
+                {departureFlight !== null ? <TicketDetail /> : <FlightSidebar />}
+              </Media>
+            </MediaContextProvider>
             <div className={[styles['flight-content'], 'flex-grow flex flex-col gap-16'].join(' ')}>
               {currentStep < 1 && (
                 <FlightList

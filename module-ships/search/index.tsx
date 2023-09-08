@@ -157,7 +157,6 @@ const SearchPageDetail: NextPageWithLayout = () => {
                   setPageSize={setPageSize}
                   onPageChange={setCurrentPage}
                   currentPage={currentPage}
-                  isMobile={type === 'grid'}
                 />
               </>
             ) : (

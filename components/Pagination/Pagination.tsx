@@ -11,7 +11,6 @@ interface PaginationProps {
   pageSize: number
   className?: string
   setPageSize: Dispatch<SetStateAction<number>>
-  isMobile?: boolean
 }
 
 export const Pagination = ({
@@ -21,7 +20,6 @@ export const Pagination = ({
   currentPage = 1,
   pageSize,
   setPageSize = () => {},
-  isMobile = false,
   className,
 }: PaginationProps) => {
   const paginationRange = usePagination({
@@ -63,34 +61,34 @@ export const Pagination = ({
   const lastPage = paginationRange[paginationRange.length - 1]
   return (
     <div className={['flex justify-between align-center', styles.pagination].join(' ')}>
-      {!isMobile && (
-        <div className="flex align-center gap-8">
-          <p className="sm">Đang xem:</p>
-          <div>
-            <label className={['md', styles['page-size']].join(' ')}>
-              <input
-                value={perPage}
-                onChange={(e) => setPerPage(e.target.value)}
-                onBlur={(e) => handlePageChange(e.target.value)}
-                max={20}
-                min={1}
-                type="number"
-              />
-            </label>
-          </div>
-          <p className="sm">của {totalCount}</p>
+      <div className={['flex align-center gap-8', styles['left-pagination']].join(' ')}>
+        <p className="sm">Đang xem:</p>
+        <div>
+          <label className={['md', styles['page-size']].join(' ')}>
+            <input
+              value={perPage}
+              onChange={(e) => setPerPage(e.target.value)}
+              onBlur={(e) => handlePageChange(e.target.value)}
+              max={20}
+              min={1}
+              type="number"
+            />
+          </label>
         </div>
-      )}
+        <p className="sm">của {totalCount}</p>
+      </div>
 
       <ul className={[styles['pagination-container'], className].join(' ')}>
         <li
-          className={[styles['pagination-item'], currentPage === 1 ? styles.disabled : ''].join(
-            ' '
-          )}
+          className={[
+            styles['pagination-left-item'],
+            styles['pagination-item'],
+            currentPage === 1 ? styles.disabled : '',
+          ].join(' ')}
           onClick={onPrevious}
         >
           <ArrowLeftIcon width="20" height="20" strokeColor="var(--gray-700)" />
-          {!isMobile && <label className="sm">Trước</label>}
+          <label className="sm">Trước</label>
         </li>
         {paginationRange.map((pageNumber) => {
           if (pageNumber === DOTS) {
@@ -111,12 +109,13 @@ export const Pagination = ({
         })}
         <li
           className={[
+            styles['pagination-right-item'],
             styles['pagination-item'],
             currentPage === lastPage ? styles.disabled : '',
           ].join(' ')}
           onClick={onNext}
         >
-          {!isMobile && <label className="sm">Tiếp</label>}
+          <label className="sm">Tiếp</label>
           <ArrowRightIcon width="20" height="20" strokeColor="var(--gray-700)" />
         </li>
       </ul>

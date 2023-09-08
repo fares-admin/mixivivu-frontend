@@ -22,6 +22,7 @@ import { ProductRes } from '@/types/product'
 import { useApiCall } from '@/hooks'
 import { useRouter } from 'next/router'
 import dynamic from 'next/dynamic'
+import { Routes } from '@/constants/routes'
 
 const Messenger = dynamic(
   () => import('@/components/Messenger').then((module) => module.Messenger),
@@ -92,7 +93,14 @@ export const ShipDetail = () => {
     <>
       <div className={styles.breadcrumbsWrapper}>
         <div className={['container', styles.breadcrumbs].join(' ')}>
-          {shipDetail && <BreadCrumbs breadcrumbs={['Tìm du thuyền', shipDetail?.title]} />}
+          {shipDetail && (
+            <BreadCrumbs
+              breadcrumbs={[
+                { label: 'Tìm du thuyền', link: Routes.ship.filterShip },
+                { label: shipDetail?.title },
+              ]}
+            />
+          )}
         </div>
       </div>
       <div className={['container', styles.wrapper].join(' ')}>
@@ -110,6 +118,11 @@ export const ShipDetail = () => {
           listImages={shipDetail?.catalogs?.slice(0, 3)}
         />
       </div>
+      {shipDetail?.spec?.ship && (
+        <div className={styles['side-bar-mb']}>
+          <ShipInfo info={shipDetail?.spec.ship} />
+        </div>
+      )}
       <div className={[styles['ship-detail'], 'container flex flex-col gap-40'].join(' ')}>
         <div className={styles.tabs}>
           <Tabs tabs={tabItems} activeKey={activeTab} onChange={handleChangeTab} />
@@ -122,7 +135,7 @@ export const ShipDetail = () => {
                 shortDescription={shipDetail.shortDescription}
               />
             )}
-            {shipDetail?._id && <Rooms id={shipDetail._id} />}
+            {shipDetail?._id && <Rooms shipDetail={shipDetail} />}
             <div id="intro">
               <Output data={shipDetail?.longDescription} />
             </div>
@@ -180,7 +193,6 @@ export const ShipDetail = () => {
           {shipDetail?.spec.ship && (
             <div className={styles['side-bar']}>
               <ShipInfo info={shipDetail?.spec.ship} />
-              {/* <MessengerCustomerChat pageId="1895382890692545" appId="215971755540323" /> */}
             </div>
           )}
         </div>

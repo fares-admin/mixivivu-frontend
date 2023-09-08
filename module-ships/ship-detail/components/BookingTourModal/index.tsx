@@ -13,8 +13,13 @@ import {
 import { RoomProps } from '@/constants/type'
 import { Field, Form, Formik } from 'formik'
 import styles from '../../ShipDetail.module.scss'
+import { BookingShipSchema } from '@/validations/BookingShipChema'
+import moment from 'moment'
+import { formatDate } from '@/constants/dateTime'
+import { ProductRes } from '@/types/product'
 
 interface BookingTourModalProps {
+  shipDetail: ProductRes
   openModal: boolean
   setOpenModal: Dispatch<SetStateAction<boolean>>
   setOpenSuccessModal: Dispatch<SetStateAction<boolean>>
@@ -33,11 +38,14 @@ export const BookingTourModal = ({
     adults: 1,
     children: 0,
   })
+  const [, setSelectedDate] = useState<string>(moment(new Date()).format(formatDate))
 
-  const handleBooking = () => {
+  const handleSubmit = async (values) => {
+    alert(values)
     setOpenModal(false)
     setOpenSuccessModal(true)
   }
+
   return (
     <Modal
       open={openModal}
@@ -45,8 +53,15 @@ export const BookingTourModal = ({
       content={
         <Formik
           innerRef={formRef}
-          initialValues={{}}
+          initialValues={{
+            full_name: '',
+            phone_number: '',
+            email: '',
+            additional_info: '',
+          }}
+          validationSchema={BookingShipSchema}
           onSubmit={(values, { setSubmitting }) => {
+            handleSubmit(values)
             setSubmitting(false)
           }}
         >
@@ -57,11 +72,12 @@ export const BookingTourModal = ({
               <RoomCard {...rooms[0]} disabled />
               <div className="flex flex-col gap-24">
                 <div className={styles['group-input']}>
-                  <RoomDatePicker />
+                  <RoomDatePicker onChange={(value) => setSelectedDate(value)} />
+
                   {/* <Input label="Số lượng" placeHolder="Chọn số lượng" supportIcon={<ChevronDownIcon />} /> */}
                   <RoomPicker roomDetail={roomDetail} setRoomDetail={setRoomDetail} />
                 </div>
-                <Field name="name">
+                <Field name="full_name">
                   {({ field, meta }: any) => (
                     <div>
                       <Input {...field} label="Họ và tên" placeHolder="Nhập họ và tên" required />
@@ -69,10 +85,11 @@ export const BookingTourModal = ({
                     </div>
                   )}
                 </Field>
-                <Field name="name">
+                <Field name="phone_number">
                   {({ field, meta }: any) => (
                     <div>
                       <Input
+                        type="tel"
                         {...field}
                         label="Số điện thoại"
                         placeHolder="Nhập số điện thoại"
@@ -82,7 +99,7 @@ export const BookingTourModal = ({
                     </div>
                   )}
                 </Field>
-                <Field name="name">
+                <Field name="email">
                   {({ field, meta }: any) => (
                     <div>
                       <Input {...field} label="Địa chỉ email" placeHolder="Nhập email" required />
@@ -90,14 +107,13 @@ export const BookingTourModal = ({
                     </div>
                   )}
                 </Field>
-                <Field name="name">
+                <Field name="additional_info">
                   {({ field, meta }: any) => (
                     <div>
                       <TextArea
                         {...field}
                         label="Yêu cầu của bạn"
                         placeHolder="Nhập yêu cầu của bạn"
-                        required
                       />
                       {meta.touched && meta.error && <div className="error">{meta.error}</div>}
                     </div>
@@ -122,7 +138,7 @@ export const BookingTourModal = ({
                 <div className={[styles.actions, 'flex gap-16'].join(' ')}>
                   <Button label="Đăng ký tư vấn" typeStyle="outline" />
                   <Button
-                    onClick={handleBooking}
+                    type="submit"
                     label="Đặt ngay"
                     typeStyle="color"
                     iconTrailing={<ArrowRightIcon />}

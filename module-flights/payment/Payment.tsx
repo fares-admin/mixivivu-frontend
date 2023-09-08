@@ -16,6 +16,7 @@ import Image from 'next/image'
 import { useState } from 'react'
 import styles from './Payment.module.scss'
 import { BookingSuccessModal } from './components/BookingSuccessModal'
+import { Routes } from '@/constants/routes'
 
 export const steps: StepItemProps[] = [
   {
@@ -41,7 +42,13 @@ export const Payment = () => {
   return (
     <>
       <div className={[styles.navigation, 'container'].join(' ')}>
-        <BreadCrumbs breadcrumbs={['Tìm vé máy bay', 'SGN - HAN']} />
+        <BreadCrumbs
+          home={Routes.flight.home}
+          breadcrumbs={[
+            { label: 'Tìm vé máy bay', link: Routes.flight.filterFlight },
+            { label: `SGN - HN` },
+          ]}
+        />
       </div>
       <div
         className={['container flex flex-col gap-40 section-bg', styles['flight-payment']].join(
