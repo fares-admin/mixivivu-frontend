@@ -1,11 +1,16 @@
 import { Button, Checkbox, SelectTime } from '@/components'
 
 import { flightFilterList } from '@/constants/config'
-import { SearchFlightReq } from '@/flight-api/flight-types'
+import { SearchFlightReq } from '@/services/flight-api/flight-types'
 import { useRouter } from 'next/router'
 import styles from './FlightSidebar.module.scss'
+import { Dispatch, SetStateAction } from 'react'
 
-export const FlightSidebar = () => {
+interface FlightSidebarProps {
+  setOpenFilter?: Dispatch<SetStateAction<boolean>>
+}
+
+export const FlightSidebar = ({ setOpenFilter }: FlightSidebarProps) => {
   const router = useRouter()
 
   const reqString = router?.query.req
@@ -34,6 +39,12 @@ export const FlightSidebar = () => {
       <div className={styles['side-bar__header']}>
         <div className="subheading md flex-grow">Lọc kết quả</div>
         <Button size="sm" label="Đặt lại" typeStyle="link-color" />
+        <Button
+          size="sm"
+          label="Áp dụng"
+          typeStyle="link-color"
+          onClick={() => setOpenFilter(false)}
+        />
       </div>
       <div className={styles['side-bar__content']}>
         {flightFilterList.map((filterItem, index) => (

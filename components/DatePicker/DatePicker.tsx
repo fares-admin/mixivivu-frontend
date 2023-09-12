@@ -7,6 +7,7 @@ import { getFormatDate } from '@/constants/commonValue'
 import { WEEKDAYS } from '@/constants/dateTime'
 import DatePicker from 'react-datepicker'
 import styles from './DatePicker.module.css'
+import moment from 'moment'
 
 interface ReactDatePickerCustomHeaderProps {
   monthDate: Date
@@ -21,9 +22,10 @@ interface ReactDatePickerCustomHeaderProps {
 interface MixiDatePickerProps {
   customInput: ReactNode
   onChangDate?: (value: string) => void
+  minDate?: Date
 }
 
-export const MixiDatePicker = ({ customInput, onChangDate }: MixiDatePickerProps) => {
+export const MixiDatePicker = ({ customInput, onChangDate, minDate }: MixiDatePickerProps) => {
   const [selectedDate, setSelectedDate] = useState<Date | null>(new Date())
 
   useEffect(() => {
@@ -66,6 +68,7 @@ export const MixiDatePicker = ({ customInput, onChangDate }: MixiDatePickerProps
   return (
     <div className={styles['mixi-date-picker']}>
       <DatePicker
+        minDate={minDate || moment().toDate()}
         dateFormat="dd/MM/yyyy"
         calendarStartDay={1}
         selected={selectedDate}
@@ -74,7 +77,7 @@ export const MixiDatePicker = ({ customInput, onChangDate }: MixiDatePickerProps
         formatWeekDay={(day) => formatDay(WEEKDAYS.indexOf(day) as Day)}
         customInput={customInput}
         dayClassName={(date: Date) =>
-          date.getTime() === selectedDate?.getTime()
+          moment(date).date() === moment(selectedDate).date()
             ? [styles.selectedDate, styles.calendarCell].join(' ')
             : styles.calendarCell
         }

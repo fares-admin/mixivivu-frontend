@@ -7,6 +7,7 @@ export interface RoomRes {
   salePrices: number
   features: string[]
   productId: string
+  roomCount?: number
 }
 
 export interface RoomReq {

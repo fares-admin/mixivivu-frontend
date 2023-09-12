@@ -43,5 +43,5 @@ export const BreadcrumbItem: Story = {
 }
 
 export const Breadcrumbs: StoryObj<typeof BreadCrumbs> = {
-  render: () => <BreadCrumbs breadcrumbs={['Setting', 'Teams']} />,
+  render: () => <BreadCrumbs breadcrumbs={[{ label: 'Setting' }, { label: 'Teams' }]} />,
 }

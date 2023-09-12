@@ -1,4 +1,4 @@
-import { Card, Checkbox } from '@/components'
+import { Button, Card, Checkbox, Input, PlusIcon, XMarkIcon } from '@/components'
 import { FeatureRes } from '@/types/feature'
 import { CommonListResultType } from '@/types'
 import { featureEndpoints, getEndpoint } from '@/constants/endpoints'
@@ -47,6 +47,13 @@ export const AddTourFeatures = () => {
       <div className={styles['card-footer']}>
         <div className="flex flex-col gap-16">
           <label className="lg">Thông tin thêm</label>
+          <div className="flex gap-16 full-w align-center">
+            <Input placeHolder="Nhập thông tin" customClass="flex-grow" />
+            <div>
+              <XMarkIcon />
+            </div>
+          </div>
+          <Button label="Thêm" iconLeading={<PlusIcon />} size="sm" typeStyle="outline" />
         </div>
       </div>
     </Card>

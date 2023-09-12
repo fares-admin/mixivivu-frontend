@@ -44,6 +44,7 @@ export const Sidebar = ({ filter, setFilter, features, setOpenFilter, isMobile }
         <div className="flex gap-10 align-center">
           <Button size="sm" label="Đặt lại" typeStyle="link-color" onClick={resetFilter} />
           <Button
+            customClass={styles['apply-mb-btn']}
             size="sm"
             label="Áp dụng"
             typeStyle="link-color"
@@ -54,7 +55,7 @@ export const Sidebar = ({ filter, setFilter, features, setOpenFilter, isMobile }
       <div className={styles['side-bar__content']}>
         <div className={styles['filter-item']}>
           <label className="md">Xếp hạng sao</label>
-          {[1, 2, 3, 4, 5].map((item, index) => (
+          {[3, 4, 5].map((item, index) => (
             <Checkbox
               key={index}
               type="checkbox"

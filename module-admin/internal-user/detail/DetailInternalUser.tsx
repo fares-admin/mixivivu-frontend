@@ -107,7 +107,7 @@ export const DetailInternalUser = () => {
   return (
     <div className={styles.container}>
       <HeaderAdmin
-        breadCrumbs={['Danh sách tài khoản', 'Thông tin tài khoản']}
+        breadCrumbs={[{ label: 'Danh sách tài khoản' }, { label: 'Thông tin tài khoản' }]}
         label="Thông tin tài khoản"
         trailButton={
           <div className={styles.actionStyle}>

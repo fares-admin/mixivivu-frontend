@@ -1,7 +1,7 @@
 import { getAirlineByCode, getFormatDate, getHourAndMin } from '@/constants/commonValue'
 
 import { ImageFill } from '@/components'
-import { FaresResponse } from '@/flight-api/flight-types'
+import { FaresResponse } from '@/services/flight-api/flight-types'
 import { FlightStoreSelector } from '@/redux/flight-store'
 import { useSelector } from 'react-redux'
 import styles from '../FlightSidebar/FlightSidebar.module.scss'

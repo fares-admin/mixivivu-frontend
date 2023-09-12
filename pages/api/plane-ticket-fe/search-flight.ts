@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from 'next'
 
-import { searchFlight } from '@/flight-api/search-flight'
+import { searchFlight } from '@/services/flight-api/search-flight'
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   const result = await searchFlight(req)

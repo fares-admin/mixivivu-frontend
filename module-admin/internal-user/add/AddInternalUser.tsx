@@ -45,7 +45,7 @@ export const AddInternalUser = () => {
   return (
     <div className={styles.container}>
       <HeaderAdmin
-        breadCrumbs={['Danh sách tài khoản', 'Tạo tài khoản']}
+        breadCrumbs={[{ label: 'Danh sách tài khoản' }, { label: 'Tạo tài khoản' }]}
         label="Tạo tài khoản"
         trailButton={
           <Button

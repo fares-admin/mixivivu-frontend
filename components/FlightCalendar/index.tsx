@@ -1,6 +1,6 @@
 import { getDateFromFlightReq, getFormatDate, getThisDay } from '@/constants/commonValue'
 
-import { SearchFlightReq } from '@/flight-api/flight-types'
+import { SearchFlightReq } from '@/services/flight-api/flight-types'
 import { useRouter } from 'next/router'
 import styles from './FlightCalendar.module.css'
 

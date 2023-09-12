@@ -14,7 +14,7 @@ export const config = {
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   if (
     !req.url?.includes('plane-ticket-fe') &&
-    !req.url?.includes('images/add-new') &&
+    !req.url?.includes('tour-fe') &&
     req.headers.host?.includes(String(process.env.ACCESS_API_HOST))
   ) {
     const url = `${process.env.API_BASE_URL}${req.url}`

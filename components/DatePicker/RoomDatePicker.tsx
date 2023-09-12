@@ -24,6 +24,10 @@ const CustomInput = forwardRef<HTMLInputElement, CustomInputProps>(({ value, onC
   )
 })
 
-export const RoomDatePicker = () => {
-  return <MixiDatePicker customInput={<CustomInput />} />
+interface RoomDatePickerProps {
+  onChange?: (value) => void
+}
+
+export const RoomDatePicker = ({ onChange }: RoomDatePickerProps) => {
+  return <MixiDatePicker onChangDate={(value) => onChange(value)} customInput={<CustomInput />} />
 }

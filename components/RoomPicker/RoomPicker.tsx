@@ -39,7 +39,6 @@ export const QuantityItem = ({
 }
 
 interface RoomDetailProps {
-  rooms: number
   adults: number
   children: number
 }
@@ -53,11 +52,9 @@ export const RoomPicker = ({ roomDetail, setRoomDetail }: RoomPickerProps) => {
   const [showRoomPicker, setShowRoomPicker] = useState(false)
   const [adults, setAdults] = useState(1)
   const [children, setChildren] = useState(0)
-  const [rooms, setRooms] = useState(1)
   const handleSubmit = () => {
     setRoomDetail({
       adults,
-      rooms,
       children,
     })
     setShowRoomPicker(false)
@@ -71,13 +68,12 @@ export const RoomPicker = ({ roomDetail, setRoomDetail }: RoomPickerProps) => {
         onClick={() => setShowRoomPicker(true)}
         label="Số lượng"
         type="button"
-        value={`${roomDetail.rooms} Phòng - ${roomDetail.adults} Người lớn - ${roomDetail.children} - Trẻ em`}
+        value={`${roomDetail.adults} Người lớn - ${roomDetail.children} - Trẻ em`}
         supportIcon={<ChevronDownIcon />}
       />
       {showRoomPicker && (
         <div className={styles['room-picker__dropdown']}>
           <div className={[styles.content, 'flex flex-col gap-16'].join(' ')}>
-            <QuantityItem defaultValue={rooms} name="Phòng" handleChange={setRooms} />
             <QuantityItem defaultValue={adults} name="Người lớn" handleChange={setAdults} />
             <QuantityItem defaultValue={children} name="Trẻ em" handleChange={setChildren} />
           </div>

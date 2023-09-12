@@ -1,6 +1,8 @@
 import React, { ReactNode } from 'react'
 import { HomeLineIcon, ChevronRightIcon } from '@/components'
 import styles from './BreadCrumbs.module.css'
+import Link from 'next/link'
+import { Routes } from '@/constants/routes'
 
 interface BreadCrumbItemProps {
   icon?: ReactNode
@@ -11,7 +13,11 @@ interface BreadCrumbItemProps {
 }
 
 interface BreadCrumbsProps {
-  breadcrumbs: ReactNode[]
+  breadcrumbs: {
+    label: string
+    link?: string
+  }[]
+  home?: string
 }
 
 export const BreadCrumbItem = ({
@@ -36,15 +42,23 @@ export const BreadCrumbItem = ({
   )
 }
 
-export const BreadCrumbs = ({ breadcrumbs = [] }: BreadCrumbsProps) => {
+export const BreadCrumbs = ({ breadcrumbs = [], home }: BreadCrumbsProps) => {
   return (
     <div className={styles.breadCrumbsContainer}>
-      <BreadCrumbItem icon={<HomeLineIcon />} />
+      <Link href={home || Routes.home}>
+        <BreadCrumbItem icon={<HomeLineIcon />} />
+      </Link>
       {breadcrumbs.map((item, index) => (
-        <div key={index} className={styles.breadCrumbs}>
-          <ChevronRightIcon />
-          <BreadCrumbItem selected={index + 1 === breadcrumbs.length}>{item}</BreadCrumbItem>
-        </div>
+        <Link href={item?.link || ''}>
+          <a>
+            <div key={index} className={styles.breadCrumbs}>
+              <ChevronRightIcon />
+              <BreadCrumbItem selected={index + 1 === breadcrumbs.length}>
+                {item?.label}
+              </BreadCrumbItem>
+            </div>
+          </a>
+        </Link>
       ))}
     </div>
   )

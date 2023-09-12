@@ -12,7 +12,7 @@ import {
 import { airports, getAirportByCode, getFormatDate } from '@/constants/commonValue'
 import { useEffect, useState } from 'react'
 
-import { SearchFlightReq } from '@/flight-api/flight-types'
+import { SearchFlightReq } from '@/services/flight-api/flight-types'
 import { useOutsideClick } from '@/hooks/useClickOutside'
 import { useRouter } from 'next/router'
 import { toast } from 'react-toastify'

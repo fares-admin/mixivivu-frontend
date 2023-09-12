@@ -184,66 +184,6 @@ export const rooms = [
     userPerRoom: 2,
   },
 ]
-export const filterList = [
-  {
-    label: 'Xếp hạng sao',
-    items: [
-      {
-        label: '5 sao',
-        value: 5,
-      },
-      {
-        label: '4 sao',
-        value: 4,
-      },
-      {
-        label: '3 sao',
-        value: 3,
-      },
-      {
-        label: '2 sao',
-        value: 2,
-      },
-      {
-        label: '1 sao',
-        value: 1,
-      },
-    ],
-  },
-  {
-    label: 'Tiện ích',
-    items: [
-      {
-        label: 'Wi-Fi miễn phí',
-        value: 'freeWifi',
-      },
-      {
-        label: 'Trung tâm Spa & chăm sóc sức khoẻ',
-        value: 'freeWifi',
-      },
-      {
-        label: 'Phòng gia đình',
-        value: 'freeWifi',
-      },
-      {
-        label: 'Phòng không hút thuốc',
-        value: 'freeWifi',
-      },
-      {
-        label: 'Wi-Fi miễn phí',
-        value: 'freeWifi',
-      },
-      {
-        label: 'Wi-Fi miễn phí',
-        value: 'freeWifi',
-      },
-      {
-        label: 'Wi-Fi miễn phí',
-        value: 'freeWifi',
-      },
-    ],
-  },
-]
 
 export const overviews = [
   {

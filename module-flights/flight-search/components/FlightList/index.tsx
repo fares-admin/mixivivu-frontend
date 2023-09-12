@@ -1,6 +1,6 @@
 import { FlightItemCard, FlightItemLoadingCard, FlightsCard, Pagination } from '@/components'
 import { getAirportByCode, getDateFromFlightReq, getThisDay } from '@/constants/commonValue'
-import { FaresResponse, SearchFlightReq } from '@/flight-api/flight-types'
+import { FaresResponse, SearchFlightReq } from '@/services/flight-api/flight-types'
 import { FlightStoreSelector, setSelectedFlight } from '@/redux/flight-store'
 import { Dispatch, SetStateAction, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
@@ -9,6 +9,7 @@ import { FlightCalendar } from '@/components/FlightCalendar'
 import { ShareStoreSelector } from '@/redux/share-store'
 import { useRouter } from 'next/router'
 import styles from './FlightList.module.scss'
+import Image from 'next/image'
 
 interface FlightListProps {
   departureFlight: number | null
@@ -43,14 +44,14 @@ export const FlightList = ({
   const backRoute = getAirportByCode(req ? req.ListFlight[0].EndPoint : '')
 
   const goData =
-    data?.ListFareData.filter(
+    data?.ListFareData?.filter(
       (item) =>
         item.ListFlight[0].StartPoint === goRoute.code &&
         item.ListFlight[0].ListSegment.length === 1
     ) || []
 
   const backData =
-    data?.ListFareData.filter(
+    data?.ListFareData?.filter(
       (item) =>
         item.ListFlight[0].StartPoint === backRoute.code &&
         item.ListFlight[0].ListSegment.length === 1
@@ -105,8 +106,9 @@ export const FlightList = ({
                       />
                     ))}
                   {!loading && goData.length === 0 && (
-                    <div style={{ display: 'flex', justifyContent: 'center', minHeight: 40 }}>
-                      Không tìm thấy vé phù hợp
+                    <div className="flex flex-col align-center justify-center gap-20">
+                      <Image src="/sad.png" width={400} height={360} />
+                      <div>Không tìm thấy vé phù hợp</div>
                     </div>
                   )}
                 </div>

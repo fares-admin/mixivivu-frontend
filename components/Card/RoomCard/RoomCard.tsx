@@ -12,6 +12,7 @@ import {
 import { overviews } from '@/constants/config'
 import { useState } from 'react'
 import styles from './RoomCard.module.css'
+import { formatter } from '@/constants/currencies'
 
 interface RoomCardProps {
   url: string
@@ -21,7 +22,15 @@ interface RoomCardProps {
   area: number
   userPerRoom: number
   disabled?: boolean
+  onChange?: (value) => void
 }
+const defaultCatalog = [
+  '/banner.jpeg',
+  '/carousel2.png',
+  '/carousel3.png',
+  '/card-image.png',
+  '/sad.png',
+]
 
 export const RoomCard = ({
   url,
@@ -31,26 +40,35 @@ export const RoomCard = ({
   area,
   userPerRoom,
   disabled = false,
+  onChange,
 }: RoomCardProps) => {
-  const formatter = new Intl.NumberFormat('en-US')
   const [openModal, setOpenModal] = useState(false)
+  const [currentImg, setCurrentImg] = useState(defaultCatalog[0])
+
   const modalContent = () => {
     return (
       <div className={styles['room-content']}>
-        <div className="flex flex-col gap-8">
+        <div className="flex flex-col gap-8 justify-center align-center">
           <div className={styles['img-wrapper']}>
-            <ImageFill src="/carousel3.png" width="100%" height="100%" />
+            <ImageFill src={currentImg} width="100%" height="100%" />
           </div>
           <div className="flex gap-8">
-            {[1, 2, 3, 4, 5].map((item, index) => (
-              <div key={index} className={styles['img-item']}>
-                <ImageFill width="100%" height="100%" src="/carousel3.png" />
+            {defaultCatalog.map((item, index) => (
+              <div
+                key={index}
+                className={[
+                  styles['img-item'],
+                  item === currentImg ? styles['img-item-active'] : '',
+                ].join(' ')}
+                onClick={() => setCurrentImg(item)}
+              >
+                <ImageFill width="100%" height="100%" src={item} />
               </div>
             ))}
           </div>
         </div>
         <div className="flex flex-col gap-40">
-          <h6>Delta Suite Có Ban Công Riêng Nhìn Ra Biển - 2 Ngày 1 Đêm</h6>
+          <h6>{title}</h6>
           <div className={styles.roomInfo}>
             <div className={styles.roomInfo__item}>
               <BedDoubleIcon width="20" height="20" fillColor="var(--gray-600)" />
@@ -58,9 +76,10 @@ export const RoomCard = ({
             </div>
             <div className={styles.roomInfo__item}>
               <p className="sm">Tối đa:</p>
-              {Array.from({ length: userPerRoom }, (_, index) => (
-                <UserIcon key={index} width="20" height="20" strokeColor="var(--gray-600)" />
-              ))}
+              <div className="flex gap-4 align-center">
+                <p className="sm">{userPerRoom}</p>
+                <UserIcon width="14" height="14" strokeColor="var(--gray-600)" />
+              </div>
             </div>
           </div>
           <div className={styles.overviews}>
@@ -76,12 +95,28 @@ export const RoomCard = ({
           <div className="flex gap-20">
             <Button
               customClass={styles.roomBtn}
-              label={roomCount.toString()}
+              label={roomCount}
               typeStyle="outline"
-              iconLeading={<MinusIcon />}
-              iconTrailing={<PlusIcon />}
+              iconLeading={
+                <div
+                  onClick={() => {
+                    if (roomCount > 0) onChange(roomCount - 1)
+                  }}
+                >
+                  <MinusIcon />{' '}
+                </div>
+              }
+              iconTrailing={
+                <div
+                  onClick={() => {
+                    onChange(roomCount + 1)
+                  }}
+                >
+                  <PlusIcon />
+                </div>
+              }
             />
-            <Button typeStyle="color" label="Chọn phòng" />
+            <Button typeStyle="color" label="Chọn phòng" onClick={() => setOpenModal(false)} />
           </div>
         </div>
       </div>
@@ -105,25 +140,43 @@ export const RoomCard = ({
             </div>
             <div className={styles.roomInfo__item}>
               <p className="sm">Tối đa:</p>
-              {Array.from({ length: userPerRoom }, (_, index) => (
-                <UserIcon key={index} width="20" height="20" strokeColor="var(--gray-600)" />
-              ))}
+              <div className="flex gap-4 align-center">
+                <p className="sm">{userPerRoom}</p>
+                <UserIcon width="14" height="14" strokeColor="var(--gray-600)" />
+              </div>
             </div>
           </div>
         </div>
-        <div className={['flex gap-20 justify-between', styles.footer].join(' ')}>
+        <div className={['flex gap-20 justify-between align-center', styles.footer].join(' ')}>
           <div>
             <div className={[styles.price, 'subheading md'].join(' ')}>
-              {formatter.format(price)}đ
+              {formatter.format(price)} đ
             </div>
             <div className={styles.user}>/khách</div>
           </div>
+
           <Button
             customClass={styles.roomBtn}
-            label={roomCount.toString()}
+            label={roomCount}
             typeStyle="outline"
-            iconLeading={<MinusIcon />}
-            iconTrailing={<PlusIcon />}
+            iconLeading={
+              <div
+                onClick={() => {
+                  if (roomCount > 0) onChange(roomCount - 1)
+                }}
+              >
+                <MinusIcon />{' '}
+              </div>
+            }
+            iconTrailing={
+              <div
+                onClick={() => {
+                  onChange(roomCount + 1)
+                }}
+              >
+                <PlusIcon />
+              </div>
+            }
           />
         </div>
       </Card>

@@ -1,6 +1,6 @@
 import { Button, ChevronDownIcon, ImageFill, Input, UserIcon } from '@/components'
 import { getAirlineByCode, getFormatDate, getHourAndMin } from '@/constants/commonValue'
-import { BaggagePassenger, BaggageResItem, FaresResponse } from '@/flight-api/flight-types'
+import { BaggagePassenger, BaggageResItem, FaresResponse } from '@/services/flight-api/flight-types'
 import { FlightStoreSelector, setPassengers } from '@/redux/flight-store'
 import { useDispatch, useSelector } from 'react-redux'
 
@@ -115,7 +115,7 @@ export const PassengerItem = ({
         />
       </div>
       <div className={styles['customer-info__footer']}>
-        <div className="grid grid-cols-2 gap-24">
+        <div className={['grid grid-cols-2 gap-24', styles['flight-packages']].join(' ')}>
           <div className="flex gap-24">
             <div className={styles['img-wrapper']}>
               <ImageFill src={getAirlineByCode(ticket.Airline).icon} />

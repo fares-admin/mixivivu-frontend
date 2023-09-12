@@ -4,7 +4,7 @@ import {
   Passenger,
   PassengerContact,
   SearchFlightResponse,
-} from '@/flight-api/flight-types'
+} from '@/services/flight-api/flight-types'
 import { PayloadAction, createSlice } from '@reduxjs/toolkit'
 
 import { IFlightStore } from '@/types/redux/FligthStore'
