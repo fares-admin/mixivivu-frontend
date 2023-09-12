@@ -37,7 +37,7 @@ export const ShipDetail = () => {
   const router = useRouter()
 
   const [shipDetail, setShipDetail] = useState<ProductRes>()
-
+  const [rooms, setRooms] = useState([])
   const { setLetCall: fetchShipDetail } = useApiCall<CommonListResultType<ProductRes>, string>({
     callApi: () =>
       axios.get(getEndpoint(productEndpoints, 'getList'), {
@@ -46,8 +46,9 @@ export const ShipDetail = () => {
         },
       }),
     handleSuccess: (message, data) => {
-      if (message) {
+      if (message && data?.data) {
         setShipDetail(data.data[0])
+        setRooms(data.data[0].rooms.map((item) => ({ ...item, roomCount: 0 })))
       }
     },
   })
@@ -135,7 +136,7 @@ export const ShipDetail = () => {
                 shortDescription={shipDetail.shortDescription}
               />
             )}
-            {shipDetail?._id && <Rooms shipDetail={shipDetail} />}
+            {shipDetail?._id && <Rooms shipDetail={shipDetail} rooms={rooms} setRooms={setRooms} />}
             <div id="intro">
               <Output data={shipDetail?.longDescription} />
             </div>

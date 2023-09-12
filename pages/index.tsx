@@ -23,11 +23,11 @@ export const getServerSideProps: any = async () => {
       }),
       axios.get(`${MIXIVIVU_CONFIG.API_BASE_URL}${getEndpoint(categoryEndpoints, 'getList')}`),
     ])
-    if (popularShipRes.data) {
-      popularShips = popularShipRes.data.result.data
+    if (popularShipRes?.data) {
+      popularShips = popularShipRes.data.result.data || []
     }
-    if (categoryRes.data) {
-      categories = categoryRes.data.result.data
+    if (categoryRes?.data) {
+      categories = categoryRes.data.result.data || []
     }
   } catch (e) {
     // eslint-disable-next-line no-console

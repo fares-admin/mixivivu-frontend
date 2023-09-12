@@ -1,5 +1,6 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import { OutputData } from '@editorjs/editorjs'
+import { RoomRes } from './room'
 
 export interface IShipSpec {
   launch: string
@@ -24,6 +25,7 @@ export interface ProductRes {
   spec: {
     ship?: IShipSpec
   }
+  rooms: RoomRes[]
   shortDescription: string[]
   features: string[]
   longDescription: OutputData

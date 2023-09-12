@@ -46,6 +46,13 @@ export const flightEndpoints: EndPointObject = {
   },
 }
 
+export const tourEndpoints: EndPointObject = {
+  baseUrl: '/api/tour-fe',
+  child: {
+    booking: '/send-booking',
+  },
+}
+
 export const reviewEndpoints: EndPointObject = {
   baseUrl: '/api/reviews',
   child: {
@@ -67,12 +74,9 @@ export const roomEndpoints: EndPointObject = {
 }
 
 export const imageEndpoints: EndPointObject = {
-  baseUrl: '/api/images',
+  baseUrl: '',
   child: {
-    getList: '/get-list',
-    addNew: '/add-new',
-    update: '/update-image',
-    delete: '/delete-image',
+    addNew: '/upload',
   },
 }
 

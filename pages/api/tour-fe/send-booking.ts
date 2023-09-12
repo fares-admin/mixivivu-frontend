@@ -1,8 +1,7 @@
+import { sendBooking } from '@/services/tour-api/booking'
 import { NextApiRequest, NextApiResponse } from 'next'
 
-import { searchFlight } from '@/services/flight-api/search-flight'
-
 export default async (req: NextApiRequest, res: NextApiResponse) => {
-  const result = await searchFlight(req)
+  const result = await sendBooking(req)
   res.status(200).send(result)
 }

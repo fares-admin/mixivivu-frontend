@@ -1,7 +1,7 @@
 import { Button, Checkbox, SelectTime } from '@/components'
 
 import { flightFilterList } from '@/constants/config'
-import { SearchFlightReq } from '@/flight-api/flight-types'
+import { SearchFlightReq } from '@/services/flight-api/flight-types'
 import { useRouter } from 'next/router'
 import styles from './FlightSidebar.module.scss'
 import { Dispatch, SetStateAction } from 'react'

@@ -17,7 +17,7 @@ import {
 import { useEffect, useState } from 'react'
 
 import { SwitchHorizonIcon } from '@/components/SVGIcon/SwitchHorizonIcon'
-import { SearchFlightReq } from '@/flight-api/flight-types'
+import { SearchFlightReq } from '@/services/flight-api/flight-types'
 import { useOutsideClick } from '@/hooks/useClickOutside'
 import { useRouter } from 'next/router'
 import { toast } from 'react-toastify'

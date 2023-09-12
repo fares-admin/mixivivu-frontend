@@ -1,6 +1,6 @@
 import { Button, ChevronDownIcon, ImageFill, Input, UserIcon } from '@/components'
 import { getAirlineByCode, getFormatDate, getHourAndMin } from '@/constants/commonValue'
-import { BaggagePassenger, BaggageResItem, FaresResponse } from '@/flight-api/flight-types'
+import { BaggagePassenger, BaggageResItem, FaresResponse } from '@/services/flight-api/flight-types'
 import { FlightStoreSelector, setPassengers } from '@/redux/flight-store'
 import { useDispatch, useSelector } from 'react-redux'
 

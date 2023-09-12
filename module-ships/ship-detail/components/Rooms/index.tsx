@@ -1,67 +1,61 @@
-import {
-  ArrowRightIcon,
-  Button,
-  ChevronDownIcon,
-  RoomCard,
-  SectionHeader,
-  XMarkIcon,
-} from '@/components'
-import { useEffect, useState } from 'react'
+import { ArrowRightIcon, Button, RoomCard, SectionHeader, XMarkIcon } from '@/components'
+import { Dispatch, SetStateAction, useState } from 'react'
 import { InfoModal } from '@/components/Modal/InfoModal'
 import styles from '../../ShipDetail.module.scss'
 import { BookingTourModal } from '../BookingTourModal'
 import { RoomRes } from '@/types/room'
-import { useApiCall } from '@/hooks'
-import axios from 'axios'
-import { getEndpoint, roomEndpoints } from '@/constants/endpoints'
-import { CommonListResultType } from '@/types'
-import { rooms as room1 } from '@/constants/config'
 import { ProductRes } from '@/types/product'
 import Link from 'next/link'
 import { Routes } from '@/constants/routes'
+import { formatter } from '@/constants/currencies'
 
 export interface RoomsProps {
   shipDetail: ProductRes
+  rooms: RoomRes[]
+  setRooms: Dispatch<SetStateAction<any[]>>
 }
 
-export const Rooms = ({ shipDetail }: RoomsProps) => {
-  const [, setRooms] = useState<RoomRes[]>([])
-  const [openModal, setOpenModal] = useState(false)
+export const Rooms = ({ shipDetail, rooms, setRooms }: RoomsProps) => {
+  const [openModal, setOpenModal] = useState({ isOpen: false, isFullShip: false })
   const [openSuccessModal, setOpenSuccessModal] = useState(false)
-  const { setLetCall: fetchRooms } = useApiCall<CommonListResultType<RoomRes>, string>({
-    callApi: () =>
-      axios.get(getEndpoint(roomEndpoints, 'getList'), {
-        params: {
-          productId: shipDetail?._id,
-        },
-      }),
-    handleSuccess: (message, data) => {
-      if (message) {
-        setRooms(data.data)
-      }
-    },
-  })
-
-  useEffect(() => {
-    fetchRooms(true)
-  }, [fetchRooms])
-
+  const handleChangeRooms = (value, id) => {
+    setRooms(rooms.map((room) => (room._id === id ? { ...room, roomCount: value } : room)))
+  }
+  const getTotal = () => {
+    return rooms.reduce((accumulator, object) => {
+      return accumulator + object.price * object.roomCount
+    }, 0)
+  }
   return (
     <div id="rooms" className="flex flex-col gap-40">
       <SectionHeader title={<>Các loại phòng & giá</>} />
       <div className={['flex flex-col gap-40', styles['room-types'], 'section-bg'].join(' ')}>
-        <div className="flex justify-between">
-          <Button
+        <div className="flex justify-end">
+          {/* <Button
             label="Chọn dịch vụ"
             typeStyle="outline"
             iconTrailing={<ChevronDownIcon />}
             size="sm"
+          /> */}
+          <Button
+            label="Xoá lựa chọn"
+            typeStyle="outline"
+            iconLeading={<XMarkIcon />}
+            size="sm"
+            onClick={() => setRooms(shipDetail.rooms.map((item) => ({ ...item, roomCount: 0 })))}
           />
-          <Button label="Xoá lựa chọn" typeStyle="outline" iconLeading={<XMarkIcon />} size="sm" />
         </div>
         <div className={['flex flex-col gap-16 ', styles['rooms-list']].join(' ')}>
-          {room1.map((item, index) => (
-            <RoomCard {...item} key={index} />
+          {rooms.map((item, index) => (
+            <RoomCard
+              {...item}
+              roomCount={item.roomCount || 0}
+              url="/card-image.png"
+              area={item.size}
+              userPerRoom={item.maxPersons}
+              key={index}
+              onChange={(value) => handleChangeRooms(value, item._id)}
+            />
           ))}
         </div>
         <div
@@ -69,12 +63,18 @@ export const Rooms = ({ shipDetail }: RoomsProps) => {
         >
           <div>
             <label className={['sm', styles['price-label']].join(' ')}>Tổng tiền</label>
-            <div className={['subheading lg', styles.price].join(' ')}>3,350,000đ</div>
+            <div className={['subheading lg', styles.price].join(' ')}>
+              {formatter.format(getTotal())} đ
+            </div>
           </div>
           <div className="flex gap-16">
-            <Button label="Thuê trọn tàu" typeStyle="outline" />
             <Button
-              onClick={() => setOpenModal(true)}
+              label="Thuê trọn tàu"
+              typeStyle="outline"
+              onClick={() => setOpenModal({ isFullShip: true, isOpen: true })}
+            />
+            <Button
+              onClick={() => setOpenModal({ isFullShip: false, isOpen: true })}
               label="Đặt ngay"
               typeStyle="color"
               iconTrailing={<ArrowRightIcon />}
@@ -84,16 +84,18 @@ export const Rooms = ({ shipDetail }: RoomsProps) => {
       </div>
       <BookingTourModal
         shipDetail={shipDetail}
-        openModal={openModal}
-        setOpenModal={setOpenModal}
+        openModal={openModal.isOpen}
+        setOpenModal={(value) => setOpenModal({ ...openModal, isOpen: value })}
         setOpenSuccessModal={setOpenSuccessModal}
-        rooms={room1}
+        rooms={rooms.filter((item) => item.roomCount > 0)}
+        isFullShip={openModal.isFullShip}
+        handleChangeRooms={(value, id) => handleChangeRooms(value, id)}
       />
       <InfoModal
         open={openSuccessModal}
         setOpen={setOpenSuccessModal}
         title="Bạn đã đặt Tour thành công"
-        description="Vui lòng kiểm tra email và Mixivivu sẽ liên hệ với bạn"
+        description="Mixivivu sẽ liên hệ với bạn"
         actions={
           <Link href={Routes.home}>
             <Button label="Về trang chủ" typeStyle="outline" iconTrailing={<ArrowRightIcon />} />

@@ -20,6 +20,7 @@ import { useOutsideClick } from '@/hooks/useClickOutside'
 import { useRouter } from 'next/router'
 import { CategoryRes } from '@/types/category'
 import queryString from 'query-string'
+import { useDebounce } from '@/hooks/useDebounce'
 
 interface IPriceRange {
   label: string
@@ -63,12 +64,14 @@ export const SearchBox = ({ title, description, categories = [], className }: Se
   const [showSelectPrice, setShowSelectPrice] = useState(false)
   const [selectedCategory, setSelectedCategory] = useState<CategoryRes | null>()
   const router = useRouter()
+  const debouncedSearch = useDebounce(searchKey, 500)
+
   const { setLetCall: fetchSearchResults } = useApiCall<CommonListResultType<ProductRes>, string>({
     callApi: () =>
       axios.get(getEndpoint(productEndpoints, 'getList'), {
         params: {
           size: 5,
-          title: searchKey,
+          title: debouncedSearch,
         },
       }),
     handleSuccess: (message, data) => {
@@ -77,17 +80,11 @@ export const SearchBox = ({ title, description, categories = [], className }: Se
       }
     },
   })
-  let timerId: any
+  useEffect(() => {
+    if (debouncedSearch) fetchSearchResults(true)
+  }, [debouncedSearch, fetchSearchResults])
   const onSearchInputChange = (e: any) => {
     setSearchKey(e.target.value)
-    fetchSearchResults(true)
-    if (timerId) {
-      clearTimeout(timerId)
-    }
-    timerId = setTimeout(() => {
-      fetchSearchResults(true)
-      timerId = 0
-    }, 500)
   }
   const ref = useOutsideClick(() => {
     setShowSuggestion(false)

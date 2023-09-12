@@ -2,11 +2,11 @@
 import { Button, Card, HeaderAdmin, PlusIcon } from '@/components'
 import styles from './AddTour.module.scss'
 import { Form, Formik } from 'formik'
-import { AddShipInfo, AddTourFeatures, AddTourInfo } from './components'
+import { AddRooms, AddShipInfo, AddTourFeatures, AddTourInfo, ImageUpload } from './components'
 import dynamic from 'next/dynamic'
 import { useEffect, useRef, useState } from 'react'
 import axios from 'axios'
-import { getEndpoint, productEndpoints } from '@/constants/endpoints'
+import { getEndpoint, imageEndpoints, productEndpoints } from '@/constants/endpoints'
 import { useApiCall } from '@/hooks'
 import { toast } from 'react-toastify'
 import { ProductReq, ProductRequestError, ProductRes } from '@/types/product'
@@ -17,6 +17,7 @@ import { CategoryRes } from '@/types/category'
 import { ImageListType } from 'react-images-uploading'
 import { COOKIE_TOKEN_KEY } from '@/constants/commonValue'
 import { useCookies } from 'react-cookie'
+import { CreateTourSchema } from '@/validations/CreateTourSchema'
 
 const Editor = dynamic(() => import('@/components/Editor').then((module) => module.Editor), {
   ssr: false,
@@ -27,8 +28,9 @@ export const AddTour = () => {
   const formRef = useRef(null)
   const router = useRouter()
   // const [shipDetail, setShipDetail] = useState<ProductRes>()
-  // const [rooms, setRooms] = useState([])
+  const [rooms, setRooms] = useState([])
   const [tourImages, setTourImages] = useState<ImageListType>([])
+  const [thumbnail, setThumbnail] = useState<ImageListType>([])
   const [selectedCategory, setSelectedCategory] = useState<CategoryRes | null>()
   const [belongId, setBelongId] = useState(null)
   const [cookies] = useCookies([COOKIE_TOKEN_KEY])
@@ -39,7 +41,7 @@ export const AddTour = () => {
         data.append('file', image.file)
       })
       data.append('belongId', belongId)
-      return axios.post(`/api/images/add-new`, data, {
+      return axios.post(getEndpoint(imageEndpoints, 'addNew'), data, {
         headers: {
           Authorization: cookies.token,
         },
@@ -87,11 +89,22 @@ export const AddTour = () => {
     if (router.isReady && router.query.slug) fetchShipDetail(true)
   }, [fetchShipDetail, router.query.slug, router.isReady])
 
+  const handleUploadThumbnail = (imageList: ImageListType) => {
+    setThumbnail(imageList as never[])
+  }
+
   return (
     <div className={styles.wrapper}>
       <Formik
         innerRef={formRef}
-        initialValues={{}}
+        initialValues={{
+          title: '',
+          slug: '',
+          defaultPrice: '',
+          schedule: '',
+          address: '',
+        }}
+        validationSchema={CreateTourSchema}
         onSubmit={(values, { setSubmitting }) => {
           createTour(true)
           setSubmitting(false)
@@ -123,26 +136,20 @@ export const AddTour = () => {
                 setTourImages={setTourImages}
               />
               <AddTourFeatures />
-              {/* <AddRooms rooms={rooms} setRooms={setRooms}/> */}
+              <AddRooms rooms={rooms} setRooms={setRooms} />
               <Card>
                 <Editor onChange={(data) => setLongDes(data)} />
               </Card>
             </div>
             <div className={[styles['side-content'], 'flex flex-col gap-16'].join(' ')}>
-              {/* <Card>
+              <Card>
                 <div className={styles['card-header']}>
                   <div className="subheading md">Ảnh đại diện</div>
                 </div>
                 <div className={styles['card-content']}>
-                  <div className={styles['upload-images']}>
-                    <UploadCloudIcon />
-                    <div className="flex flex-col gap-4 align-center">
-                      <Button label="Nhấp hoặc Thả ảnh" size="sm" typeStyle="link-color" />
-                      <p className="sm">PNG, JPG</p>
-                    </div>
-                  </div>
+                  <ImageUpload value={thumbnail} maxNumber={1} onChange={handleUploadThumbnail} />
                 </div>
-              </Card> */}
+              </Card>
               <AddShipInfo />
             </div>
           </div>

@@ -12,6 +12,7 @@ import {
 import { overviews } from '@/constants/config'
 import { useState } from 'react'
 import styles from './RoomCard.module.css'
+import { formatter } from '@/constants/currencies'
 
 interface RoomCardProps {
   url: string
@@ -21,6 +22,7 @@ interface RoomCardProps {
   area: number
   userPerRoom: number
   disabled?: boolean
+  onChange?: (value) => void
 }
 const defaultCatalog = [
   '/banner.jpeg',
@@ -38,8 +40,8 @@ export const RoomCard = ({
   area,
   userPerRoom,
   disabled = false,
+  onChange,
 }: RoomCardProps) => {
-  const formatter = new Intl.NumberFormat('en-US')
   const [openModal, setOpenModal] = useState(false)
   const [currentImg, setCurrentImg] = useState(defaultCatalog[0])
 
@@ -66,7 +68,7 @@ export const RoomCard = ({
           </div>
         </div>
         <div className="flex flex-col gap-40">
-          <h6>Delta Suite Có Ban Công Riêng Nhìn Ra Biển - 2 Ngày 1 Đêm</h6>
+          <h6>{title}</h6>
           <div className={styles.roomInfo}>
             <div className={styles.roomInfo__item}>
               <BedDoubleIcon width="20" height="20" fillColor="var(--gray-600)" />
@@ -74,9 +76,10 @@ export const RoomCard = ({
             </div>
             <div className={styles.roomInfo__item}>
               <p className="sm">Tối đa:</p>
-              {Array.from({ length: userPerRoom }, (_, index) => (
-                <UserIcon key={index} width="20" height="20" strokeColor="var(--gray-600)" />
-              ))}
+              <div className="flex gap-4 align-center">
+                <p className="sm">{userPerRoom}</p>
+                <UserIcon width="14" height="14" strokeColor="var(--gray-600)" />
+              </div>
             </div>
           </div>
           <div className={styles.overviews}>
@@ -94,8 +97,24 @@ export const RoomCard = ({
               customClass={styles.roomBtn}
               label={roomCount}
               typeStyle="outline"
-              iconLeading={<MinusIcon />}
-              iconTrailing={<PlusIcon />}
+              iconLeading={
+                <div
+                  onClick={() => {
+                    if (roomCount > 0) onChange(roomCount - 1)
+                  }}
+                >
+                  <MinusIcon />{' '}
+                </div>
+              }
+              iconTrailing={
+                <div
+                  onClick={() => {
+                    onChange(roomCount + 1)
+                  }}
+                >
+                  <PlusIcon />
+                </div>
+              }
             />
             <Button typeStyle="color" label="Chọn phòng" onClick={() => setOpenModal(false)} />
           </div>
@@ -121,25 +140,43 @@ export const RoomCard = ({
             </div>
             <div className={styles.roomInfo__item}>
               <p className="sm">Tối đa:</p>
-              {Array.from({ length: userPerRoom }, (_, index) => (
-                <UserIcon key={index} width="20" height="20" strokeColor="var(--gray-600)" />
-              ))}
+              <div className="flex gap-4 align-center">
+                <p className="sm">{userPerRoom}</p>
+                <UserIcon width="14" height="14" strokeColor="var(--gray-600)" />
+              </div>
             </div>
           </div>
         </div>
-        <div className={['flex gap-20 justify-between', styles.footer].join(' ')}>
+        <div className={['flex gap-20 justify-between align-center', styles.footer].join(' ')}>
           <div>
             <div className={[styles.price, 'subheading md'].join(' ')}>
-              {formatter.format(price)}đ
+              {formatter.format(price)} đ
             </div>
             <div className={styles.user}>/khách</div>
           </div>
+
           <Button
             customClass={styles.roomBtn}
             label={roomCount}
             typeStyle="outline"
-            iconLeading={<MinusIcon />}
-            iconTrailing={<PlusIcon />}
+            iconLeading={
+              <div
+                onClick={() => {
+                  if (roomCount > 0) onChange(roomCount - 1)
+                }}
+              >
+                <MinusIcon />{' '}
+              </div>
+            }
+            iconTrailing={
+              <div
+                onClick={() => {
+                  onChange(roomCount + 1)
+                }}
+              >
+                <PlusIcon />
+              </div>
+            }
           />
         </div>
       </Card>

@@ -127,7 +127,7 @@ const SearchPageDetail: NextPageWithLayout = () => {
           </>
         ) : (
           <>
-            {shipList.length > 0 ? (
+            {shipList?.length > 0 ? (
               <>
                 <div className={[styles['ship-list'], 'flex flex-col gap-32'].join(' ')}>
                   {shipList.map((item, index) => (

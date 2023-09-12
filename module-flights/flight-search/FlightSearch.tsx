@@ -10,7 +10,7 @@ import {
   Steps,
 } from '@/components'
 import { flightEndpoints, getEndpoint } from '@/constants/endpoints'
-import { SearchFlightReq, SearchFlightResponse } from '@/flight-api/flight-types'
+import { SearchFlightReq, SearchFlightResponse } from '@/services/flight-api/flight-types'
 import { resetFlightStore, setData, setSelectedFlight } from '@/redux/flight-store'
 import { useEffect, useState } from 'react'
 import { CustomerContact, CustomerInfo } from './components/CustomerInfo'

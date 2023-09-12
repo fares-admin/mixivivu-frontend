@@ -5,7 +5,7 @@ import {
   GetBaggageRequest,
   GetBaggageRes,
   Passenger,
-} from '@/flight-api/flight-types'
+} from '@/services/flight-api/flight-types'
 import { FlightStoreSelector, setBaggage, setPassengers } from '@/redux/flight-store'
 import { useDispatch, useSelector } from 'react-redux'
 

@@ -109,6 +109,9 @@
     padding-top: 0;
   }
 }
+.apply-mb-btn {
+  display: none;
+}
 
 @media (max-width: 1024px) {
   .header {
@@ -131,5 +134,8 @@
   .search-page {
     padding: 24px !important;
     gap: 24px;
+  }
+  .apply-mb-btn {
+    display: block;
   }
 }

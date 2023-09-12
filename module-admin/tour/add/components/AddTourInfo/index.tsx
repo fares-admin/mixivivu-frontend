@@ -1,14 +1,5 @@
 /* eslint-disable import/no-extraneous-dependencies */
-import {
-  Button,
-  Card,
-  ChevronDownIcon,
-  ImageFill,
-  Input,
-  MapPinAltIcon,
-  UploadCloudIcon,
-  XMarkIcon,
-} from '@/components'
+import { Card, ChevronDownIcon, Input, MapPinAltIcon } from '@/components'
 import { Field } from 'formik'
 import { useApiCall } from '@/hooks'
 import { CommonListResultType } from '@/types'
@@ -17,9 +8,10 @@ import { categoryEndpoints, getEndpoint } from '@/constants/endpoints'
 import { CategoryRes } from '@/types/category'
 import { Dispatch, SetStateAction, useEffect, useState } from 'react'
 import { Dropdown } from '@/components/Dropdown'
-import ImageUploading, { ImageListType } from 'react-images-uploading'
+import { ImageListType } from 'react-images-uploading'
 import styles from '../../AddTour.module.scss'
 import { useOutsideClick } from '@/hooks/useClickOutside'
+import { ImageUpload } from '../ImageUpload'
 
 interface AddTourInfoProps {
   selectedCategory: CategoryRes
@@ -38,7 +30,7 @@ export const AddTourInfo = ({
   const { setLetCall: fetchCategories } = useApiCall<CommonListResultType<CategoryRes>, string>({
     callApi: () => axios.get(getEndpoint(categoryEndpoints, 'getList')),
     handleSuccess: (message, data) => {
-      if (message) {
+      if (message && data?.data) {
         setCategories(data.data)
         setSelectedCategory(data.data[0])
       }
@@ -140,38 +132,7 @@ export const AddTourInfo = ({
       <div className={styles['card-footer']}>
         <div className="flex flex-col gap-24">
           <label className="lg">Ảnh chi tiết tour</label>
-          <ImageUploading
-            multiple
-            value={tourImages}
-            onChange={onChange}
-            maxNumber={3}
-            dataURLKey="data_url"
-          >
-            {({ imageList, onImageUpload, onImageRemove, dragProps }) => (
-              <>
-                <div className={styles['upload-images']} onClick={onImageUpload} {...dragProps}>
-                  <UploadCloudIcon />
-                  <div className="flex flex-col gap-4 align-center">
-                    <Button label="Nhấp hoặc Thả ảnh" size="sm" typeStyle="link-color" />
-                    <p className="sm">PNG, JPG</p>
-                  </div>
-                </div>
-                <div className="flex gap-16">
-                  {imageList.map((image, index) => (
-                    <div key={index} className={styles['image-item']}>
-                      <div
-                        onClick={() => onImageRemove(index)}
-                        className={styles['remove-image-btn']}
-                      >
-                        <XMarkIcon width="12" height="12" />
-                      </div>
-                      <ImageFill src={image.data_url} width="100%" height="100%" />
-                    </div>
-                  ))}
-                </div>
-              </>
-            )}
-          </ImageUploading>
+          <ImageUpload value={tourImages} onChange={(value) => onChange(value)} />
         </div>
       </div>
     </Card>

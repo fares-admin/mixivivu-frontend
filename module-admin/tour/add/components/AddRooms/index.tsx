@@ -1,13 +1,14 @@
 import { Button, Card, PlusIcon } from '@/components'
 import styles from '../../AddTour.module.scss'
 import { AddRoomCard } from '../AddRoomCard'
+import { Dispatch, SetStateAction } from 'react'
 
 interface AddRoomProps {
   rooms: any[]
-  // setRooms: any
+  setRooms: Dispatch<SetStateAction<any[]>>
 }
 
-export const AddRooms = ({ rooms }: AddRoomProps) => {
+export const AddRooms = ({ rooms, setRooms }: AddRoomProps) => {
   return (
     <Card>
       <div className={styles['card-header']}>
@@ -22,13 +23,19 @@ export const AddRooms = ({ rooms }: AddRoomProps) => {
           </div>
         </div>
       </div> */}
-      <div className={styles['card-content']}>
+      <div className={[styles['card-content'], 'flex flex-col gap-24'].join(' ')}>
         {rooms.length > 0 &&
           rooms.map((item, index) => <AddRoomCard index={index + 1} room={item} />)}
         <AddRoomCard index={rooms.length + 1} />
       </div>
       <div className={styles['card-footer']}>
-        <Button label="Thêm phòng" iconLeading={<PlusIcon />} size="sm" typeStyle="outline" />
+        <Button
+          label="Thêm phòng"
+          iconLeading={<PlusIcon />}
+          size="sm"
+          typeStyle="outline"
+          onClick={() => setRooms([...rooms, {}])}
+        />
       </div>
     </Card>
   )

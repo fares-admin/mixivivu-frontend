@@ -2,6 +2,7 @@ import {
   Button,
   HeaderAdmin,
   Input,
+  NotFound,
   Pagination,
   PlusIcon,
   ProductCard,
@@ -104,25 +105,31 @@ export const Tour = () => {
             </>
           ) : (
             <>
-              {shipList.map((item, index) => (
-                <Link href={`/admin/du-thuyen/cap-nhat-tour/${item.slug}`} key={index}>
-                  <a>
-                    <ProductCard
-                      type="grid"
-                      title={item.title}
-                      desciption={`Hạ thuỷ ${item.spec.ship?.launch} - Tàu vỏ ${item.spec.ship?.shell} - ${item.spec.ship?.cabin} phòng`}
-                      location="Vịnh Hạ Long"
-                      originalPrice={item.defaultPrice}
-                      rating={item.scoreReview}
-                      ratingCount={item.numReviews}
-                      key={index}
-                      url={item.thumbnail}
-                      tags={[]}
-                      isAdmin
-                    />
-                  </a>
-                </Link>
-              ))}
+              {shipList?.length > 0 ? (
+                <>
+                  {shipList?.map((item, index) => (
+                    <Link href={`/admin/du-thuyen/cap-nhat-tour/${item.slug}`} key={index}>
+                      <a>
+                        <ProductCard
+                          type="grid"
+                          title={item.title}
+                          desciption={`Hạ thuỷ ${item.spec.ship?.launch} - Tàu vỏ ${item.spec.ship?.shell} - ${item.spec.ship?.cabin} phòng`}
+                          location="Vịnh Hạ Long"
+                          originalPrice={item.defaultPrice}
+                          rating={item.scoreReview}
+                          ratingCount={item.numReviews}
+                          key={index}
+                          url={item.thumbnail}
+                          tags={[]}
+                          isAdmin
+                        />
+                      </a>
+                    </Link>
+                  ))}
+                </>
+              ) : (
+                <NotFound />
+              )}
             </>
           )}
         </div>

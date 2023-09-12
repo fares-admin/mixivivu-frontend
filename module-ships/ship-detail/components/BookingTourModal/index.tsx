@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import { Dispatch, SetStateAction, useRef, useState } from 'react'
 import {
   ArrowRightIcon,
@@ -10,20 +11,27 @@ import {
   RoomDatePicker,
 } from '@/components'
 
-import { RoomProps } from '@/constants/type'
 import { Field, Form, Formik } from 'formik'
 import styles from '../../ShipDetail.module.scss'
 import { BookingShipSchema } from '@/validations/BookingShipChema'
 import moment from 'moment'
-import { formatDate } from '@/constants/dateTime'
+import { emailFormatDate, formatDate } from '@/constants/dateTime'
 import { ProductRes } from '@/types/product'
+import axios from 'axios'
+import { getEndpoint, tourEndpoints } from '@/constants/endpoints'
+import Link from 'next/link'
+import { Routes } from '@/constants/routes'
+import { RoomRes } from '@/types/room'
+import { formatter } from '@/constants/currencies'
 
 interface BookingTourModalProps {
   shipDetail: ProductRes
   openModal: boolean
-  setOpenModal: Dispatch<SetStateAction<boolean>>
+  setOpenModal: (value) => void
   setOpenSuccessModal: Dispatch<SetStateAction<boolean>>
-  rooms: RoomProps[]
+  rooms: RoomRes[]
+  handleChangeRooms: any
+  isFullShip?: boolean
 }
 
 export const BookingTourModal = ({
@@ -31,21 +39,46 @@ export const BookingTourModal = ({
   setOpenModal,
   setOpenSuccessModal,
   rooms,
+  handleChangeRooms,
+  shipDetail,
+  isFullShip = false,
 }: BookingTourModalProps) => {
   const formRef = useRef(null)
   const [roomDetail, setRoomDetail] = useState({
-    rooms: 1,
     adults: 1,
     children: 0,
   })
-  const [, setSelectedDate] = useState<string>(moment(new Date()).format(formatDate))
-
-  const handleSubmit = async (values) => {
-    alert(values)
-    setOpenModal(false)
-    setOpenSuccessModal(true)
+  const [selectedDate, setSelectedDate] = useState<string>(moment(new Date()).format(formatDate))
+  const getTotal = () => {
+    return rooms.reduce((accumulator, object) => {
+      return accumulator + object.price * object.roomCount
+    }, 0)
   }
-
+  const handleSubmit = async (values) => {
+    try {
+      const res = await axios.post(getEndpoint(tourEndpoints, 'booking'), {
+        subject: isFullShip ? 'Full-ship booking' : 'Normal booking',
+        datatypes: isFullShip ? 'ship' : 'room',
+        cruise_name: shipDetail.title,
+        check_in: moment(selectedDate, formatDate).format(emailFormatDate),
+        number_of_adult: roomDetail.adults,
+        number_of_children: roomDetail.children,
+        rooms: isFullShip
+          ? []
+          : rooms.map((item) => ({
+              room_name: item.title,
+              quantity: item.roomCount,
+            })),
+        ...values,
+      })
+      if (res.data.status === 200) {
+        setOpenModal(false)
+        setOpenSuccessModal(true)
+      }
+    } catch (e) {
+      console.error(e)
+    }
+  }
   return (
     <Modal
       open={openModal}
@@ -67,9 +100,23 @@ export const BookingTourModal = ({
         >
           <Form>
             <div className={styles['booking-detail-modal']}>
-              <h6>Đặt du thuyền</h6>
+              <h6>{isFullShip ? 'Thuê trọn tàu' : 'Đặt du thuyền'}</h6>
               <div className={styles.divider} />
-              <RoomCard {...rooms[0]} disabled />
+              {!isFullShip && (
+                <>
+                  {rooms.map((item) => (
+                    <RoomCard
+                      {...item}
+                      roomCount={item.roomCount || 0}
+                      url="/card-image.png"
+                      area={item.size}
+                      userPerRoom={item.maxPersons}
+                      disabled
+                      onChange={(value) => handleChangeRooms(value, item._id)}
+                    />
+                  ))}
+                </>
+              )}
               <div className="flex flex-col gap-24">
                 <div className={styles['group-input']}>
                   <RoomDatePicker onChange={(value) => setSelectedDate(value)} />
@@ -126,17 +173,22 @@ export const BookingTourModal = ({
                   styles['booking-detail-modal__footer'],
                 ].join(' ')}
               >
-                <div className="flex flex-col gap-6">
-                  <label className={['sm', styles['price-label']].join(' ')}>Tổng tiền</label>
-                  <div
-                    className={['subheading lg', styles.price].join(' ')}
-                    style={{ color: 'var(--primary-dark, #0E4F4F)' }}
-                  >
-                    3,350,000đ
+                {!isFullShip && (
+                  <div className="flex flex-col gap-6">
+                    <label className={['sm', styles['price-label']].join(' ')}>Tổng tiền</label>
+                    <div
+                      className={['subheading lg', styles.price].join(' ')}
+                      style={{ color: 'var(--primary-dark, #0E4F4F)' }}
+                    >
+                      {formatter.format(getTotal())} đ
+                    </div>
                   </div>
-                </div>
-                <div className={[styles.actions, 'flex gap-16'].join(' ')}>
-                  <Button label="Đăng ký tư vấn" typeStyle="outline" />
+                )}
+
+                <div className={[styles.actions, 'flex gap-16 flex-grow justify-end'].join(' ')}>
+                  <Link href={Routes.contact}>
+                    <Button label="Đăng ký tư vấn" typeStyle="outline" />
+                  </Link>
                   <Button
                     type="submit"
                     label="Đặt ngay"
